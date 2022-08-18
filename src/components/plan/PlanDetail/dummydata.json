@@ -1,0 +1,220 @@
+{
+  "id": 1,
+  "title": "3만 명이 열광한 노션 포트폴리오 만들기",
+  "subtitle": "취준이 막막한 예비 직장인을 위한",
+  "description": " 자기 PR의 시대입니다. 자신의 가치를 잘 보여줄수록, 더 많은 기회를 가질 수 있습니다. 세상에서 단 하나뿐 인 노션 포트폴리오를 만들어 보세요!",
+  "tags": ["알아둘만한", "성장"],
+  "category": "career",
+  "level": "easy",
+  "price": 0,
+  "main_img": null,
+  "content": [
+    {
+      "fields": [
+        {
+          "type": "header",
+          "value": "지금 시작하면 나만의 노션 포트폴리오를 만들 수 있어요",
+          "highlight": "노션 포트폴리오"
+        },
+        {
+          "type": "image",
+          "value": "/media/attachments/notion_porfolio.png"
+        },
+        {
+          "type": "paragraph",
+          "value": " 3만 명이 열광한 노션 포트폴리오를 차근차근 따라 만들 수 있어요. 세상에서 단 하나 뿐인 나만의 노션 포트폴리오를 만들어 보세요!"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "type": "header",
+          "value": "이런걸 배울 수 있어요"
+        },
+        {
+          "type": "subheader",
+          "value": "노션의 AtoZ"
+        },
+        {
+          "type": "paragraph",
+          "value": "노션 포트폴리오를 직접 만들면서, 노션의 전반적 개념을 이해할 수 있습니다. 이 클래스만 완수하면, 당신도 노션 초고수!"
+        },
+        {
+          "type": "subheader",
+          "value": "웹사이트 만들기"
+        },
+        {
+          "type": "paragraph",
+          "value": "완성한 노션 포트폴리오를 웹사이트로 만들어 보세요! 구글, 네이버 등 다양한 검색 포탈에서 사람들이 내 포트폴리오 사이트를 찾아오게 만드세요."
+        }
+      ]
+    }
+  ],
+  "creator": {
+    "name": "이명성",
+    "intro": "노션박스를 운영하고 있습니다.",
+    "profile_image": "/media/creator-profile-photo/profile.png"
+  },
+  "is_favorite": false,
+  "created": "2022-07-24T07:51:44.598225",
+  "modified": "2022-07-24T08:30:06.893340",
+  "sessions": [
+    {
+      "id": 1,
+      "order_number": 1,
+      "name": "노션 시작하기",
+      "description": "session description here",
+      "deadline": 3,
+      "mission": "마음에 드는 노션 템플릿 1개 선택하기",
+      "mission_description": "노션 포트폴리오 레퍼런스를 찾아보고, 가장 마음에 드는 템플릿 1개를 캡쳐해서 업로드해주세요.",
+      "todos": [
+        {
+          "id": 1,
+          "order_number": 1,
+          "name": "노션 회원가입하기",
+          "description": "todo description",
+          "reference_solution": null
+        },
+        {
+          "id": 2,
+          "order_number": 2,
+          "name": "노션 앱 다운 받기",
+          "description": "todo description",
+          "reference_solution": null
+        },
+        {
+          "id": 3,
+          "order_number": 3,
+          "name": "포트폴리오 레퍼런스 둘러보기",
+          "description": "todo description",
+          "reference_solution": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "order_number": 2,
+      "name": "프로필 만들기",
+      "description": "session description here",
+      "deadline": 3,
+      "mission": "완성한 프로필 업로드하기",
+      "mission_description": "완성한 프로필 부분을 캡처해서 업로드해주세요.",
+      "todos": [
+        {
+          "id": 4,
+          "order_number": 1,
+          "name": "블록 생성하기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 5,
+          "order_number": 2,
+          "name": "블록 디자인하기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 6,
+          "order_number": 3,
+          "name": "블록 단축키 사용해보기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 7,
+          "order_number": 4,
+          "name": "페이지 생성하기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 8,
+          "order_number": 5,
+          "name": "노션 포트폴리오 - 프로필 만들기",
+          "description": "todo description here",
+          "reference_solution": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "order_number": 3,
+      "name": "경력 및 활동 만들기",
+      "description": "session description here",
+      "deadline": 3,
+      "mission": "완성한 활동 및 경력 업로드하기",
+      "mission_description": "완성한 보유 역량 / 재직 회사 / 수상 경력 부분을 캡처해서 업로드해주세요.",
+      "todos": [
+        {
+          "id": 9,
+          "order_number": 1,
+          "name": "데이터베이스 생성하기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 10,
+          "order_number": 2,
+          "name": "데이터베이스 속성 생성하기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 11,
+          "order_number": 3,
+          "name": "노션 포트폴리오 - 경력 및 활동 만들기",
+          "description": "todo description here",
+          "reference_solution": null
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "order_number": 4,
+      "name": "웹사이트 만들기",
+      "description": "session description here",
+      "deadline": 3,
+      "mission": "완성한 웹사이트 업로드하기",
+      "mission_description": "완성한 웹사이트의 홈 페이지를 캡처해서 업로드해주세요.",
+      "todos": [
+        {
+          "id": 12,
+          "order_number": 1,
+          "name": "우피 회원가입하기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 13,
+          "order_number": 2,
+          "name": "사이트 도메인 만들기",
+          "description": "todo description here",
+          "reference_solution": null
+        },
+        {
+          "id": 14,
+          "order_number": 3,
+          "name": "사이트 스타일 설정하기",
+          "description": "todo description here",
+          "reference_solution": null
+        }
+      ]
+    }
+  ],
+  "recommended_for": [
+    {
+      "image": "/media/attachments/profile.png",
+      "description": "포토폴리오를 만들고 싶은 취준생"
+    },
+    {
+      "image": "/media/attachments/profile.png",
+      "description": "이직에 성공하고 싶은 직장인"
+    },
+    {
+      "image": "/media/attachments/profile.png",
+      "description": "자신을 매력적으로 소개하고 싶은 대학생"
+    }
+  ]
+}

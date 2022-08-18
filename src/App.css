@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "PretendardMedium";
+  src: url("./styles/fonts/Pretendard-Medium.otf") format("truetype");
+}
+@font-face {
+  font-family: "PretendardRegular";
+  src: url("./styles/fonts/Pretendard-Regular.otf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  flex-shrink: 0;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+ a:hover,
+a:active {
+  text-decoration: none;
+  color: #fff;
+  background-color: #f59000;
+}
