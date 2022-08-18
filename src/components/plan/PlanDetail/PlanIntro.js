@@ -16,16 +16,19 @@ const PlanIntro = ({
 }) => {
   return (
     <>
-      <Image src={image ? image : `/images/dummy_plan_image.png`} />
+      <Image src={image ? image : "https://picsum.photos/200/300"} />
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
         <SmallTags>
-          {smalltag.map((tag) => (
+          {/* {smalltag.map((tag) => (
             <SmallTag>{tag}</SmallTag>
-          ))}
+          ))} */}
+          <img src="/images/plan_dummy_tag.svg" />
         </SmallTags>
-        <LargeTag></LargeTag>
+        <LargeTag>
+          <img src="/images/dummy_tags.svg" />
+        </LargeTag>
         <Description>{description}</Description>
         <Creator>
           <ProfileImage src={`/images/dummy_profile_image.png`} />
@@ -41,6 +44,8 @@ const PlanIntro = ({
 
 const Image = styled.img`
   width: 100vw;
+  height: 160px;
+  overflow: hidden;
 `;
 
 const Container = styled.div`
@@ -69,11 +74,10 @@ const Title = styled.p`
 
 const SmallTags = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-
-  background-color: black;
   width: 100vw;
+  margin-bottom: 10px;
 `;
 
 const SmallTag = styled.div``;
@@ -81,7 +85,6 @@ const SmallTag = styled.div``;
 const LargeTag = styled.div`
   width: 100vw;
   height: 75px;
-  background-color: black;
   margin: 10px 0;
 `;
 

@@ -22,7 +22,6 @@ const PlanCurriculum = ({ data }) => {
               {session.todos.map((todo) => (
                 <Todo>
                   <TodoTitle>{todo.name}</TodoTitle>
-                  <DetailIcon src={`/images/todo_detail.svg`} />
                 </Todo>
               ))}
             </Todos>
