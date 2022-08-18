@@ -74,7 +74,9 @@ const MyPage = () => {
           ) : (
             <NoPlan>
               <NoPlanImage src="/images/mypage_no_plan.svg" />
-              <NoPlanTitle>아직 도전 중인 클래스가 없어요.</NoPlanTitle>
+              <NoPlanTitle>
+                솔빈님은 아직 도전 중인 클래스가 없어요.
+              </NoPlanTitle>
               <NoPlanTitle>나에게 맞는 클래스를 찾아볼까요?</NoPlanTitle>
               <Button link="/todomall" title="클래스 찾아보기" />
             </NoPlan>
@@ -148,17 +150,20 @@ const NoPlan = styled.div`
 `;
 
 const NoPlanImage = styled.img`
-  width: 90vw;
+  width: 80vw;
+  margin-top: 20px;
   margin-bottom: 20px;
 `;
 
 const NoPlanTitle = styled.p`
-  font-family: "PretendardMedium";
+  font-family: "PretendardRegular";
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
   text-align: center;
-  margin-top: 10px;
+
+  color: #888888;
 `;
 
 const PlanDate = styled.p`
