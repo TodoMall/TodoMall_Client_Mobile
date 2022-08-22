@@ -35,7 +35,7 @@ const Modals = ({
         <ModalTitle>투두몰을 탈퇴하실 건가요?</ModalTitle>
         <ModalDetail>
           지금까지 솔빈님이 이뤄낸 모든 도전 기록 내역이 사라져 복구할 수 없게
-          돼요.
+          돼요
         </ModalDetail>
         <ModalButton>
           <Button color="#D10B0B" title="탈퇴" width={45} />
