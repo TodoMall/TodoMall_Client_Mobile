@@ -6,7 +6,7 @@ import Login from "./components/login/Login";
 import "./App.css";
 import Service from "./components/login/Service";
 import Personal from "./components/login/Personal";
-import TodoBox from "./components/main/TodoBox";
+import TodoBox from "./components/main/TodoBox/TodoBox";
 import TodoMall from "./components/main/TodoMall/TodoMall";
 import MyPage from "./components/main/MyPage/MyPage";
 import PlanPurchase from "./components/plan/PlanPurchase";
