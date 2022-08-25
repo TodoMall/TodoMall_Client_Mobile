@@ -13,6 +13,17 @@
   font: inherit;
   color: inherit;
   flex-shrink: 0;
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  touch-action: pan-y, pan-x;
+}
+.childViewPortElement {
+  overflow: scroll;
+  touch-action: pan-y, pan-x;
 }
 a {
   color: #fff;
@@ -23,5 +34,11 @@ a {
 a:active {
   text-decoration: none;
   color: #fff;
-  background-color: #f59000;
+  /* background-color: #f59000; */
+}
+html,
+body {
+  height: 100%;
+  background-color: #fbfbfb !important;
+  min-height: calc(100% + env(safe-area-inset-top));
 }

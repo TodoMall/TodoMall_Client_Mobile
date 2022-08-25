@@ -54,7 +54,7 @@ const Header = ({ current, setCurrent }) => {
 };
 
 const Container = styled.div`
-  padding-top: 35px; //IPHONE camera
+  padding-top: 20px; //IPHONE camera
   background-color: #fbfbfb;
   position: fixed;
   width: 100%;

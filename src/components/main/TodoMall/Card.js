@@ -23,7 +23,6 @@ const Card = ({ title, description }) => {
       </CardTags>
       <CardDescription>
         종잣돈을 모으기 위해 가장 먼저 해야 하는 일은 바로 자신의 소비 패턴을
-        파악하는 일입니다. 급여는 얼마나 받는지...
       </CardDescription>
     </CardBox>
   );

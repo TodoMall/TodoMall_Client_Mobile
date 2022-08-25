@@ -78,7 +78,7 @@ const MyPage = () => {
                 솔빈님은 아직 도전 중인 클래스가 없어요.
               </NoPlanTitle>
               <NoPlanTitle>나에게 맞는 클래스를 찾아볼까요?</NoPlanTitle>
-              <Button link="/todomall" title="클래스 찾아보기" />
+              <Button link="/todomall" title="클래스 찾아보기" width="70" />
             </NoPlan>
           )}
         </Body>
@@ -96,7 +96,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px 10px 25px;
-  background-color: white;
+  background-color: #fbfbfb;
   width: 100vw;
   border-bottom: 2px solid #f1f3f5;
 `;
@@ -150,7 +150,7 @@ const NoPlan = styled.div`
 `;
 
 const NoPlanImage = styled.img`
-  width: 80vw;
+  width: 300px;
   margin-top: 20px;
   margin-bottom: 20px;
 `;

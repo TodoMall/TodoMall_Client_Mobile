@@ -120,6 +120,7 @@ const Agreement = () => {
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #fbfbfb;
 `;
 
 const Text = styled.div`
@@ -148,6 +149,7 @@ const Footer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #fbfbfb;
 `;
 
 const Table = styled.div`

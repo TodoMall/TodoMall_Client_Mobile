@@ -24,6 +24,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: #fbfbfb;
 `;
 
 const BackArrow = styled(ArrowBackIosIcon)`
