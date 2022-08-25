@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import styled from "styled-components";
 import Header from "../global/Header";
-export default function Service() {
-  const navigate = useNavigate();
 
+export default function Service() {
   const HTML = `
 <pre
 style="
@@ -300,7 +297,11 @@ font-size: 13px;
   return (
     <>
       <Header title="서비스 이용약관" />
-      <div dangerouslySetInnerHTML={{ __html: HTML }} />
+      <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
     </>
   );
 }
+
+const HTMLDiv = styled.div`
+  padding: 0 20px;
+`;

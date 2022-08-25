@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import styled from "styled-components";
 import Header from "../global/Header";
 
 export default function Personal() {
-  const navigate = useNavigate();
   const HTML = `
 <pre
   style="
@@ -162,7 +159,11 @@ export default function Personal() {
   return (
     <>
       <Header title="개인정보 처리방침" />
-      <div dangerouslySetInnerHTML={{ __html: HTML }} />
+      <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
     </>
   );
 }
+
+const HTMLDiv = styled.div`
+  padding: 0 20px;
+`;

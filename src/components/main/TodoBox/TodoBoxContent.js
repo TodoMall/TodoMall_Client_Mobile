@@ -8,6 +8,8 @@ const TodoBoxContent = () => {
       <TodoBoxCard />
       <TodoBoxCard />
       <TodoBoxCard />
+      <TodoBoxCard />
+      <TodoBoxCard />
     </TodoBoxContentContainer>
   );
 };
