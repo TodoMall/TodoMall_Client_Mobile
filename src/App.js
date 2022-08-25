@@ -51,10 +51,10 @@ function App() {
 
 const Container = styled.div`
   width: 100%;
-  margin: auto;
+  position: absolute;
+  padding: auto;
   height: 90vh;
-  max-width: 600px;
-  // margin-top: 15px;
+  /* max-width: 600px; */
 `;
 
 export default App;

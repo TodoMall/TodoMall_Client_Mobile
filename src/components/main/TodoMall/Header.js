@@ -57,10 +57,11 @@ const Container = styled.div`
   padding-top: 35px; //IPHONE camera
   background-color: #fbfbfb;
   position: fixed;
+  width: 100%;
 `;
 
 const Logo = styled.img`
-  width: 35%;
+  width: 150px;
   margin-left: 5%;
 `;
 

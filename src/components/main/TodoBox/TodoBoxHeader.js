@@ -9,20 +9,22 @@ const TodoBoxHeader = () => {
           <span>솔빈</span>님의 도전
         </TodoBoxHeaderName>
         <TodoBoxHeaderTry>0개 도전 중</TodoBoxHeaderTry>
+        <TodoBoxDivider />
       </TodoBoxHeaderContainer>
-      <TodoBoxDivider />
     </>
   );
 };
 
 const TodoBoxHeaderContainer = styled.div`
   height: 90px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  margin-top: 20px;
+  position: fixed;
+  z-index: 10000;
+  background-color: white;
 `;
 
 const TodoBoxHeaderName = styled.p`
@@ -49,6 +51,10 @@ const TodoBoxDivider = styled.hr`
   background-color: #f1f3f5;
   height: 2px;
   opacity: 30%;
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  left: 0;
 `;
 
 export default TodoBoxHeader;
