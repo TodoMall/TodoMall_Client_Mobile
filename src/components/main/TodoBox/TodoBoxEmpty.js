@@ -22,6 +22,8 @@ const TodoBoxEmptyContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 90px;
+  padding-bottom: 90px;
 `;
 
 const TodoBoxEmptyImage = styled.img``;
@@ -59,7 +61,7 @@ const TodoBoxEmptyButton = styled.button`
   line-height: 16px;
   text-align: center;
   color: #ffffff;
-  margin-top: 35px;
+  margin-top: 25px;
 `;
 
 export default TodoBoxEmpty;
