@@ -19,7 +19,9 @@ const Header = ({ title }) => {
 
 const Container = styled.div`
   width: 100%;
-  height: 90px;
+  height: 50px;
+  padding-top: 30px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -168,7 +168,7 @@ export default function Personal() {
 }
 
 const HTMLDiv = styled.div`
-  padding: 100px 20px;
+  padding: 60px 20px;
 `;
 
 const Footer = styled.div`

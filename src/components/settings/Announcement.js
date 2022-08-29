@@ -45,6 +45,7 @@ const Announcement = () => {
 const Announcements = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
 `;
 
 const AnnouncementRow = styled.div`

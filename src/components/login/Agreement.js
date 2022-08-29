@@ -127,9 +127,6 @@ const Body = styled.div`
 
 const Text = styled.div`
   flex-direction: column;
-  margin: auto;
-  padding-right: 180px;
-  margin-bottom: 80px;
 `;
 
 const BodyText = styled.p`
@@ -157,7 +154,8 @@ const Footer = styled.div`
 `;
 
 const Table = styled.div`
-  width: 380px;
+  max-width: 380px;
+  width: 90vw;
   margin-bottom: 30px;
 `;
 
@@ -170,7 +168,8 @@ const Row = styled.div`
 `;
 
 const ButtonOff = styled.div`
-  width: 360px;
+  max-width: 380px;
+  width: 90vw;
   background-color: #ededed;
   border-radius: 20px;
   height: 52px;
@@ -186,7 +185,8 @@ const ButtonOff = styled.div`
 `;
 
 const ButtonOn = styled.div`
-  width: 360px;
+  max-width: 380px;
+  width: 90vw;
   background: #6b47fd;
   border-radius: 20px;
   height: 52px;

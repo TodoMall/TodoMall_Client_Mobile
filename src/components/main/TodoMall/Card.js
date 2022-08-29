@@ -12,7 +12,11 @@ const Card = ({ title, description }) => {
       }}
     >
       <DescriptionFor>발전을 원하는 디자이너를 위한</DescriptionFor>
-      <CardTitle>🎨 피그마 마스터하고 UI 디자인</CardTitle>
+      <CardTitle>피그마 마스터하고 UI 디자인</CardTitle>
+      <CardDescription>
+        종잣돈을 모으기 위해 가장 먼저 해야 하는 일은 바로 자신의 소비 패턴을
+      </CardDescription>
+      <CardIcon>🎨</CardIcon>
       <CardTags>
         <CardTag>
           <TagContent src="/images/dummy_tag.svg" />
@@ -21,9 +25,6 @@ const Card = ({ title, description }) => {
           <TagContent src="/images/dummy_tag.svg" />
         </CardTag>
       </CardTags>
-      <CardDescription>
-        종잣돈을 모으기 위해 가장 먼저 해야 하는 일은 바로 자신의 소비 패턴을
-      </CardDescription>
     </CardBox>
   );
 };
@@ -35,6 +36,14 @@ const CardBox = styled.div`
   background-color: white;
   margin-bottom: 10px;
   padding: 20px;
+  position: relative;
+`;
+
+const CardIcon = styled.div`
+  position: absolute;
+  font-size: 40px;
+  right: 20px;
+  top: 10px;
 `;
 
 const DescriptionFor = styled.p`
@@ -55,11 +64,22 @@ const CardTitle = styled.p`
   margin-bottom: 5px;
 `;
 
+const CardDescription = styled.p`
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 27px;
+  color: #444444;
+  padding-bottom: 5px;
+`;
+
 const CardTags = styled.div`
   height: 35px;
   display: flex;
   flex-direction: row;
   gap: 5px;
+  align-items: center;
 `;
 
 const CardTag = styled.div`
@@ -73,15 +93,5 @@ const CardTag = styled.div`
 `;
 
 const TagContent = styled.img``;
-
-const CardDescription = styled.p`
-  font-family: "PretendardRegular";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 27px;
-  letter-spacing: -0.005em;
-  color: #888888;
-`;
 
 export default Card;

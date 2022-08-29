@@ -64,12 +64,13 @@ const LoginImage = styled.img`
   position: fixed;
   top: 18%;
   width: 350px;
+  z-index: 10000;
   /* margin-bottom: 10vh; */
 `;
 
 const Footer = styled.div`
   position: fixed;
-  bottom: 10vh;
+  bottom: 5vh;
   margin: 0 auto;
   left: 0;
   right: 0;
@@ -88,13 +89,14 @@ const LoginButton = styled.img`
 
 const LoginDesign = styled.div`
   position: fixed;
-  width: 2000px;
-  height: 2000px;
+  width: 130vw;
+  height: 50vh;
   left: auto;
-  top: 575px;
+  /* top: 575px; */
+  bottom: -15vh;
   background: #f3f1ff;
   z-index: 0;
-  border-radius: 1200px;
+  border-radius: 300%;
 `;
 
 export default Login;

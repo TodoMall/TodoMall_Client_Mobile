@@ -56,6 +56,7 @@ const Container = styled.div`
   background-color: #fbfbfb;
   position: fixed;
   width: 100%;
+  z-index: 10000;
 `;
 
 const Logo = styled.img`
