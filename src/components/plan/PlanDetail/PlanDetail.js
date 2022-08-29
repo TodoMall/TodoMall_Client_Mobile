@@ -76,7 +76,7 @@ const BuyButton = styled.div`
   background: #6b47fd;
   border-radius: 20px;
   max-width: 380px;
-  width: 120vw;
+  width: 90%;
   height: 52px;
   display: flex;
   align-items: center;

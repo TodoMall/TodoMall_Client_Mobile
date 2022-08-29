@@ -4,7 +4,7 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import constants from "../../constants";
 import { Link } from "react-router-dom";
 
-export default function BottomNavBar({ position }) {
+export default function BottomNavBar({ position, tooltip = false }) {
   const [current, setCurrent] = useState(position);
 
   return (
@@ -31,7 +31,7 @@ export default function BottomNavBar({ position }) {
           component={Link}
           to="/todobox"
         />
-
+        {tooltip ? <div>Tooltip</div> : null}
         <NavBarButton
           icon={
             <>
@@ -89,4 +89,8 @@ const StyledBottomNavBar = styled(BottomNavigation)`
 
 const NavBarButton = styled(BottomNavigationAction)`
   padding: 0px 12px 8px !important;
+`;
+
+const ToolTip = styled.div`
+  back
 `;

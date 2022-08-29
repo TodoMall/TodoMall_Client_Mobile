@@ -5,10 +5,8 @@ const TodoBoxHeader = () => {
   return (
     <>
       <TodoBoxHeaderContainer>
-        <TodoBoxHeaderName>
-          <span>솔빈</span>님의 도전
-        </TodoBoxHeaderName>
         <TodoBoxHeaderTry>3개 도전 중</TodoBoxHeaderTry>
+        <TodoBoxHeaderName>힘내세요, 솔빈님!</TodoBoxHeaderName>
         <TodoBoxDivider />
       </TodoBoxHeaderContainer>
     </>
@@ -23,6 +21,7 @@ const TodoBoxHeaderContainer = styled.div`
   /* align-items: center; */
   padding: 0 30px;
   padding-top: 20px;
+  padding-bottom: 10px;
   position: fixed;
   z-index: 10000;
   background-color: #fbfbfb;
@@ -31,22 +30,25 @@ const TodoBoxHeaderContainer = styled.div`
 const TodoBoxHeaderName = styled.p`
   font-family: "PretendardRegular";
   font-style: normal;
-  font-size: 20px;
-  color: #000000;
-  span {
-    font-family: "PretendardMedium";
-    font-weight: 1000;
-  }
-`;
-
-const TodoBoxHeaderTry = styled.p`
-  font-family: "PretendardRegular";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+
   color: #707070;
-  padding-top: 5px;
+`;
+
+const TodoBoxHeaderTry = styled.p`
+  font-family: "PretendardMedium";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 22px;
+  color: #000000;
+  display: flex;
+  align-items: center;
 `;
 
 const TodoBoxDivider = styled.hr`

@@ -15,6 +15,7 @@ const Modals = ({
         aria-labelledby="modal-title"
         open={visibleLogout}
         onClose={closeHandlerLogout}
+        width="90%"
       >
         <ModalImage src="/images/modal_image.svg" />
         <ModalTitle>정말 로그아웃 하실 건가요?</ModalTitle>
@@ -39,7 +40,14 @@ const Modals = ({
         </ModalDetail>
         <ModalButton>
           <Button color="#D10B0B" title="탈퇴" width={45} />
-          <Button title="취소" color="#EDEDED" width={45} />
+          <CancelButton
+            title="취소"
+            color="#EDEDED"
+            width={45}
+            onClick={() => {
+              closeHandlerDelete();
+            }}
+          />
         </ModalButton>
       </Modal>
     </>
@@ -73,6 +81,18 @@ const ModalButton = styled.div`
   align-items: center;
   margin-bottom: 20px;
   gap: 10px;
+`;
+
+const CancelButton = styled.div`
+  font-family: "PretendardMedium";
+  height: 60px;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  margin-top: 40px;
+  text-align: center;
 `;
 
 const ModalImage = styled.img``;
