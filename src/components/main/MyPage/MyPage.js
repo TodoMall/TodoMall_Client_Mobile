@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../../api/axios";
 import requests from "../../../api/request";
 import Row from "./Row";
-import Button from "../../global/Button";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -75,10 +74,12 @@ const MyPage = () => {
             <NoPlan>
               <NoPlanImage src="/images/mypage_no_plan.svg" />
               <NoPlanTitle>
-                솔빈님은 아직 도전 중인 클래스가 없어요.
+                <span>아직 경험한 클래스가 없네요</span>
               </NoPlanTitle>
-              <NoPlanTitle>나에게 맞는 클래스를 찾아볼까요?</NoPlanTitle>
-              <Button link="/todomall" title="클래스 찾아보기" width="70" />
+              <NoPlanTitle>
+                지금 투두몰과 함께 시작해보시는건 어때요?
+              </NoPlanTitle>
+              {/* <Button link="/todomall" title="클래스 찾아보기" width="70" /> */}
             </NoPlan>
           )}
         </Body>
@@ -162,8 +163,15 @@ const NoPlanTitle = styled.p`
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-
   color: #888888;
+  span {
+    font-family: "PretendardMedium";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #000000;
+  }
 `;
 
 const PlanDate = styled.p`
