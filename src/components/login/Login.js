@@ -18,26 +18,29 @@ const Login = () => {
     <Container>
       <Logo src="/images/logo_text.svg" />
       <LoginImage src="/images/login_image.svg" />
-      <LoginButton
-        onClick={() => {
-          getToken();
-          navigate("/agreement");
-        }}
-        src="/images/kakao_login.svg"
-      />
-      <LoginButton
-        onClick={() => {
-          getToken();
-          navigate("/agreement");
-        }}
-        src="/images/google_login.svg"
-      />
-      {/* <LoginButton
+      <Footer>
+        <LoginButton
+          onClick={() => {
+            getToken();
+            navigate("/agreement");
+          }}
+          src="/images/kakao_login.svg"
+        />
+        <LoginButton
+          onClick={() => {
+            getToken();
+            navigate("/agreement");
+          }}
+          src="/images/google_login.svg"
+        />
+        {/* <LoginButton
         onClick={() => {
           navigate("/agreement");
         }}
         src="/images/apple_login.png"
       /> */}
+      </Footer>
+      <LoginDesign />
     </Container>
   );
 };
@@ -52,19 +55,46 @@ const Container = styled.div`
 
 const Logo = styled.img`
   width: 190px;
-  margin-top: 40px;
-  margin-bottom: 44px;
+  position: fixed;
+  margin: 0 auto;
+  top: 9vh;
 `;
 
 const LoginImage = styled.img`
-  width: 328px;
-  margin-bottom: 85px;
+  position: fixed;
+  top: 18%;
+  width: 350px;
+  /* margin-bottom: 10vh; */
+`;
+
+const Footer = styled.div`
+  position: fixed;
+  bottom: 10vh;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
 `;
 
 const LoginButton = styled.img`
-  width: 327px;
+  width: 340px;
   margin-bottom: 16px;
   /* border-radius: 15px; */
+`;
+
+const LoginDesign = styled.div`
+  position: fixed;
+  width: 1094px;
+  height: 1094px;
+  left: auto;
+  top: 575px;
+  background: #f3f1ff;
+  z-index: 0;
+  border-radius: 800px;
 `;
 
 export default Login;

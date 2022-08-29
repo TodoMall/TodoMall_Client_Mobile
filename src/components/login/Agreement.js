@@ -134,11 +134,11 @@ const Text = styled.div`
 
 const BodyText = styled.p`
   font-family: "PretendardMedium";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: bolder;
+  font-size: 22px;
   line-height: 30px;
   margin: 0;
+  padding-left: 15px;
   text-align: left;
 `;
 
