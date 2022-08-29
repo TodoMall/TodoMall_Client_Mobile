@@ -17,7 +17,7 @@ const Agreement = () => {
       <Header title="약관 동의" />
       <Body>
         <Text>
-          <BodyText>서비스 이용을 위해</BodyText>
+          <BodyText>더 나은 경험을 위해서</BodyText>
           <BodyText>필수 약관에 동의해주세요</BodyText>
         </Text>
         <BodyImage src="/images/agreement_image.svg" />
@@ -103,14 +103,15 @@ const Agreement = () => {
           </Row>
         </Table>
         {isPersonalOn && isServiceOn ? (
-          <Button
+          <ButtonOn
             onClick={() => {
               navigate("/todobox");
             }}
-            src="/images/check_button_on.svg"
-          />
+          >
+            제출하기
+          </ButtonOn>
         ) : (
-          <Button src="/images/check_button_off.svg" />
+          <ButtonOff>제출하기</ButtonOff>
         )}
       </Footer>
     </>
@@ -121,26 +122,28 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fbfbfb;
+  padding-top: 100px;
 `;
 
 const Text = styled.div`
   flex-direction: column;
-  margin-left: 5vw;
-  margin-bottom: 5vh;
+  margin: auto;
+  padding-right: 180px;
+  margin-bottom: 80px;
 `;
 
 const BodyText = styled.p`
   font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 700;
-  font-size: 23px;
+  font-size: 20px;
   line-height: 30px;
   margin: 0;
   text-align: left;
 `;
 
 const BodyImage = styled.img`
-  width: 80%;
+  width: 260px;
   margin: auto;
 `;
 
@@ -150,10 +153,11 @@ const Footer = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: #fbfbfb;
+  margin-top: 80px;
 `;
 
 const Table = styled.div`
-  width: 80%;
+  width: 380px;
   margin-bottom: 30px;
 `;
 
@@ -161,12 +165,40 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: "PretendardMedium";
-  margin: 10px;
+  font-family: "PretendardRegular";
+  margin: 15px;
 `;
 
-const Button = styled.img`
-  width: 85%;
+const ButtonOff = styled.div`
+  width: 360px;
+  background-color: #ededed;
+  border-radius: 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #888888;
+`;
+
+const ButtonOn = styled.div`
+  width: 360px;
+  background: #6b47fd;
+  border-radius: 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: white;
 `;
 
 export default Agreement;

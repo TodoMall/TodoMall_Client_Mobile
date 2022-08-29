@@ -6,7 +6,7 @@ export default function Service() {
 <pre
 style="
 white-space: pre-wrap;
-font-family: Pretendard-Medium;
+font-family: PretendardRegular;
 color: #808080;
 font-size: 13px;
 "
@@ -298,10 +298,41 @@ font-size: 13px;
     <>
       <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
+      {/* <Footer>
+        <Button>약관 동의</Button>
+      </Footer> */}
     </>
   );
 }
 
 const HTMLDiv = styled.div`
-  padding: 0 20px;
+  padding: 30px 20px;
+`;
+const Footer = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 108px;
+  left: 0px;
+  bottom: 0px;
+  background: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Button = styled.div`
+  background: #f1efff;
+  border-radius: 20px;
+  width: 327px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #6b47fd;
 `;

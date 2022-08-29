@@ -19,12 +19,13 @@ const Header = ({ title }) => {
 
 const Container = styled.div`
   width: 100%;
-  height: 10%;
+  height: 90px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background-color: #fbfbfb;
+  position: fixed;
 `;
 
 const BackArrow = styled(ArrowBackIosIcon)`
@@ -33,8 +34,8 @@ const BackArrow = styled(ArrowBackIosIcon)`
   margin-left: 5vw;
 `;
 const HeaderTitle = styled.p`
-  font-size: 20px;
-  font-family: "PretendardMedium";
+  font-size: 18px;
+  font-family: "PretendardRegular";
   display: block;
   flex-grow: 1;
   text-align: center;
