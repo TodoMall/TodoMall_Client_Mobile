@@ -16,27 +16,28 @@ const Login = () => {
 
   return (
     <Container>
-      <Logo src="/images/logo_text.png" />
+      <Logo src="/images/logo_text.svg" />
       <LoginImage src="/images/login_image.svg" />
       <LoginButton
         onClick={() => {
           getToken();
           navigate("/agreement");
         }}
-        src="/images/kakao_login.png"
+        src="/images/kakao_login.svg"
       />
       <LoginButton
         onClick={() => {
+          getToken();
           navigate("/agreement");
         }}
-        src="/images/google_login.png"
+        src="/images/google_login.svg"
       />
-      <LoginButton
+      {/* <LoginButton
         onClick={() => {
           navigate("/agreement");
         }}
         src="/images/apple_login.png"
-      />
+      /> */}
     </Container>
   );
 };
@@ -50,19 +51,20 @@ const Container = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 60%;
+  width: 190px;
   margin-top: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 44px;
 `;
 
 const LoginImage = styled.img`
-  width: 90%;
-  margin-bottom: 40px;
+  width: 328px;
+  margin-bottom: 85px;
 `;
 
 const LoginButton = styled.img`
-  width: 85%;
-  margin-bottom: 5px;
+  width: 327px;
+  margin-bottom: 16px;
+  /* border-radius: 15px; */
 `;
 
 export default Login;
