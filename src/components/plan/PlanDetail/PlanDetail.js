@@ -41,11 +41,12 @@ const PlanDetail = () => {
       </Body>
       <Footer>
         <BuyButton
-          src={`/images/todo_buy.svg`}
           onClick={() => {
             navigate("/purchase/1/");
           }}
-        />
+        >
+          무료로 도전하기
+        </BuyButton>
       </Footer>
     </>
   );
@@ -56,15 +57,37 @@ const Body = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-top: 60px;
+  padding-bottom: 90px;
 `;
 
 const Footer = styled.div`
   display: flex;
+  position: fixed;
+  bottom: 0;
+  background: #fbfbfb;
+  width: 100%;
+  height: 110px;
+  align-items: center;
   justify-content: center;
 `;
 
-const BuyButton = styled.img`
-  margin-bottom: 25px;
+const BuyButton = styled.div`
+  background: #6b47fd;
+  border-radius: 20px;
+  max-width: 380px;
+  width: 120vw;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "PretendardMedium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #f1efff;
 `;
 
 export default PlanDetail;

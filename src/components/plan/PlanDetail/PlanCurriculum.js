@@ -78,6 +78,7 @@ const Assignment = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
+  background: #f1efff;
 `;
 
 const AssignmentImage = styled.img`
