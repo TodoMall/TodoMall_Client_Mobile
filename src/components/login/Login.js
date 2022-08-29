@@ -88,13 +88,13 @@ const LoginButton = styled.img`
 
 const LoginDesign = styled.div`
   position: fixed;
-  width: 1094px;
-  height: 1094px;
+  width: 2000px;
+  height: 2000px;
   left: auto;
   top: 575px;
   background: #f3f1ff;
   z-index: 0;
-  border-radius: 800px;
+  border-radius: 1200px;
 `;
 
 export default Login;

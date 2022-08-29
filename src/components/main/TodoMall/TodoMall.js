@@ -5,7 +5,7 @@ import CardList from "./CardList";
 import Header from "./Header";
 
 const TodoMall = () => {
-  const [current, setCurrent] = useState("health");
+  const [current, setCurrent] = useState("career");
 
   return (
     <>

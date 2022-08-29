@@ -46,6 +46,7 @@ const TodoBoxHeaderTry = styled.p`
   font-size: 16px;
   line-height: 16px;
   color: #707070;
+  padding-top: 5px;
 `;
 
 const TodoBoxDivider = styled.hr`

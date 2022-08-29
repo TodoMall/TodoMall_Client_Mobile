@@ -8,44 +8,42 @@ const Header = ({ current, setCurrent }) => {
       <Themes>
         <Theme
           onClick={() => {
-            setCurrent("health");
+            setCurrent("career");
           }}
           style={
-            current === "health" ? { borderBottom: "2px solid black" } : {}
+            current === "career" ? { borderBottom: "2px solid black" } : {}
           }
         >
-          {current === "health" ? (
-            <ThemeIcon src="/images/health_on.svg" />
+          {current === "career" ? (
+            <ThemeIcon src="/images/career_on.svg" />
           ) : (
-            <ThemeIcon src="/images/health_off.svg" />
+            <ThemeIcon src="/images/career_off.svg" />
           )}
         </Theme>
         <Theme
           onClick={() => {
-            setCurrent("invest");
+            setCurrent("self");
           }}
-          style={
-            current === "invest" ? { borderBottom: "2px solid black" } : {}
-          }
+          style={current === "self" ? { borderBottom: "2px solid black" } : {}}
         >
-          {current === "invest" ? (
-            <ThemeIcon src="/images/invest_on.svg" />
+          {current === "self" ? (
+            <ThemeIcon src="/images/self_on.svg" />
           ) : (
-            <ThemeIcon src="/images/invest_off.svg" />
+            <ThemeIcon src="/images/self_off.svg" />
           )}
         </Theme>
         <Theme
           onClick={() => {
-            setCurrent("employment");
+            setCurrent("investment");
           }}
           style={
-            current === "employment" ? { borderBottom: "2px solid black" } : {}
+            current === "investment" ? { borderBottom: "2px solid black" } : {}
           }
         >
-          {current === "employment" ? (
-            <ThemeIcon src="/images/employment_on.svg" />
+          {current === "investment" ? (
+            <ThemeIcon src="/images/investment_on.svg" />
           ) : (
-            <ThemeIcon src="/images/employment_off.svg" />
+            <ThemeIcon src="/images/investment_off.svg" />
           )}
         </Theme>
       </Themes>
