@@ -24,13 +24,20 @@ const Modals = ({
         </ModalDetail>
         <ModalButton>
           <Button title="로그아웃" width={45} />
-          <Button title="취소" color="#EDEDED" width={45} />
+          <CancelButton
+            onClick={() => {
+              closeHandlerLogout();
+            }}
+          >
+            취소
+          </CancelButton>
         </ModalButton>
       </Modal>
       <Modal
         aria-labelledby="modal-titl"
         open={visibleDelete}
         onClose={closeHandlerDelete}
+        width="90%"
       >
         <ModalImage src="/images/modal_image.svg" />
         <ModalTitle>투두몰을 탈퇴하실 건가요?</ModalTitle>
@@ -41,13 +48,12 @@ const Modals = ({
         <ModalButton>
           <Button color="#D10B0B" title="탈퇴" width={45} />
           <CancelButton
-            title="취소"
-            color="#EDEDED"
-            width={45}
             onClick={() => {
               closeHandlerDelete();
             }}
-          />
+          >
+            취소
+          </CancelButton>
         </ModalButton>
       </Modal>
     </>
@@ -93,6 +99,9 @@ const CancelButton = styled.div`
   font-size: 18px;
   margin-top: 40px;
   text-align: center;
+  background: #ededed;
+  border: 1px solid #ededed;
+  width: 45%;
 `;
 
 const ModalImage = styled.img``;

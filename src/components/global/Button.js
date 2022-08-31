@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const Button = ({ title, link, color = "#6b47fd", width = 90 }) => {
   const navigate = useNavigate();
-
   return (
     <NoPlanButton
       onClick={() => {

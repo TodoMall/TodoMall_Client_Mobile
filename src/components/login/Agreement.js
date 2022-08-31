@@ -122,7 +122,7 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fbfbfb;
-  padding-top: 100px;
+  padding-top: 70px;
 `;
 
 const Text = styled.div`
@@ -150,7 +150,7 @@ const Footer = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: #fbfbfb;
-  margin-top: 80px;
+  margin-top: 40px;
 `;
 
 const Table = styled.div`
