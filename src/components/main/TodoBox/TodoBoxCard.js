@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const TodoBoxCard = () => {
-  let submit = false;
-  let end = true;
+const TodoBoxCard = ({ submit = false, end = false }) => {
+  // let submit = false;
+  // let end = true;
   return (
     <TodoBoxCardContainer>
       <TodoBoxCardHeader>

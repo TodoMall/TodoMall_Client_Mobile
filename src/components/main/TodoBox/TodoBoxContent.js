@@ -5,6 +5,8 @@ import TodoBoxCard from "./TodoBoxCard";
 const TodoBoxContent = () => {
   return (
     <TodoBoxContentContainer>
+      <TodoBoxCard submit={true} />
+      <TodoBoxCard end={true} />
       <TodoBoxCard />
       {/* <TodoBoxCard />
       <TodoBoxCard />
