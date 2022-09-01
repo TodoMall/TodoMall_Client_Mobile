@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const TodoBoxCard = ({ submit = false, end = false }) => {
   // let submit = false;
   // let end = true;
+
+  const navigate = useNavigate();
+
   return (
     <TodoBoxCardContainer>
       <TodoBoxCardHeader>
@@ -15,7 +19,7 @@ const TodoBoxCard = ({ submit = false, end = false }) => {
           <TodoBoxCardHeaderDDaySubmit>
             <span>인증필요</span>
             <TodoBoxCardHeaderDDayTextSubmit>
-              D-4 일
+              D-4
             </TodoBoxCardHeaderDDayTextSubmit>
           </TodoBoxCardHeaderDDaySubmit>
         ) : end ? null : (
@@ -87,7 +91,13 @@ const TodoBoxCard = ({ submit = false, end = false }) => {
       )}
 
       {submit ? (
-        <TodoBoxCardSubmitButton>세션 인증하러 가기</TodoBoxCardSubmitButton>
+        <TodoBoxCardSubmitButton
+          onClick={() => {
+            navigate(`/todo/submit/1`);
+          }}
+        >
+          세션 인증하러 가기
+        </TodoBoxCardSubmitButton>
       ) : end ? (
         <>
           <TodoBoxCardEndButton>도전 삭제하기</TodoBoxCardEndButton>

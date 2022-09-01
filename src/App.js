@@ -16,6 +16,9 @@ import PlanRetry from "./components/plan/PlanRetry";
 import TryDetail from "./components/main/MyPage/TryDetail";
 import Announcement from "./components/settings/Announcement";
 import AnnouncementDetail from "./components/settings/AnnouncementDetail";
+import TodoDetail from "./components/todo/TodoDetail";
+import TodoSubmit from "./components/todo/TodoSubmit";
+import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
 
 function App() {
   return (
@@ -31,6 +34,11 @@ function App() {
         <Route path="/todobox" element={<TodoBox />} />
         <Route path="/todomall" element={<TodoMall />} />
         <Route path="/mypage" element={<MyPage />} />
+
+        {/* Todo Detail, Assignment Routes */}
+        <Route path="/todo/detail/:todoid" element={<TodoDetail />} />
+        <Route path="/todo/submit/:todoid" element={<TodoSubmit />} />
+        <Route path="/todo/success" element={<TodoSubmitSuccess />} />
 
         {/* Plan Routes */}
         <Route path="/detail/:planid" element={<PlanDetail />} />

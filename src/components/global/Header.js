@@ -36,7 +36,7 @@ const BackArrow = styled(ArrowBackIosIcon)`
   margin-left: 5vw;
 `;
 const HeaderTitle = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   font-family: "PretendardRegular";
   display: block;
   flex-grow: 1;
