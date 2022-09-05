@@ -64,21 +64,33 @@ const TodoBoxCard = ({ submit = false, end = false }) => {
         </TodoBoxCardBodyEnded>
       ) : (
         <TodoBoxCardBody>
-          <TodoBoxCardTodo>
+          <TodoBoxCardTodo
+            onClick={() => {
+              navigate("/todo/1/detail");
+            }}
+          >
             <TodoBoxCardTodoLeft>
               <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
               <TodoBoxCardTodoText>피그마 회원가입하기</TodoBoxCardTodoText>
             </TodoBoxCardTodoLeft>
             <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
           </TodoBoxCardTodo>
-          <TodoBoxCardTodo>
+          <TodoBoxCardTodo
+            onClick={() => {
+              navigate("/todo/1/detail");
+            }}
+          >
             <TodoBoxCardTodoLeft>
               <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
               <TodoBoxCardTodoText>피그마 앱 설치하기</TodoBoxCardTodoText>
             </TodoBoxCardTodoLeft>
             <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
           </TodoBoxCardTodo>
-          <TodoBoxCardTodo>
+          <TodoBoxCardTodo
+            onClick={() => {
+              navigate("/todo/1/detail");
+            }}
+          >
             <TodoBoxCardTodoLeft>
               <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
               <TodoBoxCardTodoText>

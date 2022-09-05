@@ -6,24 +6,16 @@
   font-family: "PretendardRegular";
   src: url("./styles/fonts/Pretendard-Regular.otf") format("truetype");
 }
+@font-face {
+  font-family: "PretendardSemiBold";
+  src: url("./styles/fonts/Pretendard-SemiBold.otf") format("truetype");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font: inherit;
   color: inherit;
-  flex-shrink: 0;
-  -ms-overflow-style: none;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-body {
-  touch-action: pan-y, pan-x;
-}
-.childViewPortElement {
-  overflow: scroll;
-  touch-action: pan-y, pan-x;
 }
 a {
   color: #fff;
@@ -41,4 +33,19 @@ body {
   height: 100%;
   background-color: #fbfbfb;
   min-height: calc(100% + env(safe-area-inset-top));
+}
+html {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+}
+.nextui-c-eUuHzx {
+  position: fixed !important;
+  top: 48px !important;
+}
+.nextui-c-eUuHzx-gZuGQh-color-primary {
+  --nextui--progressColor: #6b47fd !important;
+  --nextui--progressShadowColor: #6b47fd !important;
+}
+.nextui-c-eUuHzx-hMPNGY-size-xs {
+  height: 2px !important;
 }

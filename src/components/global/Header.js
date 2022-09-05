@@ -28,6 +28,7 @@ const Container = styled.div`
   justify-content: space-between;
   background-color: #fbfbfb;
   position: fixed;
+  top: -2px;
 `;
 
 const BackArrow = styled(ArrowBackIosIcon)`
@@ -37,7 +38,7 @@ const BackArrow = styled(ArrowBackIosIcon)`
 `;
 const HeaderTitle = styled.p`
   font-size: 16px;
-  font-family: "PretendardRegular";
+  font-family: "PretendardSemiBold";
   display: block;
   flex-grow: 1;
   text-align: center;
