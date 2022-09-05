@@ -1,14 +1,14 @@
 @font-face {
   font-family: "PretendardMedium";
-  src: url("./styles/fonts/Pretendard-Medium.otf") format("truetype");
+  src: url("./styles/fonts/Pretendard-Medium.subset.woff2");
 }
 @font-face {
   font-family: "PretendardRegular";
-  src: url("./styles/fonts/Pretendard-Regular.otf") format("truetype");
+  src: url("./styles/fonts/Pretendard-Regular.subset.woff2");
 }
 @font-face {
   font-family: "PretendardSemiBold";
-  src: url("./styles/fonts/Pretendard-SemiBold.otf") format("truetype");
+  src: url("./styles/fonts/Pretendard-SemiBold.subset.woff2");
 }
 * {
   margin: 0;
