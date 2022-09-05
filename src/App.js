@@ -19,6 +19,7 @@ import AnnouncementDetail from "./components/settings/AnnouncementDetail";
 import TodoDetail from "./components/todo/TodoDetail";
 import TodoSubmit from "./components/todo/TodoSubmit";
 import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
+import TodoAnswer from "./components/todo/TodoAnswer";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         {/* Todo Detail, Assignment Routes */}
         <Route path="/todo/:todoid/detail" element={<TodoDetail />} />
         <Route path="/todo/:todoid/submit" element={<TodoSubmit />} />
+        <Route path="/todo/:todoid/answer" element={<TodoAnswer />} />
         <Route path="/todo/success" element={<TodoSubmitSuccess />} />
 
         {/* Plan Routes */}

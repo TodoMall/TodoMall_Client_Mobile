@@ -25,24 +25,22 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #fbfbfb;
   position: fixed;
   top: -2px;
 `;
 
 const BackArrow = styled(ArrowBackIosIcon)`
+  position: absolute;
   height: 56px;
   color: black;
-  margin-left: 5vw;
+  left: 15px;
 `;
 const HeaderTitle = styled.p`
   font-size: 16px;
   font-family: "PretendardSemiBold";
-  display: block;
-  flex-grow: 1;
   text-align: center;
-  margin-right: 40px;
 `;
 
 export default Header;

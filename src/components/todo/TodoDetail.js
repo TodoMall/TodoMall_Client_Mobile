@@ -3,10 +3,12 @@ import Header from "../global/Header";
 import { Progress } from "@nextui-org/react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import TodoAnswerModal from "./TodoAnswer";
 
 const TodoDetail = () => {
   const [width, setWidth] = useState(0);
   const [todo, setTodo] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,6 +22,10 @@ const TodoDetail = () => {
     const currentPercent = scrollTop / windowHeight;
     setWidth(currentPercent * 100);
   }, []);
+
+  const modalHandler = () => setVisible(true);
+
+  const modalCloseHandler = () => setVisible(false);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
@@ -48,11 +54,7 @@ const TodoDetail = () => {
           <TodoDetailText>
             지금까지 과정을 잘 따랐는지 알고싶다면?
           </TodoDetailText>
-          <TodoDetailButton
-            onClick={() => {
-              navigate("/todo/1/answer");
-            }}
-          >
+          <TodoDetailButton onClick={modalHandler}>
             모범 예시 보러가기
           </TodoDetailButton>
         </TodoDetailAnswer>
@@ -79,9 +81,8 @@ const TodoDetail = () => {
               <img src="/images/purple_tick.svg" />
             </TodoDetailTaskBoxToggleOn>
           )}
-
           <TodoDetailTaskBoxTitle>
-            디자인 작업을 시작할 수 있는 환경 마련하기
+            디자인 작업을 시작할 수 있는 환경 마련
           </TodoDetailTaskBoxTitle>
         </TodoDetailTaskBox>
 
@@ -89,6 +90,10 @@ const TodoDetail = () => {
           투두 완료하기
         </TodoDetailFinishButton>
       </TodoDetailBody>
+      <TodoAnswerModal
+        visible={visible}
+        modalCloseHandler={modalCloseHandler}
+      />
     </>
   );
 };
@@ -176,39 +181,42 @@ const TodoDetailTaskBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  position: relative;
 `;
 
 const TodoDetailTaskBoxToggleOff = styled.div`
-  position: absolute;
   width: 17px;
   height: 17px;
-  left: 42px;
-  margin-bottom: 25px;
   background: #ebebeb;
   border-radius: 4px;
+  position: absolute;
+  left: 35px;
+  bottom: 48px;
 `;
 
 const TodoDetailTaskBoxToggleOn = styled.div`
-  position: absolute;
   width: 17px;
   height: 17px;
-  left: 42px;
-  margin-bottom: 25px;
   background: #e1dcfe;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 35px;
+  bottom: 48px;
 `;
 
 const TodoDetailTaskBoxTitle = styled.p`
+  width: 100%;
   font-family: "PretendardSemiBold";
   font-style: normal;
   font-weight: 1000;
   font-size: 16px;
   line-height: 27px;
   color: #000000;
-  width: 65%;
+  padding: 0 20%;
 `;
 
 const TodoDetailFinishButton = styled.div`
@@ -221,7 +229,7 @@ const TodoDetailFinishButton = styled.div`
   margin: 30px 0;
   background: ${(props) => (props.done ? "#6b47fd" : "#EDEDED")};
   border-radius: 30px;
-  font-family: "PretendardSemiBold";
+  font-family: "PretendardRegular";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
