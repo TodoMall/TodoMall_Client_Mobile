@@ -36,8 +36,8 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
 
         {/* Todo Detail, Assignment Routes */}
-        <Route path="/todo/detail/:todoid" element={<TodoDetail />} />
-        <Route path="/todo/submit/:todoid" element={<TodoSubmit />} />
+        <Route path="/todo/:todoid/detail" element={<TodoDetail />} />
+        <Route path="/todo/:todoid/submit" element={<TodoSubmit />} />
         <Route path="/todo/success" element={<TodoSubmitSuccess />} />
 
         {/* Plan Routes */}
@@ -59,10 +59,8 @@ function App() {
 
 const Container = styled.div`
   width: 100%;
-  position: absolute;
   padding: auto;
   height: 90vh;
-  /* max-width: 600px; */
 `;
 
 export default App;

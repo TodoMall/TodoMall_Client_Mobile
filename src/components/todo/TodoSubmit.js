@@ -8,15 +8,12 @@ const TodoSubmit = () => {
   const inputRef = useRef(null);
   const navigate = useNavigate();
 
-  const HandleImageUpload = async (e) => {
+  const handleImageUpload = async (e) => {
     const temp = e.target.files;
-    console.log(temp);
     setImage(temp);
-    // const formData = new FormData();
-    // formData.append('file', e.target.files[0]);
   };
 
-  const HandleSubmit = async () => {
+  const handleSubmit = async () => {
     //axios post
     navigate("/todo/success");
   };
@@ -30,8 +27,6 @@ const TodoSubmit = () => {
 
   useEffect(() => {
     preview();
-
-    return () => preview();
   });
 
   const preview = () => {
@@ -66,7 +61,7 @@ const TodoSubmit = () => {
               style={{ display: "none" }}
               type="file"
               accept="image/*"
-              onChange={HandleImageUpload}
+              onChange={handleImageUpload}
             />
           </TodoSubmitContainer>
         )}
@@ -74,7 +69,7 @@ const TodoSubmit = () => {
       <TodoSubmitFooter>
         {image ? (
           <>
-            <TodoSubmitButtonActive onClick={HandleSubmit}>
+            <TodoSubmitButtonActive onClick={handleSubmit}>
               인증 제출하기
             </TodoSubmitButtonActive>
             <TodoSubmitButtonActiveText>
@@ -95,6 +90,7 @@ const TodoSubmitBody = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 110px;
 `;
 
 const TodoSubmitTitle = styled.p`
@@ -149,9 +145,10 @@ const TodoSubmitFooter = styled.div`
   position: fixed;
   background-color: #fbfbfb;
   width: 100%;
-  bottom: 46px;
+  height: 100px;
+  bottom: 0;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   /* border: none; */
 `;

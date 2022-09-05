@@ -3,9 +3,10 @@ import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import CardList from "./CardList";
 import Header from "./Header";
+import { CAREER } from "./Constant";
 
 const TodoMall = () => {
-  const [current, setCurrent] = useState("career");
+  const [current, setCurrent] = useState(CAREER);
 
   return (
     <>

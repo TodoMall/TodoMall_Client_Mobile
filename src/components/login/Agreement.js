@@ -103,15 +103,17 @@ const Agreement = () => {
           </Row>
         </Table>
         {isPersonalOn && isServiceOn ? (
-          <ButtonOn
+          <Button
             onClick={() => {
               navigate("/todobox");
             }}
           >
             제출하기
-          </ButtonOn>
+          </Button>
         ) : (
-          <ButtonOff>제출하기</ButtonOff>
+          <Button bgcolor="#ededed" color="#888888">
+            제출하기
+          </Button>
         )}
       </Footer>
     </>
@@ -167,10 +169,10 @@ const Row = styled.div`
   margin: 15px;
 `;
 
-const ButtonOff = styled.div`
+const Button = styled.div`
   max-width: 380px;
   width: 90vw;
-  background-color: #ededed;
+  background-color: ${(props) => props.bgcolor || "#6b47fd"};
   border-radius: 20px;
   height: 52px;
   display: flex;
@@ -181,24 +183,7 @@ const ButtonOff = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
-  color: #888888;
-`;
-
-const ButtonOn = styled.div`
-  max-width: 380px;
-  width: 90vw;
-  background: #6b47fd;
-  border-radius: 20px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "PretendardRegular";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
-  color: white;
+  color: ${(props) => props.color || "white"};
 `;
 
 export default Agreement;

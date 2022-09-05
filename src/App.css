@@ -39,6 +39,6 @@ a:active {
 html,
 body {
   height: 100%;
-  background-color: #fbfbfb !important;
+  background-color: #fbfbfb;
   min-height: calc(100% + env(safe-area-inset-top));
 }

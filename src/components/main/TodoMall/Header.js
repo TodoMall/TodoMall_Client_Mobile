@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { CAREER, SELF, INVESTMENT } from "./Constant";
 
 const Header = ({ current, setCurrent }) => {
   return (
@@ -8,42 +9,40 @@ const Header = ({ current, setCurrent }) => {
       <Themes>
         <Theme
           onClick={() => {
-            setCurrent("career");
+            setCurrent(CAREER);
           }}
-          style={
-            current === "career" ? { borderBottom: "2px solid black" } : {}
-          }
+          style={current === CAREER ? { borderBottom: "2px solid black" } : {}}
         >
-          {current === "career" ? (
-            <ThemeIcon src="/images/career_on.svg" />
+          {current === CAREER ? (
+            <ThemeIcon src={`/images/${CAREER}_on.svg`} />
           ) : (
-            <ThemeIcon src="/images/career_off.svg" />
+            <ThemeIcon src={`/images/${CAREER}_off.svg`} />
           )}
         </Theme>
         <Theme
           onClick={() => {
-            setCurrent("self");
+            setCurrent(SELF);
           }}
-          style={current === "self" ? { borderBottom: "2px solid black" } : {}}
+          style={current === SELF ? { borderBottom: "2px solid black" } : {}}
         >
-          {current === "self" ? (
-            <ThemeIcon src="/images/self_on.svg" />
+          {current === SELF ? (
+            <ThemeIcon src={`/images/${SELF}_on.svg`} />
           ) : (
-            <ThemeIcon src="/images/self_off.svg" />
+            <ThemeIcon src={`/images/${SELF}_off.svg`} />
           )}
         </Theme>
         <Theme
           onClick={() => {
-            setCurrent("investment");
+            setCurrent(INVESTMENT);
           }}
           style={
-            current === "investment" ? { borderBottom: "2px solid black" } : {}
+            current === INVESTMENT ? { borderBottom: "2px solid black" } : {}
           }
         >
-          {current === "investment" ? (
-            <ThemeIcon src="/images/investment_on.svg" />
+          {current === INVESTMENT ? (
+            <ThemeIcon src={`/images/${INVESTMENT}_on.svg`} />
           ) : (
-            <ThemeIcon src="/images/investment_off.svg" />
+            <ThemeIcon src={`/images/${INVESTMENT}_off.svg`} />
           )}
         </Theme>
       </Themes>

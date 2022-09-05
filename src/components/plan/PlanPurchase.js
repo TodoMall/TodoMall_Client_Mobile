@@ -70,13 +70,13 @@ const PlanPurchase = () => {
           </Text>
           <BodyImage src="/images/purchase_finish.svg" />
           <Footer>
-            <ButtonSecond
+            <ButtonNavigate
               onClick={() => {
                 handlePurchase();
               }}
             >
               내 투두함으로 이동
-            </ButtonSecond>
+            </ButtonNavigate>
           </Footer>
         </Body>
       </>
@@ -148,7 +148,7 @@ const Button = styled.div`
   line-height: 16px;
 `;
 
-const ButtonSecond = styled.div`
+const ButtonNavigate = styled.div`
   max-width: 380px;
   width: 90vw;
   height: 52px;
