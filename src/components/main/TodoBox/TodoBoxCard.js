@@ -93,7 +93,7 @@ const TodoBoxCard = ({ submit = false, end = false }) => {
       {submit ? (
         <TodoBoxCardSubmitButton
           onClick={() => {
-            navigate(`/todo/submit/1`);
+            navigate(`/todo/1/submit/`);
           }}
         >
           세션 인증하러 가기

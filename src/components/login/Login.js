@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <Container>
-      <Logo src="/images/logo_text.svg" />
+      <Logo src="/images/logo_text.png" />
       <LoginImage src="/images/login_image.svg" />
       <Footer>
         <LoginButton
