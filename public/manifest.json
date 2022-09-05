@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TodoMall",
+  "name": "투두몰 App에서 전문가의 경험이 담긴 투두리스트를 찾아봐요",
   "icons": [
     {
       "src": "favicon.ico",
