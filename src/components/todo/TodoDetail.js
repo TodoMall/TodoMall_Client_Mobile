@@ -210,7 +210,7 @@ const TodoDetailTaskBoxToggleOn = styled.div`
 
 const TodoDetailTaskBoxTitle = styled.p`
   width: 100%;
-  font-family: "PretendardSemiBold";
+  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 1000;
   font-size: 16px;
