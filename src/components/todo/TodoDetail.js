@@ -116,7 +116,7 @@ const TodoDetailAnswer = styled.div`
 `;
 
 const TodoDetailText = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -136,7 +136,7 @@ const TodoDetailButton = styled.button`
   border: 1px solid #6b47fd;
   border-radius: 30px;
   background-color: #fbfbfb;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -155,7 +155,7 @@ const TodoDetailTask = styled.div`
 `;
 
 const TodoDetailTaskTitle = styled.p`
-  font-family: "PretendardSemiBold";
+  /* font-family: "PretendardSemiBold"; */
   font-style: normal;
   font-weight: 1000;
   font-size: 20px;
@@ -164,7 +164,7 @@ const TodoDetailTaskTitle = styled.p`
 `;
 
 const TodoDetailTaskSubtitle = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -210,7 +210,7 @@ const TodoDetailTaskBoxToggleOn = styled.div`
 
 const TodoDetailTaskBoxTitle = styled.p`
   width: 100%;
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 1000;
   font-size: 16px;
@@ -229,7 +229,7 @@ const TodoDetailFinishButton = styled.div`
   margin: 30px 0;
   background: ${(props) => (props.done ? "#6b47fd" : "#EDEDED")};
   border-radius: 30px;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

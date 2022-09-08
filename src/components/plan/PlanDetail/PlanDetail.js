@@ -81,7 +81,7 @@ const BuyButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

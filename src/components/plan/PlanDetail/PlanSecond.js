@@ -24,7 +24,7 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -32,7 +32,7 @@ const FirstTitle = styled.p`
 `;
 
 const SubTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -42,7 +42,7 @@ const SubTitle = styled.p`
 const Body = styled.div``;
 
 const Paragraph = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

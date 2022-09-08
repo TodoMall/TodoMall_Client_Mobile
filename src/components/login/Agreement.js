@@ -132,7 +132,7 @@ const Text = styled.div`
 `;
 
 const BodyText = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-weight: bolder;
   font-size: 22px;
   line-height: 30px;
@@ -165,7 +165,7 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   margin: 15px;
 `;
 
@@ -178,7 +178,7 @@ const Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

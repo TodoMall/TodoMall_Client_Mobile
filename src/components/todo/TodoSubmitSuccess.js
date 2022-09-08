@@ -43,7 +43,7 @@ const TodoSubmitSuccessBody = styled.div`
 `;
 
 const TodoSubmitSuccessTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 1000;
   font-size: 20px;
@@ -54,7 +54,7 @@ const TodoSubmitSuccessTitle = styled.p`
 `;
 
 const TodoSubmitSuccessSubtitle = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -88,7 +88,7 @@ const TodoSUbmitSuccessButton = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

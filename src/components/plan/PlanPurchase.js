@@ -97,7 +97,7 @@ const Text = styled.div`
 `;
 
 const BodyText = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -114,7 +114,7 @@ const BodyImage = styled.img`
 `;
 
 const BodyDescription = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   color: #888888;
   font-style: normal;
   font-weight: 700;
@@ -141,7 +141,7 @@ const Button = styled.div`
   align-items: center;
   justify-content: center;
   color: #6b47fd;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -158,7 +158,7 @@ const ButtonNavigate = styled.div`
   align-items: center;
   justify-content: center;
   background: #6b47fd;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

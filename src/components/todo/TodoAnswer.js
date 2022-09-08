@@ -38,7 +38,7 @@ const AnswerModalBody = styled.div`
 
 const AnswerModalTitle = styled.p`
   text-align: left;
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -50,7 +50,7 @@ const AnswerModalTitle = styled.p`
 `;
 
 const AnswerModalSubtitle = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -75,7 +75,7 @@ const AnswerModalButton = styled.button`
   margin: 30px 0;
   background: #6b47fd;
   border-radius: 30px;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

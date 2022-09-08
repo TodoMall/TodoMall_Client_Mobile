@@ -6,7 +6,7 @@ export default function Service() {
 <pre
 style="
 white-space: pre-wrap;
-font-family: PretendardRegular;
+font-family: Pretendard;
 color: #808080;
 font-size: 13px;
 "

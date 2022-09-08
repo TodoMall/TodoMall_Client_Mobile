@@ -116,7 +116,7 @@ const User = styled.div`
 `;
 
 const UserName = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -125,7 +125,7 @@ const UserName = styled.p`
 `;
 
 const UserEmail = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 100;
   font-size: 14px;
@@ -157,7 +157,7 @@ const NoPlanImage = styled.img`
 `;
 
 const NoPlanTitle = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -165,7 +165,7 @@ const NoPlanTitle = styled.p`
   text-align: center;
   color: #888888;
   span {
-    font-family: "PretendardMedium";
+    /* font-family: "PretendardMedium"; */
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -175,7 +175,7 @@ const NoPlanTitle = styled.p`
 `;
 
 const PlanDate = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

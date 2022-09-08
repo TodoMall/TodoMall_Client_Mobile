@@ -18,7 +18,7 @@ const Button = ({ title, link, color = "#6b47fd", width = 90 }) => {
 };
 
 const NoPlanButton = styled.div`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   width: ${(props) => props.width}%;
   height: 60px;
   background: ${(props) => props.color};
