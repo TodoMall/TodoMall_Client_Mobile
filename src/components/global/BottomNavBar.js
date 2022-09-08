@@ -31,7 +31,6 @@ export default function BottomNavBar({ position }) {
           component={Link}
           to="/todobox"
         />
-
         <NavBarButton
           icon={
             <>

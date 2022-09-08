@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
+import ClassPreview from "./class_preview.json";
 
 const CardList = () => {
   return (
     <CardListBox>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {ClassPreview.map((preview) => (
+        <Card title={preview.title} description={preview.description} />
+      ))}
     </CardListBox>
   );
 };

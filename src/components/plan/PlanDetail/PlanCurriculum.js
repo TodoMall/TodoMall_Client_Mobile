@@ -22,7 +22,6 @@ const PlanCurriculum = ({ data }) => {
               {session.todos.map((todo) => (
                 <Todo>
                   <TodoTitle>{todo.name}</TodoTitle>
-                  <DetailIcon src={`/images/todo_detail.svg`} />
                 </Todo>
               ))}
             </Todos>
@@ -79,6 +78,7 @@ const Assignment = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
+  background: #f1efff;
 `;
 
 const AssignmentImage = styled.img`

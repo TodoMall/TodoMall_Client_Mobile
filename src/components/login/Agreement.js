@@ -17,7 +17,7 @@ const Agreement = () => {
       <Header title="약관 동의" />
       <Body>
         <Text>
-          <BodyText>서비스 이용을 위해</BodyText>
+          <BodyText>더 나은 경험을 위해서</BodyText>
           <BodyText>필수 약관에 동의해주세요</BodyText>
         </Text>
         <BodyImage src="/images/agreement_image.svg" />
@@ -107,10 +107,13 @@ const Agreement = () => {
             onClick={() => {
               navigate("/todobox");
             }}
-            src="/images/check_button_on.svg"
-          />
+          >
+            제출하기
+          </Button>
         ) : (
-          <Button src="/images/check_button_off.svg" />
+          <Button bgcolor="#ededed" color="#888888">
+            제출하기
+          </Button>
         )}
       </Footer>
     </>
@@ -120,26 +123,26 @@ const Agreement = () => {
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #fbfbfb;
+  padding-top: 70px;
 `;
 
 const Text = styled.div`
   flex-direction: column;
-  margin-left: 5vw;
-  margin-bottom: 5vh;
 `;
 
 const BodyText = styled.p`
   font-family: "PretendardMedium";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 23px;
+  font-weight: bolder;
+  font-size: 22px;
   line-height: 30px;
   margin: 0;
+  padding-left: 15px;
   text-align: left;
 `;
 
 const BodyImage = styled.img`
-  width: 80%;
+  width: 260px;
   margin: auto;
 `;
 
@@ -148,10 +151,13 @@ const Footer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #fbfbfb;
+  margin-top: 40px;
 `;
 
 const Table = styled.div`
-  width: 80%;
+  max-width: 380px;
+  width: 90vw;
   margin-bottom: 30px;
 `;
 
@@ -159,12 +165,25 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: "PretendardMedium";
-  margin: 10px;
+  font-family: "PretendardRegular";
+  margin: 15px;
 `;
 
-const Button = styled.img`
-  width: 85%;
+const Button = styled.div`
+  max-width: 380px;
+  width: 90vw;
+  background-color: ${(props) => props.bgcolor || "#6b47fd"};
+  border-radius: 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: ${(props) => props.color || "white"};
 `;
 
 export default Agreement;

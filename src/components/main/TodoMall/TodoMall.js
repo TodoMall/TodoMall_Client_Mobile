@@ -3,9 +3,10 @@ import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import CardList from "./CardList";
 import Header from "./Header";
+import { CAREER } from "./Constant";
 
 const TodoMall = () => {
-  const [current, setCurrent] = useState("health");
+  const [current, setCurrent] = useState(CAREER);
 
   return (
     <>
@@ -14,12 +15,12 @@ const TodoMall = () => {
         <BodyImages>
           <img
             src={`/images/${current}_title.svg`}
-            style={{ width: "70%", height: 50, marginTop: 25 }}
+            style={{ width: "280px", height: 50, marginTop: 25 }}
             alt={`${current}_title`}
           />
           <img
             src={`/images/${current}_image.svg`}
-            style={{ width: "80%", marginTop: 20 }}
+            style={{ width: "350px", marginTop: 20 }}
             alt={`${current}_image`}
           />
         </BodyImages>

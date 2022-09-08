@@ -10,17 +10,17 @@ const PlanPurchase = () => {
   const token = localStorage.getItem("token");
 
   const handlePurchase = async () => {
-    const response = await axios.post(
-      requests.planPurchase,
-      {},
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(response);
+    // const response = await axios.post(
+    //   requests.planPurchase,
+    //   {},
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
+    // console.log(response);
     navigate("/todobox");
   };
 
@@ -31,13 +31,13 @@ const PlanPurchase = () => {
         <Header title="" />
         <Body>
           <Text>
-            <BodyText>베타테스트 기간 동안</BodyText>
-            <BodyText>투두몰의 모든 플랜이 무료에요</BodyText>
+            <BodyText>베타테스트 기간 동안만 한정해</BodyText>
+            <BodyText>투두몰의 모든 플랜을 무료로 드려요</BodyText>
             <BodyDescription>
-              현재 무료로 제공되는 클래스들 중 일부는
+              현재 무료로 제공되는 클래스들 중 일부가
             </BodyDescription>
             <BodyDescription>
-              베타테스트 이후에 유료로 전환될 수 있어요.
+              베타테스트가 끝난 이후에 유료로 전환될 수 있어요.
             </BodyDescription>
           </Text>
           <BodyImage src="/images/purchase_first.svg" />
@@ -46,8 +46,9 @@ const PlanPurchase = () => {
               onClick={() => {
                 setPage(1);
               }}
-              src="/images/check_button_on.svg"
-            />
+            >
+              확인했어요
+            </Button>
           </Footer>
         </Body>
       </>
@@ -69,12 +70,13 @@ const PlanPurchase = () => {
           </Text>
           <BodyImage src="/images/purchase_finish.svg" />
           <Footer>
-            <Button
+            <ButtonNavigate
               onClick={() => {
                 handlePurchase();
               }}
-              src="/images/purchase_button.svg"
-            />
+            >
+              내 투두함으로 이동
+            </ButtonNavigate>
           </Footer>
         </Body>
       </>
@@ -85,6 +87,7 @@ const PlanPurchase = () => {
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 60px;
 `;
 
 const Text = styled.div`
@@ -128,8 +131,39 @@ const Footer = styled.div`
   flex-direction: column;
 `;
 
-const Button = styled.img`
-  width: 85%;
+const Button = styled.div`
+  max-width: 380px;
+  width: 90vw;
+  height: 52px;
+  background: #d2c6ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b47fd;
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+`;
+
+const ButtonNavigate = styled.div`
+  max-width: 380px;
+  width: 90vw;
+  height: 52px;
+  background: #d2c6ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6b47fd;
+  font-family: "PretendardRegular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: white;
 `;
 
 export default PlanPurchase;

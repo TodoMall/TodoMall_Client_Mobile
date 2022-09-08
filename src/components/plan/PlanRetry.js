@@ -1,9 +1,14 @@
 import React from "react";
 import Header from "../global/Header";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const PlanRetry = () => {
-  const handleRetry = () => {};
+  const navigate = useNavigate();
+
+  const handleRetry = () => {
+    navigate("/todobox");
+  };
 
   return (
     <>
@@ -37,6 +42,7 @@ const PlanRetry = () => {
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 60px;
 `;
 
 const Text = styled.div`

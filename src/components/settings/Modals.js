@@ -12,34 +12,48 @@ const Modals = ({
   return (
     <>
       <Modal
-        closeButton
         aria-labelledby="modal-title"
         open={visibleLogout}
         onClose={closeHandlerLogout}
+        width="90%"
       >
+        <ModalImage src="/images/modal_image.svg" />
         <ModalTitle>정말 로그아웃 하실 건가요?</ModalTitle>
         <ModalDetail>
           지금 로그아웃 하면, 이후에 서비스를 이용할 때 다시 로그인 해야 해요.
         </ModalDetail>
-        <ModalImage src="/images/modal_image.svg" />
         <ModalButton>
-          <Button title="로그아웃" />
+          <Button title="로그아웃" width={45} />
+          <CancelButton
+            onClick={() => {
+              closeHandlerLogout();
+            }}
+          >
+            취소
+          </CancelButton>
         </ModalButton>
       </Modal>
       <Modal
-        closeButton
         aria-labelledby="modal-titl"
         open={visibleDelete}
         onClose={closeHandlerDelete}
+        width="90%"
       >
+        <ModalImage src="/images/modal_image.svg" />
         <ModalTitle>투두몰을 탈퇴하실 건가요?</ModalTitle>
         <ModalDetail>
           지금까지 솔빈님이 이뤄낸 모든 도전 기록 내역이 사라져 복구할 수 없게
-          돼요.
+          돼요
         </ModalDetail>
-        <ModalImage src="/images/modal_image.svg" />
         <ModalButton>
-          <Button color="#D10B0B" title="탈퇴" />
+          <Button color="#D10B0B" title="탈퇴" width={45} />
+          <CancelButton
+            onClick={() => {
+              closeHandlerDelete();
+            }}
+          >
+            취소
+          </CancelButton>
         </ModalButton>
       </Modal>
     </>
@@ -53,6 +67,7 @@ const ModalTitle = styled.p`
   font-size: 22px;
   text-align: center;
   color: #000000;
+  margin-top: 20px;
 `;
 
 const ModalDetail = styled.p`
@@ -71,6 +86,22 @@ const ModalButton = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  gap: 10px;
+`;
+
+const CancelButton = styled.div`
+  font-family: "PretendardMedium";
+  height: 60px;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  margin-top: 40px;
+  text-align: center;
+  background: #ededed;
+  border: 1px solid #ededed;
+  width: 45%;
 `;
 
 const ModalImage = styled.img``;

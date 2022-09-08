@@ -1,10 +1,14 @@
 @font-face {
   font-family: "PretendardMedium";
-  src: url("./styles/fonts/Pretendard-Medium.otf") format("truetype");
+  src: url("./styles/fonts/Pretendard-Medium.subset.woff2");
 }
 @font-face {
   font-family: "PretendardRegular";
-  src: url("./styles/fonts/Pretendard-Regular.otf") format("truetype");
+  src: url("./styles/fonts/Pretendard-Regular.subset.woff2");
+}
+@font-face {
+  font-family: "PretendardSemiBold";
+  src: url("./styles/fonts/Pretendard-SemiBold.subset.woff2");
 }
 * {
   margin: 0;
@@ -12,7 +16,6 @@
   box-sizing: border-box;
   font: inherit;
   color: inherit;
-  flex-shrink: 0;
 }
 a {
   color: #fff;
@@ -23,5 +26,26 @@ a {
 a:active {
   text-decoration: none;
   color: #fff;
-  background-color: #f59000;
+  /* background-color: #f59000; */
+}
+html,
+body {
+  height: 100%;
+  background-color: #fbfbfb;
+  min-height: calc(100% + env(safe-area-inset-top));
+}
+html {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+}
+.nextui-c-eUuHzx {
+  position: fixed !important;
+  top: 48px !important;
+}
+.nextui-c-eUuHzx-gZuGQh-color-primary {
+  --nextui--progressColor: #6b47fd !important;
+  --nextui--progressShadowColor: #6b47fd !important;
+}
+.nextui-c-eUuHzx-hMPNGY-size-xs {
+  height: 2px !important;
 }
