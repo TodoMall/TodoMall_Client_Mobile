@@ -61,7 +61,7 @@ const Modals = ({
 };
 
 const ModalTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -71,7 +71,7 @@ const ModalTitle = styled.p`
 `;
 
 const ModalDetail = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -90,7 +90,7 @@ const ModalButton = styled.div`
 `;
 
 const CancelButton = styled.div`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   height: 60px;
   border-radius: 30px;
   justify-content: center;

@@ -39,7 +39,7 @@ const BackArrow = styled(ArrowBackIosIcon)`
 `;
 const HeaderTitle = styled.p`
   font-size: 16px;
-  font-family: "PretendardSemiBold";
+  /* font-family: "PretendardSemiBold"; */
   text-align: center;
 `;
 

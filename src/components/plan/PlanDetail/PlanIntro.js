@@ -57,7 +57,7 @@ const Container = styled.div`
 `;
 
 const Subtitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -67,7 +67,7 @@ const Subtitle = styled.p`
 `;
 
 const Title = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-size: 20px;
   margin-bottom: 10px;
 `;
@@ -91,7 +91,7 @@ const LargeTag = styled.div`
 const Description = styled.p`
   width: 80vw;
   text-align: left;
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -120,7 +120,7 @@ const ProfileDescription = styled.div`
 `;
 
 const Name = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -128,7 +128,7 @@ const Name = styled.p`
 `;
 
 const Intro = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 100;
   font-size: 13px;

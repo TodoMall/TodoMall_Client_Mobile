@@ -95,7 +95,7 @@ const TodoSubmitBody = styled.div`
 
 const TodoSubmitTitle = styled.p`
   width: 327px;
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -110,7 +110,7 @@ const TodoSubmitSubtitle = styled.p`
   width: 327px;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 200;
   font-size: 16px;
@@ -162,7 +162,7 @@ const TodoSubmitButtonActive = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -170,7 +170,7 @@ const TodoSubmitButtonActive = styled.div`
 `;
 
 const TodoSubmitButtonActiveText = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -189,7 +189,7 @@ const TodoSubmitButtonInactive = styled.div`
   justify-content: center;
   background: #ededed;
   color: #929292;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

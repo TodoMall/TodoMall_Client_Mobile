@@ -48,7 +48,7 @@ const Container = styled.div`
 `;
 
 const Subtitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -58,7 +58,7 @@ const Subtitle = styled.p`
 `;
 
 const Title = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-size: 20px;
   margin-bottom: 10px;
 `;

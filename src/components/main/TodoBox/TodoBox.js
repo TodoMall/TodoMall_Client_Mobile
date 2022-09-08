@@ -46,7 +46,7 @@ const TodoBoxEmptyContainer = styled.div`
 const TodoBoxEmptyImage = styled.img``;
 
 const TodoBoxEmptyWelcome = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -56,7 +56,7 @@ const TodoBoxEmptyWelcome = styled.p`
 `;
 
 const TodoBoxEmptyDescription = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 200;
   font-size: 18px;
@@ -71,7 +71,7 @@ const TodoBoxEmptyButton = styled.button`
   background: #6b47fd;
   border: 1px solid #6b47fd;
   border-radius: 30px;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

@@ -71,7 +71,7 @@ const Themes = styled.div`
 `;
 
 const Theme = styled.div`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   width: 33%;
   text-align: center;
   align-self: flex-end;

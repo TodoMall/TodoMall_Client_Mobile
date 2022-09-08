@@ -6,7 +6,7 @@ export default function Personal() {
 <pre
   style="
     white-space: pre-wrap;
-    font-family: PretendardRegular;
+    font-family: Pretendard;
     color: #808080;
     font-size: 13px;
   "
@@ -189,7 +189,7 @@ const Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

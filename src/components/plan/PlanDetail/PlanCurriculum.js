@@ -40,7 +40,7 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -52,7 +52,7 @@ const Body = styled.div``;
 const Intro = styled.div``;
 
 const SessionCount = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -62,7 +62,7 @@ const SessionCount = styled.p`
 `;
 
 const Title = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -86,7 +86,7 @@ const AssignmentImage = styled.img`
 `;
 
 const AssignmentTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -108,7 +108,7 @@ const Todo = styled.div`
 `;
 
 const TodoTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

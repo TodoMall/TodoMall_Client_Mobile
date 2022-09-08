@@ -134,7 +134,7 @@ const TodoBoxCardContainer = styled.div`
 const TodoBoxCardHeader = styled.div``;
 
 const TodoBoxCardHeaderTitle = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -144,7 +144,7 @@ const TodoBoxCardHeaderTitle = styled.p`
 `;
 
 const TodoBoxCardHeaderSession = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -180,7 +180,7 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
   span {
     position: absolute;
     top: -20px;
-    font-family: "PretendardRegular";
+    /* font-family: "PretendardRegular"; */
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -190,7 +190,7 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
 `;
 
 const TodoBoxCardHeaderDDayText = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
@@ -199,7 +199,7 @@ const TodoBoxCardHeaderDDayText = styled.p`
 `;
 
 const TodoBoxCardHeaderDDayTextSubmit = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   color: #6b47fd;
   font-style: normal;
   font-weight: 800;
@@ -228,7 +228,7 @@ const BlurredCover = styled.div`
 
 const BlurredTime = styled.p`
   padding: 5px;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -244,7 +244,7 @@ const BlurredBox = styled.div`
   height: 24px;
   background: #ffc6c6;
   border-radius: 4px;
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
@@ -273,7 +273,7 @@ const TodoBoxCardTodo = styled.div`
 const TodoBoxCardTodoCheckBox = styled.img``;
 
 const TodoBoxCardTodoText = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -293,7 +293,7 @@ const TodoBoxCardSubmitButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -311,7 +311,7 @@ const TodoBoxCardEndButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -321,7 +321,7 @@ const TodoBoxCardEndButton = styled.div`
 `;
 
 const TodoBoxCardEndText = styled.p`
-  font-family: "PretendardRegular";
+  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

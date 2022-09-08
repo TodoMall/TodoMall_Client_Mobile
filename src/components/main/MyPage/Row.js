@@ -47,7 +47,7 @@ const Detail = styled.div`
 `;
 
 const Tries = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -55,7 +55,7 @@ const Tries = styled.p`
 `;
 
 const Title = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 18px;

@@ -106,7 +106,7 @@ const Row = styled.div`
 `;
 
 const RowTitle = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -115,7 +115,7 @@ const RowTitle = styled.p`
 `;
 
 const DetailVersion = styled.p`
-  font-family: "PretendardMedium";
+  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
