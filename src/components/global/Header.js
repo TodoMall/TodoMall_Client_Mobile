@@ -38,8 +38,16 @@ const BackArrow = styled(ArrowBackIosIcon)`
   left: 15px;
 `;
 const HeaderTitle = styled.p`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
   font-size: 16px;
-  /* font-family: "PretendardSemiBold"; */
+  line-height: 16px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
   text-align: center;
 `;
 

@@ -16,22 +16,24 @@ const Login = () => {
 
   return (
     <Container>
+      {/* <BackgroundTop src="/images/main_background_2.svg" /> */}
+      <BackgroundBottom src="/images/main_background_1.svg" />
       <Logo src="/images/logo_text.png" />
-      <LoginImage src="/images/login_image.svg" />
+      {/* <LoginImage src="/images/login_image.svg" /> */}
       <Footer>
         <LoginButton
           onClick={() => {
             getToken();
             navigate("/agreement");
           }}
-          src="/images/kakao_login.svg"
+          src="/images/kakao_login.png"
         />
         <LoginButton
           onClick={() => {
             getToken();
             navigate("/agreement");
           }}
-          src="/images/google_login.svg"
+          src="/images/google_login.png"
         />
         {/* <LoginButton
         onClick={() => {
@@ -40,7 +42,7 @@ const Login = () => {
         src="/images/apple_login.png"
       /> */}
       </Footer>
-      <LoginDesign />
+      {/* <LoginDesign /> */}
     </Container>
   );
 };
@@ -53,11 +55,24 @@ const Container = styled.div`
   background-color: #fbfbfb;
 `;
 
+const BackgroundTop = styled.img`
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 10000;
+`;
+
+const BackgroundBottom = styled.img`
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+`;
+
 const Logo = styled.img`
-  width: 190px;
+  width: 220px;
   position: fixed;
   margin: 0 auto;
-  top: 9vh;
+  bottom: 75%;
 `;
 
 const LoginImage = styled.img`
@@ -87,16 +102,16 @@ const LoginButton = styled.img`
   /* border-radius: 15px; */
 `;
 
-const LoginDesign = styled.div`
-  position: fixed;
-  width: 130vw;
-  height: 50vh;
-  left: auto;
-  /* top: 575px; */
-  bottom: -15vh;
-  background: #f3f1ff;
-  z-index: 0;
-  border-radius: 300%;
-`;
+// const LoginDesign = styled.div`
+//   position: fixed;
+//   width: 130vw;
+//   height: 50vh;
+//   left: auto;
+//   /* top: 575px; */
+//   bottom: -15vh;
+//   background: #f3f1ff;
+//   z-index: 0;
+//   border-radius: 300%;
+// `;
 
 export default Login;
