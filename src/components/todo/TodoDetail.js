@@ -191,8 +191,8 @@ const TodoDetailTaskBoxToggleOff = styled.div`
   background: #ebebeb;
   border-radius: 4px;
   position: absolute;
-  left: 35px;
-  bottom: 48px;
+  left: 20px;
+  bottom: 37px;
 `;
 
 const TodoDetailTaskBoxToggleOn = styled.div`
@@ -204,19 +204,19 @@ const TodoDetailTaskBoxToggleOn = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: 35px;
-  bottom: 48px;
+  left: 20px;
+  bottom: 37px;
 `;
 
 const TodoDetailTaskBoxTitle = styled.p`
   width: 100%;
   /* font-family: "PretendardMedium"; */
   font-style: normal;
-  font-weight: 1000;
+  font-weight: 700;
   font-size: 16px;
   line-height: 27px;
   color: #000000;
-  padding: 0 20%;
+  text-align: center;
 `;
 
 const TodoDetailFinishButton = styled.div`

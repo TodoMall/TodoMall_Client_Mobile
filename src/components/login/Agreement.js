@@ -14,10 +14,10 @@ const Agreement = () => {
 
   return (
     <>
-      <Header title="약관 동의" />
+      <Header title="회원 가입" />
       <Body>
         <Text>
-          <BodyText>더 나은 경험을 위해서</BodyText>
+          <BodyText>더 나은 서비스 품질을 위해서</BodyText>
           <BodyText>필수 약관에 동의해주세요</BodyText>
         </Text>
         <BodyImage src="/images/agreement_image.svg" />
