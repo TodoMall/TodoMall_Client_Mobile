@@ -9,8 +9,11 @@ import Row from "./Row";
 const MyPage = () => {
   const navigate = useNavigate();
   const [plans, setPlans] = useState([]);
-
+  const [name, setName] = useState(sessionStorage.getItem("name"));
+  const [email, setEmail] = useState(sessionStorage.getItem("email"));
+  const [image, setImage] = useState(sessionStorage.getItem("image"));
   useEffect(() => {
+    console.log(image);
     const fetch = async () => {
       const token = localStorage.getItem("token");
       const response = await axios.get(requests.getUserPlanList, {
@@ -33,10 +36,10 @@ const MyPage = () => {
       <Container>
         <Header>
           <UserInfo>
-            <ProfileImage src="/images/dummy_profile_image.png" />
+            <ProfileImage src={image} />
             <User>
-              <UserName>솔빈</UserName>
-              <UserEmail>solbing@gmail.com</UserEmail>
+              <UserName>{name}</UserName>
+              <UserEmail>{email}</UserEmail>
             </User>
           </UserInfo>
           <Settings
@@ -104,6 +107,7 @@ const Header = styled.div`
 
 const ProfileImage = styled.img`
   width: 50px;
+  border-radius: 30px;
 `;
 
 const UserInfo = styled.span`

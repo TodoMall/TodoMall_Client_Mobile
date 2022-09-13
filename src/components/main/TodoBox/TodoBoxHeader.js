@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TodoBoxHeader = () => {
+  const [name, setName] = useState(sessionStorage.getItem("name"));
   return (
     <>
       <TodoBoxHeaderContainer>
         <TodoBoxHeaderTry>3개 도전 중</TodoBoxHeaderTry>
-        <TodoBoxHeaderName>힘내세요, 솔빈님!</TodoBoxHeaderName>
+        <TodoBoxHeaderName>힘내세요, {name}님!</TodoBoxHeaderName>
         <TodoBoxDivider />
       </TodoBoxHeaderContainer>
     </>
