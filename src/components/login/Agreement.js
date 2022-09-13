@@ -124,7 +124,9 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fbfbfb;
-  padding-top: 70px;
+  padding-top: 80px;
+  width: 100vw;
+  max-width: 450px;
 `;
 
 const Text = styled.div`
@@ -136,17 +138,25 @@ const BodyText = styled.p`
   font-weight: bolder;
   font-size: 22px;
   line-height: 30px;
-  margin: 0;
   padding-left: 15px;
   text-align: left;
 `;
 
 const BodyImage = styled.img`
-  width: 260px;
+  width: 18rem;
   margin: auto;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -58%);
+  left: 50%;
 `;
 
 const Footer = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
   justify-content: center;
   align-items: center;

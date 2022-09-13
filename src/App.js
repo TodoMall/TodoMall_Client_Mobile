@@ -20,6 +20,7 @@ import TodoDetail from "./components/todo/TodoDetail";
 import TodoSubmit from "./components/todo/TodoSubmit";
 import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
 import TodoAnswer from "./components/todo/TodoAnswer";
+import Social from "./components/login/Social";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         {/* Login, Terms of Service Routes */}
         <Route path="/" element={<Login />} />
+        <Route path="/social" element={<Social />} />
         <Route path="/agreement" element={<Agreement />} />
         <Route path="/service" element={<Service />} />
         <Route path="/personal" element={<Personal />} />

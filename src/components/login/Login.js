@@ -7,6 +7,10 @@ import requests from "../../api/request";
 const Login = () => {
   const navigate = useNavigate();
 
+  const kakaoLogin = () => {
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
+  };
+
   const getToken = async () => {
     const request = await axios.get(requests.testLogin, {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -23,18 +27,19 @@ const Login = () => {
       <Footer>
         <LoginButton
           onClick={() => {
-            getToken();
-            navigate("/agreement");
+            // getToken();
+            // navigate("/agreement");
+            kakaoLogin();
           }}
           src="/images/kakao_login.png"
         />
-        <LoginButton
+        {/* <LoginButton
           onClick={() => {
             getToken();
             navigate("/agreement");
           }}
           src="/images/google_login.png"
-        />
+        /> */}
         {/* <LoginButton
         onClick={() => {
           navigate("/agreement");
@@ -65,6 +70,7 @@ const BackgroundTop = styled.img`
 const BackgroundBottom = styled.img`
   position: fixed;
   width: 100vw;
+  max-width: 450px;
   bottom: 0;
 `;
 
