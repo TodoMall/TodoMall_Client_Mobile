@@ -1,10 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 import requests from "../../api/request";
 
 const Login = () => {
+  useEffect(() => {
+    const access_token = sessionStorage.getItem("access");
+    if (access_token) {
+      axios
+        .get("https://kapi.kakao.com/v1/user/access_token_info", {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            const refresh_token = localStorage.getItem("refresh");
+            axios
+              .post(
+                `https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&refresh_token=${refresh_token}`,
+                {
+                  headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                }
+              )
+              .then((res) => {
+                sessionStorage.setItem("access", res.data.access_token);
+                localStorage.setItem("ID", res.data.id_token);
+                navigate("/todobox");
+              })
+              .catch((err) => {
+                sessionStorage.removeItem("access");
+                localStorage.removeItem("refresh");
+                localStorage.removeItem("ID");
+              });
+          } else {
+            sessionStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+            localStorage.removeItem("ID");
+          }
+        })
+        .catch((err) => {
+          sessionStorage.removeItem("access");
+          localStorage.removeItem("refresh");
+          localStorage.removeItem("ID");
+        });
+    }
+  });
+
   const navigate = useNavigate();
 
   const kakaoLogin = () => {

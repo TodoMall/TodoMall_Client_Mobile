@@ -2,6 +2,8 @@ import React from "react";
 import { Modal } from "@nextui-org/react";
 import Button from "../global/Button";
 import styled from "styled-components";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Modals = ({
   visibleLogout,
@@ -9,6 +11,55 @@ const Modals = ({
   visibleDelete,
   closeHandlerDelete,
 }) => {
+  const navigate = useNavigate();
+  const access_token = sessionStorage.getItem("access");
+  const handleLogout = () => {
+    console.log(access_token);
+    axios
+      .get(
+        `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_KAKAO_LOGOUT_REDIRECT_URI}`
+      )
+      .then((res) => {
+        sessionStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        localStorage.removeItem("ID");
+        navigate("/");
+      })
+      .catch((err) => {
+        // sessionStorage.removeItem("access");
+        // localStorage.removeItem("refresh");
+        // localStorage.removeItem("ID");
+        // navigate("/");
+      });
+  };
+
+  const handleDelete = async () => {
+    console.log(access_token);
+    await axios
+      .post(
+        "https://kapi.kakao.com/v1/user/unlink",
+        {},
+        {
+          headers: {
+            // "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      )
+      .then((res) => {
+        sessionStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+        localStorage.removeItem("ID");
+        navigate("/");
+      })
+      .catch((err) => {
+        // sessionStorage.removeItem("access");
+        // localStorage.removeItem("refresh");
+        // localStorage.removeItem("ID");
+        // navigate("/");
+      });
+  };
+
   return (
     <>
       <Modal
@@ -24,7 +75,13 @@ const Modals = ({
             지금 로그아웃 하면, 이후에 서비스를 이용할 때 다시 로그인 해야 해요.
           </ModalDetail>
           <ModalButton>
-            <Button title="로그아웃" width={45} />
+            <Button
+              title="로그아웃"
+              width={45}
+              onClick={() => {
+                handleLogout();
+              }}
+            />
             <CancelButton
               onClick={() => {
                 closeHandlerLogout();
@@ -49,7 +106,14 @@ const Modals = ({
             돼요
           </ModalDetail>
           <ModalButton>
-            <Button color="#F65050" title="탈퇴하기" width={45} />
+            <Button
+              color="#F65050"
+              title="탈퇴하기"
+              width={45}
+              onClick={() => {
+                handleDelete();
+              }}
+            />
             <CancelButton
               onClick={() => {
                 closeHandlerDelete();
