@@ -43,12 +43,15 @@ const TodoBoxEmptyContainer = styled.div`
   justify-content: center;
   padding-top: 90px;
   padding-bottom: 90px;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
-const TodoBoxEmptyImage = styled.img``;
+const TodoBoxEmptyImage = styled.img`
+  width: 90vw;
+  max-width: 450px;
+`;
 
 const TodoBoxEmptyWelcome = styled.p`
   font-style: normal;

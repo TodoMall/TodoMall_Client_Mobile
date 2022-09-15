@@ -76,12 +76,9 @@ const MyPage = () => {
           ) : (
             <NoPlan>
               <NoPlanImage src="/images/mypage_no_plan.svg" />
-              <NoPlanTitle>
-                <span>아직 경험한 클래스가 없네요</span>
-              </NoPlanTitle>
-              <NoPlanTitle>
-                지금 투두몰과 함께 시작해보시는건 어때요?
-              </NoPlanTitle>
+              <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
+              <NoPlanSubtitle>앞으로 클래스를 탐색하고 완료하면</NoPlanSubtitle>
+              <NoPlanSubtitle>여기에 표시되어요</NoPlanSubtitle>
               {/* <Button link="/todomall" title="클래스 찾아보기" width="70" /> */}
             </NoPlan>
           )}
@@ -148,34 +145,39 @@ const Body = styled.div`
 `;
 
 const NoPlan = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const NoPlanImage = styled.img`
-  width: 300px;
+  width: 90vw;
+  max-width: 450px;
   margin-top: 20px;
   margin-bottom: 20px;
 `;
 
 const NoPlanTitle = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #222222;
+  margin-bottom: 15px;
+`;
+
+const NoPlanSubtitle = styled.p`
+  font-style: normal;
+  font-weight: 300;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
   color: #888888;
-  span {
-    /* font-family: "PretendardMedium"; */
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
-    color: #000000;
-  }
 `;
 
 const PlanDate = styled.p`
