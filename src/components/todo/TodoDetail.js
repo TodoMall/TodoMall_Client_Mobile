@@ -134,7 +134,7 @@ const TodoDetailButton = styled.button`
   width: 178px;
   height: 44px;
   border: 1px solid #6b47fd;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: #fbfbfb;
   /* font-family: "PretendardRegular"; */
   font-style: normal;
@@ -228,7 +228,7 @@ const TodoDetailFinishButton = styled.div`
   height: 52px;
   margin: 30px 0;
   background: ${(props) => (props.done ? "#6b47fd" : "#EDEDED")};
-  border-radius: 30px;
+  border-radius: 20px;
   /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;

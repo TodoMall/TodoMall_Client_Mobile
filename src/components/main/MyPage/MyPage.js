@@ -78,7 +78,7 @@ const MyPage = () => {
               <NoPlanImage src="/images/mypage_no_plan.svg" />
               <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
               <NoPlanSubtitle>앞으로 클래스를 탐색하고 완료하면</NoPlanSubtitle>
-              <NoPlanSubtitle>여기에 표시되어요</NoPlanSubtitle>
+              <NoPlanSubtitle>여기에 표시되어요.</NoPlanSubtitle>
               {/* <Button link="/todomall" title="클래스 찾아보기" width="70" /> */}
             </NoPlan>
           )}
@@ -104,7 +104,8 @@ const Header = styled.div`
 
 const ProfileImage = styled.img`
   width: 50px;
-  border-radius: 30px;
+  height: 50px;
+  border-radius: 50px;
 `;
 
 const UserInfo = styled.span`

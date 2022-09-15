@@ -5,7 +5,7 @@ import TodoBoxContent from "./TodoBoxContent";
 import TodoBoxHeader from "./TodoBoxHeader";
 
 const TodoBox = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([1, 2, 3, 4]);
 
   return (
     <>
