@@ -35,7 +35,14 @@ const Social = () => {
               );
               localStorage.setItem("email", res.data.kakao_account.email);
               localStorage.setItem("image", res.data.properties.profile_image);
-              navigate("/agreement");
+              if (
+                localStorage.getItem("personal") &&
+                localStorage.getItem("service")
+              ) {
+                navigate("/todobox");
+              } else {
+                navigate("/agreement");
+              }
             });
         });
     };

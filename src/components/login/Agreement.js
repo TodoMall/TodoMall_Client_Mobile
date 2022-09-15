@@ -105,6 +105,8 @@ const Agreement = () => {
         {isPersonalOn && isServiceOn ? (
           <Button
             onClick={() => {
+              localStorage.setItem("personal", true);
+              localStorage.setItem("service", true);
               navigate("/todobox");
             }}
           >
