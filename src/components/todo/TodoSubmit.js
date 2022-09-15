@@ -94,7 +94,7 @@ const TodoSubmitBody = styled.div`
 `;
 
 const TodoSubmitTitle = styled.p`
-  width: 327px;
+  width: 340px;
   /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
@@ -107,7 +107,7 @@ const TodoSubmitTitle = styled.p`
 `;
 
 const TodoSubmitSubtitle = styled.p`
-  width: 327px;
+  width: 345px;
   padding-top: 20px;
   padding-bottom: 20px;
   /* font-family: "PretendardRegular"; */

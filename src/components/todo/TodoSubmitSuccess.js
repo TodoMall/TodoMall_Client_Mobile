@@ -11,12 +11,13 @@ const TodoSubmitSuccess = () => {
       <Header title="" />
       <TodoSubmitSuccessBody>
         <TodoSubmitSuccessTitle>
-          클래스가 성공적으로 추가됐어요 데드라인 내에 미션 인증을 잊지 마세요
+          인증이 성공적으로 진행되었어요!
         </TodoSubmitSuccessTitle>
-
+        <TodoSubmitSuccessTitle>
+          다음 세션도 투두몰과 함께 해요
+        </TodoSubmitSuccessTitle>
         <TodoSubmitSuccessSubtitle>
-          시간 내에 완수해야 클래스의 다음 세션을 계속 들을 수 있어요. 12시부터
-          데드라인이 시작될 거예요.
+          시간 내에 완수해야 클래스의 다음 세션을 계속 들을 수 있어요.
         </TodoSubmitSuccessSubtitle>
         <TodoSubmitSuccessImage src="/images/todo_submit_success.svg" />
       </TodoSubmitSuccessBody>
@@ -37,20 +38,20 @@ const TodoSubmitSuccessBody = styled.div`
   padding: 0 20px;
   padding-top: 80px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   flex-direction: column;
 `;
 
 const TodoSubmitSuccessTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
-  font-weight: 1000;
+  font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  /* or 150% */
-
   color: #222222;
+
+  text-align: left;
 `;
 
 const TodoSubmitSuccessSubtitle = styled.p`
@@ -64,9 +65,12 @@ const TodoSubmitSuccessSubtitle = styled.p`
 `;
 
 const TodoSubmitSuccessImage = styled.img`
-  width: 308px;
-  height: 308px;
-  margin-top: 20px;
+  position: fixed;
+  width: 90vw;
+  max-width: 450px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const TodoSubmitSuccessFooter = styled.div`

@@ -17,21 +17,23 @@ const Modals = ({
         onClose={closeHandlerLogout}
         width="90%"
       >
-        <ModalImage src="/images/modal_image.svg" />
-        <ModalTitle>정말 로그아웃 하실 건가요?</ModalTitle>
-        <ModalDetail>
-          지금 로그아웃 하면, 이후에 서비스를 이용할 때 다시 로그인 해야 해요.
-        </ModalDetail>
-        <ModalButton>
-          <Button title="로그아웃" width={45} />
-          <CancelButton
-            onClick={() => {
-              closeHandlerLogout();
-            }}
-          >
-            취소
-          </CancelButton>
-        </ModalButton>
+        <Container>
+          <ModalImage src="/images/modal_image.svg" />
+          <ModalTitle>정말 로그아웃 하실 건가요?</ModalTitle>
+          <ModalDetail>
+            지금 로그아웃 하면, 이후에 서비스를 이용할 때 다시 로그인 해야 해요.
+          </ModalDetail>
+          <ModalButton>
+            <Button title="로그아웃" width={45} />
+            <CancelButton
+              onClick={() => {
+                closeHandlerLogout();
+              }}
+            >
+              취소
+            </CancelButton>
+          </ModalButton>
+        </Container>
       </Modal>
       <Modal
         aria-labelledby="modal-titl"
@@ -39,26 +41,35 @@ const Modals = ({
         onClose={closeHandlerDelete}
         width="90%"
       >
-        <ModalImage src="/images/modal_image.svg" />
-        <ModalTitle>투두몰을 탈퇴하실 건가요?</ModalTitle>
-        <ModalDetail>
-          지금까지 솔빈님이 이뤄낸 모든 도전 기록 내역이 사라져 복구할 수 없게
-          돼요
-        </ModalDetail>
-        <ModalButton>
-          <Button color="#D10B0B" title="탈퇴" width={45} />
-          <CancelButton
-            onClick={() => {
-              closeHandlerDelete();
-            }}
-          >
-            취소
-          </CancelButton>
-        </ModalButton>
+        <Container>
+          <ModalImage src="/images/modal_image.svg" />
+          <ModalTitle>투두몰을 탈퇴하실 건가요?</ModalTitle>
+          <ModalDetail>
+            지금까지 솔빈님이 이뤄낸 모든 도전 기록 내역이 사라져 복구할 수 없게
+            돼요
+          </ModalDetail>
+          <ModalButton>
+            <Button color="#F65050" title="탈퇴하기" width={45} />
+            <CancelButton
+              onClick={() => {
+                closeHandlerDelete();
+              }}
+            >
+              취소
+            </CancelButton>
+          </ModalButton>
+        </Container>
       </Modal>
     </>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 const ModalTitle = styled.p`
   /* font-family: "PretendardMedium"; */
@@ -87,6 +98,7 @@ const ModalButton = styled.div`
   align-items: center;
   margin-bottom: 20px;
   gap: 10px;
+  width: 100%;
 `;
 
 const CancelButton = styled.div`
@@ -104,6 +116,9 @@ const CancelButton = styled.div`
   width: 45%;
 `;
 
-const ModalImage = styled.img``;
+const ModalImage = styled.img`
+  width: 80%;
+  margin-top: 30px;
+`;
 
 export default Modals;
