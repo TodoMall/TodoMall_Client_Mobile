@@ -97,11 +97,15 @@ const Text = styled.div`
 `;
 
 const BodyText = styled.p`
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 700;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 30px;
+  /* or 150% */
+
+  color: #222222;
+  line-height: 25px;
   margin: 0;
   margin-bottom: 7px;
   text-align: left;
@@ -109,43 +113,50 @@ const BodyText = styled.p`
 
 const BodyImage = styled.img`
   width: 80vw;
-  margin: auto;
-  margin-bottom: 10vh;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const BodyDescription = styled.p`
-  /* font-family: "PretendardMedium"; */
-  color: #888888;
+  font-family: "Pretendard";
   font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+  color: #888888;
   margin: 0;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   text-align: left;
 `;
 
 const Footer = styled.div`
+  position: fixed;
+  bottom: 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
 `;
 
 const Button = styled.div`
   max-width: 380px;
   width: 90vw;
   height: 52px;
-  background: #d2c6ff;
+  background: #f1efff;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #6b47fd;
-  /* font-family: "PretendardRegular"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
+  text-align: center;
+  color: #6b47fd;
 `;
 
 const ButtonNavigate = styled.div`
@@ -158,7 +169,6 @@ const ButtonNavigate = styled.div`
   align-items: center;
   justify-content: center;
   background: #6b47fd;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
