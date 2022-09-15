@@ -38,7 +38,7 @@ const Social = () => {
                 "image",
                 res.data.kakao_account.profile.profile_image_url
               );
-              navigate("/todobox");
+              navigate("/agreement");
             });
         });
     };
