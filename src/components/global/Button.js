@@ -28,7 +28,7 @@ const NoPlanButton = styled.div`
   align-items: center;
   display: flex;
   ${({ color }) =>
-    color === "#6b47fd" || color === "#D10B0B"
+    color === "#6b47fd" || color === "#F65050"
       ? "color: white;"
       : "color: #929292;"}
   font-size: 18px;
