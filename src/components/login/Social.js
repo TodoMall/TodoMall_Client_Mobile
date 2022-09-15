@@ -18,7 +18,7 @@ const Social = () => {
         )
         .then((res) => {
           console.log(res.data);
-          sessionStorage.setItem("access", res.data.access_token);
+          localStorage.setItem("access", res.data.access_token);
           localStorage.setItem("refresh", res.data.refresh_token);
           localStorage.setItem("ID", res.data.id_token);
           axios
@@ -29,15 +29,12 @@ const Social = () => {
             })
             .then((res) => {
               console.log(res);
-              sessionStorage.setItem(
+              localStorage.setItem(
                 "name",
                 res.data.kakao_account.profile.nickname
               );
-              sessionStorage.setItem("email", res.data.kakao_account.email);
-              sessionStorage.setItem(
-                "image",
-                res.data.kakao_account.profile.profile_image_url
-              );
+              localStorage.setItem("email", res.data.kakao_account.email);
+              localStorage.setItem("image", res.data.properties.profile_image);
               navigate("/agreement");
             });
         });

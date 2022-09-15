@@ -9,9 +9,9 @@ import Row from "./Row";
 const MyPage = () => {
   const navigate = useNavigate();
   const [plans, setPlans] = useState([]);
-  const [name, setName] = useState(sessionStorage.getItem("name"));
-  const [email, setEmail] = useState(sessionStorage.getItem("email"));
-  const [image, setImage] = useState(sessionStorage.getItem("image"));
+  const [name, setName] = useState(localStorage.getItem("name"));
+  const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [image, setImage] = useState(localStorage.getItem("image"));
   useEffect(() => {
     console.log(image);
     const fetch = async () => {

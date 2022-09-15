@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const TodoBoxHeader = () => {
-  const [name, setName] = useState(sessionStorage.getItem("name"));
+  const [name, setName] = useState(localStorage.getItem("name"));
   return (
     <>
       <TodoBoxHeaderContainer>
