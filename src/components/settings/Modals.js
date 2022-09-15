@@ -12,7 +12,7 @@ const Modals = ({
   closeHandlerDelete,
 }) => {
   const navigate = useNavigate();
-  const access_token = sessionStorage.getItem("access");
+  const access_token = localStorage.getItem("access");
   const handleLogout = () => {
     console.log(access_token);
     axios
@@ -20,13 +20,13 @@ const Modals = ({
         `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_KAKAO_LOGOUT_REDIRECT_URI}`
       )
       .then((res) => {
-        sessionStorage.removeItem("access");
+        localStorage.removeItem("access");
         localStorage.removeItem("refresh");
         localStorage.removeItem("ID");
         navigate("/");
       })
       .catch((err) => {
-        // sessionStorage.removeItem("access");
+        // localStorage.removeItem("access");
         // localStorage.removeItem("refresh");
         // localStorage.removeItem("ID");
         // navigate("/");
@@ -47,13 +47,13 @@ const Modals = ({
         }
       )
       .then((res) => {
-        sessionStorage.removeItem("access");
+        localStorage.removeItem("access");
         localStorage.removeItem("refresh");
         localStorage.removeItem("ID");
         navigate("/");
       })
       .catch((err) => {
-        // sessionStorage.removeItem("access");
+        // localStorage.removeItem("access");
         // localStorage.removeItem("refresh");
         // localStorage.removeItem("ID");
         // navigate("/");

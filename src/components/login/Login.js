@@ -6,7 +6,8 @@ import requests from "../../api/request";
 
 const Login = () => {
   useEffect(() => {
-    const access_token = sessionStorage.getItem("access");
+    const access_token = localStorage.getItem("access");
+    console.log(access_token);
     if (access_token) {
       axios
         .get("https://kapi.kakao.com/v1/user/access_token_info", {
@@ -21,6 +22,7 @@ const Login = () => {
             axios
               .post(
                 `https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&refresh_token=${refresh_token}`,
+                {},
                 {
                   headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
@@ -28,23 +30,23 @@ const Login = () => {
                 }
               )
               .then((res) => {
-                sessionStorage.setItem("access", res.data.access_token);
+                localStorage.setItem("access", res.data.access_token);
                 localStorage.setItem("ID", res.data.id_token);
                 navigate("/todobox");
               })
               .catch((err) => {
-                sessionStorage.removeItem("access");
+                localStorage.removeItem("access");
                 localStorage.removeItem("refresh");
                 localStorage.removeItem("ID");
               });
           } else {
-            sessionStorage.removeItem("access");
+            localStorage.removeItem("access");
             localStorage.removeItem("refresh");
             localStorage.removeItem("ID");
           }
         })
         .catch((err) => {
-          sessionStorage.removeItem("access");
+          localStorage.removeItem("access");
           localStorage.removeItem("refresh");
           localStorage.removeItem("ID");
         });
