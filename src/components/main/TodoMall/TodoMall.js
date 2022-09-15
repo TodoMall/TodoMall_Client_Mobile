@@ -19,9 +19,9 @@ const TodoMall = () => {
             alt={`${current}_title`}
           />
           <img
-            // src={`/images/${current}_image.svg`}
-            src={`/images/todomall_image.svg`}
-            style={{ width: "350px", marginTop: 20 }}
+            src={`/images/${current}_image.svg`}
+            // src={`/images/todomall_image.svg`}
+            style={{ width: "100vw", maxWidth: "450px", marginTop: 20 }}
             alt={`${current}_image`}
           />
         </BodyImages>

@@ -42,7 +42,7 @@ const TodoBoxHeaderName = styled.p`
 `;
 
 const TodoBoxHeaderTry = styled.p`
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;

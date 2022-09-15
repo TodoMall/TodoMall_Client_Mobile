@@ -72,13 +72,12 @@ const Title = styled.p`
 `;
 
 const Assignment = styled.div`
-  background: #f1f3f5;
+  background: #fff2e2;
   border-radius: 8px;
   height: 50px;
   display: flex;
   justify-content: left;
   align-items: center;
-  background: #f1efff;
 `;
 
 const AssignmentImage = styled.img`
@@ -91,7 +90,7 @@ const AssignmentTitle = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 14px;
-  color: #6b47fd;
+  color: #ff9900;
   margin-left: 15px;
 `;
 

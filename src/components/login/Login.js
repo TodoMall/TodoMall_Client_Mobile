@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <Container>
       {/* <BackgroundTop src="/images/main_background_2.svg" /> */}
-      <BackgroundBottom src="/images/main_background_1.svg" />
+      <BackgroundBottom src="/images/main_background.svg" />
       <Logo src="/images/logo_text.png" />
       {/* <LoginImage src="/images/login_image.svg" /> */}
       <Footer>
@@ -69,9 +69,9 @@ const BackgroundTop = styled.img`
 
 const BackgroundBottom = styled.img`
   position: fixed;
-  width: 100vw;
+  width: 103vw;
   max-width: 450px;
-  bottom: 0;
+  bottom: -50px;
 `;
 
 const Logo = styled.img`
