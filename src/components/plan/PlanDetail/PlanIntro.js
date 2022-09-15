@@ -16,24 +16,28 @@ const PlanIntro = ({
 }) => {
   return (
     <>
-      <Image src={image ? image : "https://picsum.photos/200/300"} />
+      <Image src={image ? image : "/images/dummy_plan.png"} />
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
+
+        <LargeTag>
+          <img src="/images/dummy_tags.svg" />
+        </LargeTag>
+        <Description>{description}</Description>
         <SmallTags>
           {/* {smalltag.map((tag) => (
             <SmallTag>{tag}</SmallTag>
           ))} */}
           <img src="/images/plan_dummy_tag.svg" />
         </SmallTags>
-        <LargeTag>
-          <img src="/images/dummy_tags.svg" />
-        </LargeTag>
-        <Description>{description}</Description>
         <Creator>
           <ProfileImage src={`/images/dummy_profile_image.png`} />
           <ProfileDescription>
-            <Name>{creator_name} 노션 강사님</Name>
+            <Name>
+              {creator_name}
+              <span>강사님</span>
+            </Name>
             <Intro>{creator_intro}</Intro>
           </ProfileDescription>
         </Creator>
@@ -57,18 +61,24 @@ const Container = styled.div`
 `;
 
 const Subtitle = styled.p`
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 14px;
-  color: #c0c0c0;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #929292;
   margin: 14px 0;
 `;
 
 const Title = styled.p`
-  /* font-family: "PretendardMedium"; */
-  font-size: 20px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 21px;
+  text-align: center;
+  color: #222222;
   margin-bottom: 10px;
 `;
 
@@ -90,12 +100,14 @@ const LargeTag = styled.div`
 
 const Description = styled.p`
   width: 80vw;
-  text-align: left;
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
+  letter-spacing: -0.002em;
+  color: #222222;
+  text-align: left;
 `;
 
 const Creator = styled.div`
@@ -107,7 +119,7 @@ const Creator = styled.div`
   gap: 10px;
   background: #f2f2f2;
   border-radius: 8px;
-  width: 330px;
+  width: 80vw;
   margin: 15px 0;
 `;
 
@@ -120,19 +132,33 @@ const ProfileDescription = styled.div`
 `;
 
 const Name = styled.p`
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
-  margin-bottom: 5px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: #222222;
+  margin-bottom: 10px;
+  span {
+    font-family: "Pretendard";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 11px;
+    letter-spacing: 0.03em;
+    color: #929292;
+    padding-left: 5px;
+  }
 `;
 
 const Intro = styled.p`
-  /* font-family: "PretendardMedium"; */
+  font-family: "Pretendard";
   font-style: normal;
-  font-weight: 100;
-  font-size: 13px;
-  //   line-height: 14px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #929292;
 `;
 
 export default PlanIntro;
