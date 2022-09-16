@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../global/Header";
 import styled from "styled-components";
 import PlanFirst from "./PlanFirst";
@@ -13,6 +13,9 @@ import Divider from "../../global/Divider";
 const PlanDetail = () => {
   const [plan, setPlan] = useState(DummyData);
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = `${DummyData.title}`;
+  });
   return (
     <>
       <Header title="" />
@@ -44,6 +47,7 @@ const PlanDetail = () => {
           onClick={() => {
             navigate("/purchase/1/");
           }}
+          id="download_button"
         >
           무료로 도전하기
         </BuyButton>
