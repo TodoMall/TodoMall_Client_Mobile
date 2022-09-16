@@ -12,6 +12,7 @@ const Header = ({ current, setCurrent }) => {
             setCurrent(CAREER);
           }}
           style={current === CAREER ? { borderBottom: "2px solid black" } : {}}
+          id="category_job_developement"
         >
           {current === CAREER ? (
             <ThemeIcon src={`/images/${CAREER}_on.svg`} />
@@ -24,6 +25,7 @@ const Header = ({ current, setCurrent }) => {
             setCurrent(SELF);
           }}
           style={current === SELF ? { borderBottom: "2px solid black" } : {}}
+          id="category_self_improvement"
         >
           {current === SELF ? (
             <ThemeIcon src={`/images/${SELF}_on.svg`} />
@@ -38,6 +40,7 @@ const Header = ({ current, setCurrent }) => {
           style={
             current === INVESTMENT ? { borderBottom: "2px solid black" } : {}
           }
+          id="category_finance"
         >
           {current === INVESTMENT ? (
             <ThemeIcon src={`/images/${INVESTMENT}_on.svg`} />
