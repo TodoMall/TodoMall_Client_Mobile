@@ -35,14 +35,40 @@ const Social = () => {
               );
               localStorage.setItem("email", res.data.kakao_account.email);
               localStorage.setItem("image", res.data.properties.profile_image);
-              if (
-                localStorage.getItem("personal") &&
-                localStorage.getItem("service")
-              ) {
-                navigate("/todobox");
-              } else {
-                navigate("/agreement");
-              }
+              axios
+                .post("http://218.52.69.136:3000/1.0/user", {
+                  email: res.data.kakao_account.email,
+                  image: res.data.properties.profile_image,
+                  name: res.data.kakao_account.profile.nickname,
+                })
+                .then((res) => {
+                  console.log(res);
+                  localStorage.setItem("id", res.data.id);
+                  if (
+                    localStorage.getItem("personal") &&
+                    localStorage.getItem("service")
+                  ) {
+                    navigate("/todobox");
+                  } else {
+                    navigate("/agreement");
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  const id = localStorage.getItem("id");
+                  axios
+                    .get(`http://218.52.69.136:3000/1.0/user?id=${id}`)
+                    .then(() => {
+                      if (
+                        localStorage.getItem("personal") &&
+                        localStorage.getItem("service")
+                      ) {
+                        navigate("/todobox");
+                      } else {
+                        navigate("/agreement");
+                      }
+                    });
+                });
             });
         });
     };
