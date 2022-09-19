@@ -3,11 +3,19 @@ import styled from "styled-components";
 import Card from "./Card";
 import ClassPreview from "./class_preview.json";
 
-const CardList = () => {
+const CardList = ({ classData }) => {
+
+  console.log(classData);
+
   return (
     <CardListBox>
-      {ClassPreview.map((preview) => (
-        <Card title={preview.title} description={preview.description} />
+      {classData.map((preview) => (
+        <Card
+            title={preview.title}
+            description={preview.description}
+            tags={preview.tags}
+            subDescription={preview.subDescription}
+        />
       ))}
     </CardListBox>
   );
