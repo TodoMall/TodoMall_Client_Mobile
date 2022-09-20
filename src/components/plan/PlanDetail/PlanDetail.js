@@ -22,7 +22,7 @@ const PlanDetail = () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setPlan(res.data);
         setLoading(false);
       });
