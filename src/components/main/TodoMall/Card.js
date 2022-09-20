@@ -2,28 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ title, description, tags, subDescription }) => {
+const Card = ({ title, description, tags, subDescription, id }) => {
   const navigate = useNavigate();
 
   const cardTag = tags.map((tag, index) => {
-    return <div key={index} ><CardTag>{tag}</CardTag></div>;
-  })
+    return (
+      <div key={index}>
+        <CardTag>{tag}</CardTag>
+      </div>
+    );
+  });
+
+  const CutOff = 65;
 
   return (
     <CardBox
       onClick={() => {
-        navigate("/detail/1");
+        navigate(`/detail/${id}`);
       }}
     >
       <DescriptionFor>{subDescription}</DescriptionFor>
       <CardTitle>{title}</CardTitle>
-      <CardDescription>
-        {description}
-      </CardDescription>
+      <CardDescription>{description.substring(1, CutOff)}...</CardDescription>
       <CardIcon>🎨</CardIcon>
-      <CardTags>
-        {cardTag}
-      </CardTags>
+      <CardTags>{cardTag}</CardTags>
     </CardBox>
   );
 };
@@ -65,13 +67,13 @@ const CardTitle = styled.p`
 `;
 
 const CardDescription = styled.p`
-  /* font-family: "PretendardRegular"; */
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 27px;
-  color: #444444;
-  padding-bottom: 5px;
+  font-size: 14px;
+  line-height: 24px;
+  color: #888888;
+  margin-bottom: 10px;
 `;
 
 const CardTags = styled.div`
@@ -83,7 +85,7 @@ const CardTags = styled.div`
 `;
 
 const CardTag = styled.div`
-  width: 96px;
+  width: auto;
   height: 26px;
   background: #f2f2f2;
   border-radius: 8px;

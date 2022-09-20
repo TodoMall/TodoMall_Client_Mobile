@@ -36,14 +36,14 @@ const Social = () => {
               localStorage.setItem("email", res.data.kakao_account.email);
               localStorage.setItem("image", res.data.properties.profile_image);
               axios
-                .post("http://218.52.69.136:3000/1.0/user", {
+                .post(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user`, {
                   email: res.data.kakao_account.email,
                   image: res.data.properties.profile_image,
                   name: res.data.kakao_account.profile.nickname,
                 })
                 .then((res) => {
                   console.log(res);
-                  localStorage.setItem("id", res.data.id);
+                  localStorage.setItem("userid", res.data.id);
                   if (
                     localStorage.getItem("personal") &&
                     localStorage.getItem("service")
@@ -55,10 +55,13 @@ const Social = () => {
                 })
                 .catch((err) => {
                   console.log(err);
-                  const id = localStorage.getItem("id");
+                  const email = localStorage.getItem("email");
                   axios
-                    .get(`http://218.52.69.136:3000/1.0/user?id=${id}`)
-                    .then(() => {
+                    .get(
+                      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+                    )
+                    .then((res) => {
+                      localStorage.setItem("userid", res.data.id);
                       if (
                         localStorage.getItem("personal") &&
                         localStorage.getItem("service")

@@ -2,16 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import TodoBoxCard from "./TodoBoxCard";
 
-const TodoBoxContent = () => {
+const TodoBoxContent = ({ plans }) => {
+  console.log(plans);
   return (
     <TodoBoxContentContainer>
-      <TodoBoxCard submit={true} />
-      <TodoBoxCard end={true} />
-      <TodoBoxCard />
-      {/* <TodoBoxCard />
-      <TodoBoxCard />
-      <TodoBoxCard />
-      <TodoBoxCard /> */}
+      {plans.map((plan) => (
+        <TodoBoxCard data={plan} />
+      ))}
     </TodoBoxContentContainer>
   );
 };

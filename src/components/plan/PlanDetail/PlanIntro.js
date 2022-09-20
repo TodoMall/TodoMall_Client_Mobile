@@ -6,9 +6,6 @@ const PlanIntro = ({
   subtitle,
   title,
   smalltag,
-  category,
-  level,
-  price,
   description,
   creator_image,
   creator_name,
@@ -16,7 +13,7 @@ const PlanIntro = ({
 }) => {
   return (
     <>
-      <Image src={image ? image : "/images/dummy_plan.png"} />
+      <Image alt="plan" src={image ? image : "/images/dummy_plan.png"} />
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
@@ -32,7 +29,7 @@ const PlanIntro = ({
           <img src="/images/plan_dummy_tag.svg" />
         </SmallTags>
         <Creator>
-          <ProfileImage src={`/images/dummy_profile_image.png`} />
+          <ProfileImage alt="creator" src={creator_image} />
           <ProfileDescription>
             <Name>
               {creator_name}

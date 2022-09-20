@@ -8,20 +8,20 @@ const PlanCurriculum = ({ data }) => {
         <FirstTitle>커리큘럼</FirstTitle>
       </Header>
       <Body>
-        {data.map((session) => (
+        {data.map((session, i) => (
           <>
             <Intro>
-              <SessionCount>Session {session.id}</SessionCount>
-              <Title>{session.name}</Title>
+              <SessionCount>Session {i + 1}</SessionCount>
+              <Title>{session.title}</Title>
             </Intro>
             <Assignment>
               <AssignmentImage src={`/images/assignment_icon.svg`} />
-              <AssignmentTitle>{session.mission}</AssignmentTitle>
+              <AssignmentTitle>{session.missionTitle}</AssignmentTitle>
             </Assignment>
             <Todos>
               {session.todos.map((todo) => (
                 <Todo>
-                  <TodoTitle>{todo.name}</TodoTitle>
+                  <TodoTitle>{todo.title}</TodoTitle>
                 </Todo>
               ))}
             </Todos>

@@ -1,24 +1,36 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import CardList from "./CardList";
 import Header from "./Header";
-import {CAREER, SELF} from "./Constant";
+import { CAREER, SELF } from "./Constant";
 import axios from "axios";
 
 const TodoMall = () => {
   const [current, setCurrent] = useState(SELF);
   const [classData, setClassData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getUserInfo = async () => {
-    const response = await axios(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/preview?type=${current}`);
+    const response = await axios(
+      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/preview?type=${current}`
+    );
+    console.log(response);
     const data = response.data;
     setClassData(data);
-  }
+    setLoading(false);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 100);
+  };
 
   useEffect(() => {
     getUserInfo();
-  }, [current])
+  }, [current]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -37,13 +49,7 @@ const TodoMall = () => {
             alt={`${current}_image`}
           />
         </BodyImages>
-        {
-          classData.length === 0 ? (
-              <></>
-              ) : (
-              <CardList classData={classData} />
-              )
-        }
+        {classData.length === 0 ? <></> : <CardList classData={classData} />}
       </Body>
       <BottomNavBar position={"TODOMALL"} />
     </>

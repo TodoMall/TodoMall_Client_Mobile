@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "../../../api/axios";
+import axios from "axios";
 import requests from "../../../api/request";
 import Row from "./Row";
 
@@ -12,24 +12,28 @@ const MyPage = () => {
   const [name, setName] = useState(localStorage.getItem("name"));
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [image, setImage] = useState(localStorage.getItem("image"));
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log(image);
     const fetch = async () => {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(requests.getUserPlanList, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      let temp = [];
-      for (const [date, plans] of Object.entries(response.data)) {
-        temp = [...temp, [date, plans]];
-      }
-      setPlans([...temp]);
+      const response = await axios.get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+      );
+      console.log(response);
+      setPlans(response.data.ownProducts);
+      setLoading(false);
+      // let temp = [];
+      // for (const [date, plans] of Object.entries(response.data)) {
+      //   temp = [...temp, [date, plans]];
+      // }
+      // setPlans([...temp]);
     };
     fetch();
   }, []);
+
+  if (loading) {
+    return <div>Loading . . .</div>;
+  }
 
   return (
     <>
@@ -51,28 +55,18 @@ const MyPage = () => {
         </Header>
 
         <Body>
+          <PlanDate>
+            {0}년 {0}월
+          </PlanDate>
           {plans.length > 0 ? (
-            plans.map((plan) => {
-              let year = plan[0].split("-")[0];
-              let month = plan[0].split("-")[1] * 1;
-              console.log(year, month);
-              return (
-                <>
-                  <PlanDate>
-                    {year}년 {month}월
-                  </PlanDate>
-                  {plan[1].map((item) => (
-                    <Row
-                      key={item.id}
-                      is_completed={item.is_completed}
-                      id={item.id}
-                      title={item.plan.title}
-                      showDate={false}
-                    />
-                  ))}
-                </>
-              );
-            })
+            plans.map((plan, i) => (
+              <Row
+                key={plan.id}
+                is_completed={plan.status}
+                id={plans.length - i}
+                title={plan.title}
+              />
+            ))
           ) : (
             <NoPlan>
               <NoPlanImage src="/images/mypage_no_plan.svg" />
