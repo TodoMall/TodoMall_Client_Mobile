@@ -12,7 +12,8 @@ const CardList = ({ classData }) => {
         <Card
           title={preview.title}
           description={preview.description}
-          tags={preview.tags}
+          smallTags={preview.informationTags}
+          largeTags={preview.summarizedTags}
           subDescription={preview.subDescription}
           id={preview.id}
         />

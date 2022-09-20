@@ -43,7 +43,8 @@ const PlanDetail = () => {
           image={plan.image}
           subtitle={plan.subDescription}
           title={plan.title}
-          smalltag={plan.tags}
+          smalltag={plan.informationTags}
+          largetag={plan.summarizedTags}
           description={plan.description}
           creator_image={plan.creator.image}
           creator_name={plan.creatorName}
