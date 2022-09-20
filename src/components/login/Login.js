@@ -153,6 +153,7 @@ const Footer = styled.div`
 const LoginButton = styled.img`
   width: 340px;
   margin-bottom: 16px;
+  cursor: pointer;
   /* border-radius: 15px; */
 `;
 

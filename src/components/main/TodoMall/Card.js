@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ title, description }) => {
+const Card = ({ title, description, tags, subDescription }) => {
   const navigate = useNavigate();
+
+  const cardTag = tags.map((tag, index) => {
+    return <div key={index} ><CardTag>{tag}</CardTag></div>;
+  })
 
   return (
     <CardBox
@@ -11,19 +15,14 @@ const Card = ({ title, description }) => {
         navigate("/detail/1");
       }}
     >
-      <DescriptionFor>발전을 원하는 디자이너를 위한</DescriptionFor>
-      <CardTitle>피그마 마스터하고 UI 디자인</CardTitle>
+      <DescriptionFor>{subDescription}</DescriptionFor>
+      <CardTitle>{title}</CardTitle>
       <CardDescription>
-        종잣돈을 모으기 위해 가장 먼저 해야 하는 일은 바로 자신의 소비 패턴을
+        {description}
       </CardDescription>
       <CardIcon>🎨</CardIcon>
       <CardTags>
-        <CardTag>
-          <TagContent src="/images/dummy_tag.svg" />
-        </CardTag>
-        <CardTag>
-          <TagContent src="/images/dummy_tag.svg" />
-        </CardTag>
+        {cardTag}
       </CardTags>
     </CardBox>
   );
@@ -37,6 +36,7 @@ const CardBox = styled.div`
   margin-bottom: 10px;
   padding: 20px;
   position: relative;
+  cursor: pointer;
 `;
 
 const CardIcon = styled.div`
