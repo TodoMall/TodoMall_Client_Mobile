@@ -1,14 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { IconDict } from "../../global/Icon";
 
-const Card = ({ title, description, tags, subDescription, id }) => {
+const Card = ({
+  title,
+  description,
+  smallTags,
+  largeTags,
+  subDescription,
+  id,
+}) => {
   const navigate = useNavigate();
 
-  const cardTag = tags.map((tag, index) => {
+  const cardSmallTag = smallTags.map((tag, index) => {
     return (
       <div key={index}>
-        <CardTag>{tag}</CardTag>
+        <CardTag>
+          <TagIcon src={`/images/${IconDict[tag]}.svg`} />
+          {tag}
+        </CardTag>
       </div>
     );
   });
@@ -23,16 +34,16 @@ const Card = ({ title, description, tags, subDescription, id }) => {
     >
       <DescriptionFor>{subDescription}</DescriptionFor>
       <CardTitle>{title}</CardTitle>
-      <CardDescription>{description.substring(1, CutOff)}...</CardDescription>
+      <CardDescription>{description.substring(0, CutOff)}...</CardDescription>
       <CardIcon>🎨</CardIcon>
-      <CardTags>{cardTag}</CardTags>
+      <CardTags>{cardSmallTag}</CardTags>
     </CardBox>
   );
 };
 
 const CardBox = styled.div`
   width: 95%;
-  height: 180px;
+  height: auto;
   border-radius: 16px;
   background-color: white;
   margin-bottom: 10px;
@@ -86,12 +97,30 @@ const CardTags = styled.div`
 
 const CardTag = styled.div`
   width: auto;
+  padding-right: 10px;
+  padding-left: 6px;
   height: 26px;
   background: #f2f2f2;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  /* identical to box height, or 100% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a9a9a9;
+`;
+
+const TagIcon = styled.img`
+  /* width: 14px;
+  height: 14px; */
+  margin-right: 3px;
 `;
 
 const TagContent = styled.img``;

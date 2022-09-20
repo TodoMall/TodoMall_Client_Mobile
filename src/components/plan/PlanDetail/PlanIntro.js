@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { IconDict } from "../../global/Icon";
 
 const PlanIntro = ({
   image,
   subtitle,
   title,
   smalltag,
+  largetag,
   description,
   creator_image,
   creator_name,
@@ -18,15 +20,24 @@ const PlanIntro = ({
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
 
-        <LargeTag>
-          <img src="/images/dummy_tags.svg" />
-        </LargeTag>
+        <LargeTags>
+          {largetag.map((tag) => (
+            <LargeTagCover>
+              <LargeTag>
+                <LargeTagIcon src={`/images/${IconDict[tag]}.svg`} />
+              </LargeTag>
+              <LargeTagText>{tag}</LargeTagText>
+            </LargeTagCover>
+          ))}
+        </LargeTags>
         <Description>{description}</Description>
         <SmallTags>
-          {/* {smalltag.map((tag) => (
-            <SmallTag>{tag}</SmallTag>
-          ))} */}
-          <img src="/images/plan_dummy_tag.svg" />
+          {smalltag.map((tag) => (
+            <SmallTag>
+              <TagIcon src={`/images/${IconDict[tag]}.svg`} />
+              {tag}
+            </SmallTag>
+          ))}
         </SmallTags>
         <Creator>
           <ProfileImage alt="creator" src={creator_image} />
@@ -85,14 +96,78 @@ const SmallTags = styled.div`
   align-items: center;
   width: 100vw;
   margin-bottom: 10px;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  /* identical to box height, or 100% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a9a9a9;
+  gap: 5px;
 `;
 
-const SmallTag = styled.div``;
+const SmallTag = styled.div`
+  width: auto;
+  padding-right: 10px;
+  padding-left: 6px;
+  height: 26px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-const LargeTag = styled.div`
+const TagIcon = styled.img`
+  /* width: 14px;
+  height: 14px; */
+  margin-right: 3px;
+`;
+
+const LargeTags = styled.div`
   width: 100vw;
   height: 75px;
   margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+`;
+
+const LargeTagCover = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const LargeTagText = styled.p`
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #888888;
+`;
+
+const LargeTag = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  background-color: #f1efff;
+`;
+
+const LargeTagIcon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const Description = styled.p`
