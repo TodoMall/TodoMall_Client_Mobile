@@ -4,17 +4,17 @@ import Card from "./Card";
 import ClassPreview from "./class_preview.json";
 
 const CardList = ({ classData }) => {
-
-  console.log(classData);
+  // console.log(classData);
 
   return (
     <CardListBox>
       {classData.map((preview) => (
         <Card
-            title={preview.title}
-            description={preview.description}
-            tags={preview.tags}
-            subDescription={preview.subDescription}
+          title={preview.title}
+          description={preview.description}
+          tags={preview.tags}
+          subDescription={preview.subDescription}
+          id={preview.id}
         />
       ))}
     </CardListBox>

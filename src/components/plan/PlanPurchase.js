@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../global/Header";
-import axios from "../../api/axios";
-import requests from "../../api/request";
+import axios from "axios";
 
 const PlanPurchase = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-
+  const productId = useParams().planid;
+  const userId = localStorage.getItem("userid");
   const handlePurchase = async () => {
-    // const response = await axios.post(
-    //   requests.planPurchase,
-    //   {},
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   }
-    // );
+    const response = await axios.post(
+      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
+      {
+        productId: productId,
+        userId: userId,
+      }
+    );
+
     // console.log(response);
     navigate("/todobox");
   };

@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BottomNavBar from "../../global/BottomNavBar";
 import TodoBoxContent from "./TodoBoxContent";
 import TodoBoxHeader from "./TodoBoxHeader";
 
 const TodoBox = () => {
-  const [todos, setTodos] = useState([1, 2, 3, 4]);
+  const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [plans, setPlans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+      );
+      console.log(response);
+      setPlans(response.data.ownProducts);
+      setLoading(false);
+    };
+    fetch();
+  }, []);
+
+  if (loading) {
+    return <div>Loading . . .</div>;
+  }
 
   return (
     <>
       <TodoBoxHeader />
       <TodoBoxBody>
-        {todos?.length > 0 ? (
-          <TodoBoxContent />
+        {plans?.length > 0 ? (
+          <TodoBoxContent plans={plans} />
         ) : (
           <TodoBoxEmptyContainer>
             <TodoBoxEmptyImage src="/images/TodoBoxEmptyImage.svg" />

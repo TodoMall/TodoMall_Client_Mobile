@@ -2,18 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const TodoBoxCard = ({ submit = false, end = false }) => {
-  // let submit = false;
-  // let end = true;
-
+const TodoBoxCard = ({ submit = false, end = false, data }) => {
   const navigate = useNavigate();
 
   return (
     <TodoBoxCardContainer>
       <TodoBoxCardHeader>
-        <TodoBoxCardHeaderTitle>
-          피그마로 앱 프로토타입 만들기
-        </TodoBoxCardHeaderTitle>
+        <TodoBoxCardHeaderTitle>{data.title}</TodoBoxCardHeaderTitle>
         <TodoBoxCardHeaderSession>피그마 알아보기</TodoBoxCardHeaderSession>
         {submit ? (
           <TodoBoxCardHeaderDDaySubmit>

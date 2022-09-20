@@ -7,45 +7,61 @@ import PlanSecond from "./PlanSecond";
 import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
 import DummyData from "./dummydata.json";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Divider from "../../global/Divider";
+import axios from "axios";
 
 const PlanDetail = () => {
-  const [plan, setPlan] = useState(DummyData);
+  const [loading, setLoading] = useState(true);
+  const [plan, setPlan] = useState();
   const navigate = useNavigate();
+
+  const ID = useParams().planid;
+
+  const fetch = async () => {
+    await axios
+      .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
+      .then((res) => {
+        // console.log(res.data);
+        setPlan(res.data);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
-    document.title = `${DummyData.title}`;
-  });
+    fetch();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <Header title="" />
       <Body>
         <PlanIntro
-          image={plan.main_img}
-          subtitle={plan.subtitle}
+          image={plan.image}
+          subtitle={plan.subDescription}
           title={plan.title}
           smalltag={plan.tags}
-          category={plan.category}
-          level={plan.level}
-          price={plan.price}
           description={plan.description}
-          creator_image={plan.creator.profile_image}
-          creator_name={plan.creator.name}
-          creator_intro={plan.creator.intro}
+          creator_image={plan.creator.image}
+          creator_name={plan.creatorName}
+          creator_intro={plan.creator.description}
         />
         <Divider />
-        <PlanFirst data={plan.content[0]} />
+        <PlanFirst data={plan.expectIts[0]} />
         <Divider />
-        <PlanSecond data={plan.content[1]} />
+        <PlanSecond data={plan.recommends} />
         <Divider />
-        <PlanThird data={plan.recommended_for} />
+        <PlanThird data={plan.recommendUsers} />
         <Divider />
         <PlanCurriculum data={plan.sessions} />
       </Body>
       <Footer>
         <BuyButton
           onClick={() => {
-            navigate("/purchase/1/");
+            navigate(`/purchase/${plan.id}/`);
           }}
           id="download_button"
         >

@@ -2,24 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const PlanFirst = ({ data }) => {
-  let text = data.fields[0].value;
-  let sub = data.fields[0].highlight;
-  let index = text.indexOf(sub);
-
-  let first_half = text.substring(0, index);
-  let second_half = text.substring(index + sub.length);
+  console.log(data);
 
   return (
     <Container>
       <Header>
-        <FirstTitle>{first_half}</FirstTitle>
+        <FirstTitle>지금 시작하면 나만의</FirstTitle>
         <SecondTitle>
-          <HighlightTitle>{sub}</HighlightTitle>
-          {second_half}
+          {/* <HighlightTitle>{sub}</HighlightTitle>
+          {second_half} */}
+          {data.title}
         </SecondTitle>
       </Header>
-      <Image src="/images/dummy_first_image.png" />
-      <Paragraph>{data.fields[2].value}</Paragraph>
+      <Image src={data.image} />
+      <Paragraph>{data.description}</Paragraph>
     </Container>
   );
 };
@@ -56,10 +52,11 @@ const SecondTitle = styled.p`
 `;
 
 const Image = styled.img`
-  display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  width: 330px;
+  height: 170px;
 `;
 
 const Paragraph = styled.p`
@@ -70,7 +67,6 @@ const Paragraph = styled.p`
   line-height: 24px;
 
   letter-spacing: -0.005em;
-
   color: #929292;
 `;
 

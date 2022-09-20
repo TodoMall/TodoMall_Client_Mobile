@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Row = ({ is_completed, id, title, showDate, date }) => {
+const Row = ({ is_completed, id, title }) => {
   const navigate = useNavigate();
   return (
     <>
       <Container
-        onClick={() => {
-          navigate(`/try/${id}`);
-        }}
+      // onClick={() => {
+      //   navigate(`/try/${id}`);
+      // }}
       >
         <Icon
           src={
