@@ -56,9 +56,9 @@ const MyPage = () => {
         </Header>
 
         <Body>
-          <PlanDate>
+          {/* <PlanDate>
             {0}년 {0}월
-          </PlanDate>
+          </PlanDate> */}
           {plans.length > 0 ? (
             plans.map((plan, i) => (
               <Row
