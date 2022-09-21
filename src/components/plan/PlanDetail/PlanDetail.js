@@ -10,6 +10,7 @@ import DummyData from "./dummydata.json";
 import { useNavigate, useParams } from "react-router-dom";
 import Divider from "../../global/Divider";
 import axios from "axios";
+import { Loader } from "../../global/Loader";
 
 const PlanDetail = () => {
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ const PlanDetail = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   return (
     <>

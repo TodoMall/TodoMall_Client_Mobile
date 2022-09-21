@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BottomNavBar from "../../global/BottomNavBar";
+import { Loader } from "../../global/Loader";
 import TodoBoxContent from "./TodoBoxContent";
 import TodoBoxHeader from "./TodoBoxHeader";
 
@@ -22,7 +23,7 @@ const TodoBox = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading . . .</div>;
+    return <Loader />;
   }
 
   return (
