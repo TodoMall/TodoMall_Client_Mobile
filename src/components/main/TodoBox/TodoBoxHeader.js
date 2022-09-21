@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const TodoBoxHeader = () => {
+const TodoBoxHeader = ({ length }) => {
   const [name, setName] = useState(localStorage.getItem("name"));
   return (
     <>
       <TodoBoxHeaderContainer>
-        <TodoBoxHeaderTry>3개 도전 중</TodoBoxHeaderTry>
+        <TodoBoxHeaderTry>{length}개 도전 중</TodoBoxHeaderTry>
         <TodoBoxHeaderName>힘내세요, {name}님!</TodoBoxHeaderName>
         <TodoBoxDivider />
       </TodoBoxHeaderContainer>

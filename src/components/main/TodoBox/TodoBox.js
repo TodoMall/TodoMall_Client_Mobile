@@ -28,7 +28,7 @@ const TodoBox = () => {
 
   return (
     <>
-      <TodoBoxHeader />
+      <TodoBoxHeader length={plans?.length > 0 ? plans.length : 0} />
       <TodoBoxBody>
         {plans?.length > 0 ? (
           <TodoBoxContent plans={plans} />
