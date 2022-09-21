@@ -15,9 +15,15 @@ const Header = ({ current, setCurrent }) => {
           id="category_job_developement"
         >
           {current === CAREER ? (
-            <ThemeIcon src={`/images/${CAREER}_on.svg`} />
+            <ThemeIcon
+              id="category_job_developement"
+              src={`/images/${CAREER}_on.svg`}
+            />
           ) : (
-            <ThemeIcon src={`/images/${CAREER}_off.svg`} />
+            <ThemeIcon
+              id="category_job_developement"
+              src={`/images/${CAREER}_off.svg`}
+            />
           )}
         </Theme>
         <Theme
@@ -28,9 +34,15 @@ const Header = ({ current, setCurrent }) => {
           id="category_self_improvement"
         >
           {current === SELF ? (
-            <ThemeIcon src={`/images/${SELF}_on.svg`} />
+            <ThemeIcon
+              id="category_self_improvement"
+              src={`/images/${SELF}_on.svg`}
+            />
           ) : (
-            <ThemeIcon src={`/images/${SELF}_off.svg`} />
+            <ThemeIcon
+              id="category_self_improvement"
+              src={`/images/${SELF}_off.svg`}
+            />
           )}
         </Theme>
         <Theme
@@ -43,9 +55,15 @@ const Header = ({ current, setCurrent }) => {
           id="category_finance"
         >
           {current === INVESTMENT ? (
-            <ThemeIcon src={`/images/${INVESTMENT}_on.svg`} />
+            <ThemeIcon
+              id="category_finance"
+              src={`/images/${INVESTMENT}_on.svg`}
+            />
           ) : (
-            <ThemeIcon src={`/images/${INVESTMENT}_off.svg`} />
+            <ThemeIcon
+              id="category_finance"
+              src={`/images/${INVESTMENT}_off.svg`}
+            />
           )}
         </Theme>
       </Themes>

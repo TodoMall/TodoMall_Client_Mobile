@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Loader = () => (
   <Container>
-    <Loading color="secondary" size="xl" />
+    <Loading color="secondary" size="lg" />
   </Container>
 );
 
