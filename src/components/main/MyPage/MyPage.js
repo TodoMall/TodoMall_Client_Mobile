@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import requests from "../../../api/request";
 import Row from "./Row";
+import { Loader } from "../../global/Loader";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const MyPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading . . .</div>;
+    return <Loader />;
   }
 
   return (
@@ -55,9 +56,9 @@ const MyPage = () => {
         </Header>
 
         <Body>
-          <PlanDate>
+          {/* <PlanDate>
             {0}년 {0}월
-          </PlanDate>
+          </PlanDate> */}
           {plans.length > 0 ? (
             plans.map((plan, i) => (
               <Row

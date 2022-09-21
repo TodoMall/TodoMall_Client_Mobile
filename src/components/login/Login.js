@@ -95,6 +95,13 @@ const Login = () => {
         src="/images/apple_login.png"
       /> */}
       </Footer>
+      <CompanyText
+        onClick={() => {
+          navigate("/personal");
+        }}
+      >
+        c. MyPlanIt
+      </CompanyText>
       {/* <LoginDesign /> */}
     </Container>
   );
@@ -155,6 +162,15 @@ const LoginButton = styled.img`
   margin-bottom: 16px;
   cursor: pointer;
   /* border-radius: 15px; */
+  position: relative;
+`;
+
+const CompanyText = styled.p`
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  text-align: center;
+  width: 100vw;
 `;
 
 // const LoginDesign = styled.div`

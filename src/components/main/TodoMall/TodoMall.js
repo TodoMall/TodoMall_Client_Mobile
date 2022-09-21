@@ -5,6 +5,7 @@ import CardList from "./CardList";
 import Header from "./Header";
 import { CAREER, SELF } from "./Constant";
 import axios from "axios";
+import { Loader } from "../../global/Loader";
 
 const TodoMall = () => {
   const [current, setCurrent] = useState(SELF);
@@ -29,7 +30,7 @@ const TodoMall = () => {
   }, [current]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
