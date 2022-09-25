@@ -26,6 +26,10 @@ export const IconDict = {
   패션: "InformationTag_Clothes",
   공예: "InformationTag_Crafts",
 
+  직무개발: "SummarizedTag_JobDevelopment",
+  자기계발: "SummarizedTag_SelfDevelopment",
+  재테크: "SummarizedTag_Finance",
+
   "1주": "SummarizedTag_1Week",
   "2주": "SummarizedTag_2Week",
   "3주": "SummarizedTag_3Week",

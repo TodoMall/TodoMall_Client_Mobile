@@ -55,7 +55,8 @@ const Image = styled.img`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  width: 330px;
+  width: 100%;
+  max-width: 450px;
   height: 170px;
 `;
 
