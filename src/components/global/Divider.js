@@ -6,6 +6,7 @@ const Divider = () => {
 
 const DividerStyle = styled.hr`
   width: 100vw;
+  max-width: 800px;
   height: 8px;
   background-color: #f2f2f2;
   border: none;

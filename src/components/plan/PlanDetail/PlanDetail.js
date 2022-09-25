@@ -37,7 +37,7 @@ const PlanDetail = () => {
     return <Loader />;
   }
   return (
-    <>
+    <Container>
       <Header title="" />
       <Body>
         <PlanIntro
@@ -70,9 +70,16 @@ const PlanDetail = () => {
           무료로 도전하기
         </BuyButton>
       </Footer>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 const Body = styled.div`
   display: flex;
@@ -81,6 +88,7 @@ const Body = styled.div`
   flex-direction: column;
   padding-top: 60px;
   padding-bottom: 90px;
+  max-width: 800px;
 `;
 
 const Footer = styled.div`
@@ -90,6 +98,7 @@ const Footer = styled.div`
   bottom: 0;
   background: #fbfbfb;
   width: 100%;
+  max-width: 800px;
   height: 90px;
   align-items: center;
   justify-content: center;

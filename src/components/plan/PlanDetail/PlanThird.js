@@ -28,6 +28,7 @@ const PlanThird = ({ data }) => {
 const Container = styled.div`
   padding: 20px;
   width: 100vw;
+  max-width: 800px;
 `;
 
 const Header = styled.div``;
