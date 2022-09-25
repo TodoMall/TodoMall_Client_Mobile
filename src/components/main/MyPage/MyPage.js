@@ -59,7 +59,7 @@ const MyPage = () => {
           {/* <PlanDate>
             {0}년 {0}월
           </PlanDate> */}
-          {plans.length > 0 ? (
+          {plans?.length > 0 ? (
             plans.map((plan, i) => (
               <Row
                 key={plan.id}
