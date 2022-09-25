@@ -195,7 +195,10 @@ const Creator = styled.div`
   margin: 15px 0;
 `;
 
-const ProfileImage = styled.img``;
+const ProfileImage = styled.img`
+  width: 64px;
+  height: 64px;
+`;
 
 const ProfileDescription = styled.div`
   text-align: left;
