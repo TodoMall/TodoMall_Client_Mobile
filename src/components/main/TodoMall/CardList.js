@@ -16,6 +16,7 @@ const CardList = ({ classData }) => {
           largeTags={preview.summarizedTags}
           subDescription={preview.subDescription}
           id={preview.id}
+          icon={preview.icon}
         />
       ))}
     </CardListBox>

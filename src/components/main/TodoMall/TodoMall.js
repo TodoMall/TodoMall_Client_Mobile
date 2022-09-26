@@ -8,7 +8,7 @@ import axios from "axios";
 import { Loader } from "../../global/Loader";
 
 const TodoMall = () => {
-  const [current, setCurrent] = useState(SELF);
+  const [current, setCurrent] = useState(CAREER);
   const [classData, setClassData] = useState([]);
   const [loading, setLoading] = useState(true);
 
