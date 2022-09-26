@@ -57,7 +57,7 @@ const PlanIntro = ({
 
 const Image = styled.img`
   width: 100%;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
   height: 160px;
   overflow: hidden;
 `;
@@ -97,7 +97,7 @@ const SmallTags = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
   margin-bottom: 10px;
   font-family: "Pretendard";
   font-style: normal;
@@ -176,7 +176,7 @@ const LargeTagIcon = styled.img`
 
 const Description = styled.p`
   width: 80vw;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
 
   font-family: "Pretendard";
   font-style: normal;
@@ -198,7 +198,7 @@ const Creator = styled.div`
   background: #f2f2f2;
   border-radius: 8px;
   width: 80vw;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
 
   margin: 15px 0;
 `;
