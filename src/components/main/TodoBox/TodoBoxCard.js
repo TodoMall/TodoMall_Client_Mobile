@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const TodoBoxCard = ({ submit = false, end = false, data }) => {
+const TodoBoxCard = ({ title, session, submit = false, end = false }) => {
   const navigate = useNavigate();
 
   return (
     <TodoBoxCardContainer>
       <TodoBoxCardHeader>
-        <TodoBoxCardHeaderTitle>{data.title}</TodoBoxCardHeaderTitle>
-        <TodoBoxCardHeaderSession>피그마 알아보기</TodoBoxCardHeaderSession>
+        <TodoBoxCardHeaderTitle>{title}</TodoBoxCardHeaderTitle>
+        <TodoBoxCardHeaderSession>{session.title}</TodoBoxCardHeaderSession>
         {submit ? (
           <TodoBoxCardHeaderDDaySubmit>
             <span>인증필요</span>
@@ -27,29 +27,26 @@ const TodoBoxCard = ({ submit = false, end = false, data }) => {
         <TodoBoxCardBodyEnded>
           <Blurred>
             <TodoBoxCardBody>
-              <TodoBoxCardTodo>
-                <TodoBoxCardTodoLeft>
-                  <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
-                  <TodoBoxCardTodoText>피그마 회원가입하기</TodoBoxCardTodoText>
-                </TodoBoxCardTodoLeft>
-                <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
-              </TodoBoxCardTodo>
-              <TodoBoxCardTodo>
-                <TodoBoxCardTodoLeft>
-                  <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
-                  <TodoBoxCardTodoText>피그마 앱 설치하기</TodoBoxCardTodoText>
-                </TodoBoxCardTodoLeft>
-                <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
-              </TodoBoxCardTodo>
-              <TodoBoxCardTodo>
-                <TodoBoxCardTodoLeft>
-                  <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
-                  <TodoBoxCardTodoText>
-                    새로운 프로젝트 시작하기
-                  </TodoBoxCardTodoText>
-                </TodoBoxCardTodoLeft>
-                <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
-              </TodoBoxCardTodo>
+              {session.todos.map((todo) => (
+                <TodoBoxCardTodo
+                  onClick={() => {
+                    navigate(`/todo/${todo.id}/detail`);
+                  }}
+                >
+                  <TodoBoxCardTodoLeft>
+                    {todo.status ? (
+                      <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
+                    ) : (
+                      <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOff.svg" />
+                    )}
+
+                    <TodoBoxCardTodoText status={todo.status}>
+                      {todo.title}
+                    </TodoBoxCardTodoText>
+                  </TodoBoxCardTodoLeft>
+                  <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
+                </TodoBoxCardTodo>
+              ))}
             </TodoBoxCardBody>
           </Blurred>
           <BlurredCover>
@@ -59,41 +56,26 @@ const TodoBoxCard = ({ submit = false, end = false, data }) => {
         </TodoBoxCardBodyEnded>
       ) : (
         <TodoBoxCardBody>
-          <TodoBoxCardTodo
-            onClick={() => {
-              navigate("/todo/1/detail");
-            }}
-          >
-            <TodoBoxCardTodoLeft>
-              <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
-              <TodoBoxCardTodoText>피그마 회원가입하기</TodoBoxCardTodoText>
-            </TodoBoxCardTodoLeft>
-            <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
-          </TodoBoxCardTodo>
-          <TodoBoxCardTodo
-            onClick={() => {
-              navigate("/todo/1/detail");
-            }}
-          >
-            <TodoBoxCardTodoLeft>
-              <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
-              <TodoBoxCardTodoText>피그마 앱 설치하기</TodoBoxCardTodoText>
-            </TodoBoxCardTodoLeft>
-            <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
-          </TodoBoxCardTodo>
-          <TodoBoxCardTodo
-            onClick={() => {
-              navigate("/todo/1/detail");
-            }}
-          >
-            <TodoBoxCardTodoLeft>
-              <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
-              <TodoBoxCardTodoText>
-                새로운 프로젝트 시작하기
-              </TodoBoxCardTodoText>
-            </TodoBoxCardTodoLeft>
-            <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
-          </TodoBoxCardTodo>
+          {session.todos.map((todo) => (
+            <TodoBoxCardTodo
+              onClick={() => {
+                navigate(`/todo/${todo.id}/detail`);
+              }}
+            >
+              <TodoBoxCardTodoLeft>
+                {todo.status ? (
+                  <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOn.svg" />
+                ) : (
+                  <TodoBoxCardTodoCheckBox src="images/TodoBoxCheckBoxOff.svg" />
+                )}
+
+                <TodoBoxCardTodoText status={todo.status}>
+                  {todo.title}
+                </TodoBoxCardTodoText>
+              </TodoBoxCardTodoLeft>
+              <TodoBoxCardTodoDetail src="images/todo_detail.svg" />
+            </TodoBoxCardTodo>
+          ))}
         </TodoBoxCardBody>
       )}
 
@@ -273,7 +255,7 @@ const TodoBoxCardTodoText = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
-  color: #9e9e9e;
+  color: ${(props) => (props.status ? "#9e9e9e" : "#6B47FD")};
   margin-left: 10px;
 `;
 

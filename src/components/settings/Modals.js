@@ -4,6 +4,7 @@ import Button from "../global/Button";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { MAX_WIDTH } from "../../constants";
 
 const Modals = ({
   visibleLogout,
@@ -67,7 +68,7 @@ const Modals = ({
         aria-labelledby="modal-title"
         open={visibleLogout}
         onClose={closeHandlerLogout}
-        width="90%"
+        width={MAX_WIDTH}
       >
         <Container>
           <ModalImage src="/images/modal_image.svg" />
@@ -97,7 +98,7 @@ const Modals = ({
         aria-labelledby="modal-titl"
         open={visibleDelete}
         onClose={closeHandlerDelete}
-        width="90%"
+        width={MAX_WIDTH}
       >
         <Container>
           <ModalImage src="/images/modal_image.svg" />
@@ -153,7 +154,7 @@ const ModalDetail = styled.p`
   font-size: 18px;
   text-align: center;
   margin-top: 20px;
-  padding: 0 15vw;
+  padding: 0 20px;
   color: #888888;
 `;
 
@@ -183,6 +184,7 @@ const CancelButton = styled.div`
 
 const ModalImage = styled.img`
   width: 80%;
+  max-width: ${MAX_WIDTH};
   margin-top: 30px;
 `;
 

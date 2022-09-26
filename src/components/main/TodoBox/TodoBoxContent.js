@@ -2,13 +2,33 @@ import React from "react";
 import styled from "styled-components";
 import TodoBoxCard from "./TodoBoxCard";
 
+const handlePlan = (plan) => {
+  // console.log(plan);
+  let temp = {};
+  plan.sessions.forEach((data) => {
+    // console.log(data);
+    if (data.status === false) {
+      temp = data;
+    }
+  });
+  return temp;
+};
+
 const TodoBoxContent = ({ plans }) => {
   console.log(plans);
   return (
     <TodoBoxContentContainer>
-      {plans.map((plan) => (
-        <TodoBoxCard data={plan} />
-      ))}
+      {plans.map((plan) => {
+        let temp = handlePlan(plan);
+        console.log(temp);
+        if (temp == {}) {
+          return (
+            <TodoBoxCard title={plan.title} session={temp} submit={true} />
+          );
+        } else {
+          return <TodoBoxCard title={plan.title} session={temp} />;
+        }
+      })}
     </TodoBoxContentContainer>
   );
 };

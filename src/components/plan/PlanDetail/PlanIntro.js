@@ -58,7 +58,7 @@ const PlanIntro = ({
 const Image = styled.img`
   width: 100%;
   max-width: ${MAX_WIDTH};
-  height: 160px;
+  /* height: 160px; */
   overflow: hidden;
 `;
 
