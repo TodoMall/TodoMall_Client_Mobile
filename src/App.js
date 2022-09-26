@@ -21,6 +21,7 @@ import TodoSubmit from "./components/todo/TodoSubmit";
 import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
 import TodoAnswer from "./components/todo/TodoAnswer";
 import Social from "./components/login/Social";
+import { MAX_WIDTH } from "./constants";
 
 function App() {
   return (

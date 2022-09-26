@@ -84,6 +84,8 @@ const BodyDescription = styled.p`
 
 const BodyImage = styled.img`
   width: 80vw;
+  max-width: 600px;
+
   margin: auto;
   margin-bottom: 10vh;
 `;

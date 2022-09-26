@@ -35,14 +35,14 @@ const Settings = () => {
         </Rows>
         <Divider />
         <Rows>
-          <Row
+          {/* <Row
             onClick={() => {
               navigate("/announcement");
             }}
           >
             <RowTitle>공지사항</RowTitle>
             <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
+          </Row> */}
           <a href="mailto:myplanit.unicorn@gmail.com">
             <Row>
               <RowTitle>문의하기</RowTitle>

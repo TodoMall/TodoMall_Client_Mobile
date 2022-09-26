@@ -110,6 +110,7 @@ const BodyText = styled.p`
 
 const BodyImage = styled.img`
   width: 80vw;
+  max-width: 600px;
   position: fixed;
   top: 45%;
   left: 50%;

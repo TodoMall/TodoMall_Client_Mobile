@@ -7,6 +7,8 @@ const constants = {
   MYPAGE_UNCOLORED: "/images/mypage_off.png",
 };
 
-export const VERSION = "2.00.01 ver";
+export const VERSION = "0.0.1 ver";
+
+export const MAX_WIDTH = 500;
 
 export default constants;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MAX_WIDTH } from "../../../constants";
 
 const PlanCurriculum = ({ data }) => {
   return (
@@ -35,6 +36,7 @@ const PlanCurriculum = ({ data }) => {
 const Container = styled.div`
   padding: 20px;
   width: 100vw;
+  max-width: ${MAX_WIDTH}px;
 `;
 
 const Header = styled.div``;

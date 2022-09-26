@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MAX_WIDTH } from "../../../constants";
 import { IconDict } from "../../global/Icon";
 
 const PlanIntro = ({
@@ -55,7 +56,8 @@ const PlanIntro = ({
 };
 
 const Image = styled.img`
-  width: 100vw;
+  width: 100%;
+  max-width: ${MAX_WIDTH}px;
   height: 160px;
   overflow: hidden;
 `;
@@ -95,6 +97,7 @@ const SmallTags = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
+  max-width: ${MAX_WIDTH}px;
   margin-bottom: 10px;
   font-family: "Pretendard";
   font-style: normal;
@@ -113,6 +116,7 @@ const SmallTag = styled.div`
   width: auto;
   padding-right: 10px;
   padding-left: 6px;
+  margin-top: 10px;
   height: 26px;
   background: #f2f2f2;
   border-radius: 8px;
@@ -172,6 +176,8 @@ const LargeTagIcon = styled.img`
 
 const Description = styled.p`
   width: 80vw;
+  max-width: ${MAX_WIDTH}px;
+
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 500;
@@ -192,6 +198,8 @@ const Creator = styled.div`
   background: #f2f2f2;
   border-radius: 8px;
   width: 80vw;
+  max-width: ${MAX_WIDTH}px;
+
   margin: 15px 0;
 `;
 

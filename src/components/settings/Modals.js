@@ -11,6 +11,7 @@ const Modals = ({
   visibleDelete,
   closeHandlerDelete,
 }) => {
+  const NAME = localStorage.getItem("name");
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access");
   const handleLogout = () => {
@@ -102,8 +103,8 @@ const Modals = ({
           <ModalImage src="/images/modal_image.svg" />
           <ModalTitle>투두몰을 탈퇴하실 건가요?</ModalTitle>
           <ModalDetail>
-            지금까지 솔빈님이 이뤄낸 모든 도전 기록 내역이 사라져 복구할 수 없게
-            돼요
+            지금까지 {NAME}님이 이뤄낸 모든 도전 기록 내역이 사라져 복구할 수
+            없게 돼요
           </ModalDetail>
           <ModalButton>
             <Button

@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Divider from "../../global/Divider";
 import axios from "axios";
 import { Loader } from "../../global/Loader";
+import { MAX_WIDTH } from "../../../constants";
 
 const PlanDetail = () => {
   const [loading, setLoading] = useState(true);
@@ -26,18 +27,23 @@ const PlanDetail = () => {
         console.log(res.data);
         setPlan(res.data);
         setLoading(false);
+        document.title = res.data.title;
       });
   };
 
   useEffect(() => {
     fetch();
+
+    return () => {
+      document.title = "TodoMall";
+    };
   }, []);
 
   if (loading) {
     return <Loader />;
   }
   return (
-    <>
+    <Container>
       <Header title="" />
       <Body>
         <PlanIntro
@@ -70,9 +76,16 @@ const PlanDetail = () => {
           무료로 도전하기
         </BuyButton>
       </Footer>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 const Body = styled.div`
   display: flex;
@@ -81,6 +94,7 @@ const Body = styled.div`
   flex-direction: column;
   padding-top: 60px;
   padding-bottom: 90px;
+  max-width: ${MAX_WIDTH}px;
 `;
 
 const Footer = styled.div`
@@ -90,6 +104,7 @@ const Footer = styled.div`
   bottom: 0;
   background: #fbfbfb;
   width: 100%;
+  max-width: ${MAX_WIDTH}px;
   height: 90px;
   align-items: center;
   justify-content: center;
