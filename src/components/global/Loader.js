@@ -6,7 +6,7 @@ export const Loader = () => {
   return (
     <Container>
       <Loading color="secondary" size="lg" />
-      <BottomNavBar />
+      {/* <BottomNavBar position="TODOBOX" /> */}
     </Container>
   );
 };

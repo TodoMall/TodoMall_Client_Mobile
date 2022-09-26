@@ -3,7 +3,6 @@ import Header from "../global/Header";
 import { Progress } from "@nextui-org/react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import TodoAnswerModal from "./TodoAnswer";
 import axios from "axios";
 import { Loader } from "../global/Loader";
 
@@ -11,7 +10,6 @@ const TodoDetail = () => {
   const [width, setWidth] = useState(0);
   const [todo, setTodo] = useState(false);
   const [data, setData] = useState({});
-  const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -38,9 +36,11 @@ const TodoDetail = () => {
     setWidth(currentPercent * 100);
   }, []);
 
-  const modalHandler = () => setVisible(true);
-
-  const modalCloseHandler = () => setVisible(false);
+  const handleAnswer = () => {
+    navigate(
+      `/todo/${id.todoid}/${id.sessionid}/${id.productid}/${data.title}/answer`
+    );
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
@@ -79,7 +79,7 @@ const TodoDetail = () => {
           <TodoDetailText>
             지금까지 과정을 잘 따랐는지 알고싶다면?
           </TodoDetailText>
-          <TodoDetailButton onClick={modalHandler}>
+          <TodoDetailButton onClick={handleAnswer}>
             모범 예시 보러가기
           </TodoDetailButton>
         </TodoDetailAnswer>
@@ -113,10 +113,6 @@ const TodoDetail = () => {
           투두 완료하기
         </TodoDetailFinishButton>
       </TodoDetailBody>
-      <TodoAnswerModal
-        visible={visible}
-        modalCloseHandler={modalCloseHandler}
-      />
     </>
   );
 };
