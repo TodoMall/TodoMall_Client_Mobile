@@ -94,7 +94,7 @@ const Body = styled.div`
   flex-direction: column;
   padding-top: 60px;
   padding-bottom: 90px;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
 `;
 
 const Footer = styled.div`
@@ -104,7 +104,7 @@ const Footer = styled.div`
   bottom: 0;
   background: #fbfbfb;
   width: 100%;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
   height: 90px;
   align-items: center;
   justify-content: center;

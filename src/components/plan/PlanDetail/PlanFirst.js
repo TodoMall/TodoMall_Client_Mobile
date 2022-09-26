@@ -23,7 +23,7 @@ const PlanFirst = ({ data }) => {
 
 const Container = styled.div`
   padding: 20px;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
 `;
 
 const Header = styled.div``;
@@ -58,7 +58,7 @@ const Image = styled.img`
   margin-right: auto;
   margin-bottom: 20px;
   width: 100%;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
   height: 170px;
 `;
 

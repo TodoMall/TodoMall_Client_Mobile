@@ -33,7 +33,7 @@ const Settings = () => {
             <DetailVersion>{VERSION}</DetailVersion>
           </Row>
         </Rows>
-        <Divider />
+        <Divider width="100vw" />
         <Rows>
           {/* <Row
             onClick={() => {
@@ -66,7 +66,7 @@ const Settings = () => {
             <DetailIcon src={`/images/todo_detail.svg`} />
           </Row>
         </Rows>
-        <Divider />
+        <Divider width="100vw" />
         <Rows>
           <Row onClick={handlerLogout}>
             <RowTitle>로그아웃</RowTitle>

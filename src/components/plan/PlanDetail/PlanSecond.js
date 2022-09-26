@@ -22,7 +22,7 @@ const PlanSecond = ({ data }) => {
 const Container = styled.div`
   padding: 20px;
   width: 100vw;
-  max-width: ${MAX_WIDTH}px;
+  max-width: ${MAX_WIDTH};
 `;
 const Header = styled.div``;
 

@@ -9,6 +9,6 @@ const constants = {
 
 export const VERSION = "0.0.1 ver";
 
-export const MAX_WIDTH = 500;
+export const MAX_WIDTH = "500px";
 
 export default constants;
