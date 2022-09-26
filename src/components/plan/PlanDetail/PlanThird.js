@@ -11,10 +11,7 @@ const PlanThird = ({ data }) => {
       <Body>
         {data.map((datum, i) => (
           <Row key={i}>
-            <ProfileImage
-              alt="profile"
-              src={`/images/dummy_profile_image.png`}
-            />
+            <ProfileImage alt="profile" src={datum.icon} />
             <Detail>
               <Order>{i + 1}번째,</Order>
               <Who>{datum.description}</Who>
