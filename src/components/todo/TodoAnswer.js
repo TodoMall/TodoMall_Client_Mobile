@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../global/Header";
+import { Loader } from "../global/Loader";
 
 const TodoAnswer = () => {
   const params = useParams();
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(true);
   console.log(params);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${params.todoid}`
+      );
+      console.log(response.data);
+      setImage(response.data.basePractice);
+      setLoading(false);
+    };
+    fetch();
+  });
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <Header />
