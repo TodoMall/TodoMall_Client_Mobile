@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../global/Header";
 
@@ -7,6 +7,8 @@ const TodoSubmit = () => {
   const [image, setImage] = useState(null);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const params = useParams();
+  console.log(params);
 
   const handleImageUpload = async (e) => {
     const temp = e.target.files;
@@ -43,13 +45,13 @@ const TodoSubmit = () => {
 
   return (
     <>
-      <Header title={`피그마 알아보기 인증하기`} />
+      <Header title={params.todoname} />
       <TodoSubmitBody>
         <TodoSubmitTitle>
-          세션 인증을 위해 <span>피그마 세팅된 환경 업로드</span>를 준비해주세요
+          세션 인증을 위해 <span>{params.todoname}</span>를 준비해주세요
         </TodoSubmitTitle>
         <TodoSubmitSubtitle>
-          피그마의 첫 프로젝트를 열어 준비된 환경을 캡처해서 업로드해주세요.
+          준비된 환경을 캡처해서 업로드해주세요.
         </TodoSubmitSubtitle>
         {image ? (
           <TodoSubmitImage className="img__box" />

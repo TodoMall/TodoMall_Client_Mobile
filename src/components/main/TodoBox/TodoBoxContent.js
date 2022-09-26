@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PlanIntro from "../../plan/PlanDetail/PlanIntro";
 import TodoBoxCard from "./TodoBoxCard";
 
 const handlePlan = (plan) => {
@@ -23,10 +24,23 @@ const TodoBoxContent = ({ plans }) => {
         console.log(temp);
         if (temp == {}) {
           return (
-            <TodoBoxCard title={plan.title} session={temp} submit={true} />
+            <TodoBoxCard
+              title={plan.title}
+              session={temp}
+              id={plan.id}
+              submit={true}
+              key={plan.id}
+            />
           );
         } else {
-          return <TodoBoxCard title={plan.title} session={temp} />;
+          return (
+            <TodoBoxCard
+              title={plan.title}
+              id={plan.id}
+              session={temp}
+              key={plan.id}
+            />
+          );
         }
       })}
     </TodoBoxContentContainer>

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const TodoBoxCard = ({ title, session, submit = false, end = false }) => {
+const TodoBoxCard = ({ title, session, id, submit = true, end = false }) => {
   const navigate = useNavigate();
 
   return (
@@ -30,8 +30,9 @@ const TodoBoxCard = ({ title, session, submit = false, end = false }) => {
               {session.todos.map((todo) => (
                 <TodoBoxCardTodo
                   onClick={() => {
-                    navigate(`/todo/${todo.id}/detail`);
+                    navigate(`/todo/${todo.id}/${session.id}/${id}/detail`);
                   }}
+                  key={todo.id}
                 >
                   <TodoBoxCardTodoLeft>
                     {todo.status ? (
@@ -59,8 +60,9 @@ const TodoBoxCard = ({ title, session, submit = false, end = false }) => {
           {session.todos.map((todo) => (
             <TodoBoxCardTodo
               onClick={() => {
-                navigate(`/todo/${todo.id}/detail`);
+                navigate(`/todo/${todo.id}/${session.id}/${id}/detail`);
               }}
+              key={todo.id}
             >
               <TodoBoxCardTodoLeft>
                 {todo.status ? (
@@ -82,7 +84,7 @@ const TodoBoxCard = ({ title, session, submit = false, end = false }) => {
       {submit ? (
         <TodoBoxCardSubmitButton
           onClick={() => {
-            navigate(`/todo/1/submit/`);
+            navigate(`/todo/${session.id}/${id}/${session.title}/submit`);
           }}
         >
           세션 인증하러 가기

@@ -2,15 +2,30 @@ import React, { useCallback, useEffect, useState } from "react";
 import Header from "../global/Header";
 import { Progress } from "@nextui-org/react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TodoAnswerModal from "./TodoAnswer";
+import axios from "axios";
+import { Loader } from "../global/Loader";
 
 const TodoDetail = () => {
   const [width, setWidth] = useState(0);
   const [todo, setTodo] = useState(false);
+  const [data, setData] = useState({});
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+  const id = useParams();
+
+  const handleFinish = () => {
+    console.log(id);
+    axios.patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
+      userId: localStorage.getItem("userid"),
+      productId: id.productid,
+      sessionId: id.sessionid,
+      todoId: id.todoid,
+    });
+  };
 
   const handleScroll = useCallback(() => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
@@ -30,14 +45,24 @@ const TodoDetail = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
 
+    const fetch = async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${id.todoid}`
+      );
+      setData(response.data);
+      setLoading(false);
+    };
+    fetch();
     return () => {
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, [handleScroll, width]);
-
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
-      <Header title={`(3/3) 새로운 프로젝트 시작하기`} />
+      <Header title={`${data.title}`} />
       <Progress
         squared
         color="primary"
@@ -81,12 +106,10 @@ const TodoDetail = () => {
               <img src="/images/purple_tick.svg" />
             </TodoDetailTaskBoxToggleOn>
           )}
-          <TodoDetailTaskBoxTitle>
-            디자인 작업을 시작할 수 있는 환경 마련
-          </TodoDetailTaskBoxTitle>
+          <TodoDetailTaskBoxTitle>{data.taskTitle}</TodoDetailTaskBoxTitle>
         </TodoDetailTaskBox>
 
-        <TodoDetailFinishButton done={todo}>
+        <TodoDetailFinishButton done={todo} onClick={handleFinish}>
           투두 완료하기
         </TodoDetailFinishButton>
       </TodoDetailBody>
