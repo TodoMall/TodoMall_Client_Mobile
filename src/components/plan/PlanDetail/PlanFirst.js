@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MAX_WIDTH } from "../../../constants";
 
 const PlanFirst = ({ data }) => {
   console.log(data);
@@ -22,7 +23,7 @@ const PlanFirst = ({ data }) => {
 
 const Container = styled.div`
   padding: 20px;
-  max-width: 800px;
+  max-width: ${MAX_WIDTH}px;
 `;
 
 const Header = styled.div``;
@@ -57,7 +58,7 @@ const Image = styled.img`
   margin-right: auto;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 800px;
+  max-width: ${MAX_WIDTH}px;
   height: 170px;
 `;
 

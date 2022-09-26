@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Divider from "../../global/Divider";
 import axios from "axios";
 import { Loader } from "../../global/Loader";
+import { MAX_WIDTH } from "../../../constants";
 
 const PlanDetail = () => {
   const [loading, setLoading] = useState(true);
@@ -88,7 +89,7 @@ const Body = styled.div`
   flex-direction: column;
   padding-top: 60px;
   padding-bottom: 90px;
-  max-width: 800px;
+  max-width: ${MAX_WIDTH}px;
 `;
 
 const Footer = styled.div`
@@ -98,7 +99,7 @@ const Footer = styled.div`
   bottom: 0;
   background: #fbfbfb;
   width: 100%;
-  max-width: 800px;
+  max-width: ${MAX_WIDTH}px;
   height: 90px;
   align-items: center;
   justify-content: center;
