@@ -27,11 +27,16 @@ const PlanDetail = () => {
         console.log(res.data);
         setPlan(res.data);
         setLoading(false);
+        document.title = res.data.title;
       });
   };
 
   useEffect(() => {
     fetch();
+
+    return () => {
+      document.title = "TodoMall";
+    };
   }, []);
 
   if (loading) {
