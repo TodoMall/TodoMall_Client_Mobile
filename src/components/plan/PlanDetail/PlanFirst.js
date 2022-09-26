@@ -59,7 +59,7 @@ const Image = styled.img`
   margin-bottom: 20px;
   width: 100%;
   max-width: ${MAX_WIDTH};
-  height: 170px;
+  /* height: 170px; */
 `;
 
 const Paragraph = styled.p`

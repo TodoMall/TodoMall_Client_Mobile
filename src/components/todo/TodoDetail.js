@@ -2,15 +2,28 @@ import React, { useCallback, useEffect, useState } from "react";
 import Header from "../global/Header";
 import { Progress } from "@nextui-org/react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import TodoAnswerModal from "./TodoAnswer";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { Loader } from "../global/Loader";
 
 const TodoDetail = () => {
   const [width, setWidth] = useState(0);
   const [todo, setTodo] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
+  const id = useParams();
+
+  const handleFinish = () => {
+    console.log(id);
+    axios.patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
+      userId: localStorage.getItem("userid"),
+      productId: id.productid,
+      sessionId: id.sessionid,
+      todoId: id.todoid,
+    });
+  };
 
   const handleScroll = useCallback(() => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
@@ -23,21 +36,33 @@ const TodoDetail = () => {
     setWidth(currentPercent * 100);
   }, []);
 
-  const modalHandler = () => setVisible(true);
-
-  const modalCloseHandler = () => setVisible(false);
+  const handleAnswer = () => {
+    navigate(
+      `/todo/${id.todoid}/${id.sessionid}/${id.productid}/${data.title}/answer`
+    );
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, true);
 
+    const fetch = async () => {
+      const response = await axios.get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${id.todoid}`
+      );
+      setData(response.data);
+      setLoading(false);
+    };
+    fetch();
     return () => {
       window.removeEventListener("scroll", handleScroll, true);
     };
   }, [handleScroll, width]);
-
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
-      <Header title={`(3/3) 새로운 프로젝트 시작하기`} />
+      <Header title={`${data.title}`} />
       <Progress
         squared
         color="primary"
@@ -54,7 +79,7 @@ const TodoDetail = () => {
           <TodoDetailText>
             지금까지 과정을 잘 따랐는지 알고싶다면?
           </TodoDetailText>
-          <TodoDetailButton onClick={modalHandler}>
+          <TodoDetailButton onClick={handleAnswer}>
             모범 예시 보러가기
           </TodoDetailButton>
         </TodoDetailAnswer>
@@ -81,19 +106,13 @@ const TodoDetail = () => {
               <img src="/images/purple_tick.svg" />
             </TodoDetailTaskBoxToggleOn>
           )}
-          <TodoDetailTaskBoxTitle>
-            디자인 작업을 시작할 수 있는 환경 마련
-          </TodoDetailTaskBoxTitle>
+          <TodoDetailTaskBoxTitle>{data.taskTitle}</TodoDetailTaskBoxTitle>
         </TodoDetailTaskBox>
 
-        <TodoDetailFinishButton done={todo}>
+        <TodoDetailFinishButton done={todo} onClick={handleFinish}>
           투두 완료하기
         </TodoDetailFinishButton>
       </TodoDetailBody>
-      <TodoAnswerModal
-        visible={visible}
-        modalCloseHandler={modalCloseHandler}
-      />
     </>
   );
 };

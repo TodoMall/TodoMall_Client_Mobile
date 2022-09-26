@@ -10,6 +10,7 @@ const Card = ({
   largeTags,
   subDescription,
   id,
+  icon,
 }) => {
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const Card = ({
       <DescriptionFor>{subDescription}</DescriptionFor>
       <CardTitle>{title}</CardTitle>
       <CardDescription>{description.substring(0, CutOff)}...</CardDescription>
-      <CardIcon>🎨</CardIcon>
+      <CardIcon src={icon} />
       <CardTags>{cardSmallTag}</CardTags>
     </CardBox>
   );
@@ -52,7 +53,7 @@ const CardBox = styled.div`
   cursor: pointer;
 `;
 
-const CardIcon = styled.div`
+const CardIcon = styled.img`
   position: absolute;
   font-size: 40px;
   right: 20px;

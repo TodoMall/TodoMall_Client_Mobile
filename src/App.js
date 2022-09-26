@@ -40,9 +40,18 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
 
         {/* Todo Detail, Assignment Routes */}
-        <Route path="/todo/:todoid/detail" element={<TodoDetail />} />
-        <Route path="/todo/:todoid/submit" element={<TodoSubmit />} />
-        <Route path="/todo/:todoid/answer" element={<TodoAnswer />} />
+        <Route
+          path="/todo/:todoid/:sessionid/:productid/detail"
+          element={<TodoDetail />}
+        />
+        <Route
+          path="/todo/:sessionid/:productid/:todoname/submit"
+          element={<TodoSubmit />}
+        />
+        <Route
+          path="/todo/:todoid/:sessionid/:productid/:sessionname/answer"
+          element={<TodoAnswer />}
+        />
         <Route path="/todo/success" element={<TodoSubmitSuccess />} />
 
         {/* Plan Routes */}
