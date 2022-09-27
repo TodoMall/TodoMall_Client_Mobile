@@ -50,13 +50,14 @@ const TodoDetail = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${id.todoid}`
       );
       setData(response.data);
+      console.log(response.data);
       setLoading(false);
     };
     fetch();
     return () => {
       window.removeEventListener("scroll", handleScroll, true);
     };
-  }, [handleScroll, width]);
+  }, []);
   if (loading) {
     return <Loader />;
   }
@@ -75,14 +76,16 @@ const TodoDetail = () => {
         <img style={{ width: "95%" }} src="/images/temp_detail_page.png" />
         <img style={{ width: "95%" }} src="/images/temp_detail_page.png" />
 
-        <TodoDetailAnswer>
-          <TodoDetailText>
-            지금까지 과정을 잘 따랐는지 알고싶다면?
-          </TodoDetailText>
-          <TodoDetailButton onClick={handleAnswer}>
-            모범 예시 보러가기
-          </TodoDetailButton>
-        </TodoDetailAnswer>
+        {data.basePractice ? (
+          <TodoDetailAnswer>
+            <TodoDetailText>
+              지금까지 과정을 잘 따랐는지 알고싶다면?
+            </TodoDetailText>
+            <TodoDetailButton onClick={handleAnswer}>
+              모범 예시 보러가기
+            </TodoDetailButton>
+          </TodoDetailAnswer>
+        ) : null}
 
         <TodoDetailTask>
           <TodoDetailTaskTitle>태스크 완료하기</TodoDetailTaskTitle>
@@ -171,6 +174,7 @@ const TodoDetailTask = styled.div`
   width: 100%;
   padding: 0 25px;
   gap: 20px;
+  margin-top: 20px;
 `;
 
 const TodoDetailTaskTitle = styled.p`

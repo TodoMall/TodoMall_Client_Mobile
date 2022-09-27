@@ -6,7 +6,6 @@ import PlanIntro from "./PlanIntro";
 import PlanSecond from "./PlanSecond";
 import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
-import DummyData from "./dummydata.json";
 import { useNavigate, useParams } from "react-router-dom";
 import Divider from "../../global/Divider";
 import axios from "axios";
@@ -14,6 +13,7 @@ import { Loader } from "../../global/Loader";
 import { MAX_WIDTH } from "../../../constants";
 
 const PlanDetail = () => {
+  const [duplicate, setDuplicate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [plan, setPlan] = useState();
   const navigate = useNavigate();
@@ -24,11 +24,26 @@ const PlanDetail = () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setPlan(res.data);
         setLoading(false);
         document.title = res.data.title;
       });
+    const email = localStorage.getItem("email");
+    const response = await axios.get(
+      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+    );
+    setDuplicate(checkDuplicate(response.data.ownProducts));
+  };
+
+  const checkDuplicate = (data) => {
+    const temp = data.filter((data) => data.id === ID);
+    // console.log(temp);
+    if (temp.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   useEffect(() => {
@@ -67,14 +82,18 @@ const PlanDetail = () => {
         <PlanCurriculum data={plan.sessions} />
       </Body>
       <Footer>
-        <BuyButton
-          onClick={() => {
-            navigate(`/purchase/${plan.id}/`);
-          }}
-          id="download_button"
-        >
-          무료로 도전하기
-        </BuyButton>
+        {duplicate ? (
+          <BuyButton disabled>이미 도전중인 플랜입니다</BuyButton>
+        ) : (
+          <BuyButton
+            onClick={() => {
+              navigate(`/purchase/${plan.id}/`);
+            }}
+            id="download_button"
+          >
+            무료로 도전하기
+          </BuyButton>
+        )}
       </Footer>
     </Container>
   );
@@ -111,7 +130,7 @@ const Footer = styled.div`
 `;
 
 const BuyButton = styled.div`
-  background: #6b47fd;
+  background: ${(props) => (props.disabled ? "#A9A9A9" : "#6b47fd")};
   border-radius: 20px;
   max-width: 380px;
   width: 90%;
