@@ -36,7 +36,7 @@ const Card = ({
       <DescriptionFor>{subDescription}</DescriptionFor>
       <CardTitle>{title}</CardTitle>
       <CardDescription>{description.substring(0, CutOff)}...</CardDescription>
-      <CardIcon src={icon} />
+      <CardIcon src={`${icon}.svg`} />
       <CardTags>{cardSmallTag}</CardTags>
     </CardBox>
   );
