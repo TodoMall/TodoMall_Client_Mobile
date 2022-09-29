@@ -31,11 +31,17 @@ export const IconDict = {
   재테크: "SummarizedTag_Finance",
 
   "1주": "SummarizedTag_1Week",
+  "1.5주": "SummarizedTag_1Week",
   "2주": "SummarizedTag_2Week",
+  "2.5주": "SummarizedTag_2Week",
   "3주": "SummarizedTag_3Week",
+  "3.5주": "SummarizedTag_3Week",
   "4주": "SummarizedTag_4Week",
+  "4.5주": "SummarizedTag_4Week",
   "5주": "SummarizedTag_5Week",
+  "5.5주": "SummarizedTag_5Week",
   "6주": "SummarizedTag_6Week",
+  "6.5주": "SummarizedTag_6Week",
 
   쉬움: "SummarizedTag_Easy",
   보통: "SummarizedTag_Normal",

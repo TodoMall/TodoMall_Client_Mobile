@@ -37,7 +37,9 @@ const PlanDetail = () => {
   };
 
   const checkDuplicate = (data) => {
-    const temp = data.filter((data) => data.id === ID && data.status === false);
+    const temp = data.filter(
+      (data) => data.productId === ID && data.status === false
+    );
     console.log(temp);
     if (temp.length > 0) {
       return true;

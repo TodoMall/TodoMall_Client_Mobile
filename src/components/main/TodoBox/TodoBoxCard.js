@@ -16,9 +16,18 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
-        hours: Math.floor(difference / (1000 * 60 * 60)),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        hours:
+          Math.floor(difference / (1000 * 60 * 60)) >= 10
+            ? Math.floor(difference / (1000 * 60 * 60))
+            : "0" + Math.floor(difference / (1000 * 60 * 60)).toString(),
+        minutes:
+          Math.floor((difference / 1000 / 60) % 60) >= 10
+            ? Math.floor((difference / 1000 / 60) % 60)
+            : "0" + Math.floor((difference / 1000 / 60) % 60).toString(),
+        seconds:
+          Math.floor((difference / 1000) % 60) >= 10
+            ? Math.floor((difference / 1000) % 60)
+            : "0" + Math.floor((difference / 1000) % 60).toString(),
       };
     }
     return timeLeft;
