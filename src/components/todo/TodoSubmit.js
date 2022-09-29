@@ -5,6 +5,7 @@ import Header from "../global/Header";
 import AWS from "aws-sdk";
 import axios from "axios";
 import { Loader } from "../global/Loader";
+import imageCompression from "browser-image-compression";
 
 const TodoSubmit = () => {
   const [image, setImage] = useState("");
@@ -26,9 +27,7 @@ const TodoSubmit = () => {
   });
 
   const handleImageUpload = async (e) => {
-    const temp = e.target.files;
-    setImage(temp);
-    console.log(temp);
+    setImage(e.target.files[0]);
   };
 
   const handleSubmit = async () => {
@@ -45,7 +44,7 @@ const TodoSubmit = () => {
           "/" +
           new Date().getTime() +
           ".png",
-        Body: image[0],
+        Body: image,
       },
     });
 
@@ -86,7 +85,7 @@ const TodoSubmit = () => {
     reader.onload = () =>
       (imgEL.style.backgroundImage = `url(${reader.result})`);
 
-    reader.readAsDataURL(image[0]);
+    reader.readAsDataURL(image);
   };
 
   if (loading) {
