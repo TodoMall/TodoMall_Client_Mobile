@@ -10,6 +10,7 @@ const TodoSubmit = () => {
   const [image, setImage] = useState("");
   const [name, setName] = useState(localStorage.getItem("name"));
   const [id, setId] = useState(localStorage.getItem("userid"));
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
@@ -31,6 +32,7 @@ const TodoSubmit = () => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: bucket,
@@ -58,6 +60,7 @@ const TodoSubmit = () => {
           sessionId: params.sessionid,
         })
         .then(() => {
+          setLoading(false);
           navigate("/todo/success");
         });
     });
@@ -85,6 +88,10 @@ const TodoSubmit = () => {
 
     reader.readAsDataURL(image[0]);
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
