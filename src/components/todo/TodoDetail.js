@@ -264,8 +264,9 @@ const TodoDetailTask = styled.div`
 
 const TodoDetailTaskTitle = styled.p`
   /* font-family: "PretendardSemiBold"; */
+  font-family: "Pretendard";
   font-style: normal;
-  font-weight: 1000;
+  font-weight: 700;
   font-size: 20px;
   line-height: 30px;
   color: #000000;
@@ -318,11 +319,10 @@ const TodoDetailTaskBoxToggleOn = styled.div`
 
 const TodoDetailTaskBoxTitle = styled.p`
   width: 65%;
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
-  line-height: 27px;
+  line-height: 16px;
   color: #000000;
   text-align: center;
 `;
