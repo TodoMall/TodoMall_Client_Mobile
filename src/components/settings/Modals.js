@@ -13,6 +13,7 @@ const Modals = ({
   closeHandlerDelete,
 }) => {
   const NAME = localStorage.getItem("name");
+  const EMAIL = localStorage.getItem("email");
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access");
   const handleLogout = () => {
@@ -52,7 +53,15 @@ const Modals = ({
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
         localStorage.removeItem("ID");
-        navigate("/");
+        axios
+          .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user`, {
+            email: EMAIL,
+            status: false,
+          })
+          .then((res) => {
+            console.log(res);
+            navigate("/");
+          });
       })
       .catch((err) => {
         // localStorage.removeItem("access");
