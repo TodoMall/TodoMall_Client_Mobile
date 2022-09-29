@@ -156,7 +156,8 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
               );
             }}
           >
-            세션 인증하러 가기
+            ({session.current_session}/{session.total_session}) 세션 인증하러
+            가기
           </TodoBoxCardSubmitButton>
         ) : end ? (
           <>

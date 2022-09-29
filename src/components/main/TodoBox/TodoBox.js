@@ -17,12 +17,12 @@ const TodoBox = () => {
     plans.forEach((plan) => {
       let temp = {};
       let found = false;
-      plan.sessions.forEach((data) => {
+      plan.sessions.forEach((data, i) => {
         if (found) {
           return;
         }
         if (data.status === false) {
-          temp = data;
+          temp = { current_session: i + 1, ...data };
           found = true;
         }
       });
@@ -30,6 +30,7 @@ const TodoBox = () => {
         temp_plans.push({
           plan_title: plan.title,
           plan_id: plan.id,
+          total_session: plan.sessions.length,
           ...temp,
         });
       }
@@ -43,6 +44,7 @@ const TodoBox = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
+      console.log(response.data.ownProducts);
       setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };
