@@ -16,6 +16,7 @@ const TodoBoxCard = ({
   const [userId, setUserId] = useState(localStorage.getItem("userid"));
   const calculateTimeLeft = () => {
     let expireDate = new Date(session.expireDate);
+    expireDate.setDate(expireDate.getDate() + 1);
     expireDate.setHours(0);
     expireDate.setMinutes(0);
     expireDate.setSeconds(0);
@@ -35,6 +36,10 @@ const TodoBoxCard = ({
           Math.floor((difference / 1000) % 60) >= 10
             ? Math.floor((difference / 1000) % 60)
             : "0" + Math.floor((difference / 1000) % 60).toString(),
+      };
+    } else {
+      timeLeft = {
+        ended: true,
       };
     }
     return timeLeft;
@@ -66,7 +71,7 @@ const TodoBoxCard = ({
                 )}
               </TodoBoxCardHeaderDDayTextSubmit>
             </TodoBoxCardHeaderDDaySubmit>
-          ) : end ? null : (
+          ) : end || curTime.ended ? null : (
             <TodoBoxCardHeaderDDay
               day={Math.floor(
                 (Date.parse(new Date(session.expireDate)) -
@@ -100,7 +105,7 @@ const TodoBoxCard = ({
             </TodoBoxCardHeaderDDay>
           )}
         </TodoBoxCardHeader>
-        {end ? (
+        {end || curTime.ended ? (
           <TodoBoxCardBodyEnded>
             <Blurred>
               <TodoBoxCardBody>
@@ -175,7 +180,7 @@ const TodoBoxCard = ({
             ({session.current_session}/{session.total_session}) 세션 인증하러
             가기
           </TodoBoxCardSubmitButton>
-        ) : end ? (
+        ) : end || curTime.ended ? (
           <>
             <TodoBoxCardEndButton
               onClick={() => {
