@@ -41,7 +41,10 @@ const PlanIntro = ({
           ))}
         </SmallTags>
         <Creator>
-          <ProfileImage alt="creator" src={creator_image} />
+          <ProfileImage
+            alt="creator"
+            src={creator_image ? creator_image : "/images/System_Profile.svg"}
+          />
           <ProfileDescription>
             <Name>
               {creator_name}

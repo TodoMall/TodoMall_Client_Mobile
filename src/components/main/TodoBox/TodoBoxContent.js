@@ -15,7 +15,7 @@ const handleSession = (session) => {
   return temp;
 };
 
-const TodoBoxContent = ({ plans }) => {
+const TodoBoxContent = ({ plans, check, setCheck }) => {
   // console.log(plans);
 
   return (
@@ -33,6 +33,8 @@ const TodoBoxContent = ({ plans }) => {
               id={plan.id}
               submit={true}
               key={plan.id}
+              check={check}
+              setCheck={setCheck}
             />
           );
         } else {
@@ -44,6 +46,8 @@ const TodoBoxContent = ({ plans }) => {
                 id={plan.id}
                 end={true}
                 key={plan.id}
+                check={check}
+                setCheck={setCheck}
               />
             );
           } else {
@@ -53,6 +57,8 @@ const TodoBoxContent = ({ plans }) => {
                 id={plan.id}
                 session={plan}
                 key={plan.id}
+                check={check}
+                setCheck={setCheck}
               />
             );
           }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Row = ({ is_completed, id, title, icon }) => {
+const Row = ({ is_completed, is_failed, id, title, icon }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -12,7 +12,9 @@ const Row = ({ is_completed, id, title, icon }) => {
       // }}
       >
         <RowLeft>
-          <Icon src={`${icon}`} />
+          <IconBackground>
+            <Icon src={`${icon}`} />
+          </IconBackground>
           <Detail>
             <Tries>{id}번째 도전</Tries>
             <Title>{title}</Title>
@@ -20,7 +22,9 @@ const Row = ({ is_completed, id, title, icon }) => {
         </RowLeft>
         <Progress
           src={
-            is_completed
+            is_failed
+              ? `/images/mypage_plan_failed.svg`
+              : is_completed
               ? `/images/mypage_plan_finished.svg`
               : `/images/mypage_plan_inprogress.svg`
           }
@@ -42,6 +46,11 @@ const RowLeft = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const IconBackground = styled.div`
+  background: #f3f3f3;
+  border-radius: 50px;
 `;
 
 const Icon = styled.img`

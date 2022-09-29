@@ -3,10 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
+const TodoBoxCard = ({
+  title,
+  session,
+  id,
+  submit = false,
+  end = false,
+  check,
+  setCheck,
+}) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState(localStorage.getItem("userid"));
-
   const calculateTimeLeft = () => {
     let expireDate = new Date(session.expireDate);
     expireDate.setHours(0);
@@ -16,9 +23,18 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
-        hours: Math.floor(difference / (1000 * 60 * 60)),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        hours:
+          Math.floor(difference / (1000 * 60 * 60)) >= 10
+            ? Math.floor(difference / (1000 * 60 * 60))
+            : "0" + Math.floor(difference / (1000 * 60 * 60)).toString(),
+        minutes:
+          Math.floor((difference / 1000 / 60) % 60) >= 10
+            ? Math.floor((difference / 1000 / 60) % 60)
+            : "0" + Math.floor((difference / 1000 / 60) % 60).toString(),
+        seconds:
+          Math.floor((difference / 1000) % 60) >= 10
+            ? Math.floor((difference / 1000) % 60)
+            : "0" + Math.floor((difference / 1000) % 60).toString(),
       };
     }
     return timeLeft;
@@ -163,17 +179,20 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
           <>
             <TodoBoxCardEndButton
               onClick={() => {
-                console.log(userId);
-                console.log(session.plan_id);
-                axios.delete(
-                  `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
-                  {
-                    data: {
-                      userId: userId,
-                      productId: session.plan_id,
-                    },
-                  }
-                );
+                axios
+                  .delete(
+                    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
+                    {
+                      data: {
+                        userId: userId,
+                        productId: session.plan_id,
+                      },
+                    }
+                  )
+                  .then(() => {
+                    setCheck(!check);
+                    navigate("/todobox");
+                  });
               }}
             >
               도전 삭제하기

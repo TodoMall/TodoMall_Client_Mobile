@@ -10,7 +10,7 @@ const TodoBox = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [check, setCheck] = useState(false);
   const handlePlan = (plans) => {
     console.log(plans);
     let temp_plans = [];
@@ -49,7 +49,7 @@ const TodoBox = () => {
       setLoading(false);
     };
     fetch();
-  }, []);
+  }, [check]);
 
   if (loading) {
     return <Loader />;
@@ -60,7 +60,7 @@ const TodoBox = () => {
       <TodoBoxHeader length={plans?.length > 0 ? plans.length : 0} />
       <TodoBoxBody>
         {plans?.length > 0 ? (
-          <TodoBoxContent plans={plans} />
+          <TodoBoxContent plans={plans} check={check} setCheck={setCheck} />
         ) : (
           <TodoBoxEmptyContainer>
             <TodoBoxEmptyImage src="/images/TodoBoxEmptyImage.svg" />

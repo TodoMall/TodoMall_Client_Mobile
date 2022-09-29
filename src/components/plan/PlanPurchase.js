@@ -9,16 +9,16 @@ const PlanPurchase = () => {
   const productId = useParams().planid;
   const userId = localStorage.getItem("userid");
   const handlePurchase = async () => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
-      {
+    const response = await axios
+      .post(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
         productId: productId,
         userId: userId,
-      }
-    );
+      })
+      .then(() => {
+        navigate("/todobox");
+      });
 
     // console.log(response);
-    navigate("/todobox");
   };
 
   const [page, setPage] = useState(0);
