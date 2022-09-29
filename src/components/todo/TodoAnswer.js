@@ -38,7 +38,7 @@ const TodoAnswer = () => {
           모범 예시를 확인하고 나의 성취도를 확인해보세요
         </TodoAnswerDescription>
         <Wrapper>
-          <TodoAnswerImage src="/images/icon.png" />
+          <TodoAnswerImage src={`${image}`} />
         </Wrapper>
       </TodoAnswerContainer>
     </>

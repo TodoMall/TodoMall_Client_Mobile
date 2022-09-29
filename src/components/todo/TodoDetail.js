@@ -23,6 +23,7 @@ const TodoDetail = () => {
       sessionId: id.sessionid,
       todoId: id.todoid,
     });
+    navigate("/todobox");
   };
 
   const handleScroll = useCallback(() => {

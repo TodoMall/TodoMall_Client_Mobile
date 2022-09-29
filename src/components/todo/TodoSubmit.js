@@ -9,7 +9,7 @@ import { Loader } from "../global/Loader";
 const TodoSubmit = () => {
   const [image, setImage] = useState("");
   const [name, setName] = useState(localStorage.getItem("name"));
-  const [id, setId] = useState("");
+  const [id, setId] = useState(localStorage.getItem("userid"));
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
@@ -34,7 +34,15 @@ const TodoSubmit = () => {
     const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: bucket,
-        Key: name + "/" + params.todoname + ".png",
+        Key:
+          id +
+          "/" +
+          params.productid +
+          "/" +
+          params.todoname +
+          "/" +
+          new Date().getTime() +
+          ".png",
         Body: image[0],
       },
     });
@@ -42,7 +50,15 @@ const TodoSubmit = () => {
     const promise = upload.promise();
     promise.then((res) => {
       console.log(res);
-      //axios post res.Location
+      axios.patch(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
+        {
+          userId: localStorage.getItem("userid"),
+          productId: params.productid,
+          missionImage: res.Location,
+          sessionId: params.sessionid,
+        }
+      );
     });
     navigate("/todo/success");
   };
