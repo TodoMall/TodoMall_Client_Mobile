@@ -41,7 +41,7 @@ function App() {
 
         {/* Todo Detail, Assignment Routes */}
         <Route
-          path="/todo/:todoid/:sessionid/:productid/detail"
+          path="/todo/:todoid/:sessionid/:productid/detail/:status"
           element={<TodoDetail />}
         />
         <Route

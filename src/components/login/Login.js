@@ -166,7 +166,7 @@ const LoginButton = styled.img`
 `;
 
 const CompanyText = styled.p`
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   left: 0;
   text-align: center;

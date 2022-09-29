@@ -17,10 +17,14 @@ const handleSession = (session) => {
 
 const TodoBoxContent = ({ plans }) => {
   // console.log(plans);
+
   return (
     <TodoBoxContentContainer>
       {plans.map((plan) => {
         // console.log(temp);
+        console.log("Cur time: ", Date.now());
+        console.log("expire time: ", Date.parse(plan.expireDate));
+        // console.log(Date.now() >= Date.parse(plan.expireDate));
         if (handleSession(plan).length === 0) {
           return (
             <TodoBoxCard

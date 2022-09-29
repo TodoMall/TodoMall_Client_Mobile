@@ -1,10 +1,37 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
   const navigate = useNavigate();
-  // console.log(session);
+  const [userId, setUserId] = useState(localStorage.getItem("userid"));
+
+  const calculateTimeLeft = () => {
+    let expireDate = new Date(session.expireDate);
+    expireDate.setHours(0);
+    expireDate.setMinutes(0);
+    expireDate.setSeconds(0);
+    const difference = expireDate - new Date();
+    let timeLeft = {};
+    if (difference > 0) {
+      timeLeft = {
+        hours: Math.floor(difference / (1000 * 60 * 60)),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+    return timeLeft;
+  };
+
+  const [curTime, setCurTime] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurTime(calculateTimeLeft());
+    }, 1000);
+  });
+
   if (Object.keys(session).length > 0) {
     return (
       <TodoBoxCardContainer>
@@ -24,8 +51,29 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
               </TodoBoxCardHeaderDDayTextSubmit>
             </TodoBoxCardHeaderDDaySubmit>
           ) : end ? null : (
-            <TodoBoxCardHeaderDDay>
-              <TodoBoxCardHeaderDDayText>
+            <TodoBoxCardHeaderDDay
+              day={Math.floor(
+                (Date.parse(new Date(session.expireDate)) -
+                  Date.parse(new Date())) /
+                  86400000
+              )}
+            >
+              {Math.floor(
+                (Date.parse(new Date(session.expireDate)) -
+                  Date.parse(new Date())) /
+                  86400000
+              ) === 0 && (
+                <TodoBoxCardHeaderTime>
+                  {curTime.hours}:{curTime.minutes}:{curTime.seconds}
+                </TodoBoxCardHeaderTime>
+              )}
+              <TodoBoxCardHeaderDDayText
+                day={Math.floor(
+                  (Date.parse(new Date(session.expireDate)) -
+                    Date.parse(new Date())) /
+                    86400000
+                )}
+              >
                 D-
                 {Math.floor(
                   (Date.parse(new Date(session.expireDate)) -
@@ -43,10 +91,10 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
                 {session.todos.map((todo) => (
                   <TodoBoxCardTodo
                     onClick={() => {
-                      if (!todo.status)
-                        navigate(
-                          `/todo/${todo.id}/${session.id}/${session.plan_id}/detail`
-                        );
+                      // if (!todo.status)
+                      navigate(
+                        `/todo/${todo.id}/${session.id}/${session.plan_id}/detail/${todo.status}`
+                      );
                     }}
                     key={todo.id}
                   >
@@ -76,10 +124,10 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
             {session?.todos.map((todo) => (
               <TodoBoxCardTodo
                 onClick={() => {
-                  if (!todo.status)
-                    navigate(
-                      `/todo/${todo.id}/${session.id}/${session.plan_id}/detail`
-                    );
+                  // if (!todo.status)
+                  navigate(
+                    `/todo/${todo.id}/${session.id}/${session.plan_id}/detail/${todo.status}`
+                  );
                 }}
                 key={todo.id}
               >
@@ -112,7 +160,23 @@ const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
           </TodoBoxCardSubmitButton>
         ) : end ? (
           <>
-            <TodoBoxCardEndButton>도전 삭제하기</TodoBoxCardEndButton>
+            <TodoBoxCardEndButton
+              onClick={() => {
+                console.log(userId);
+                console.log(session.plan_id);
+                axios.delete(
+                  `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
+                  {
+                    data: {
+                      userId: userId,
+                      productId: session.plan_id,
+                    },
+                  }
+                );
+              }}
+            >
+              도전 삭제하기
+            </TodoBoxCardEndButton>
             <TodoBoxCardEndText>
               데드라인 만료로 이후 수강권이 삭제됐어요
             </TodoBoxCardEndText>
@@ -135,7 +199,6 @@ const TodoBoxCardContainer = styled.div`
 const TodoBoxCardHeader = styled.div``;
 
 const TodoBoxCardHeaderTitle = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -145,7 +208,6 @@ const TodoBoxCardHeaderTitle = styled.p`
 `;
 
 const TodoBoxCardHeaderSession = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -154,7 +216,7 @@ const TodoBoxCardHeaderSession = styled.p`
 `;
 
 const TodoBoxCardHeaderDDay = styled.div`
-  background: #dddddd;
+  background: ${(props) => (props.day === 0 ? "#FFC6C6" : "#dddddd")};
   border-radius: 4px;
   position: absolute;
   height: 24px;
@@ -166,8 +228,19 @@ const TodoBoxCardHeaderDDay = styled.div`
   padding: 0 10px;
 `;
 
+const TodoBoxCardHeaderTime = styled.p`
+  position: absolute;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: #f65050;
+  bottom: 30px;
+`;
+
 const TodoBoxCardHeaderDDaySubmit = styled.div`
-  background: #e1dcfe;
+  background: ${(props) => (props.day === 0 ? "#FFC6C6" : "#e1dcfe")};
   border-radius: 4px;
   position: absolute;
   height: 24px;
@@ -181,7 +254,6 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
   span {
     position: absolute;
     top: -20px;
-    /* font-family: "PretendardRegular"; */
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -191,17 +263,16 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
 `;
 
 const TodoBoxCardHeaderDDayText = styled.p`
-  /* font-family: "PretendardMedium"; */
+  position: relative;
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
   line-height: 16px;
-  color: #707070;
+  color: ${(props) => (props.day === 0 ? "#F65050" : "#707070")};
 `;
 
 const TodoBoxCardHeaderDDayTextSubmit = styled.p`
-  /* font-family: "PretendardMedium"; */
-  color: #6b47fd;
+  color: ${(props) => (props.day === 0 ? "#F65050" : "#6b47fd")};
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
