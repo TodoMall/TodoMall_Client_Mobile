@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Row = ({ is_completed, id, title }) => {
+const Row = ({ is_completed, id, title, icon }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -11,17 +11,20 @@ const Row = ({ is_completed, id, title }) => {
       //   navigate(`/try/${id}`);
       // }}
       >
-        <Icon
+        <RowLeft>
+          <Icon src={`${icon}`} />
+          <Detail>
+            <Tries>{id}번째 도전</Tries>
+            <Title>{title}</Title>
+          </Detail>
+        </RowLeft>
+        <Progress
           src={
             is_completed
               ? `/images/mypage_plan_finished.svg`
-              : `/images/dummy_plan_icon.svg`
+              : `/images/mypage_plan_inprogress.svg`
           }
         />
-        <Detail>
-          <Tries>{id}번째 도전</Tries>
-          <Title>{title}</Title>
-        </Detail>
       </Container>
     </>
   );
@@ -31,18 +34,28 @@ const Container = styled.div`
   height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
   margin-left: 5vw;
+`;
+
+const RowLeft = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Icon = styled.img`
   width: 44px;
 `;
 
+const Progress = styled.img`
+  margin-right: 1rem;
+`;
+
 const Detail = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 3vw;
+  margin-left: 1rem;
   gap: 5px;
 `;
 

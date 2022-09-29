@@ -10,13 +10,40 @@ const TodoBox = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handlePlan = (plans) => {
+    console.log(plans);
+    let temp_plans = [];
+    plans.forEach((plan) => {
+      let temp = {};
+      let found = false;
+      plan.sessions.forEach((data) => {
+        if (found) {
+          return;
+        }
+        if (data.status === false) {
+          temp = data;
+          found = true;
+        }
+      });
+      if (Object.keys(temp).length > 0) {
+        temp_plans.push({
+          plan_title: plan.title,
+          plan_id: plan.id,
+          ...temp,
+        });
+      }
+    });
+    console.log(temp_plans);
+    return temp_plans;
+  };
+
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
-      console.log(response);
-      setPlans(response.data.ownProducts);
+      setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };
     fetch();

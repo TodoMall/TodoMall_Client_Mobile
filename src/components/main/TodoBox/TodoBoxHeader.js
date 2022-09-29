@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const TodoBoxHeader = ({ length }) => {
   const [name, setName] = useState(localStorage.getItem("name"));
+
   return (
     <>
       <TodoBoxHeaderContainer>

@@ -66,6 +66,7 @@ const MyPage = () => {
                 is_completed={plan.status}
                 id={plans.length - i}
                 title={plan.title}
+                icon={plan.icon}
               />
             ))
           ) : (
