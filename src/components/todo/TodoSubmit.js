@@ -50,17 +50,17 @@ const TodoSubmit = () => {
     const promise = upload.promise();
     promise.then((res) => {
       console.log(res);
-      axios.patch(
-        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
-        {
+      axios
+        .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
           userId: localStorage.getItem("userid"),
           productId: params.productid,
           missionImage: res.Location,
           sessionId: params.sessionid,
-        }
-      );
+        })
+        .then(() => {
+          navigate("/todo/success");
+        });
     });
-    navigate("/todo/success");
   };
 
   const onUploadImageButtonClick = useCallback(() => {
