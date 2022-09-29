@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const TodoBoxCard = ({ title, session, id, submit = true, end = false }) => {
+const TodoBoxCard = ({ title, session, id, submit = false, end = false }) => {
   const navigate = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ const TodoBoxCard = ({ title, session, id, submit = true, end = false }) => {
           </TodoBoxCardHeaderDDaySubmit>
         ) : end ? null : (
           <TodoBoxCardHeaderDDay>
-            <TodoBoxCardHeaderDDayText>D-4 일</TodoBoxCardHeaderDDayText>
+            <TodoBoxCardHeaderDDayText>D-4</TodoBoxCardHeaderDDayText>
           </TodoBoxCardHeaderDDay>
         )}
       </TodoBoxCardHeader>
@@ -30,7 +30,8 @@ const TodoBoxCard = ({ title, session, id, submit = true, end = false }) => {
               {session.todos.map((todo) => (
                 <TodoBoxCardTodo
                   onClick={() => {
-                    navigate(`/todo/${todo.id}/${session.id}/${id}/detail`);
+                    if (!todo.status)
+                      navigate(`/todo/${todo.id}/${session.id}/${id}/detail`);
                   }}
                   key={todo.id}
                 >
@@ -60,7 +61,8 @@ const TodoBoxCard = ({ title, session, id, submit = true, end = false }) => {
           {session.todos.map((todo) => (
             <TodoBoxCardTodo
               onClick={() => {
-                navigate(`/todo/${todo.id}/${session.id}/${id}/detail`);
+                if (!todo.status)
+                  navigate(`/todo/${todo.id}/${session.id}/${id}/detail`);
               }}
               key={todo.id}
             >

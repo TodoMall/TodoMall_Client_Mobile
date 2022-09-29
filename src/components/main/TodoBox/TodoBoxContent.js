@@ -22,7 +22,7 @@ const TodoBoxContent = ({ plans }) => {
       {plans.map((plan) => {
         let temp = handlePlan(plan);
         console.log(temp);
-        if (temp == {}) {
+        if (temp === {}) {
           return (
             <TodoBoxCard
               title={plan.title}
