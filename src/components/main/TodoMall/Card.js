@@ -70,10 +70,9 @@ const DescriptionFor = styled.p`
 `;
 
 const CardTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
   color: #000000;
   margin-bottom: 5px;
   width: 85%;
@@ -124,7 +123,5 @@ const TagIcon = styled.img`
   height: 14px; */
   margin-right: 3px;
 `;
-
-const TagContent = styled.img``;
 
 export default Card;
