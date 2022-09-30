@@ -43,7 +43,7 @@ const Settings = () => {
             <RowTitle>공지사항</RowTitle>
             <DetailIcon src={`/images/todo_detail.svg`} />
           </Row> */}
-          <a href="mailto:myplanit.unicorn@gmail.com">
+          <a href="http://pf.kakao.com/_xhSxjExj">
             <Row>
               <RowTitle>문의하기</RowTitle>
               <DetailIcon src={`/images/todo_detail.svg`} />
