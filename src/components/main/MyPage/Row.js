@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
 
 const Row = ({ is_completed, is_failed, id, title, icon }) => {
-  const navigate = useNavigate();
   return (
     <>
-      <Container
-      // onClick={() => {
-      //   navigate(`/try/${id}`);
-      // }}
-      >
+      <Container>
         <RowLeft>
           <IconBackground>
             <Icon src={`${icon}`} />
@@ -69,7 +63,6 @@ const Detail = styled.div`
 `;
 
 const Tries = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -77,7 +70,6 @@ const Tries = styled.p`
 `;
 
 const Title = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 18px;

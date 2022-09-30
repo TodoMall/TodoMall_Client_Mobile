@@ -12,7 +12,6 @@ const TodoBox = () => {
   const [loading, setLoading] = useState(true);
   const [check, setCheck] = useState(false);
   const handlePlan = (plans) => {
-    console.log(plans);
     let temp_plans = [];
     plans.forEach((plan) => {
       let temp = {};
@@ -35,7 +34,6 @@ const TodoBox = () => {
         });
       }
     });
-    console.log(temp_plans);
     return temp_plans;
   };
 
@@ -44,7 +42,6 @@ const TodoBox = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
-      console.log(response.data.ownProducts);
       setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };

@@ -17,7 +17,6 @@ const Social = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
           localStorage.setItem("access", res.data.access_token);
           localStorage.setItem("refresh", res.data.refresh_token);
           localStorage.setItem("ID", res.data.id_token);
@@ -28,7 +27,6 @@ const Social = () => {
               },
             })
             .then((res) => {
-              console.log(res);
               localStorage.setItem(
                 "name",
                 res.data.kakao_account.profile.nickname
@@ -42,7 +40,6 @@ const Social = () => {
                   name: res.data.kakao_account.profile.nickname,
                 })
                 .then((res) => {
-                  console.log(res);
                   localStorage.setItem("userid", res.data.id);
                   if (
                     localStorage.getItem("personal") &&
@@ -54,7 +51,6 @@ const Social = () => {
                   }
                 })
                 .catch((err) => {
-                  console.log(err);
                   const email = localStorage.getItem("email");
                   axios
                     .get(

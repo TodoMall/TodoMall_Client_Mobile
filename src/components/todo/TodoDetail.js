@@ -17,7 +17,6 @@ const TodoDetail = () => {
   const navigate = useNavigate();
 
   const handleFinish = () => {
-    console.log(id);
     axios
       .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
         userId: localStorage.getItem("userid"),
@@ -55,7 +54,6 @@ const TodoDetail = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${id.todoid}`
       );
       setData(response.data);
-      console.log(response.data);
       setLoading(false);
     };
     fetch();
@@ -141,7 +139,6 @@ const HTMLDiv = styled.div`
   }
 
   h1 {
-    /* width:100%; */
     font-family: "Pretendard";
     font-style: normal;
     font-weight: 700;
@@ -156,7 +153,6 @@ const HTMLDiv = styled.div`
     text-align: center;
     border: 1px solid #6b47fd;
     border-radius: 20px;
-    /* padding: 11px 30px; */
     font-family: "Pretendard";
     font-style: normal;
     font-weight: 700;
@@ -173,7 +169,6 @@ const HTMLDiv = styled.div`
     font-size: 16px;
     line-height: 24px;
     color: #888888;
-    /* margin-left: 20px; */
     padding: 10px;
   }
 
@@ -226,7 +221,6 @@ const TodoDetailAnswer = styled.div`
 `;
 
 const TodoDetailText = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -246,7 +240,6 @@ const TodoDetailButton = styled.button`
   border: 1px solid #6b47fd;
   border-radius: 20px;
   background-color: #fbfbfb;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -267,7 +260,6 @@ const TodoDetailTask = styled.div`
 `;
 
 const TodoDetailTaskTitle = styled.p`
-  /* font-family: "PretendardSemiBold"; */
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 700;
@@ -277,7 +269,6 @@ const TodoDetailTaskTitle = styled.p`
 `;
 
 const TodoDetailTaskSubtitle = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -343,7 +334,6 @@ const TodoDetailFinishButton = styled.div`
   margin: 30px 0;
   background: ${(props) => (props.done ? "#6b47fd" : "#EDEDED")};
   border-radius: 20px;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

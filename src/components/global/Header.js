@@ -43,8 +43,6 @@ const HeaderTitle = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
-  /* identical to box height, or 100% */
-
   display: flex;
   align-items: center;
   text-align: center;

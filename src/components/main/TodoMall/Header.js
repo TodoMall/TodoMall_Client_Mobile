@@ -72,7 +72,7 @@ const Header = ({ current, setCurrent }) => {
 };
 
 const Container = styled.div`
-  padding-top: 20px; //IPHONE camera
+  padding-top: 20px;
   background-color: #fbfbfb;
   position: fixed;
   width: 100%;
@@ -92,11 +92,9 @@ const Themes = styled.div`
 `;
 
 const Theme = styled.div`
-  /* font-family: "PretendardMedium"; */
   width: 33%;
   text-align: center;
   align-self: flex-end;
-  // margin-bottom: 10px;
 `;
 
 const ThemeIcon = styled.img`

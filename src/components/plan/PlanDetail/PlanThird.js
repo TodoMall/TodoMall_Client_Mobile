@@ -32,7 +32,6 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -68,7 +67,6 @@ const Order = styled.p`
   font-weight: 500;
   font-size: 13px;
   line-height: 24px;
-  /* identical to box height, or 171% */
   letter-spacing: -0.005em;
   color: #929292;
   margin-bottom: 5px;

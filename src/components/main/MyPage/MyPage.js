@@ -3,7 +3,6 @@ import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import requests from "../../../api/request";
 import Row from "./Row";
 import { Loader } from "../../global/Loader";
 
@@ -181,14 +180,6 @@ const NoPlanSubtitle = styled.p`
   line-height: 24px;
   text-align: center;
   color: #888888;
-`;
-
-const PlanDate = styled.p`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  color: #dbdbdb;
-  margin-left: 25px;
 `;
 
 export default MyPage;

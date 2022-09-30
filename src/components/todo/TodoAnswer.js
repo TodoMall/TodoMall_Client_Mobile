@@ -9,14 +9,12 @@ const TodoAnswer = () => {
   const params = useParams();
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
-  console.log(params);
 
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${params.todoid}`
       );
-      console.log(response.data);
       setImage(response.data.basePractice);
       setLoading(false);
     };
@@ -49,7 +47,6 @@ const TodoAnswer = () => {
 
 const TodoAnswerContainer = styled.div`
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   flex-direction: column;
   text-align: left;

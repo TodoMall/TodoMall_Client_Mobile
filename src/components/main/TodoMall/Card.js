@@ -3,15 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { IconDict } from "../../global/Icon";
 
-const Card = ({
-  title,
-  description,
-  smallTags,
-  largeTags,
-  subDescription,
-  id,
-  icon,
-}) => {
+const Card = ({ title, description, smallTags, subDescription, id, icon }) => {
   const navigate = useNavigate();
 
   const cardSmallTag = smallTags.map((tag, index) => {
@@ -61,7 +53,6 @@ const CardIcon = styled.img`
 `;
 
 const DescriptionFor = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -111,7 +102,6 @@ const CardTag = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
-  /* identical to box height, or 100% */
   display: flex;
   align-items: center;
   text-align: center;
@@ -119,8 +109,6 @@ const CardTag = styled.div`
 `;
 
 const TagIcon = styled.img`
-  /* width: 14px;
-  height: 14px; */
   margin-right: 3px;
 `;
 

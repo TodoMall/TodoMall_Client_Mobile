@@ -24,7 +24,6 @@ const PlanDetail = () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
       .then((res) => {
-        console.log(res.data);
         setPlan(res.data);
         setLoading(false);
         document.title = res.data.title;
@@ -40,7 +39,6 @@ const PlanDetail = () => {
     const temp = data.filter(
       (data) => data.productId === ID && data.status === false
     );
-    console.log(temp);
     if (temp.length > 0) {
       return true;
     } else {

@@ -20,7 +20,6 @@ const TodoBoxHeaderContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   padding: 0 30px;
   padding-top: 20px;
   padding-bottom: 10px;
@@ -30,7 +29,6 @@ const TodoBoxHeaderContainer = styled.div`
 `;
 
 const TodoBoxHeaderName = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -38,7 +36,6 @@ const TodoBoxHeaderName = styled.p`
   display: flex;
   align-items: center;
   text-align: right;
-
   color: #707070;
 `;
 
