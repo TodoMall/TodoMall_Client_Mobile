@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import ClassPreview from "./class_preview.json";
 
 const CardList = ({ classData }) => {
   // console.log(classData);

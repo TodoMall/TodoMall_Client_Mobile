@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loader } from "../global/Loader";
+import { MAX_WIDTH } from "../../constants";
 
 const TodoDetail = () => {
   const id = useParams();
@@ -66,7 +67,7 @@ const TodoDetail = () => {
     return <Loader />;
   }
   return (
-    <>
+    <Wrapper>
       <Header title={`${data.title}`} />
       <Progress
         squared
@@ -120,9 +121,11 @@ const TodoDetail = () => {
           </TodoDetailFinishButton>
         )}
       </TodoDetailBody>
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div``;
 
 const HTMLDiv = styled.div`
   padding-top: 20px;
@@ -131,7 +134,7 @@ const HTMLDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
+  max-width: ${MAX_WIDTH};
   * {
     padding: 10px;
     width: 100%;
@@ -257,6 +260,7 @@ const TodoDetailTask = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  max-width: ${MAX_WIDTH};
   padding: 0 25px;
   gap: 20px;
   margin-top: 20px;
@@ -284,6 +288,7 @@ const TodoDetailTaskSubtitle = styled.p`
 
 const TodoDetailTaskBox = styled.div`
   width: 90vw;
+  max-width: ${MAX_WIDTH};
   height: 88px;
   background: #f7f7f7;
   border-radius: 24px;
@@ -322,9 +327,9 @@ const TodoDetailTaskBoxTitle = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 24px;
   color: #000000;
-  text-align: center;
+  text-align: left;
 `;
 
 const TodoDetailFinishButton = styled.div`
@@ -333,6 +338,7 @@ const TodoDetailFinishButton = styled.div`
   align-items: center;
   gap: 10px;
   width: 90vw;
+  max-width: ${MAX_WIDTH};
   height: 52px;
   margin: 30px 0;
   background: ${(props) => (props.done ? "#6b47fd" : "#EDEDED")};

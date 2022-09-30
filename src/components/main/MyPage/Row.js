@@ -39,7 +39,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-left: 5vw;
+  margin-left: 1rem;
 `;
 
 const RowLeft = styled.div`
