@@ -327,7 +327,7 @@ const TodoDetailTaskBoxTitle = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 16px;
+  line-height: 24px;
   color: #000000;
   text-align: left;
 `;
