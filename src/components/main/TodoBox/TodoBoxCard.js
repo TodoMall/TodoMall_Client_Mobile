@@ -246,7 +246,7 @@ const TodoBoxCardHeaderDDay = styled.div`
   position: absolute;
   height: 24px;
   right: 25px;
-  top: 55px;
+  top: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,7 +270,7 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
   position: absolute;
   height: 24px;
   right: 25px;
-  top: 55px;
+  top: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
