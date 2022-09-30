@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 
 const PlanSecond = ({ data }) => {
-  console.log(data);
   return (
     <Container>
       <Header>
@@ -27,7 +26,6 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;

@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Card from "./Card";
 
 const CardList = ({ classData }) => {
-  // console.log(classData);
-
   return (
     <CardListBox>
       {classData.map((preview) => (

@@ -6,7 +6,6 @@ import styled from "styled-components";
 const TodoBoxCard = ({
   title,
   session,
-  id,
   submit = false,
   end = false,
   check,
@@ -112,7 +111,6 @@ const TodoBoxCard = ({
                 {session.todos.map((todo) => (
                   <TodoBoxCardTodo
                     onClick={() => {
-                      // if (!todo.status)
                       navigate(
                         `/todo/${todo.id}/${session.id}/${session.plan_id}/detail/${todo.status}`
                       );
@@ -145,7 +143,6 @@ const TodoBoxCard = ({
             {session?.todos.map((todo) => (
               <TodoBoxCardTodo
                 onClick={() => {
-                  // if (!todo.status)
                   navigate(
                     `/todo/${todo.id}/${session.id}/${session.plan_id}/detail/${todo.status}`
                   );
@@ -325,7 +322,6 @@ const BlurredCover = styled.div`
 
 const BlurredTime = styled.p`
   padding: 5px;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -341,7 +337,6 @@ const BlurredBox = styled.div`
   height: 24px;
   background: #ffc6c6;
   border-radius: 4px;
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
@@ -370,7 +365,6 @@ const TodoBoxCardTodo = styled.div`
 const TodoBoxCardTodoCheckBox = styled.img``;
 
 const TodoBoxCardTodoText = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -390,7 +384,6 @@ const TodoBoxCardSubmitButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -402,13 +395,11 @@ const TodoBoxCardSubmitButton = styled.div`
 const TodoBoxCardEndButton = styled.div`
   height: 50px;
   background: #f65050;
-  /* border: 1px solid #d10b0b; */
   border-radius: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -418,7 +409,6 @@ const TodoBoxCardEndButton = styled.div`
 `;
 
 const TodoBoxCardEndText = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

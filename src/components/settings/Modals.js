@@ -17,7 +17,6 @@ const Modals = ({
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access");
   const handleLogout = () => {
-    console.log(access_token);
     axios
       .get(
         `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_KAKAO_LOGOUT_REDIRECT_URI}`
@@ -28,23 +27,16 @@ const Modals = ({
         localStorage.removeItem("ID");
         navigate("/");
       })
-      .catch((err) => {
-        // localStorage.removeItem("access");
-        // localStorage.removeItem("refresh");
-        // localStorage.removeItem("ID");
-        // navigate("/");
-      });
+      .catch((err) => {});
   };
 
   const handleDelete = async () => {
-    console.log(access_token);
     await axios
       .post(
         "https://kapi.kakao.com/v1/user/unlink",
         {},
         {
           headers: {
-            // "Content-Type": "application/x-www-form-urlencoded",
             Authorization: `Bearer ${access_token}`,
           },
         }
@@ -59,16 +51,10 @@ const Modals = ({
             status: false,
           })
           .then((res) => {
-            console.log(res);
             navigate("/");
           });
       })
-      .catch((err) => {
-        // localStorage.removeItem("access");
-        // localStorage.removeItem("refresh");
-        // localStorage.removeItem("ID");
-        // navigate("/");
-      });
+      .catch((err) => {});
   };
 
   return (
@@ -147,7 +133,6 @@ const Container = styled.div`
 `;
 
 const ModalTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -157,7 +142,6 @@ const ModalTitle = styled.p`
 `;
 
 const ModalDetail = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -177,7 +161,6 @@ const ModalButton = styled.div`
 `;
 
 const CancelButton = styled.div`
-  /* font-family: "PretendardMedium"; */
   height: 60px;
   border-radius: 30px;
   justify-content: center;

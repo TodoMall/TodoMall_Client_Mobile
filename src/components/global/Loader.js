@@ -1,12 +1,10 @@
 import { Loading } from "@nextui-org/react";
 import styled from "styled-components";
-import BottomNavBar from "./BottomNavBar";
 
 export const Loader = () => {
   return (
     <Container>
       <Loading color="secondary" size="lg" />
-      {/* <BottomNavBar position="TODOBOX" /> */}
     </Container>
   );
 };

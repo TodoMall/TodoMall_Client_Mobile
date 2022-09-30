@@ -16,7 +16,6 @@ const PlanRetry = () => {
       }
     );
 
-    console.log(response);
     navigate("/todobox");
   };
 
@@ -62,7 +61,6 @@ const Text = styled.div`
 `;
 
 const BodyText = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 23px;
@@ -72,7 +70,6 @@ const BodyText = styled.p`
 `;
 
 const BodyDescription = styled.p`
-  /* font-family: "PretendardMedium"; */
   color: #888888;
   font-style: normal;
   font-weight: 700;
@@ -108,7 +105,6 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  /* font-family: "PretendardMedium"; */
   font-size: 17px;
 `;
 

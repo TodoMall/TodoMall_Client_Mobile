@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "../../api/axios";
-import requests from "../../api/request";
+import axios from "axios";
 
 const Login = () => {
   useEffect(() => {
     const access_token = localStorage.getItem("access");
-    console.log(access_token);
     if (access_token) {
       axios
         .get("https://kapi.kakao.com/v1/user/access_token_info", {
@@ -16,7 +14,6 @@ const Login = () => {
           },
         })
         .then((res) => {
-          console.log(res);
           if (res.status == 200) {
             const refresh_token = localStorage.getItem("refresh");
             axios
@@ -59,24 +56,13 @@ const Login = () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
   };
 
-  const getToken = async () => {
-    const request = await axios.get(requests.testLogin, {
-      "Content-Type": "application/x-www-form-urlencoded",
-    });
-    localStorage.setItem("token", request.data.token);
-  };
-
   return (
     <Container>
-      {/* <BackgroundTop src="/images/main_background_2.svg" /> */}
       <BackgroundBottom src="/images/main_background.svg" />
       <Logo src="/images/logo_text.png" />
-      {/* <LoginImage src="/images/login_image.svg" /> */}
       <Footer>
         <LoginButton
           onClick={() => {
-            // getToken();
-            // navigate("/agreement");
             kakaoLogin();
           }}
           src="/images/kakao_login.png"
@@ -102,7 +88,6 @@ const Login = () => {
       >
         c. MyPlanIt
       </CompanyText>
-      {/* <LoginDesign /> */}
     </Container>
   );
 };
@@ -113,13 +98,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #fbfbfb;
-`;
-
-const BackgroundTop = styled.img`
-  position: fixed;
-  width: 100vw;
-  top: 0;
-  z-index: 10000;
 `;
 
 const BackgroundBottom = styled.img`
@@ -134,14 +112,6 @@ const Logo = styled.img`
   position: fixed;
   margin: 0 auto;
   bottom: 75%;
-`;
-
-const LoginImage = styled.img`
-  position: fixed;
-  top: 18%;
-  width: 350px;
-  z-index: 10000;
-  /* margin-bottom: 10vh; */
 `;
 
 const Footer = styled.div`
@@ -161,7 +131,6 @@ const LoginButton = styled.img`
   width: 340px;
   margin-bottom: 16px;
   cursor: pointer;
-  /* border-radius: 15px; */
   position: relative;
 `;
 
@@ -172,17 +141,5 @@ const CompanyText = styled.p`
   text-align: center;
   width: 100vw;
 `;
-
-// const LoginDesign = styled.div`
-//   position: fixed;
-//   width: 130vw;
-//   height: 50vh;
-//   left: auto;
-//   /* top: 575px; */
-//   bottom: -15vh;
-//   background: #f3f1ff;
-//   z-index: 0;
-//   border-radius: 300%;
-// `;
 
 export default Login;

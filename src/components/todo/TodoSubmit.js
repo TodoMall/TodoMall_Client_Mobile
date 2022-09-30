@@ -5,17 +5,14 @@ import Header from "../global/Header";
 import AWS from "aws-sdk";
 import axios from "axios";
 import { Loader } from "../global/Loader";
-import imageCompression from "browser-image-compression";
 
 const TodoSubmit = () => {
   const [image, setImage] = useState("");
-  const [name, setName] = useState(localStorage.getItem("name"));
   const [id, setId] = useState(localStorage.getItem("userid"));
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params);
 
   const region = "ap-northeast-2";
   const bucket = "todomall-assignment-images";
@@ -50,7 +47,6 @@ const TodoSubmit = () => {
 
     const promise = upload.promise();
     promise.then((res) => {
-      console.log(res);
       axios
         .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
           userId: localStorage.getItem("userid"),
@@ -146,7 +142,6 @@ const TodoSubmitBody = styled.div`
 
 const TodoSubmitTitle = styled.p`
   width: 340px;
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -161,7 +156,6 @@ const TodoSubmitSubtitle = styled.p`
   width: 345px;
   padding-top: 20px;
   padding-bottom: 20px;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 200;
   font-size: 16px;
@@ -199,9 +193,7 @@ const TodoSubmitFooter = styled.div`
   height: 100px;
   bottom: 0;
   display: flex;
-  /* align-items: center; */
   justify-content: center;
-  /* border: none; */
 `;
 
 const TodoSubmitButtonActive = styled.div`
@@ -213,7 +205,6 @@ const TodoSubmitButtonActive = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -221,7 +212,6 @@ const TodoSubmitButtonActive = styled.div`
 `;
 
 const TodoSubmitButtonActiveText = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -240,7 +230,6 @@ const TodoSubmitButtonInactive = styled.div`
   justify-content: center;
   background: #ededed;
   color: #929292;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

@@ -16,13 +16,9 @@ const TodoMall = () => {
     const response = await axios(
       `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/preview?type=${current}`
     );
-    console.log(response);
     const data = response.data;
     setClassData(data);
     setLoading(false);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 100);
   };
 
   useEffect(() => {
@@ -45,7 +41,6 @@ const TodoMall = () => {
           />
           <img
             src={`/images/${current}_image.svg`}
-            // src={`/images/todomall_image.svg`}
             style={{ width: "100vw", maxWidth: "450px", marginTop: 20 }}
             alt={`${current}_image`}
           />

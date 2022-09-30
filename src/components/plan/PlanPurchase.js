@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../global/Header";
@@ -17,8 +17,6 @@ const PlanPurchase = () => {
       .then(() => {
         navigate("/todobox");
       });
-
-    // console.log(response);
   };
 
   const [page, setPage] = useState(0);
@@ -99,8 +97,6 @@ const BodyText = styled.p`
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
-  /* or 150% */
-
   color: #222222;
   line-height: 25px;
   margin: 0;
@@ -125,7 +121,6 @@ const BodyDescription = styled.p`
   line-height: 25px;
   color: #888888;
   margin: 0;
-  /* margin-top: 10px; */
   text-align: left;
 `;
 

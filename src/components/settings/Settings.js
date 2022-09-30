@@ -35,14 +35,6 @@ const Settings = () => {
         </Rows>
         <Divider width="100vw" />
         <Rows>
-          {/* <Row
-            onClick={() => {
-              navigate("/announcement");
-            }}
-          >
-            <RowTitle>공지사항</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row> */}
           <a href="http://pf.kakao.com/_xhSxjExj">
             <Row>
               <RowTitle>문의하기</RowTitle>
@@ -106,7 +98,6 @@ const Row = styled.div`
 `;
 
 const RowTitle = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -115,7 +106,6 @@ const RowTitle = styled.p`
 `;
 
 const DetailVersion = styled.p`
-  /* font-family: "PretendardMedium"; */
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

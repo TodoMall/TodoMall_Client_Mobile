@@ -22,13 +22,13 @@ const TodoSubmitSuccess = () => {
         <TodoSubmitSuccessImage src="/images/todo_submit_success.svg" />
       </TodoSubmitSuccessBody>
       <TodoSubmitSuccessFooter>
-        <TodoSUbmitSuccessButton
+        <TodoSubmitSuccessButton
           onClick={() => {
             navigate("/todobox");
           }}
         >
           내 투두함으로 이동
-        </TodoSUbmitSuccessButton>
+        </TodoSubmitSuccessButton>
       </TodoSubmitSuccessFooter>
     </>
   );
@@ -38,7 +38,6 @@ const TodoSubmitSuccessBody = styled.div`
   padding: 0 20px;
   padding-top: 80px;
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   flex-direction: column;
 `;
@@ -55,7 +54,6 @@ const TodoSubmitSuccessTitle = styled.p`
 `;
 
 const TodoSubmitSuccessSubtitle = styled.p`
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -83,7 +81,7 @@ const TodoSubmitSuccessFooter = styled.div`
   justify-content: center;
 `;
 
-const TodoSUbmitSuccessButton = styled.div`
+const TodoSubmitSuccessButton = styled.div`
   width: 327px;
   height: 52px;
   background: #6b47fd;
@@ -92,7 +90,6 @@ const TodoSUbmitSuccessButton = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  /* font-family: "PretendardRegular"; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
