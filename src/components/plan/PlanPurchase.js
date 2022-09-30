@@ -112,7 +112,7 @@ const BodyImage = styled.img`
   width: 80vw;
   max-width: 600px;
   position: fixed;
-  top: 45%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
