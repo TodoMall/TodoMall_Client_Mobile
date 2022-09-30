@@ -35,7 +35,7 @@ const Card = ({
     >
       <DescriptionFor>{subDescription}</DescriptionFor>
       <CardTitle>{title}</CardTitle>
-      <CardDescription>{description.substring(0, CutOff)}...</CardDescription>
+      <CardDescription>{description}</CardDescription>
       <CardIcon src={`${icon}`} />
       <CardTags>{cardSmallTag}</CardTags>
     </CardBox>
