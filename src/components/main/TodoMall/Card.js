@@ -76,6 +76,7 @@ const CardTitle = styled.p`
   font-size: 22px;
   color: #000000;
   margin-bottom: 5px;
+  width: 85%;
 `;
 
 const CardDescription = styled.p`
