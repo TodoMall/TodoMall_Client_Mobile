@@ -3,7 +3,7 @@ import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import CardList from "./CardList";
 import Header from "./Header";
-import { CAREER, SELF } from "./Constant";
+import { CAREER } from "./Constant";
 import axios from "axios";
 import { Loader } from "../../global/Loader";
 
