@@ -15,7 +15,7 @@ const PlanPurchase = () => {
         userId: userId,
       })
       .then(() => {
-        navigate("/todobox");
+        setPage(1);
       });
   };
 
@@ -39,7 +39,7 @@ const PlanPurchase = () => {
           <Footer>
             <Button
               onClick={() => {
-                setPage(1);
+                handlePurchase();
               }}
             >
               확인했어요
@@ -67,7 +67,7 @@ const PlanPurchase = () => {
           <Footer>
             <ButtonNavigate
               onClick={() => {
-                handlePurchase();
+                navigate("/todobox");
               }}
             >
               내 투두함으로 이동
