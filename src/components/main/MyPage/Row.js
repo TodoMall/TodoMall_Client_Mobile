@@ -74,6 +74,7 @@ const Title = styled.p`
   font-weight: 700;
   font-size: 18px;
   color: #000000;
+  word-break: keep-all;
 `;
 
 export default Row;
