@@ -3,23 +3,32 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../global/Header";
 import axios from "axios";
+import { Loader } from "../global/Loader";
 
 const PlanPurchase = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const productId = useParams().planid;
   const userId = localStorage.getItem("userid");
   const handlePurchase = async () => {
-    const response = await axios
+    setLoading(true);
+    await axios
       .post(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
         productId: productId,
         userId: userId,
       })
       .then(() => {
         setPage(1);
+        setLoading(false);
       });
   };
 
   const [page, setPage] = useState(0);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   if (page === 0) {
     return (
       <>
