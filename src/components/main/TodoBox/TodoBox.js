@@ -42,6 +42,7 @@ const TodoBox = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
+      console.log(response);
       setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };

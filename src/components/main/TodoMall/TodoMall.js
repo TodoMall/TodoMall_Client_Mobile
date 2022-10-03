@@ -3,12 +3,10 @@ import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import CardList from "./CardList";
 import Header from "./Header";
-import { CAREER } from "./Constant";
 import axios from "axios";
 import { Loader } from "../../global/Loader";
 
-const TodoMall = () => {
-  const [current, setCurrent] = useState(CAREER);
+const TodoMall = ({ current, setCurrent }) => {
   const [classData, setClassData] = useState([]);
   const [loading, setLoading] = useState(true);
 

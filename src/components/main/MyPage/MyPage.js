@@ -35,6 +35,7 @@ const MyPage = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
       setPlans(response.data.ownProducts.reverse());
+      console.log(response.data);
       setLoading(false);
     };
     fetch();

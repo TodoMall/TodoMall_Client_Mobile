@@ -54,7 +54,8 @@ const TodoSubmit = () => {
           missionImage: res.Location,
           sessionId: params.sessionid,
         })
-        .then(() => {
+        .then((res) => {
+          console.log(res);
           setLoading(false);
           navigate("/todo/success");
         });
