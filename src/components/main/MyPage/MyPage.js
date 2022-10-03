@@ -35,6 +35,7 @@ const MyPage = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
       setPlans(response.data.ownProducts.reverse());
+      console.log(response.data);
       setLoading(false);
     };
     fetch();
@@ -109,6 +110,7 @@ const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50px;
+  object-fit: cover;
 `;
 
 const UserInfo = styled.span`

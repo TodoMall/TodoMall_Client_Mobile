@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Agreement from "./components/login/Agreement";
@@ -20,8 +20,10 @@ import TodoSubmit from "./components/todo/TodoSubmit";
 import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
 import TodoAnswer from "./components/todo/TodoAnswer";
 import Social from "./components/login/Social";
+import { CAREER } from "./components/main/TodoMall/Constant";
 
 function App() {
+  const [current, setCurrent] = useState(CAREER);
   return (
     <Container>
       <Routes>
@@ -34,7 +36,10 @@ function App() {
 
         {/* Main pages Routes */}
         <Route path="/todobox" element={<TodoBox />} />
-        <Route path="/todomall" element={<TodoMall />} />
+        <Route
+          path="/todomall"
+          element={<TodoMall current={current} setCurrent={setCurrent} />}
+        />
         <Route path="/mypage" element={<MyPage />} />
 
         {/* Todo Detail, Assignment Routes */}

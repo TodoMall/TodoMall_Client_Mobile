@@ -109,7 +109,11 @@ const TodoDetail = () => {
               )}
               <TodoDetailTaskBoxTitle>{data.taskTitle}</TodoDetailTaskBoxTitle>
             </TodoDetailTaskBox>
-            <TodoDetailFinishButton done={todo} onClick={handleFinish}>
+
+            <TodoDetailFinishButton
+              done={todo}
+              onClick={todo ? handleFinish : null}
+            >
               투두 완료하기
             </TodoDetailFinishButton>
           </>

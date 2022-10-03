@@ -47,14 +47,16 @@ const TodoSubmit = () => {
 
     const promise = upload.promise();
     promise.then((res) => {
+      console.log(res);
       axios
         .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
           userId: localStorage.getItem("userid"),
           productId: params.productid,
-          missionImage: res.Location,
           sessionId: params.sessionid,
+          missionImage: res.Location,
         })
-        .then(() => {
+        .then((res) => {
+          console.log(res);
           setLoading(false);
           navigate("/todo/success");
         });
