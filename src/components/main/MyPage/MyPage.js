@@ -110,6 +110,7 @@ const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50px;
+  object-fit: cover;
 `;
 
 const UserInfo = styled.span`
