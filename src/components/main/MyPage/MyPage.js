@@ -35,7 +35,7 @@ const MyPage = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
       setPlans(response.data.ownProducts.reverse());
-      setImage(response.data.image);
+      setImage(localStorage.getItem("image"));
       console.log(response.data);
       setLoading(false);
     };
