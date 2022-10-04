@@ -9,7 +9,8 @@ import { Loader } from "../global/Loader";
 const TodoSubmit = () => {
   const [image, setImage] = useState("");
   const [id, setId] = useState(localStorage.getItem("userid"));
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [plan, setPlan] = useState({});
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
@@ -35,7 +36,7 @@ const TodoSubmit = () => {
         Key:
           id +
           "/" +
-          params.productid +
+          params.planid +
           "/" +
           params.todoname +
           "/" +
@@ -51,7 +52,7 @@ const TodoSubmit = () => {
       axios
         .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
           userId: localStorage.getItem("userid"),
-          productId: params.productid,
+          productId: params.planid,
           sessionId: params.sessionid,
           missionImage: res.Location,
         })
@@ -72,7 +73,8 @@ const TodoSubmit = () => {
 
   useEffect(() => {
     preview();
-  });
+    fetch();
+  }, []);
 
   const preview = () => {
     if (!image) return false;
@@ -86,6 +88,22 @@ const TodoSubmit = () => {
     reader.readAsDataURL(image);
   };
 
+  const fetch = async () => {
+    await axios
+      .get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${params.productid}`
+      )
+      .then((res) => {
+        console.log(res);
+        setPlan(
+          res.data.sessions.filter(
+            (session) => session.id === params.sessionid
+          )[0]
+        );
+        setLoading(false);
+      });
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -95,11 +113,9 @@ const TodoSubmit = () => {
       <Header title={params.todoname} />
       <TodoSubmitBody>
         <TodoSubmitTitle>
-          세션 인증을 위해 <span>{params.todoname}</span>를 준비해주세요
+          세션 인증을 위해 <span>{plan.missionTitle}</span>
         </TodoSubmitTitle>
-        <TodoSubmitSubtitle>
-          준비된 환경을 캡처해서 업로드해주세요.
-        </TodoSubmitSubtitle>
+        <TodoSubmitSubtitle>{plan.description}</TodoSubmitSubtitle>
         {image ? (
           <TodoSubmitImage className="img__box" />
         ) : (
@@ -143,7 +159,8 @@ const TodoSubmitBody = styled.div`
 `;
 
 const TodoSubmitTitle = styled.p`
-  width: 340px;
+  width: 90vw;
+  max-width: 450px;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -155,7 +172,8 @@ const TodoSubmitTitle = styled.p`
 `;
 
 const TodoSubmitSubtitle = styled.p`
-  width: 345px;
+  width: 90vw;
+  max-width: 450px;
   padding-top: 20px;
   padding-bottom: 20px;
   font-style: normal;
@@ -177,8 +195,10 @@ const TodoSubmitContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 327px;
-  height: 327px;
+  width: 90vw;
+  max-width: 450px;
+  height: 90vw;
+  max-height: 450px;
   background: #f4f4f4;
   border-radius: 16px;
   z-index: 1;

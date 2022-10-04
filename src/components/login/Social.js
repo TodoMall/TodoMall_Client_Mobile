@@ -27,12 +27,16 @@ const Social = () => {
               },
             })
             .then((res) => {
+              console.log(res);
               localStorage.setItem(
                 "name",
                 res.data.kakao_account.profile.nickname
               );
               localStorage.setItem("email", res.data.kakao_account.email);
-              localStorage.setItem("image", res.data.properties.profile_image);
+              localStorage.setItem(
+                "image",
+                res.data.kakao_account.profile.thumbnail_image_url
+              );
               axios
                 .post(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user`, {
                   email: res.data.kakao_account.email,

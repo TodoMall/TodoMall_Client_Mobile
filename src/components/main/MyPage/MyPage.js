@@ -11,7 +11,7 @@ const MyPage = () => {
   const [plans, setPlans] = useState([]);
   const [name, setName] = useState(localStorage.getItem("name"));
   const [email, setEmail] = useState(localStorage.getItem("email"));
-  const [image, setImage] = useState(localStorage.getItem("image"));
+  const [image, setImage] = useState();
 
   const checkFail = (plan) => {
     let check = false;
@@ -35,6 +35,7 @@ const MyPage = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
       setPlans(response.data.ownProducts.reverse());
+      setImage(response.data.image);
       console.log(response.data);
       setLoading(false);
     };
@@ -50,7 +51,7 @@ const MyPage = () => {
       <Container>
         <Header>
           <UserInfo>
-            <ProfileImage src={image} />
+            <ProfileImage src={image} alt={image} />
             <User>
               <UserName>{name}</UserName>
               <UserEmail>{email}</UserEmail>

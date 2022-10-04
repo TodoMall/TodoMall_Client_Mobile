@@ -98,6 +98,7 @@ const Text = styled.div`
   flex-direction: column;
   margin-left: 5vw;
   margin-bottom: 5vh;
+  position: fixed;
 `;
 
 const BodyText = styled.p`
