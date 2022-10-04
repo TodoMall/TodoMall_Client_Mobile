@@ -73,6 +73,9 @@ const TodoSubmit = () => {
 
   useEffect(() => {
     preview();
+  });
+
+  useEffect(() => {
     fetch();
   }, []);
 
