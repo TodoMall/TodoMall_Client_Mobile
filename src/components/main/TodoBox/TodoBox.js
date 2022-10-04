@@ -27,6 +27,7 @@ const TodoBox = () => {
       });
       if (Object.keys(temp).length > 0) {
         temp_plans.push({
+          productId: plan.productId,
           plan_title: plan.title,
           plan_id: plan.id,
           total_session: plan.sessions.length,

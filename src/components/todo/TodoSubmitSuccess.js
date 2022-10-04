@@ -66,7 +66,7 @@ const TodoSubmitSuccessImage = styled.img`
   position: fixed;
   width: 90vw;
   max-width: 450px;
-  top: 45%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;

@@ -6,6 +6,7 @@ import styled from "styled-components";
 const TodoBoxCard = ({
   title,
   session,
+  productId,
   submit = false,
   end = false,
   check,
@@ -170,7 +171,7 @@ const TodoBoxCard = ({
           <TodoBoxCardSubmitButton
             onClick={() => {
               navigate(
-                `/todo/${session.id}/${session.plan_id}/${session.title}/submit`
+                `/todo/${session.id}/${session.plan_id}/${session.title}/${productId}/submit`
               );
             }}
           >
