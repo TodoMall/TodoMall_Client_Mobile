@@ -42,9 +42,7 @@ const Modals = ({
         }
       )
       .then((res) => {
-        localStorage.removeItem("access");
-        localStorage.removeItem("refresh");
-        localStorage.removeItem("ID");
+        localStorage.clear();
         axios
           .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user`, {
             email: EMAIL,
