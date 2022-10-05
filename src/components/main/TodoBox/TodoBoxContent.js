@@ -19,28 +19,28 @@ const TodoBoxContent = ({ plans, check, setCheck }) => {
     <TodoBoxContentContainer>
       {plans.map((plan) => {
         console.log(plan);
-        if (handleSession(plan).length === 0) {
+        if (Date.now() >= Date.parse(plan.expireDate)) {
           return (
             <TodoBoxCard
               title={plan.plan_title}
               session={plan}
               id={plan.id}
               productId={plan.productId}
-              submit={true}
+              end={true}
               key={plan.id}
               check={check}
               setCheck={setCheck}
             />
           );
         } else {
-          if (Date.now() >= Date.parse(plan.expireDate)) {
+          if (handleSession(plan).length === 0) {
             return (
               <TodoBoxCard
                 title={plan.plan_title}
                 session={plan}
                 id={plan.id}
                 productId={plan.productId}
-                end={true}
+                submit={true}
                 key={plan.id}
                 check={check}
                 setCheck={setCheck}
