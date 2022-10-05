@@ -78,14 +78,14 @@ const TodoAnswerDescription = styled.p`
 `;
 
 const Wrapper = styled.div`
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 `;
 
 const TodoAnswerImage = styled.img`
