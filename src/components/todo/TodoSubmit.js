@@ -103,6 +103,7 @@ const TodoSubmit = () => {
             (session) => session.id === params.sessionid
           )[0]
         );
+
         setLoading(false);
       });
   };
@@ -113,7 +114,7 @@ const TodoSubmit = () => {
 
   return (
     <>
-      <Header title={params.todoname} />
+      <Header title={plan.title} />
       <TodoSubmitBody>
         <TodoSubmitTitle>
           세션 인증을 위해 <span>{plan.missionTitle}</span>
