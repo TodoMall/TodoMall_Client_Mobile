@@ -35,13 +35,13 @@ const PlanPurchase = () => {
         <Header title="" />
         <Body>
           <Text>
-            <BodyText>베타테스트 기간 동안만 한정해</BodyText>
-            <BodyText>투두몰의 모든 플랜을 무료로 드려요</BodyText>
+            <BodyText>베타테스트 기간 동안만 한정해서</BodyText>
+            <BodyText>투두몰의 모든 클래스을 무료로 드려요</BodyText>
             <BodyDescription>
-              현재 무료로 제공되는 클래스들 중 일부가
+              현재 무료로 제공되는 클래스 중 일부는
             </BodyDescription>
             <BodyDescription>
-              베타테스트가 끝난 이후에 유료로 전환될 수 있어요.
+              베타 테스트가 끝난 후에 유료로 전환될 수 있어요.
             </BodyDescription>
           </Text>
           <BodyImage src="/images/purchase_first.svg" />
@@ -64,12 +64,12 @@ const PlanPurchase = () => {
         <Body>
           <Text>
             <BodyText>클래스가 성공적으로 추가됐어요</BodyText>
-            <BodyText>오늘부터 도전이 시작돼요</BodyText>
+            <BodyText>오늘부터 도전이 시작됩니다</BodyText>
             <BodyDescription>
-              데드라인 전에 인증을 꼭 완수해야해요.
+              데드라인 전에 미션 인증을 완수해주세요.
             </BodyDescription>
             <BodyDescription>
-              그러지 않으면 도전중인 클래스가 중단되어요.
+              인증하지 않으면 도전 중인 클래스가 중단됩니다.
             </BodyDescription>
           </Text>
           <BodyImage src="/images/purchase_finish.svg" />
