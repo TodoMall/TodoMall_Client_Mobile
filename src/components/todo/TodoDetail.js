@@ -140,6 +140,7 @@ const HTMLDiv = styled.div`
   * {
     padding: 10px;
     width: 100%;
+    /* word-break: keep-all; */
   }
 
   h1 {
@@ -318,13 +319,15 @@ const TodoDetailTaskBoxToggleOn = styled.div`
 `;
 
 const TodoDetailTaskBoxTitle = styled.p`
-  width: 65%;
+  width: 85%;
+  padding-left: 30px;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: #000000;
   text-align: left;
+  word-break: keep-all;
 `;
 
 const TodoDetailFinishButton = styled.div`
