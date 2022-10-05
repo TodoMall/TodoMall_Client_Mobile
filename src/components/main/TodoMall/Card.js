@@ -77,6 +77,7 @@ const CardDescription = styled.p`
   line-height: 24px;
   color: #888888;
   margin-bottom: 10px;
+  word-break: keep-all;
 `;
 
 const CardTags = styled.div`

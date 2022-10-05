@@ -172,6 +172,7 @@ const TodoSubmitTitle = styled.p`
   span {
     color: #6b47fd;
   }
+  word-break: keep-all;
 `;
 
 const TodoSubmitSubtitle = styled.p`
@@ -180,10 +181,11 @@ const TodoSubmitSubtitle = styled.p`
   padding-top: 20px;
   padding-bottom: 20px;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: #929292;
+  word-break: keep-all;
 `;
 
 const TodoSubmitImage = styled.div`
