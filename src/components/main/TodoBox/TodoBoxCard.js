@@ -16,7 +16,7 @@ const TodoBoxCard = ({
   const [userId, setUserId] = useState(localStorage.getItem("userid"));
   const calculateTimeLeft = () => {
     let expireDate = new Date(session.expireDate);
-    expireDate.setDate(expireDate.getDate() + 1);
+    expireDate.setDate(expireDate.getDate());
     expireDate.setHours(0);
     expireDate.setMinutes(0);
     expireDate.setSeconds(0);
