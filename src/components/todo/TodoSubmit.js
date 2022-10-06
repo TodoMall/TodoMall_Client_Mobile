@@ -11,6 +11,9 @@ const TodoSubmit = () => {
   const [id, setId] = useState(localStorage.getItem("userid"));
   const [loading, setLoading] = useState(true);
   const [plan, setPlan] = useState({});
+  const [title, setTitle] = useState("");
+  const [name, setName] = useState(localStorage.getItem("name"));
+  const [email, setEmail] = useState(localStorage.getItem("email"));
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
@@ -34,13 +37,15 @@ const TodoSubmit = () => {
       params: {
         Bucket: bucket,
         Key:
-          id +
+          title +
           "/" +
-          params.planid +
+          plan.title +
           "/" +
-          params.todoname +
+          `${name}_${email}` +
           "/" +
-          new Date().getTime() +
+          `${new Date().getFullYear()}-${
+            new Date().getMonth() + 1
+          }-${new Date().getDate()}-${new Date().getHours()}:${new Date().getMinutes()}` +
           ".png",
         Body: image,
       },
@@ -95,6 +100,7 @@ const TodoSubmit = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${params.productid}`
       )
       .then((res) => {
+        setTitle(res.data.title);
         setPlan(
           res.data.sessions.filter(
             (session) => session.id === params.sessionid
