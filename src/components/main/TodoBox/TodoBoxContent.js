@@ -18,7 +18,6 @@ const TodoBoxContent = ({ plans, check, setCheck }) => {
   return (
     <TodoBoxContentContainer>
       {plans.map((plan) => {
-        console.log(plan);
         if (Date.now() >= Date.parse(plan.expireDate)) {
           return (
             <TodoBoxCard

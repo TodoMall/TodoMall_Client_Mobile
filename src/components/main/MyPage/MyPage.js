@@ -20,7 +20,12 @@ const MyPage = () => {
         return;
       }
       if (!session.endedDate) {
-        if (new Date(session.expireDate) < new Date()) {
+        let expireDate = new Date(session.expireDate);
+        expireDate.setDate(expireDate.getDate());
+        expireDate.setHours(0);
+        expireDate.setMinutes(0);
+        expireDate.setSeconds(0);
+        if (expireDate < new Date()) {
           check = true;
         }
       }
@@ -36,7 +41,6 @@ const MyPage = () => {
       );
       setPlans(response.data.ownProducts.reverse());
       setImage(localStorage.getItem("image"));
-      console.log(response.data);
       setLoading(false);
     };
     fetch();

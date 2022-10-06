@@ -14,9 +14,9 @@ const TodoBoxCard = ({
 }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState(localStorage.getItem("userid"));
+  let expireDate = new Date(session.expireDate);
   const calculateTimeLeft = () => {
-    let expireDate = new Date(session.expireDate);
-    expireDate.setDate(expireDate.getDate() + 1);
+    expireDate.setDate(expireDate.getDate());
     expireDate.setHours(0);
     expireDate.setMinutes(0);
     expireDate.setSeconds(0);
@@ -65,8 +65,7 @@ const TodoBoxCard = ({
               <TodoBoxCardHeaderDDayTextSubmit>
                 D-
                 {Math.floor(
-                  (Date.parse(new Date(session.expireDate)) -
-                    Date.parse(new Date())) /
+                  (Date.parse(new Date(expireDate)) - Date.parse(new Date())) /
                     86400000
                 )}
               </TodoBoxCardHeaderDDayTextSubmit>
@@ -74,14 +73,12 @@ const TodoBoxCard = ({
           ) : end || curTime.ended ? null : (
             <TodoBoxCardHeaderDDay
               day={Math.floor(
-                (Date.parse(new Date(session.expireDate)) -
-                  Date.parse(new Date())) /
+                (Date.parse(new Date(expireDate)) - Date.parse(new Date())) /
                   86400000
               )}
             >
               {Math.floor(
-                (Date.parse(new Date(session.expireDate)) -
-                  Date.parse(new Date())) /
+                (Date.parse(new Date(expireDate)) - Date.parse(new Date())) /
                   86400000
               ) === 0 && (
                 <TodoBoxCardHeaderTime>
@@ -90,15 +87,13 @@ const TodoBoxCard = ({
               )}
               <TodoBoxCardHeaderDDayText
                 day={Math.floor(
-                  (Date.parse(new Date(session.expireDate)) -
-                    Date.parse(new Date())) /
+                  (Date.parse(new Date(expireDate)) - Date.parse(new Date())) /
                     86400000
                 )}
               >
                 D-
                 {Math.floor(
-                  (Date.parse(new Date(session.expireDate)) -
-                    Date.parse(new Date())) /
+                  (Date.parse(new Date(expireDate)) - Date.parse(new Date())) /
                     86400000
                 )}
               </TodoBoxCardHeaderDDayText>

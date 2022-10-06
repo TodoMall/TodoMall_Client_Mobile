@@ -27,7 +27,6 @@ const Social = () => {
               },
             })
             .then((res) => {
-              console.log(res);
               let image_url =
                 res.data.kakao_account.profile.profile_image_url.replace(
                   "http",

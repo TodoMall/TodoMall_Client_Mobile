@@ -24,7 +24,6 @@ const PlanDetail = () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
       .then((res) => {
-        console.log(res);
         setPlan(res.data);
         setLoading(false);
         document.title = res.data.title;
