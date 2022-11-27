@@ -43,37 +43,39 @@ const TodoBox = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
+      console.log(response.data);
       setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };
     fetch();
   }, [check]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <TodoBoxHeader length={plans?.length > 0 ? plans.length : 0} />
-      <TodoBoxBody>
-        {plans?.length > 0 ? (
-          <TodoBoxContent plans={plans} check={check} setCheck={setCheck} />
-        ) : (
-          <TodoBoxEmptyContainer>
-            <TodoBoxEmptyImage src="/images/TodoBoxEmptyImage.svg" />
-            <TodoBoxEmptyWelcome>
-              아직 도전중인 클래스가 없네요!
-            </TodoBoxEmptyWelcome>
-            <TodoBoxEmptyDescription>
-              클래스를 도전하게 되면
-            </TodoBoxEmptyDescription>
-            <TodoBoxEmptyDescription>
-              여기에서 모아볼 수 있어요.
-            </TodoBoxEmptyDescription>
-          </TodoBoxEmptyContainer>
-        )}
-      </TodoBoxBody>
+      {loading ? (
+        <Loader />
+      ) : (
+        <TodoBoxBody>
+          {plans?.length > 0 ? (
+            <TodoBoxContent plans={plans} check={check} setCheck={setCheck} />
+          ) : (
+            <TodoBoxEmptyContainer>
+              <TodoBoxEmptyImage src="/images/TodoBoxEmptyImage.svg" />
+              <TodoBoxEmptyWelcome>
+                아직 도전중인 클래스가 없네요!
+              </TodoBoxEmptyWelcome>
+              <TodoBoxEmptyDescription>
+                클래스를 도전하게 되면
+              </TodoBoxEmptyDescription>
+              <TodoBoxEmptyDescription>
+                여기에서 모아볼 수 있어요.
+              </TodoBoxEmptyDescription>
+            </TodoBoxEmptyContainer>
+          )}
+        </TodoBoxBody>
+      )}
+
       <BottomNavBar position={"TODOBOX"} />
     </>
   );
