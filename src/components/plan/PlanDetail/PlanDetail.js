@@ -54,33 +54,35 @@ const PlanDetail = () => {
     };
   }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <Container>
       <Header title="" />
-      <Body>
-        <PlanIntro
-          image={plan.image}
-          subtitle={plan.subDescription}
-          title={plan.title}
-          smalltag={plan.informationTags}
-          largetag={plan.summarizedTags}
-          description={plan.description}
-          creator_image={plan.creator.image}
-          creator_name={plan.creatorName}
-          creator_intro={plan.creator.description}
-        />
-        <Divider />
-        <PlanFirst data={plan.expectIts[0]} />
-        <Divider />
-        <PlanSecond data={plan.recommends} />
-        <Divider />
-        <PlanThird data={plan.recommendUsers} />
-        <Divider />
-        <PlanCurriculum data={plan.sessions} />
-      </Body>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Body>
+          <PlanIntro
+            image={plan.image}
+            subtitle={plan.subDescription}
+            title={plan.title}
+            smalltag={plan.informationTags}
+            largetag={plan.summarizedTags}
+            description={plan.description}
+            creator_image={plan.creator.image}
+            creator_name={plan.creatorName}
+            creator_intro={plan.creator.description}
+          />
+          <Divider />
+          <PlanFirst data={plan.expectIts[0]} />
+          <Divider />
+          <PlanSecond data={plan.recommends} />
+          <Divider />
+          <PlanThird data={plan.recommendUsers} />
+          <Divider />
+          <PlanCurriculum data={plan.sessions} />
+        </Body>
+      )}
+
       <Footer>
         {duplicate ? (
           <BuyButton disabled>이미 도전중인 플랜입니다</BuyButton>

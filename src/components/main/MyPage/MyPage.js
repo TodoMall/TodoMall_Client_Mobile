@@ -11,7 +11,7 @@ const MyPage = () => {
   const [plans, setPlans] = useState([]);
   const [name, setName] = useState(localStorage.getItem("name"));
   const [email, setEmail] = useState(localStorage.getItem("email"));
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(localStorage.getItem("image"));
 
   const checkFail = (plan) => {
     let check = false;
@@ -40,15 +40,10 @@ const MyPage = () => {
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
       setPlans(response.data.ownProducts.reverse());
-      setImage(localStorage.getItem("image"));
       setLoading(false);
     };
     fetch();
   }, []);
-
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
     <>
@@ -69,29 +64,35 @@ const MyPage = () => {
           />
         </Header>
 
-        <Body>
-          {plans?.length > 0 ? (
-            plans.map((plan, i) => {
-              return (
-                <Row
-                  key={plan.id}
-                  is_failed={checkFail(plan)}
-                  is_completed={plan.status}
-                  id={plans.length - i}
-                  title={plan.title}
-                  icon={plan.icon}
-                />
-              );
-            })
-          ) : (
-            <NoPlan>
-              <NoPlanImage src="/images/mypage_no_plan.svg" />
-              <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
-              <NoPlanSubtitle>앞으로 클래스를 탐색하고 완료하면</NoPlanSubtitle>
-              <NoPlanSubtitle>여기에 표시되어요.</NoPlanSubtitle>
-            </NoPlan>
-          )}
-        </Body>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Body>
+            {plans?.length > 0 ? (
+              plans.map((plan, i) => {
+                return (
+                  <Row
+                    key={plan.id}
+                    is_failed={checkFail(plan)}
+                    is_completed={plan.status}
+                    id={plans.length - i}
+                    title={plan.title}
+                    icon={plan.icon}
+                  />
+                );
+              })
+            ) : (
+              <NoPlan>
+                <NoPlanImage src="/images/mypage_no_plan.svg" />
+                <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
+                <NoPlanSubtitle>
+                  앞으로 클래스를 탐색하고 완료하면
+                </NoPlanSubtitle>
+                <NoPlanSubtitle>여기에 표시되어요.</NoPlanSubtitle>
+              </NoPlan>
+            )}
+          </Body>
+        )}
       </Container>
       <BottomNavBar position={"MYPAGE"} />
     </>

@@ -23,28 +23,29 @@ const TodoMall = ({ current, setCurrent }) => {
     getUserInfo();
   }, [current]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   return (
     <>
       <Header current={current} setCurrent={setCurrent} />
-      <Body>
-        <BodyImages>
-          <img
-            src={`/images/${current}_title.svg`}
-            style={{ width: "280px", height: 50, marginTop: 25 }}
-            alt={`${current}_title`}
-          />
-          <img
-            src={`/images/${current}_image.svg`}
-            style={{ width: "100vw", maxWidth: "450px", marginTop: 20 }}
-            alt={`${current}_image`}
-          />
-        </BodyImages>
-        {classData.length === 0 ? <></> : <CardList classData={classData} />}
-      </Body>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Body>
+          <BodyImages>
+            <img
+              src={`/images/${current}_title.svg`}
+              style={{ width: "280px", height: 50, marginTop: 25 }}
+              alt={`${current}_title`}
+            />
+            <img
+              src={`/images/${current}_image.svg`}
+              style={{ width: "100vw", maxWidth: "450px", marginTop: 20 }}
+              alt={`${current}_image`}
+            />
+          </BodyImages>
+          {classData.length === 0 ? <></> : <CardList classData={classData} />}
+        </Body>
+      )}
+
       <BottomNavBar position={"TODOMALL"} />
     </>
   );
