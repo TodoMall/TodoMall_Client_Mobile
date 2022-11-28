@@ -52,10 +52,10 @@ const TodoMall = ({ current, setCurrent }) => {
           onChange={(updatedTab) => {
             setCurrent(updatedTab.label);
           }}
-          blacklistedElement={{
-            identifierType: "id",
-            identifierName: "category-img",
-          }}
+          // blacklistedElement={{
+          //   identifierType: "id",
+          //   identifierName: "category-img",
+          // }}
         >
           <Tab label="career" key={0}>
             <Body>
