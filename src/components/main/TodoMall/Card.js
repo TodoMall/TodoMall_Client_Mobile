@@ -3,7 +3,14 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { IconDict } from "../../global/Icon";
 
-const Card = ({ title, description, smallTags, subDescription, id, icon }) => {
+const Card = ({
+  title,
+  description,
+  smallTags,
+  subDescription,
+  dataid,
+  icon,
+}) => {
   const navigate = useNavigate();
 
   const cardSmallTag = smallTags.map((tag, index) => {
@@ -22,7 +29,7 @@ const Card = ({ title, description, smallTags, subDescription, id, icon }) => {
   return (
     <CardBox
       onClick={() => {
-        navigate(`/detail/${id}`);
+        navigate(`/detail/${dataid}`);
       }}
     >
       <DescriptionFor>{subDescription}</DescriptionFor>

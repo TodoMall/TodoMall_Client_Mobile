@@ -12,9 +12,10 @@ const CardList = ({ classData }) => {
           smallTags={preview.informationTags}
           largeTags={preview.summarizedTags}
           subDescription={preview.subDescription}
-          id={preview.id}
+          dataid={preview.id}
           icon={preview.icon}
           key={preview.id}
+          id="category-img"
         />
       ))}
     </CardListBox>
