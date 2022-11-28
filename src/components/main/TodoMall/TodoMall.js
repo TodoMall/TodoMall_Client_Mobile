@@ -52,6 +52,7 @@ const TodoMall = ({ current, setCurrent }) => {
           onChange={(updatedTab) => {
             setCurrent(updatedTab.label);
           }}
+          tabBarCSS={`display: none`}
           // blacklistedElement={{
           //   identifierType: "id",
           //   identifierName: "category-img",
