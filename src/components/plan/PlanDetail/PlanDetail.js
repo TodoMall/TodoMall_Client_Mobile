@@ -93,7 +93,7 @@ const PlanDetail = () => {
             }}
             id="download_button"
           >
-            무료로 도전하기
+            클래스 도전하기
           </BuyButton>
         )}
       </Footer>
