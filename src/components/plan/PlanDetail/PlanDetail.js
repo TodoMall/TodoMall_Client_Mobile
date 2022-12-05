@@ -85,11 +85,11 @@ const PlanDetail = () => {
 
       <Footer>
         {duplicate ? (
-          <BuyButton disabled>이미 도전중인 플랜입니다</BuyButton>
+          <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
         ) : (
           <BuyButton
             onClick={() => {
-              navigate(`/purchase/${plan.id}/`);
+              navigate(`/payment/${plan.id}/`);
             }}
             id="download_button"
           >
