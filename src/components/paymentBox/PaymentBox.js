@@ -1,27 +1,22 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navigator from "../global/Header";
 
 const PaymentBox = () => {
+  const navigate = useNavigate();
   const [name] = useState(localStorage.getItem("name"));
   const [email] = useState(localStorage.getItem("email"));
   const [image] = useState(localStorage.getItem("image"));
   const [paymentMethod, setPaymentMethod] = useState(null); // TODO: to be renamed
-  const handleSelectPaymentMethod = ({ target: { value } }) => {
-    // TODO: to be renamed
-    setPaymentMethod(value);
-  };
-
-  console.log("paymentMethod : ", !!paymentMethod, paymentMethod);
-  const DemoAmount = 10000;
+  const [planInfo, setPlanInfo] = useState();
+  const { planid: ID } = useParams();
+  const [DemoAmount] = useState(10000); // TODO: to be replace
   let commaSeparatedAmount = DemoAmount.toString().replace(
     /\B(?=(\d{3})+(?!\d))/g,
     ","
   );
-  const [planInfo, setPlanInfo] = useState();
-  const ID = useParams().planid;
   const fetch = useCallback(async () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
@@ -31,6 +26,15 @@ const PaymentBox = () => {
   useEffect(() => {
     fetch();
   }, [fetch]);
+
+  const handleSelectPaymentMethod = ({ target: { value } }) => {
+    // TODO: to be renamed
+    setPaymentMethod(value);
+  };
+
+  const handleMovePage = (link) => {
+    navigate(link);
+  };
 
   return (
     <Container>
@@ -112,10 +116,94 @@ const PaymentBox = () => {
       <PaymentButton disabled={!paymentMethod}>
         {commaSeparatedAmount}원 결제하기
       </PaymentButton>
+
+      <TermsOfService>
+        <Policy onClick={() => alert("환불안내 정책 열심히 만드는중!!")}>
+          <p>환불 안내</p>
+          <PolicyPageButton>보기</PolicyPageButton>
+        </Policy>
+        <Policy onClick={() => navigate("/service")}>
+          <p>이용 약관</p>
+          <PolicyPageButton>보기</PolicyPageButton>
+        </Policy>
+        <Policy onClick={() => navigate("/personal")}>
+          <p>개인정보처리방침</p>
+          <PolicyPageButton>보기</PolicyPageButton>
+        </Policy>
+      </TermsOfService>
+
+      <Footer>
+        <img src="/images/DarkLogo.png" />
+        <FooterDivider />
+        <CompanyInfo>
+          <p>마이플랜잇</p>
+          <p>사업자등록번호 : 274-12-01980 | 대표 : 최현권</p>
+          <p>주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호</p>
+          <p>메일 : myplanit.unicorn@gmail.com</p>
+          <Copyright>Copyright ⓒ 2022 myplanit. All rights reserved.</Copyright>
+        </CompanyInfo>
+      </Footer>
     </Container>
   );
 };
 export default PaymentBox;
+const Copyright = styled.p`
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: left;
+`;
+const CompanyInfo = styled.div`
+  color: #ffffff;
+  p {
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin: 2px 0;
+  }
+`;
+
+const Footer = styled.div`
+  width: 375px;
+  height: 212px;
+  padding: 24px;
+  background: #444444;
+`;
+const FooterDivider = styled.div`
+  // todo : to be moved Footer component
+  width: 100vm;
+  margin: 16px 0;
+  border: 1px solid #888888;
+  margin: 16px 0;
+`;
+const TermsOfService = styled.div`
+  width: 100%;
+  margin: 16px 0;
+`;
+
+const PolicyPageButton = styled.a`
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #888888;
+  text-decoration: underline;
+`;
+
+const Policy = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 44px;
+  width: 375px;
+`;
 
 const PaymentIcon = styled.img`
   margin-bottom: 8px;
