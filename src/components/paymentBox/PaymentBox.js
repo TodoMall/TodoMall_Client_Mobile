@@ -5,10 +5,16 @@ import styled from "styled-components";
 import Navigator from "../global/Header";
 
 const PaymentBox = () => {
-  // TODO: custom hook 으로
   const [name] = useState(localStorage.getItem("name"));
   const [email] = useState(localStorage.getItem("email"));
   const [image] = useState(localStorage.getItem("image"));
+  const [paymentMethod, setPaymentMethod] = useState(null); // TODO: to be renamed
+  const handleSelectPaymentMethod = ({ target: { value } }) => {
+    // TODO: to be renamed
+    setPaymentMethod(value);
+  };
+
+  console.log("paymentMethod : ", !!paymentMethod, paymentMethod);
   const DemoAmount = 10000;
   let commaSeparatedAmount = DemoAmount.toString().replace(
     /\B(?=(\d{3})+(?!\d))/g,
@@ -76,13 +82,77 @@ const PaymentBox = () => {
       </Box>
       <Box>
         <Label>결제 수단</Label>
+        <PaymentIconBox>
+          {/* to be simple usgin iterator function */}
+          {/* div영역을 누르면 잘작동하지만 , image 영역을 누르면 value에 undefined가 담긴다 */}
+          <PaymentSelectButton value="card" onClick={handleSelectPaymentMethod}>
+            <PaymentIcon src="/images/payment/accountTransferIcon.svg" />
+            카드결제
+          </PaymentSelectButton>
+          <PaymentSelectButton
+            value="account"
+            onClick={handleSelectPaymentMethod}
+          >
+            <PaymentIcon src="/images/payment/cardPayIcon.svg" />
+            실시간 계좌이체
+          </PaymentSelectButton>
+          <PaymentSelectButton value="toss" onClick={handleSelectPaymentMethod}>
+            <PaymentIcon src="/images/payment/tossPayIcon.svg" />
+            토스페이
+          </PaymentSelectButton>
+          <PaymentSelectButton
+            value="kakao"
+            onClick={handleSelectPaymentMethod}
+          >
+            <PaymentIcon src="/images/payment/kakaoPayIcon.svg" />
+            카카오페이
+          </PaymentSelectButton>
+        </PaymentIconBox>
       </Box>
-
-      <PaymentButton>{commaSeparatedAmount}원 결제하기</PaymentButton>
+      <PaymentButton disabled={!paymentMethod}>
+        {commaSeparatedAmount}원 결제하기
+      </PaymentButton>
     </Container>
   );
 };
 export default PaymentBox;
+
+const PaymentIcon = styled.img`
+  margin-bottom: 8px;
+`;
+
+const PaymentIconBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const PaymentSelectButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #ededed;
+  flex: 1 0 33%;
+  margin: 4px 3px;
+  height: 100px;
+  &:focus {
+    border: 2px solid #6b47fd;
+    box-shadow: 0px 0px 2px red;
+  }
+`;
+
+const Box = styled.div`
+  width: 100%;
+  margin: 6px 0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid black; // to be removed
+`;
 
 const PaymentButton = styled.div`
   background: ${(props) => (props.disabled ? "#A9A9A9" : "#6b47fd")};
@@ -143,19 +213,12 @@ const BorderText = styled.p`
   letter-spacing: -0.01em;
   color: #222222;
 `;
-
-const Box = styled.div`
-  width: 100%;
-  margin: 10px 0;
-  padding: 16px 20px;
-  border-radius: 8px;
-  border: 1px solid black; // to be removed
-`;
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 0 16px;
   background-color: #f6f8ff;
 `;
 const Label = styled.div`
@@ -170,15 +233,15 @@ const Label = styled.div`
 `;
 const Header = styled.div`
   border: 1px solid black; // to be removed
+  width: 100%;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  background: #ffffff;
   display: flex;
   align-self: flex-start;
   justify-content: space-between;
   flex-direction: column;
   margin-top: 66px;
-  /* margin: 66px 16px 16px 12px; */
-  padding: 15px 20px 10px 25px;
-  background-color: #fbfbfb;
-  width: 100vw;
   border-radius: 8px;
 `;
 const UserInfo = styled.span`
