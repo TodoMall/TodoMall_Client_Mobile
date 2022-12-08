@@ -70,10 +70,8 @@ const PaymentBox = () => {
 
       <Box>
         <Label>결제 금액</Label>
-        <div>
-          <TotalAmountText>총 결제 금액</TotalAmountText>
-          <TotalAmount>{commaSeparatedAmount}원</TotalAmount>
-        </div>
+        <TotalAmountText>총 결제 금액</TotalAmountText>
+        <TotalAmount>{commaSeparatedAmount}원</TotalAmount>
         <Divider />
         <AmountInfo>
           <Description>상품 금액 </Description>
