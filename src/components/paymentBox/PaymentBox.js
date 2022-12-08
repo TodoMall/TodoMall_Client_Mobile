@@ -3,37 +3,34 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../global/Layout";
+import { PaymentWayData } from "../../constants/payment";
 
 const PaymentBox = () => {
   const navigate = useNavigate();
   const [name] = useState(localStorage.getItem("name"));
   const [email] = useState(localStorage.getItem("email"));
   const [image] = useState(localStorage.getItem("image"));
-  const [paymentMethod, setPaymentMethod] = useState(null); // TODO: to be renamed
+  const [paymentMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
   const [DemoAmount] = useState(10000); // TODO: to be replace
+
   let commaSeparatedAmount = DemoAmount.toString().replace(
     /\B(?=(\d{3})+(?!\d))/g,
     ","
   );
-  const fetch = useCallback(async () => {
+  const fetchProductByPlanId = useCallback(async () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
       .then(({ data }) => setPlanInfo(data));
   }, [ID]);
 
   useEffect(() => {
-    fetch();
-  }, [fetch]);
+    fetchProductByPlanId();
+  }, [fetchProductByPlanId]);
 
   const handleSelectPaymentMethod = ({ target: { value } }) => {
-    // TODO: to be renamed
     setPaymentMethod(value);
-  };
-
-  const handleMovePage = (link) => {
-    navigate(link);
   };
 
   return (
@@ -84,38 +81,22 @@ const PaymentBox = () => {
         </Box>
         <Box>
           <Label>결제 수단</Label>
-          <PaymentIconBox>
-            {/* to be simple usgin iterator function */}
-            {/* div영역을 누르면 잘작동하지만 , image 영역을 누르면 value에 undefined가 담긴다 */}
-            <PaymentSelectButton
-              value="card"
-              onClick={handleSelectPaymentMethod}
-            >
-              <PaymentIcon src="/images/payment/accountTransferIcon.svg" />
-              카드결제
-            </PaymentSelectButton>
-            <PaymentSelectButton
-              value="account"
-              onClick={handleSelectPaymentMethod}
-            >
-              <PaymentIcon src="/images/payment/cardPayIcon.svg" />
-              실시간 계좌이체
-            </PaymentSelectButton>
-            <PaymentSelectButton
-              value="toss"
-              onClick={handleSelectPaymentMethod}
-            >
-              <PaymentIcon src="/images/payment/tossPayIcon.svg" />
-              토스페이
-            </PaymentSelectButton>
-            <PaymentSelectButton
-              value="kakao"
-              onClick={handleSelectPaymentMethod}
-            >
-              <PaymentIcon src="/images/payment/kakaoPayIcon.svg" />
-              카카오페이
-            </PaymentSelectButton>
-          </PaymentIconBox>
+          {/* to be simple usgin iterator function */}
+          {/* div영역을 누르면 잘작동하지만 , image 영역을 누르면 value에 undefined가 담긴다 */}
+          <PaymentIconList>
+            {PaymentWayData.map(({ id, value, iconPath, description }) => {
+              return (
+                <PaymentIconItem
+                  key={id}
+                  value={value}
+                  onClick={handleSelectPaymentMethod}
+                >
+                  <PaymentIcon src={iconPath} alt="error" />
+                  {description}
+                </PaymentIconItem>
+              );
+            })}
+          </PaymentIconList>
         </Box>
         <PaymentButton disabled={!paymentMethod}>
           {commaSeparatedAmount}원 결제하기
@@ -169,12 +150,12 @@ const PaymentIcon = styled.img`
   margin-bottom: 8px;
 `;
 
-const PaymentIconBox = styled.div`
+const PaymentIconList = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-const PaymentSelectButton = styled.button`
+const PaymentIconItem = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,11 +174,11 @@ const PaymentSelectButton = styled.button`
 `;
 
 const Box = styled.div`
-  width: 100%;
-  margin: 6px 0;
-  padding: 16px 20px;
-  border-radius: 8px;
+  width: 95%;
   box-sizing: border-box;
+  padding: 16px 20px;
+  margin: 6px 0;
+  border-radius: 8px;
   background: #ffffff;
   border: 1px solid black; // to be removed
 `;
@@ -266,7 +247,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 16px;
   background-color: #f6f8ff;
 `;
 const Label = styled.div`
@@ -281,12 +261,11 @@ const Label = styled.div`
 `;
 const UserInfoBox = styled.div`
   border: 1px solid black; // to be removed
-  width: 100%;
+  width: 95%;
   padding: 16px 20px;
   box-sizing: border-box;
   background: #ffffff;
   display: flex;
-  align-self: flex-start;
   justify-content: space-between;
   flex-direction: column;
   margin-top: 66px;
