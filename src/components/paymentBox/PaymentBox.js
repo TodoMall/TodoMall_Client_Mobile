@@ -1,28 +1,29 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
+
 import Layout from "../global/Layout";
-import { PaymentWayData } from "../../constants/payment";
 import UserInfoBox from "./UserInfoBox";
 import Terms from "./Terms";
 
+import { PaymentWayData } from "../../constants/payment";
+import { API_ENDPOINT } from "../../constants/Api";
+
 const PaymentBox = () => {
-  const [userName] = useState(localStorage.getItem("name"));
-  const [userEmail] = useState(localStorage.getItem("email"));
-  const [userImage] = useState(localStorage.getItem("image"));
+  const { name, email, image } = { ...localStorage };
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
-  const [DemoAmount] = useState(10000); // TODO: to be replace
+  const demoPrice = 10000; // TODO: to be replace real data
 
-  let commaSeparatedAmount = DemoAmount.toString().replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ","
-  );
+  let commaSeparatedAmount = demoPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   const fetchProductByPlanId = useCallback(async () => {
     await axios
-      .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
+      .get(`${API_ENDPOINT}products?id=${ID}`)
       .then(({ data }) => setPlanInfo(data));
   }, [ID]);
 
@@ -38,7 +39,7 @@ const PaymentBox = () => {
     <Container>
       <Layout breadCrumbs="결제하기">
         <UserInfoWrapper>
-          <UserInfoBox image={userImage} name={userName} email={userEmail} />
+          <UserInfoBox image={image} name={name} email={email} />
         </UserInfoWrapper>
 
         <Box>
