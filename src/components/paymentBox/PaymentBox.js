@@ -4,12 +4,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../global/Layout";
 import { PaymentWayData } from "../../constants/payment";
+import UserInfoBox from "./UserInfoBox";
 
 const PaymentBox = () => {
   const navigate = useNavigate();
-  const [name] = useState(localStorage.getItem("name"));
-  const [email] = useState(localStorage.getItem("email"));
-  const [image] = useState(localStorage.getItem("image"));
+  const [userName] = useState(localStorage.getItem("name"));
+  const [userEmail] = useState(localStorage.getItem("email"));
+  const [userImage] = useState(localStorage.getItem("image"));
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
@@ -36,18 +37,9 @@ const PaymentBox = () => {
   return (
     <Container>
       <Layout breadCrumbs="결제하기">
-        <UserInfoBox>
-          <Label>도전자</Label>
-          <UserInfo>
-            <ProfileImage src={image} alt={image} />
-            <User>
-              <Description>이름 </Description>
-              <BorderText>{name}</BorderText>
-              <Description>이메일 </Description>
-              <BorderText>{email}</BorderText>
-            </User>
-          </UserInfo>
-        </UserInfoBox>
+        <UserInfoWrapper>
+          <UserInfoBox image={userImage} name={userName} email={userEmail} />
+        </UserInfoWrapper>
 
         <Box>
           <Label>도전 클래스</Label>
@@ -259,7 +251,7 @@ const Label = styled.div`
   letter-spacing: -0.01em;
   display: inline-block;
 `;
-const UserInfoBox = styled.div`
+const UserInfoWrapper = styled.div`
   border: 1px solid black; // to be removed
   width: 95%;
   padding: 16px 20px;
@@ -270,18 +262,4 @@ const UserInfoBox = styled.div`
   flex-direction: column;
   margin-top: 66px;
   border-radius: 8px;
-`;
-const UserInfo = styled.span`
-  display: flex;
-  align-items: center;
-`;
-
-const User = styled.div`
-  margin-left: 15px;
-`;
-const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  object-fit: cover;
 `;
