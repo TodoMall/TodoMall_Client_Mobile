@@ -2,8 +2,7 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Footer from "../global/Footer";
-import Navigator from "../global/Header";
+import Layout from "../global/Layout";
 
 const PaymentBox = () => {
   const navigate = useNavigate();
@@ -39,99 +38,104 @@ const PaymentBox = () => {
 
   return (
     <Container>
-      <Navigator title="결제하기" />
-      <Header>
-        <Label>도전자</Label>
-        <UserInfo>
-          <ProfileImage src={image} alt={image} />
-          <User>
-            <Description>이름 </Description>
-            <BorderText>{name}</BorderText>
-            <Description>이메일 </Description>
-            <BorderText>{email}</BorderText>
-          </User>
-        </UserInfo>
-      </Header>
+      <Layout breadCrumbs="결제하기">
+        <UserInfoBox>
+          <Label>도전자</Label>
+          <UserInfo>
+            <ProfileImage src={image} alt={image} />
+            <User>
+              <Description>이름 </Description>
+              <BorderText>{name}</BorderText>
+              <Description>이메일 </Description>
+              <BorderText>{email}</BorderText>
+            </User>
+          </UserInfo>
+        </UserInfoBox>
 
-      <Box>
-        <Label>도전 클래스</Label>
-        <Description>클래스명</Description>
-        <p>{planInfo?.title}</p>
-        <Divider />
-        <Description>커리큘럼</Description>
-        {planInfo?.sessions.map((session) => {
-          return (
-            <div key={session.orderBy}>
-              <BorderText>{session.title}</BorderText>
-              {/* <DDay>D-{RemainingDay}</DDay> */}
-            </div>
-          );
-        })}
-      </Box>
+        <Box>
+          <Label>도전 클래스</Label>
+          <Description>클래스명</Description>
+          <p>{planInfo?.title}</p>
+          <Divider />
+          <Description>커리큘럼</Description>
+          {planInfo?.sessions.map((session) => {
+            return (
+              <div key={session.orderBy}>
+                <BorderText>{session.title}</BorderText>
+                {/* <DDay>D-{RemainingDay}</DDay> */}
+              </div>
+            );
+          })}
+        </Box>
 
-      <Box>
-        <Label>결제 금액</Label>
-        <TotalAmountText>총 결제 금액</TotalAmountText>
-        <TotalAmount>{commaSeparatedAmount}원</TotalAmount>
-        <Divider />
-        <AmountInfo>
-          <Description>상품 금액 </Description>
-          <BorderText>{commaSeparatedAmount}원</BorderText>
-        </AmountInfo>
-        <AmountInfo>
-          <Description>상품 할인 금액 </Description>
-          <BorderText>-0원</BorderText>
-        </AmountInfo>
-      </Box>
-      <Box>
-        <Label>결제 수단</Label>
-        <PaymentIconBox>
-          {/* to be simple usgin iterator function */}
-          {/* div영역을 누르면 잘작동하지만 , image 영역을 누르면 value에 undefined가 담긴다 */}
-          <PaymentSelectButton value="card" onClick={handleSelectPaymentMethod}>
-            <PaymentIcon src="/images/payment/accountTransferIcon.svg" />
-            카드결제
-          </PaymentSelectButton>
-          <PaymentSelectButton
-            value="account"
-            onClick={handleSelectPaymentMethod}
-          >
-            <PaymentIcon src="/images/payment/cardPayIcon.svg" />
-            실시간 계좌이체
-          </PaymentSelectButton>
-          <PaymentSelectButton value="toss" onClick={handleSelectPaymentMethod}>
-            <PaymentIcon src="/images/payment/tossPayIcon.svg" />
-            토스페이
-          </PaymentSelectButton>
-          <PaymentSelectButton
-            value="kakao"
-            onClick={handleSelectPaymentMethod}
-          >
-            <PaymentIcon src="/images/payment/kakaoPayIcon.svg" />
-            카카오페이
-          </PaymentSelectButton>
-        </PaymentIconBox>
-      </Box>
-      <PaymentButton disabled={!paymentMethod}>
-        {commaSeparatedAmount}원 결제하기
-      </PaymentButton>
+        <Box>
+          <Label>결제 금액</Label>
+          <TotalAmountText>총 결제 금액</TotalAmountText>
+          <TotalAmount>{commaSeparatedAmount}원</TotalAmount>
+          <Divider />
+          <AmountInfo>
+            <Description>상품 금액 </Description>
+            <BorderText>{commaSeparatedAmount}원</BorderText>
+          </AmountInfo>
+          <AmountInfo>
+            <Description>상품 할인 금액 </Description>
+            <BorderText>-0원</BorderText>
+          </AmountInfo>
+        </Box>
+        <Box>
+          <Label>결제 수단</Label>
+          <PaymentIconBox>
+            {/* to be simple usgin iterator function */}
+            {/* div영역을 누르면 잘작동하지만 , image 영역을 누르면 value에 undefined가 담긴다 */}
+            <PaymentSelectButton
+              value="card"
+              onClick={handleSelectPaymentMethod}
+            >
+              <PaymentIcon src="/images/payment/accountTransferIcon.svg" />
+              카드결제
+            </PaymentSelectButton>
+            <PaymentSelectButton
+              value="account"
+              onClick={handleSelectPaymentMethod}
+            >
+              <PaymentIcon src="/images/payment/cardPayIcon.svg" />
+              실시간 계좌이체
+            </PaymentSelectButton>
+            <PaymentSelectButton
+              value="toss"
+              onClick={handleSelectPaymentMethod}
+            >
+              <PaymentIcon src="/images/payment/tossPayIcon.svg" />
+              토스페이
+            </PaymentSelectButton>
+            <PaymentSelectButton
+              value="kakao"
+              onClick={handleSelectPaymentMethod}
+            >
+              <PaymentIcon src="/images/payment/kakaoPayIcon.svg" />
+              카카오페이
+            </PaymentSelectButton>
+          </PaymentIconBox>
+        </Box>
+        <PaymentButton disabled={!paymentMethod}>
+          {commaSeparatedAmount}원 결제하기
+        </PaymentButton>
 
-      <TermsOfService>
-        <Policy onClick={() => alert("환불안내 정책 열심히 만드는중!!")}>
-          <p>환불 안내</p>
-          <PolicyPageButton>보기</PolicyPageButton>
-        </Policy>
-        <Policy onClick={() => navigate("/service")}>
-          <p>이용 약관</p>
-          <PolicyPageButton>보기</PolicyPageButton>
-        </Policy>
-        <Policy onClick={() => navigate("/personal")}>
-          <p>개인정보처리방침</p>
-          <PolicyPageButton>보기</PolicyPageButton>
-        </Policy>
-      </TermsOfService>
-
-      <Footer />
+        <TermsOfService>
+          <Policy onClick={() => alert("환불안내 정책 열심히 만드는중!!")}>
+            <p>환불 안내</p>
+            <PolicyPageButton>보기</PolicyPageButton>
+          </Policy>
+          <Policy onClick={() => navigate("/service")}>
+            <p>이용 약관</p>
+            <PolicyPageButton>보기</PolicyPageButton>
+          </Policy>
+          <Policy onClick={() => navigate("/personal")}>
+            <p>개인정보처리방침</p>
+            <PolicyPageButton>보기</PolicyPageButton>
+          </Policy>
+        </TermsOfService>
+      </Layout>
     </Container>
   );
 };
@@ -275,7 +279,7 @@ const Label = styled.div`
   letter-spacing: -0.01em;
   display: inline-block;
 `;
-const Header = styled.div`
+const UserInfoBox = styled.div`
   border: 1px solid black; // to be removed
   width: 100%;
   padding: 16px 20px;
