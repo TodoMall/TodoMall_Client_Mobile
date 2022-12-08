@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../global/Layout";
 import { PaymentWayData } from "../../constants/payment";
 import UserInfoBox from "./UserInfoBox";
+import Terms from "./Terms";
 
 const PaymentBox = () => {
-  const navigate = useNavigate();
   const [userName] = useState(localStorage.getItem("name"));
   const [userEmail] = useState(localStorage.getItem("email"));
   const [userImage] = useState(localStorage.getItem("image"));
@@ -94,49 +94,12 @@ const PaymentBox = () => {
           {commaSeparatedAmount}원 결제하기
         </PaymentButton>
 
-        <TermsOfService>
-          <Policy onClick={() => alert("환불안내 정책 열심히 만드는중!!")}>
-            <p>환불 안내</p>
-            <PolicyPageButton>보기</PolicyPageButton>
-          </Policy>
-          <Policy onClick={() => navigate("/service")}>
-            <p>이용 약관</p>
-            <PolicyPageButton>보기</PolicyPageButton>
-          </Policy>
-          <Policy onClick={() => navigate("/personal")}>
-            <p>개인정보처리방침</p>
-            <PolicyPageButton>보기</PolicyPageButton>
-          </Policy>
-        </TermsOfService>
+        <Terms />
       </Layout>
     </Container>
   );
 };
 export default PaymentBox;
-
-const TermsOfService = styled.div`
-  width: 100%;
-  margin: 16px 0;
-`;
-
-const PolicyPageButton = styled.a`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: #888888;
-  text-decoration: underline;
-`;
-
-const Policy = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 44px;
-  width: 375px;
-`;
 
 const PaymentIcon = styled.img`
   margin-bottom: 8px;
