@@ -2,6 +2,7 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Footer from "../global/Footer";
 import Navigator from "../global/Header";
 
 const PaymentBox = () => {
@@ -130,55 +131,12 @@ const PaymentBox = () => {
         </Policy>
       </TermsOfService>
 
-      <Footer>
-        <img src="/images/DarkLogo.png" />
-        <FooterDivider />
-        <CompanyInfo>
-          <p>마이플랜잇</p>
-          <p>사업자등록번호 : 274-12-01980 | 대표 : 최현권</p>
-          <p>주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호</p>
-          <p>메일 : myplanit.unicorn@gmail.com</p>
-          <Copyright>Copyright ⓒ 2022 myplanit. All rights reserved.</Copyright>
-        </CompanyInfo>
-      </Footer>
+      <Footer />
     </Container>
   );
 };
 export default PaymentBox;
-const Copyright = styled.p`
-  font-family: Pretendard;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  text-align: left;
-`;
-const CompanyInfo = styled.div`
-  color: #ffffff;
-  p {
-    font-family: Pretendard;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    letter-spacing: -0.01em;
-    text-align: left;
-    margin: 2px 0;
-  }
-`;
 
-const Footer = styled.div`
-  width: 375px;
-  height: 212px;
-  padding: 24px;
-  background: #444444;
-`;
-const FooterDivider = styled.div`
-  // todo : to be moved Footer component
-  width: 100vm;
-  margin: 16px 0;
-  border: 1px solid #888888;
-  margin: 16px 0;
-`;
 const TermsOfService = styled.div`
   width: 100%;
   margin: 16px 0;
