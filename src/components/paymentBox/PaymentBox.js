@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import separtePriceToComma from "../../utils/separtePriceToComma";
 
 import Layout from "../global/Layout";
 import UserInfoBox from "./UserInfoBox";
@@ -15,11 +16,7 @@ const PaymentBox = () => {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
-  const demoPrice = 10000; // TODO: to be replace real data
-
-  let commaSeparatedAmount = demoPrice
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const price = separtePriceToComma();
 
   const fetchProductByPlanId = useCallback(async () => {
     await axios
@@ -61,11 +58,11 @@ const PaymentBox = () => {
         <Box>
           <Label>결제 금액</Label>
           <TotalAmountText>총 결제 금액</TotalAmountText>
-          <TotalAmount>{commaSeparatedAmount}원</TotalAmount>
+          <TotalAmount>{price}원</TotalAmount>
           <Divider />
           <AmountInfo>
             <Description>상품 금액 </Description>
-            <BorderText>{commaSeparatedAmount}원</BorderText>
+            <BorderText>{price}원</BorderText>
           </AmountInfo>
           <AmountInfo>
             <Description>상품 할인 금액 </Description>
@@ -92,7 +89,7 @@ const PaymentBox = () => {
           </PaymentIconList>
         </Box>
         <PaymentButton disabled={!paymentMethod}>
-          {commaSeparatedAmount}원 결제하기
+          {price}원 결제하기
         </PaymentButton>
 
         <Terms />
