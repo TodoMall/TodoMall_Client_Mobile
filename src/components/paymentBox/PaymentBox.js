@@ -19,9 +19,14 @@ const PaymentBox = () => {
   const price = separtePriceToComma();
 
   const fetchProductByPlanId = useCallback(async () => {
-    await axios
-      .get(`${API_ENDPOINT}products?id=${ID}`)
-      .then(({ data }) => setPlanInfo(data));
+    try {
+      // TODO: implement useAxios hook! : https://nomadcoders.co/react-hooks-introduction/lectures/1601
+      // 너무 느리다. 흠 성능에 대해 고민해보자
+      const { data } = await axios.get(`${API_ENDPOINT}products?id=${ID}`);
+      setPlanInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
   }, [ID]);
 
   useEffect(() => {
