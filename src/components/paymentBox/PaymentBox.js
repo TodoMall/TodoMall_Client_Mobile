@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import separtePriceToComma from "../../utils/separtePriceToComma";
@@ -15,6 +15,7 @@ const PaymentBox = () => {
   const { name, email, image } = { ...localStorage };
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
+  const navigete = useNavigate();
   const { planid: ID } = useParams();
   const price = separtePriceToComma();
 
@@ -93,7 +94,13 @@ const PaymentBox = () => {
             })}
           </PaymentIconList>
         </Box>
-        <PaymentButton disabled={!paymentMethod}>
+        <PaymentButton
+          disabled={!paymentMethod}
+          onClick={() => {
+            console.log(paymentMethod);
+            navigete(`/paymentResult/${ID}`);
+          }}
+        >
           {price}원 결제하기
         </PaymentButton>
 

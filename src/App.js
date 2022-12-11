@@ -22,6 +22,7 @@ import TodoAnswer from "./components/todo/TodoAnswer";
 import Social from "./components/login/Social";
 import { CAREER } from "./components/main/TodoMall/Constant";
 import PaymentBox from "./components/paymentBox/PaymentBox";
+import PaymentResultBox from "./components/paymentBox/PaymentResultBox";
 
 function App() {
   const [current, setCurrent] = useState(CAREER);
@@ -70,6 +71,7 @@ function App() {
 
         {/* Payment Routes */}
         <Route path="/payment/:planid" element={<PaymentBox />} />
+        <Route path="/paymentResult/:planid" element={<PaymentResultBox />} />
       </Routes>
     </Container>
   );

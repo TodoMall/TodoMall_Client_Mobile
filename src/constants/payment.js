@@ -25,3 +25,6 @@ export const PaymentWayData = [
     description: "카카오페이",
   },
 ];
+
+export const SUCCESS = "success";
+export const FAIL = "fail";
