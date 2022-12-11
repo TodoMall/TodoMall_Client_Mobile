@@ -13,6 +13,7 @@ import { Loader } from "../../global/Loader";
 import { MAX_WIDTH } from "../../../constants";
 
 const PlanDetail = () => {
+  const [isLogin] = useState(!!localStorage.getItem("access"));
   const [duplicate, setDuplicate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [plan, setPlan] = useState();
@@ -20,6 +21,14 @@ const PlanDetail = () => {
 
   const ID = useParams().planid;
 
+  const sendToPaymentPage = () => {
+    if (!isLogin) {
+      navigate("/");
+    }
+    if (isLogin) {
+      navigate(`/payment/${plan.id}/`);
+    }
+  };
   const fetch = async () => {
     await axios
       .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
@@ -87,12 +96,7 @@ const PlanDetail = () => {
         {duplicate ? (
           <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
         ) : (
-          <BuyButton
-            onClick={() => {
-              navigate(`/payment/${plan.id}/`);
-            }}
-            id="download_button"
-          >
+          <BuyButton onClick={sendToPaymentPage} id="download_button">
             클래스 도전하기
           </BuyButton>
         )}
