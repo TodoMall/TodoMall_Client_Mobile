@@ -27,7 +27,7 @@ const PaymentResultBox = ({ paymentMehod }) => {
         "클래스가 성공적으로 추가됐어요.\n데드라인 내에 미션 인증을 잊지 마세요!",
       notice: "시간 내에 완수해야 다음 세션을 계속 들을 수 있어요.",
       buttonMessage: "내 투두함으로 이동",
-      handleNavigate: navigate("/todobox"),
+      handleNavigate: () => navigate("/todobox"),
     },
     fail: {
       title: "결제실패",
@@ -40,7 +40,7 @@ const PaymentResultBox = ({ paymentMehod }) => {
     },
   };
 
-  const { title, iconPath, message, notice, buttonMessage } =
+  const { title, iconPath, message, notice, buttonMessage, handleNavigate } =
     paymenrResulObj[PAYMENT_STATUS];
 
   return (
@@ -74,7 +74,7 @@ const PaymentResultBox = ({ paymentMehod }) => {
           <p>투두몰로 이동</p>
         </MoveTodoMallButton>
       )}
-      <Button onClick={paymentResponse.handleNavigate}>
+      <Button onClick={handleNavigate}>
         <p>{buttonMessage}</p>
       </Button>
     </Wrapper>

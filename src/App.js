@@ -71,7 +71,10 @@ function App() {
 
         {/* Payment Routes */}
         <Route path="/payment/:planid" element={<PaymentBox />} />
-        <Route path="/paymentResult/:planid" element={<PaymentResultBox />} />
+        <Route
+          path="/payment/complete/:planid"
+          element={<PaymentResultBox />}
+        />
       </Routes>
     </Container>
   );

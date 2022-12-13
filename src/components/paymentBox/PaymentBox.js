@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import separtePriceToComma from "../../utils/separtePriceToComma";
@@ -11,18 +11,44 @@ import Terms from "./Terms";
 import { PaymentWayData } from "../../constants/payment";
 import { API_ENDPOINT } from "../../constants/Api";
 
-const PaymentBox = () => {
-  const { name, email, image } = { ...localStorage };
-  const [paymentMethod, setPaymentMethod] = useState(null);
+const PaymentBox = ({ price }) => {
+  const { userId, name, email, image } = { ...localStorage };
+  const [payMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
-  const navigete = useNavigate();
   const { planid: ID } = useParams();
-  const price = separtePriceToComma();
+  const priceWithComma = separtePriceToComma(price);
+
+  const handlePayment = () => {
+    const { IMP } = window;
+    IMP.init("imp74056714");
+    const [payment] = PaymentWayData.filter((el) => el.id === payMethod);
+
+    const mockData = {
+      pg: payment.pg,
+      pay_method: payment.pay_method,
+      merchant_uid: `mid_${new Date().getTime()}`,
+      name: planInfo?.title,
+      amount: (price = 10000),
+      buyer_tel: "010-0000-0000",
+      buyer_email: email,
+      buyer_name: name,
+      m_redirect_url: `http://localhost:3000/payment/complete/${ID}`,
+    };
+
+    const callback = async (rsp) => {
+      if (rsp.success) {
+        // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
+        alert(rsp.response);
+      } else {
+        // 결제 실패 시 로직,
+        alert(rsp.success);
+      }
+    };
+    IMP.request_pay(mockData, callback);
+  };
 
   const fetchProductByPlanId = useCallback(async () => {
     try {
-      // TODO: implement useAxios hook! : https://nomadcoders.co/react-hooks-introduction/lectures/1601
-      // 너무 느리다. 흠 성능에 대해 고민해보자
       const { data } = await axios.get(`${API_ENDPOINT}products?id=${ID}`);
       setPlanInfo(data);
     } catch (error) {
@@ -34,8 +60,8 @@ const PaymentBox = () => {
     fetchProductByPlanId();
   }, [fetchProductByPlanId]);
 
-  const handleSelectPaymentMethod = ({ target: { value } }) => {
-    setPaymentMethod(value);
+  const handleSelectPaymentMethod = (id) => {
+    setPaymentMethod(id);
   };
 
   return (
@@ -64,11 +90,11 @@ const PaymentBox = () => {
         <Box>
           <Label>결제 금액</Label>
           <TotalAmountText>총 결제 금액</TotalAmountText>
-          <TotalAmount>{price}원</TotalAmount>
+          <TotalAmount>{priceWithComma}원</TotalAmount>
           <Divider />
           <AmountInfo>
             <Description>상품 금액 </Description>
-            <BorderText>{price}원</BorderText>
+            <BorderText>{priceWithComma}원</BorderText>
           </AmountInfo>
           <AmountInfo>
             <Description>상품 할인 금액 </Description>
@@ -77,15 +103,12 @@ const PaymentBox = () => {
         </Box>
         <Box>
           <Label>결제 수단</Label>
-          {/* to be simple usgin iterator function */}
-          {/* div영역을 누르면 잘작동하지만 , image 영역을 누르면 value에 undefined가 담긴다 */}
           <PaymentIconList>
-            {PaymentWayData.map(({ id, value, iconPath, description }) => {
+            {PaymentWayData.map(({ id, pay_method, iconPath, description }) => {
               return (
                 <PaymentIconItem
                   key={id}
-                  value={value}
-                  onClick={handleSelectPaymentMethod}
+                  onClick={() => handleSelectPaymentMethod(id)}
                 >
                   <PaymentIcon src={iconPath} alt="error" />
                   {description}
@@ -94,16 +117,9 @@ const PaymentBox = () => {
             })}
           </PaymentIconList>
         </Box>
-        <PaymentButton
-          disabled={!paymentMethod}
-          onClick={() => {
-            console.log(paymentMethod);
-            navigete(`/paymentResult/${ID}`);
-          }}
-        >
-          {price}원 결제하기
+        <PaymentButton disabled={!payMethod} onClick={handlePayment}>
+          {priceWithComma}원 결제하기
         </PaymentButton>
-
         <Terms />
       </Layout>
     </Container>
