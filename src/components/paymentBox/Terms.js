@@ -26,7 +26,7 @@ const Terms = () => {
 };
 const Wrapper = styled.div`
   width: 90%;
-  margin: 0 16px;
+  margin: 0 16px 16px 16px;
 `;
 
 const Policy = styled.div`
