@@ -19,14 +19,14 @@ export default SmallAmountBox;
 
 const AmountBox = styled.div`
   max-width: ${MAX_WIDTH};
-  width: 95%;
+  width: 100%; // 둘 중 하나가 골라지면 95%로 변경
   height: 64px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   background-color: #ffffff;
   border-radius: 16px;
-  margin: 14px 16px;
+  margin: 14px 0;
   padding: 0 20px 0 16px;
   .label {
     display: flex;

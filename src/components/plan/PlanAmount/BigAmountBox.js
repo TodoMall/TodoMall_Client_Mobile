@@ -17,7 +17,7 @@ export default BigAmountBox;
 
 const AmountBox = styled.div`
   display: flex;
-  width: 95%;
+  width: 100%; // 둘 중 하나가 골라지면 95%로 변경
   max-width: ${MAX_WIDTH};
   height: 125px;
   justify-content: center;
@@ -25,7 +25,7 @@ const AmountBox = styled.div`
   flex-direction: column;
   background-color: #ffffff;
   border-radius: 16px;
-  margin: 14px 16px;
+  margin: 14px 0;
   padding: 0 20px 0 16px;
   .label {
     display: flex;
