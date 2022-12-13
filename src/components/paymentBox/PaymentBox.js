@@ -155,20 +155,21 @@ const Box = styled.div`
 `;
 
 const PaymentButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 380px;
+  height: 52px;
   background: ${(props) => (props.disabled ? "#A9A9A9" : "#6b47fd")};
   border-radius: 20px;
-  max-width: 380px;
-  width: 90%;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
   text-align: center;
   color: #f1efff;
+  margin: 24px 0;
 `;
 const Divider = styled.div`
   width: 100vm;
