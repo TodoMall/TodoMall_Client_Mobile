@@ -92,7 +92,6 @@ const Icon = styled.img`
   margin: 98px 128px 48px 128px;
 `;
 const BorderText = styled.p`
-  //styleName: B1_400_B;
   font-family: Pretendard;
   font-size: 18px;
   font-weight: 700;
@@ -103,7 +102,6 @@ const BorderText = styled.p`
   margin-bottom: 4px;
 `;
 const Description = styled.p`
-  //styleName: B5_200_R;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 400;
@@ -131,7 +129,6 @@ const Button = styled.button`
   border-radius: 20px;
   margin-bottom: 34px;
   p {
-    //styleName: b3_300_m;
     font-family: Pretendard;
     font-size: 16px;
     font-weight: 500;

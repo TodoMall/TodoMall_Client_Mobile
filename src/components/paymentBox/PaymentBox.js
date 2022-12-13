@@ -152,7 +152,6 @@ const Box = styled.div`
   margin: 6px 0;
   border-radius: 8px;
   background: #ffffff;
-  border: 1px solid black; // to be removed
 `;
 
 const PaymentButton = styled.div`
@@ -171,10 +170,6 @@ const PaymentButton = styled.div`
   text-align: center;
   color: #f1efff;
 `;
-
-const AmountInfo = styled.div`
-  display: inline;
-`;
 const Divider = styled.div`
   width: 100vm;
   border: 1px solid #ededed;
@@ -188,22 +183,6 @@ const Description = styled.p`
   letter-spacing: -0.01em;
   text-align: left;
   color: #888888;
-`;
-const TotalAmountText = styled.p`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  text-align: left;
-`;
-const TotalAmount = styled.p`
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 32px;
-  letter-spacing: -0.01em;
-  text-align: right;
 `;
 const BorderText = styled.p`
   font-family: "Pretendard";
@@ -232,7 +211,6 @@ const Label = styled.div`
   display: inline-block;
 `;
 const UserInfoWrapper = styled.div`
-  border: 1px solid black; // to be removed
   width: 95%;
   padding: 16px 20px;
   box-sizing: border-box;
