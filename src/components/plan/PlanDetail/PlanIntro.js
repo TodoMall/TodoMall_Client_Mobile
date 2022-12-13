@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 import { IconDict } from "../../global/Icon";
+
+import separtePriceToComma from "../../../utils/separtePriceToComma";
+import SmallAmountBox from "../PlanAmount/SmallAmountBox";
+import BigAmountBox from "../PlanAmount/BigAmountBox";
 
 const PlanIntro = ({
   image,
@@ -14,13 +18,25 @@ const PlanIntro = ({
   creator_name,
   creator_intro,
 }) => {
+  const amount = separtePriceToComma(20000);
+  const [toggle, setToggle] = useState(false);
+  const handleToggle = () => {
+    setToggle((prevState) => !prevState);
+  };
   return (
     <>
       <Image alt="plan" src={image ? image : "/images/dummy_plan.png"} />
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
-
+        {/* todo : should be delete toggle */}
+        <div onClick={handleToggle}>
+          {toggle ? (
+            <SmallAmountBox amount={amount} />
+          ) : (
+            <BigAmountBox amount={amount} />
+          )}
+        </div>
         <LargeTags>
           {largetag.map((tag) => (
             <LargeTagCover>
