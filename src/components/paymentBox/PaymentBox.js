@@ -10,6 +10,7 @@ import Terms from "./Terms";
 
 import { PaymentWayData } from "../../constants/payment";
 import { API_ENDPOINT } from "../../constants/Api";
+import TotalAmountBox from "./TotalAmountBox";
 
 const PaymentBox = ({ price }) => {
   const { userId, name, email, image } = { ...localStorage };
@@ -88,19 +89,9 @@ const PaymentBox = ({ price }) => {
         </Box>
 
         <Box>
-          <Label>결제 금액</Label>
-          <TotalAmountText>총 결제 금액</TotalAmountText>
-          <TotalAmount>{priceWithComma}원</TotalAmount>
-          <Divider />
-          <AmountInfo>
-            <Description>상품 금액 </Description>
-            <BorderText>{priceWithComma}원</BorderText>
-          </AmountInfo>
-          <AmountInfo>
-            <Description>상품 할인 금액 </Description>
-            <BorderText>-0원</BorderText>
-          </AmountInfo>
+          <TotalAmountBox priceWithComma={priceWithComma} />
         </Box>
+
         <Box>
           <Label>결제 수단</Label>
           <PaymentIconList>

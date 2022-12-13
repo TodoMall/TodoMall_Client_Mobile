@@ -2,18 +2,24 @@ import { Fragment } from "react";
 import styled from "styled-components";
 
 const UserInfoBox = ({ image, name, email }) => {
+  const amount = 10000;
   return (
     <Fragment>
       <Label>도전자</Label>
-      <UserInfo>
+      <UserWrapper>
         <ProfileImage src={image} alt={image} />
-        <User>
-          <Description>이름 </Description>
-          <BorderText>{name}</BorderText>
-          <Description>이메일 </Description>
-          <BorderText>{email}</BorderText>
-        </User>
-      </UserInfo>
+        <UserInfo>
+          <User>
+            <Description>이름 </Description>
+            <BorderText>{name}</BorderText>
+          </User>
+
+          <User>
+            <Description>이메일 </Description>
+            <BorderText>{email}</BorderText>
+          </User>
+        </UserInfo>
+      </UserWrapper>
     </Fragment>
   );
 };
@@ -25,11 +31,30 @@ const Label = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.01em;
-  display: inline-block;
 `;
-const UserInfo = styled.span`
+const ProfileImage = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+`;
+
+const UserWrapper = styled.div`
   display: flex;
+  width: 100%;
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  width: 100%;
+`;
+
+const User = styled.div`
+  display: inline-flex;
+  margin-left: 15px;
+  width: 100%;
 `;
 
 const BorderText = styled.p`
@@ -40,15 +65,7 @@ const BorderText = styled.p`
   line-height: 21px;
   letter-spacing: -0.01em;
   color: #222222;
-`;
-const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  object-fit: cover;
-`;
-const User = styled.div`
-  margin-left: 15px;
+  width: 80%;
 `;
 const Description = styled.p`
   font-family: Pretendard;
@@ -58,5 +75,6 @@ const Description = styled.p`
   letter-spacing: -0.01em;
   text-align: left;
   color: #888888;
+  width: 20%;
 `;
 export default UserInfoBox;

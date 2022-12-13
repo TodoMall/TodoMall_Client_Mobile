@@ -25,24 +25,27 @@ const Terms = () => {
   );
 };
 const Wrapper = styled.div`
-  width: 100%;
-  margin: 16px 0;
+  width: 90%;
+  margin: 0 16px;
 `;
 
 const Policy = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
   align-items: center;
   height: 44px;
-  width: 375px;
+  width: 100%;
+  p {
+    width: 50%;
+  }
 `;
 const PolicyPageButton = styled.a`
+  width: 50%;
+  text-align: right;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.01em;
-  text-align: left;
   color: #888888;
   text-decoration: underline;
 `;
