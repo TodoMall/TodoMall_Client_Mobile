@@ -30,7 +30,10 @@ const PlanIntro = ({
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
         {/* todo : should be delete toggle */}
-        <div onClick={handleToggle} style={{ width: "95%" }}>
+        <div
+          onClick={handleToggle}
+          style={{ display: "flex", justifyContent: "center", width: "95%" }}
+        >
           {toggle ? (
             <SmallAmountBox amount={amount} />
           ) : (
