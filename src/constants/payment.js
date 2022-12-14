@@ -1,4 +1,4 @@
-export const PaymentWayData = [
+export const PaymentGateDatas = [
   {
     id: 1,
     pg: "uplus",

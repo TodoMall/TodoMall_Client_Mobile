@@ -2,30 +2,50 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+
 import separtePriceToComma from "../../utils/separtePriceToComma";
 
+import { PaymentGateDatas } from "../../constants/payment";
+import { API_ENDPOINT } from "../../constants/Api";
+
 import Layout from "../global/Layout";
+import TotalAmountBox from "./TotalAmountBox";
 import UserInfoBox from "./UserInfoBox";
 import Terms from "./Terms";
-
-import { PaymentWayData } from "../../constants/payment";
-import { API_ENDPOINT } from "../../constants/Api";
-import TotalAmountBox from "./TotalAmountBox";
+import ClassInfoBox from "./ClassInfoBox";
+import PaymentMethodList from "./PaymentMethodList";
 
 const PaymentBox = ({ price }) => {
   const { name, email, image } = { ...localStorage };
-  const [user, setUser] = useState({ name, email, image });
+  const [user] = useState({ name, email, image });
   const [payMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
   const priceWithComma = separtePriceToComma(price);
 
+  const fetchProductByPlanId = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`${API_ENDPOINT}products?id=${ID}`);
+      setPlanInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [ID]);
+
+  useEffect(() => {
+    fetchProductByPlanId();
+  }, [fetchProductByPlanId]);
+
+  const handleSelectPaymentMethod = (id) => {
+    setPaymentMethod(id);
+  };
+
   const handlePayment = () => {
     const { IMP } = window;
     IMP.init("imp74056714");
-    const [payment] = PaymentWayData.filter((el) => el.id === payMethod);
+    const [payment] = PaymentGateDatas.filter((el) => el.id === payMethod);
 
-    const mockData = {
+    const requstData = {
       pg: payment.pg,
       pay_method: payment.pay_method,
       merchant_uid: `mid_${new Date().getTime()}`,
@@ -46,24 +66,7 @@ const PaymentBox = ({ price }) => {
         alert(rsp.success);
       }
     };
-    IMP.request_pay(mockData, callback);
-  };
-
-  const fetchProductByPlanId = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${API_ENDPOINT}products?id=${ID}`);
-      setPlanInfo(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [ID]);
-
-  useEffect(() => {
-    fetchProductByPlanId();
-  }, [fetchProductByPlanId]);
-
-  const handleSelectPaymentMethod = (id) => {
-    setPaymentMethod(id);
+    IMP.request_pay(requstData, callback);
   };
 
   return (
@@ -74,19 +77,7 @@ const PaymentBox = ({ price }) => {
         </UserInfoWrapper>
 
         <Box>
-          <Label>도전 클래스</Label>
-          <Description>클래스명</Description>
-          <p>{planInfo?.title}</p>
-          <Divider />
-          <Description>커리큘럼</Description>
-          {planInfo?.sessions.map((session) => {
-            return (
-              <div key={session.orderBy}>
-                <BorderText>{session.title}</BorderText>
-                {/* <DDay>D-{RemainingDay}</DDay> */}
-              </div>
-            );
-          })}
+          <ClassInfoBox title={planInfo?.title} sessions={planInfo?.sessions} />
         </Box>
 
         <Box>
@@ -94,24 +85,13 @@ const PaymentBox = ({ price }) => {
         </Box>
 
         <Box>
-          <Label>결제 수단</Label>
-          <PaymentIconList>
-            {PaymentWayData.map(({ id, pay_method, iconPath, description }) => {
-              return (
-                <PaymentIconItem
-                  key={id}
-                  onClick={() => handleSelectPaymentMethod(id)}
-                >
-                  <PaymentIcon src={iconPath} alt="error" />
-                  {description}
-                </PaymentIconItem>
-              );
-            })}
-          </PaymentIconList>
+          <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
+
         <PaymentButton disabled={!payMethod} onClick={handlePayment}>
           {priceWithComma}원 결제하기
         </PaymentButton>
+
         <Terms />
       </Layout>
     </Container>
@@ -119,40 +99,28 @@ const PaymentBox = ({ price }) => {
 };
 export default PaymentBox;
 
-const PaymentIcon = styled.img`
-  margin-bottom: 8px;
-`;
-
-const PaymentIconList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const PaymentIconItem = styled.button`
+const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  box-sizing: border-box;
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #ededed;
-  flex: 1 0 33%;
-  margin: 4px 3px;
-  height: 100px;
-  &:focus {
-    border: 2px solid #6b47fd;
-    box-shadow: 0px 0px 2px red;
-  }
+  background-color: #f6f8ff;
 `;
 
 const Box = styled.div`
   width: 95%;
-  box-sizing: border-box;
   padding: 16px 20px;
+  box-sizing: border-box;
+  background: #ffffff;
   margin: 6px 0;
   border-radius: 8px;
-  background: #ffffff;
+`;
+
+const UserInfoWrapper = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 66px 0 0 0;
 `;
 
 const PaymentButton = styled.div`
@@ -171,55 +139,4 @@ const PaymentButton = styled.div`
   text-align: center;
   color: #f1efff;
   margin: 24px 0;
-`;
-const Divider = styled.div`
-  width: 100vm;
-  border: 1px solid #ededed;
-  margin: 16px 0;
-`;
-const Description = styled.p`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: #888888;
-`;
-const BorderText = styled.p`
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  color: #222222;
-`;
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #f6f8ff;
-`;
-const Label = styled.div`
-  height: 35px;
-  align-self: flex-start;
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  display: inline-block;
-`;
-const UserInfoWrapper = styled.div`
-  width: 95%;
-  padding: 16px 20px;
-  box-sizing: border-box;
-  background: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin-top: 66px;
-  border-radius: 8px;
 `;
