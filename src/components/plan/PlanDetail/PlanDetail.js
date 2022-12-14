@@ -11,6 +11,7 @@ import Divider from "../../global/Divider";
 import axios from "axios";
 import { Loader } from "../../global/Loader";
 import { MAX_WIDTH } from "../../../constants";
+import Layout from "../../global/Layout";
 
 const PlanDetail = () => {
   const [isLogin] = useState(!!localStorage.getItem("access"));
@@ -65,42 +66,43 @@ const PlanDetail = () => {
 
   return (
     <Container>
-      <Header title="" />
-      {loading ? (
-        <Loader />
-      ) : (
-        <Body>
-          <PlanIntro
-            image={plan.image}
-            subtitle={plan.subDescription}
-            title={plan.title}
-            smalltag={plan.informationTags}
-            largetag={plan.summarizedTags}
-            description={plan.description}
-            creator_image={plan.creator.image}
-            creator_name={plan.creatorName}
-            creator_intro={plan.creator.description}
-          />
-          <Divider />
-          <PlanFirst data={plan.expectIts[0]} />
-          <Divider />
-          <PlanSecond data={plan.recommends} />
-          <Divider />
-          <PlanThird data={plan.recommendUsers} />
-          <Divider />
-          <PlanCurriculum data={plan.sessions} />
-        </Body>
-      )}
-
-      <Footer>
-        {duplicate ? (
-          <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
+      <Layout breadCrumbs="결제하기">
+        {loading ? (
+          <Loader />
         ) : (
-          <BuyButton onClick={sendToPaymentPage} id="download_button">
-            클래스 도전하기
-          </BuyButton>
+          <Body>
+            <PlanIntro
+              image={plan.image}
+              subtitle={plan.subDescription}
+              title={plan.title}
+              smalltag={plan.informationTags}
+              largetag={plan.summarizedTags}
+              description={plan.description}
+              creator_image={plan.creator.image}
+              creator_name={plan.creatorName}
+              creator_intro={plan.creator.description}
+            />
+            <Divider />
+            <PlanFirst data={plan.expectIts[0]} />
+            <Divider />
+            <PlanSecond data={plan.recommends} />
+            <Divider />
+            <PlanThird data={plan.recommendUsers} />
+            <Divider />
+            <PlanCurriculum data={plan.sessions} />
+          </Body>
         )}
-      </Footer>
+
+        <Footer>
+          {duplicate ? (
+            <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
+          ) : (
+            <BuyButton onClick={sendToPaymentPage} id="download_button">
+              클래스 도전하기
+            </BuyButton>
+          )}
+        </Footer>
+      </Layout>
     </Container>
   );
 };
@@ -118,13 +120,11 @@ const Body = styled.div`
   justify-content: center;
   flex-direction: column;
   padding-top: 60px;
-  padding-bottom: 90px;
   max-width: ${MAX_WIDTH};
 `;
 
 const Footer = styled.div`
   display: flex;
-  position: fixed;
   padding-bottom: 20px;
   bottom: 0;
   background: #fbfbfb;

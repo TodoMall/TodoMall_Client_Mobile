@@ -6,6 +6,7 @@ import Header from "./Header";
 import axios from "axios";
 import { Loader } from "../../global/Loader";
 import { Tabs, Tab } from "@tarragon/swipeable-tabs";
+import Footer from "../../global/Footer";
 
 const TodoMall = ({ current, setCurrent }) => {
   const [careerData, setCareerData] = useState([]);
@@ -77,7 +78,10 @@ const TodoMall = ({ current, setCurrent }) => {
               {careerData.length === 0 ? (
                 <></>
               ) : (
-                <CardList classData={careerData} />
+                <>
+                  <CardList classData={careerData} />
+                  <Footer />
+                </>
               )}
             </Body>
           </Tab>
@@ -100,7 +104,10 @@ const TodoMall = ({ current, setCurrent }) => {
               {selfData.length === 0 ? (
                 <></>
               ) : (
-                <CardList classData={selfData} />
+                <>
+                  <CardList classData={selfData} />
+                  <Footer />
+                </>
               )}
             </Body>
           </Tab>
@@ -123,7 +130,10 @@ const TodoMall = ({ current, setCurrent }) => {
               {investmentData.length === 0 ? (
                 <></>
               ) : (
-                <CardList classData={investmentData} />
+                <>
+                  <CardList classData={investmentData} />
+                  <Footer />
+                </>
               )}
             </Body>
           </Tab>
@@ -138,7 +148,6 @@ const TodoMall = ({ current, setCurrent }) => {
 const Body = styled.div`
   background-color: #f6f8ff;
   padding-top: 100px;
-  padding-bottom: 100px;
 `;
 
 const BodyImages = styled.div`
