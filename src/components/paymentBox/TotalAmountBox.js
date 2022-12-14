@@ -1,21 +1,28 @@
 import styled from "styled-components";
+import Label from "../global/Label";
+import BorderText from "../global/BorderText";
+import ThinText from "../global/ThinText";
 
 const TotalAmountBox = ({ priceWithComma }) => {
   return (
     <>
       <Label>결제 금액</Label>
       <TotalAmountWrapper>
-        <TotalAmountText>총 결제 금액</TotalAmountText>
+        <BorderText width="50%" fontWeight="700">
+          총 결제 금액
+        </BorderText>
         <TotalAmount>{priceWithComma}원</TotalAmount>
       </TotalAmountWrapper>
       <Divider />
       <AmountInfo>
-        <Description>상품 금액 </Description>
-        <BorderText>{priceWithComma}원</BorderText>
+        <ThinText>상품 금액 </ThinText>
+        <BorderText textAlign="right" margin="0 0 8px 0">
+          {priceWithComma}원
+        </BorderText>
       </AmountInfo>
       <AmountInfo>
-        <Description>상품 할인 금액 </Description>
-        <BorderText>-0원</BorderText>
+        <ThinText>상품 할인 금액 </ThinText>
+        <BorderText textAlign="right">-0원</BorderText>
       </AmountInfo>
     </>
   );
@@ -23,29 +30,11 @@ const TotalAmountBox = ({ priceWithComma }) => {
 
 export default TotalAmountBox;
 
-const Label = styled.div`
-  height: 35px;
-  align-self: flex-start;
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  display: inline-block;
-`;
-
 const TotalAmountWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 
-const TotalAmountText = styled.p`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  width: 50%;
-`;
 const TotalAmount = styled.p`
   font-family: Pretendard;
   font-size: 20px;
@@ -63,25 +52,4 @@ const Divider = styled.div`
 const AmountInfo = styled.div`
   display: flex;
   width: 100%;
-`;
-const Description = styled.p`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: #888888;
-  width: 50%;
-`;
-const BorderText = styled.p`
-  font-family: "Pretendard";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  color: #222222;
-  width: 50%;
-  text-align: right;
 `;

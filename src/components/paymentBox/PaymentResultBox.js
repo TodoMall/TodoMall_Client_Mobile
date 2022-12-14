@@ -4,8 +4,10 @@ import Header from "../global/Header";
 import { SUCCESS, FAIL } from "../../constants/payment";
 import styled from "styled-components";
 import separtePriceToComma from "../../utils/separtePriceToComma";
+import BorderText from "../global/BorderText";
+import ThinText from "../global/ThinText";
 
-const PaymentResultBox = ({ paymentMehod }) => {
+const PaymentResultBox = ({ paymentMehodId = 1 }) => {
   const [isSuccess] = useState(true); // 서드파티에서 받아오는 결과값으로 대체할것
   const [paymentResponse] = useState({
     name: "한솔빈",
@@ -24,7 +26,7 @@ const PaymentResultBox = ({ paymentMehod }) => {
       title: "결제완료",
       iconPath: "/images/payment/paymnetSuccessIcon.svg",
       message:
-        "클래스가 성공적으로 추가됐어요.\n데드라인 내에 미션 인증을 잊지 마세요!",
+        "클래스가 성공적으로 추가됐어요. 데드라인 내에 미션 인증을 잊지 마세요!",
       notice: "시간 내에 완수해야 다음 세션을 계속 들을 수 있어요.",
       buttonMessage: "내 투두함으로 이동",
       handleNavigate: () => navigate("/todobox"),
@@ -47,25 +49,51 @@ const PaymentResultBox = ({ paymentMehod }) => {
     <Wrapper>
       <Header title={title} />
       <Icon src={iconPath} alt="" />
-      <BorderText>{message}</BorderText>
-      <Description>{notice}</Description>
+      <BorderText
+        width="90%"
+        textAlign="center"
+        fontWeight="700"
+        fontSize="18px"
+        lineHeight="28px"
+        margin="8px 0"
+      >
+        {message}
+      </BorderText>
+      <ThinText width="90%" textAlign="center">
+        {notice}
+      </ThinText>
       {!isSuccess && <EmptyBox />}
       {isSuccess && (
         <PaymentInfoBox>
-          <Description>결제 금액</Description>
-          <BorderText>{price}원</BorderText>
-          <Description>사용자</Description>
-          <BorderText>{paymentResponse.name}</BorderText>
-          <Description>결제카드</Description>
-          <BorderText>{paymentResponse.card_name}</BorderText>
-          {paymentMehod === "card" && (
+          <ThinText margin="4px 0">결제 금액</ThinText>
+          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
+            {price}원
+          </BorderText>
+          <ThinText margin="4px 0">사용자</ThinText>
+          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
+            {paymentResponse.name}
+          </BorderText>
+          <ThinText margin="4px 0">결제카드</ThinText>
+          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
+            {paymentResponse.card_name}
+          </BorderText>
+          {/* should rewrite condition statement */}
+          {paymentMehodId === 1 && (
             <>
-              <Description>카드번호</Description>
-              <BorderText>{paymentResponse.card_number}</BorderText>
+              <ThinText margin="4px 0">카드번호</ThinText>
+              <BorderText
+                textAlign="right"
+                fontWeight="700px"
+                margin="0 0 4px 0"
+              >
+                {paymentResponse.card_number}
+              </BorderText>
             </>
           )}
-          <Description>결제 일시</Description>
-          <BorderText>{paymentResponse.pay_date}</BorderText>
+          <ThinText margin="4px 0">결제 일시</ThinText>
+          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
+            {paymentResponse.pay_date}
+          </BorderText>
         </PaymentInfoBox>
       )}
       {!isSuccess && /*<EmptyBox></EmptyBox>*/ <></>}
@@ -91,26 +119,6 @@ const Wrapper = styled.div`
 const Icon = styled.img`
   margin: 98px 128px 48px 128px;
 `;
-const BorderText = styled.p`
-  font-family: Pretendard;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 28px;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #222222;
-  margin-bottom: 4px;
-`;
-const Description = styled.p`
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #888888;
-  margin: 4px 0;
-`;
 const EmptyBox = styled.div`
   width: 95%;
   height: 200px;
@@ -118,8 +126,13 @@ const EmptyBox = styled.div`
   padding: 20px;
 `;
 const PaymentInfoBox = styled(EmptyBox)`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 90%;
   background-color: white;
   border-radius: 16px;
+  margin: 24px 16px;
 `;
 const Button = styled.button`
   width: 95%;

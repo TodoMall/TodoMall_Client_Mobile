@@ -87,7 +87,7 @@ const PaymentBox = ({ price }) => {
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
-
+        {/* refactor : use button component in global  */}
         <PaymentButton disabled={!payMethod} onClick={handlePayment}>
           {priceWithComma}원 결제하기
         </PaymentButton>
