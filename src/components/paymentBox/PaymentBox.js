@@ -13,7 +13,8 @@ import { API_ENDPOINT } from "../../constants/Api";
 import TotalAmountBox from "./TotalAmountBox";
 
 const PaymentBox = ({ price }) => {
-  const { userId, name, email, image } = { ...localStorage };
+  const { name, email, image } = { ...localStorage };
+  const [user, setUser] = useState({ name, email, image });
   const [payMethod, setPaymentMethod] = useState(null);
   const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
@@ -69,7 +70,7 @@ const PaymentBox = ({ price }) => {
     <Container>
       <Layout breadCrumbs="결제하기">
         <UserInfoWrapper>
-          <UserInfoBox image={image} name={name} email={email} />
+          <UserInfoBox image={user.image} name={user.name} email={user.email} />
         </UserInfoWrapper>
 
         <Box>
