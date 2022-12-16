@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import styled from "styled-components";
