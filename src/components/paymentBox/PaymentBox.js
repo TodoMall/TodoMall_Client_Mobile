@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import useAxios from "../../hooks/useAxios";
 import styled from "styled-components";
 
 import separtePriceToComma from "../../utils/separtePriceToComma";
@@ -14,32 +14,19 @@ import UserInfoBox from "./UserInfoBox";
 import Terms from "./Terms";
 import ClassInfoBox from "./ClassInfoBox";
 import PaymentMethodList from "./PaymentMethodList";
+import { Loader } from "../global/Loader";
 
 const PaymentBox = ({ price }) => {
   const { name, email, image } = { ...localStorage };
   const [user] = useState({ name, email, image });
   const [payMethod, setPaymentMethod] = useState(null);
-  const [planInfo, setPlanInfo] = useState();
   const { planid: ID } = useParams();
   const priceWithComma = separtePriceToComma(price);
-
-  const fetchProductByPlanId = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${API_ENDPOINT}products?id=${ID}`);
-      setPlanInfo(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [ID]);
-
-  useEffect(() => {
-    fetchProductByPlanId();
-  }, [fetchProductByPlanId]);
+  const { data, loading, error } = useAxios(`${API_ENDPOINT}products?id=${ID}`);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
   };
-
   const handlePayment = () => {
     const { IMP } = window;
     IMP.init("imp74056714");
@@ -49,7 +36,7 @@ const PaymentBox = ({ price }) => {
       pg: payment.pg,
       pay_method: payment.pay_method,
       merchant_uid: `mid_${new Date().getTime()}`,
-      name: planInfo?.title,
+      name: data?.title,
       amount: (price = 10000),
       buyer_tel: "010-0000-0000",
       buyer_email: email,
@@ -69,6 +56,13 @@ const PaymentBox = ({ price }) => {
     IMP.request_pay(requstData, callback);
   };
 
+  if (loading) {
+    <Loader />;
+  }
+  if (error) {
+    return <p>Error : {error.message}</p>;
+  }
+
   return (
     <Container>
       <Layout breadCrumbs="결제하기">
@@ -77,7 +71,7 @@ const PaymentBox = ({ price }) => {
         </UserInfoWrapper>
 
         <Box>
-          <ClassInfoBox title={planInfo?.title} sessions={planInfo?.sessions} />
+          <ClassInfoBox title={data?.title} sessions={data?.sessions} />
         </Box>
 
         <Box>
