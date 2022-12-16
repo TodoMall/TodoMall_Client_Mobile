@@ -1,11 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import Divider from "../global/Divider";
 
 const Footer = () => {
   return (
     <Wrapper>
       <img src="/images/DarkLogo.png" alt="img error" />
-      <Divider />
+      <Divider
+        margin="16px 0"
+        border="1px solid #888888"
+        width="100%"
+        height="none"
+      />
+
       <CompanyInfo>
         <p>마이플랜잇</p>
         <p>사업자등록번호 : 274-12-01980 | 대표 : 최현권</p>
@@ -21,13 +28,6 @@ const Wrapper = styled.div`
   height: 212px;
   padding: 24px;
   background: #444444;
-`;
-
-const Divider = styled.div`
-  width: 100vm;
-  margin: 16px 0;
-  border: 1px solid #888888;
-  margin: 16px 0;
 `;
 
 const CompanyInfo = styled.div`

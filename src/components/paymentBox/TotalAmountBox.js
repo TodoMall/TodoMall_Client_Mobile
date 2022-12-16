@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Label from "../global/Label";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
+import Divider from "../global/Divider";
 
 const TotalAmountBox = ({ priceWithComma }) => {
   return (
@@ -13,7 +14,13 @@ const TotalAmountBox = ({ priceWithComma }) => {
         </BorderText>
         <TotalAmount>{priceWithComma}원</TotalAmount>
       </TotalAmountWrapper>
-      <Divider />
+      <Divider
+        margin="16px 0"
+        border="1px solid #ededed"
+        width="100%"
+        height="none"
+      />
+
       <AmountInfo>
         <ThinText>상품 금액 </ThinText>
         <BorderText textAlign="right" margin="0 0 8px 0">
@@ -43,11 +50,6 @@ const TotalAmount = styled.p`
   letter-spacing: -0.01em;
   text-align: right;
   width: 50%;
-`;
-const Divider = styled.div`
-  width: 100vm;
-  border: 1px solid #ededed;
-  margin: 16px 0;
 `;
 const AmountInfo = styled.div`
   display: flex;

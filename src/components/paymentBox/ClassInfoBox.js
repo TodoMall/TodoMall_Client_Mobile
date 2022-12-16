@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Label from "../global/Label";
 import ThinText from "../global/ThinText";
 import BorderText from "../global/BorderText";
+import Divider from "../global/Divider";
 
 const ClassInfoBox = ({ title, sessions }) => {
   return (
@@ -9,7 +10,12 @@ const ClassInfoBox = ({ title, sessions }) => {
       <Label>도전 클래스</Label>
       <ThinText margin="0 0 8px 0">클래스명</ThinText>
       <p>{title}</p>
-      <Divider />
+      <Divider
+        margin="16px 0"
+        border="1px solid #ededed"
+        width="100%"
+        height="none"
+      />
       <ThinText>커리큘럼</ThinText>
       {sessions?.map((session) => {
         return (
@@ -23,9 +29,3 @@ const ClassInfoBox = ({ title, sessions }) => {
   );
 };
 export default ClassInfoBox;
-
-const Divider = styled.div`
-  width: 100vm;
-  border: 1px solid #ededed;
-  margin: 16px 0;
-`;
