@@ -1,13 +1,15 @@
 import { Loading } from "@nextui-org/react";
 import styled from "styled-components";
 
-export const Loader = () => {
+const Loader = () => {
   return (
     <Container>
       <Loading color="secondary" size="lg" />
     </Container>
   );
 };
+
+export default Loader;
 
 const Container = styled.div`
   width: 100vw;

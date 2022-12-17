@@ -23,6 +23,9 @@ const Footer = () => {
     </Wrapper>
   );
 };
+
+export default Footer;
+
 const Wrapper = styled.div`
   width: 100%;
   height: 212px;
@@ -51,5 +54,3 @@ const Copyright = styled.p`
   letter-spacing: -0.01em;
   text-align: left;
 `;
-
-export default Footer;

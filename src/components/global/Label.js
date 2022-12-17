@@ -5,6 +5,7 @@ const Label = ({ children }) => {
 };
 
 export default Label;
+
 const LabelTag = styled.div`
   height: 35px;
   align-self: flex-start;

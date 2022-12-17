@@ -17,6 +17,8 @@ const Header = ({ title }) => {
   );
 };
 
+export default Header;
+
 const Container = styled.div`
   width: 100%;
   height: 50px;
@@ -48,5 +50,3 @@ const HeaderTitle = styled.p`
   text-align: center;
   text-align: center;
 `;
-
-export default Header;

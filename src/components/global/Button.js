@@ -21,6 +21,8 @@ const Button = ({ title, link, color = "#6b47fd", width = 90, onClick }) => {
   );
 };
 
+export default Button;
+
 const NoPlanButton = styled.div`
   width: ${(props) => props.width}%;
   height: 60px;
@@ -38,5 +40,3 @@ const NoPlanButton = styled.div`
   margin-top: 40px;
   text-align: center;
 `;
-
-export default Button;

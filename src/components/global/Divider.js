@@ -19,6 +19,8 @@ const Divider = ({
   );
 };
 
+export default Divider;
+
 const DividerStyle = styled.hr`
   width: 100vw;
   max-width: ${(props) => props.width};
@@ -27,5 +29,3 @@ const DividerStyle = styled.hr`
   margin: ${(props) => props.margin};
   border: ${(props) => props.border};
 `;
-
-export default Divider;

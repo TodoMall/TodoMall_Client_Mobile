@@ -4,7 +4,7 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import constants from "../../constants";
 import { Link } from "react-router-dom";
 
-export default function BottomNavBar({ position }) {
+const BottomNavBar = ({ position }) => {
   const [current, setCurrent] = useState(position);
 
   return (
@@ -76,7 +76,9 @@ export default function BottomNavBar({ position }) {
       </StyledBottomNavBar>
     </>
   );
-}
+};
+
+export default BottomNavBar;
 
 const StyledBottomNavBar = styled(BottomNavigation)`
   position: fixed;
