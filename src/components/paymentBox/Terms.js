@@ -9,17 +9,17 @@ const Terms = () => {
     <Wrapper>
       <Policy onClick={() => navigate("/refund")}>
         <p>환불 안내</p>
-        <PolicyPageButton>보기</PolicyPageButton>
+        <PolicyPageAnchor>보기</PolicyPageAnchor>
       </Policy>
 
       <Policy onClick={() => navigate("/service")}>
         <p>이용 약관</p>
-        <PolicyPageButton>보기</PolicyPageButton>
+        <PolicyPageAnchor>보기</PolicyPageAnchor>
       </Policy>
 
       <Policy onClick={() => navigate("/personal")}>
         <p>개인정보처리방침</p>
-        <PolicyPageButton>보기</PolicyPageButton>
+        <PolicyPageAnchor>보기</PolicyPageAnchor>
       </Policy>
     </Wrapper>
   );
@@ -38,7 +38,7 @@ const Policy = styled.div`
     width: 50%;
   }
 `;
-const PolicyPageButton = styled.a`
+const PolicyPageAnchor = styled.a`
   width: 50%;
   text-align: right;
   font-family: Pretendard;
