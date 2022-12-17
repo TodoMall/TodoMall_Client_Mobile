@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Label from "../global/Label";
 import ThinText from "../global/ThinText";
 import BorderText from "../global/BorderText";
