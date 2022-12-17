@@ -58,8 +58,9 @@ const PaymentBox = ({ price }) => {
   };
 
   if (loading) {
-    <Loader />;
+    return <Loader />;
   }
+
   if (error) {
     return <p>Error : {error.message}</p>;
   }
