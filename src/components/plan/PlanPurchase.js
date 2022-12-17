@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../global/Header";
 import axios from "axios";
-import { Loader } from "../global/Loader";
+import { Loader } from "../global";
 
 const PlanPurchase = () => {
   const [loading, setLoading] = useState(false);

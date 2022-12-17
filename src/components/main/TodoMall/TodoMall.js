@@ -4,9 +4,8 @@ import styled from "styled-components";
 import CardList from "./CardList";
 import Header from "./Header";
 import axios from "axios";
-import { Loader } from "../../global/Loader";
+import { Loader, Footer } from "../../global";
 import { Tabs, Tab } from "@tarragon/swipeable-tabs";
-import Footer from "../../global/Footer";
 
 const TodoMall = ({ current, setCurrent }) => {
   const [careerData, setCareerData] = useState([]);

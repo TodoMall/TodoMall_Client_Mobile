@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../global/Header";
 import styled from "styled-components";
 import PlanFirst from "./PlanFirst";
 import PlanIntro from "./PlanIntro";
@@ -7,11 +6,9 @@ import PlanSecond from "./PlanSecond";
 import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
 import { useNavigate, useParams } from "react-router-dom";
-import Divider from "../../global/Divider";
 import axios from "axios";
-import { Loader } from "../../global/Loader";
 import { MAX_WIDTH } from "../../../constants";
-import Layout from "../../global/Layout";
+import { Layout, Divider, Loader, Header } from "../../global";
 
 const PlanDetail = () => {
   const [isLogin] = useState(!!localStorage.getItem("access"));

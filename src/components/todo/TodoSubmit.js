@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Header from "../global/Header";
 import AWS from "aws-sdk";
 import axios from "axios";
-import { Loader } from "../global/Loader";
+import { Loader } from "../global";
 
 const TodoSubmit = () => {
   const [image, setImage] = useState("");

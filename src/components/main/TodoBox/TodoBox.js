@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BottomNavBar from "../../global/BottomNavBar";
-import { Loader } from "../../global/Loader";
+import { Loader, BottomNavBar } from "../../global";
 import TodoBoxContent from "./TodoBoxContent";
 import TodoBoxHeader from "./TodoBoxHeader";
 

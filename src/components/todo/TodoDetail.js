@@ -4,7 +4,7 @@ import { Progress } from "@nextui-org/react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { Loader } from "../global/Loader";
+import { Loader } from "../global";
 import { MAX_WIDTH } from "../../constants";
 
 const TodoDetail = () => {

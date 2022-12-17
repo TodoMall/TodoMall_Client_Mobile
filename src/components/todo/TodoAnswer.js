@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../global/Header";
-import { Loader } from "../global/Loader";
+import { Loader } from "../global";
 
 const TodoAnswer = () => {
   const params = useParams();

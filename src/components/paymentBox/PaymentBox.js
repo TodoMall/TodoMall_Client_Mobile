@@ -8,13 +8,12 @@ import separtePriceToComma from "../../utils/separtePriceToComma";
 import { PaymentGateDatas } from "../../constants/payment";
 import { API_ENDPOINT } from "../../constants/Api";
 
-import Layout from "../global/Layout";
 import TotalAmountBox from "./TotalAmountBox";
 import UserInfoBox from "./UserInfoBox";
 import Terms from "./Terms";
 import ClassInfoBox from "./ClassInfoBox";
 import PaymentMethodList from "./PaymentMethodList";
-import { Loader } from "../global/Loader";
+import { Loader, Layout } from "../global";
 
 const PaymentBox = ({ price }) => {
   const { name, email, image } = { ...localStorage };
@@ -28,6 +27,7 @@ const PaymentBox = ({ price }) => {
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
   };
+
   const handlePayment = async () => {
     const { IMP } = window;
     IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
@@ -82,7 +82,6 @@ const PaymentBox = ({ price }) => {
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
-        {/* refactor : use button component in global  */}
         <PaymentButton disabled={!payMethod} onClick={handlePayment}>
           {priceWithComma}원 결제하기
         </PaymentButton>

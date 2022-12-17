@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Row from "./Row";
-import { Loader } from "../../global/Loader";
+import { Loader, BottomNavBar } from "../../global";
 
 const MyPage = () => {
   const navigate = useNavigate();
