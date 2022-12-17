@@ -22,38 +22,39 @@ const PaymentBox = ({ price }) => {
   const [payMethod, setPaymentMethod] = useState(null);
   const { planid: ID } = useParams();
   const priceWithComma = separtePriceToComma(price);
+
   const { data, loading, error } = useAxios(`${API_ENDPOINT}products?id=${ID}`);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
   };
-  const handlePayment = () => {
+  const handlePayment = async () => {
     const { IMP } = window;
-    IMP.init("imp74056714");
-    const [payment] = PaymentGateDatas.filter((el) => el.id === payMethod);
+    IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
 
-    const requstData = {
-      pg: payment.pg,
-      pay_method: payment.pay_method,
-      merchant_uid: `mid_${new Date().getTime()}`,
+    const { pg, pay_method } = PaymentGateDatas.find(
+      (el) => el.id === payMethod
+    );
+
+    const paymentInfo = {
+      pg: pg,
+      pay_method: pay_method,
+      merchant_uid: `mid_${new Date().getDate()}`,
       name: data?.title,
-      amount: (price = 10000),
+      amount: price || 10000,
       buyer_tel: "010-0000-0000",
       buyer_email: email,
       buyer_name: name,
       m_redirect_url: `http://localhost:3000/payment/complete/${ID}`,
     };
 
-    const callback = async (rsp) => {
-      if (rsp.success) {
-        // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
-        alert(rsp.response);
-      } else {
-        // 결제 실패 시 로직,
-        alert(rsp.success);
-      }
-    };
-    IMP.request_pay(requstData, callback);
+    try {
+      const rsp = await IMP.request_pay(paymentInfo);
+      // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
+      console.log(rsp);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (loading) {
