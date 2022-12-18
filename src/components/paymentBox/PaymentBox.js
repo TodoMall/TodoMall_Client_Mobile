@@ -19,10 +19,16 @@ const PaymentBox = ({ price }) => {
   const { name, email, image } = { ...localStorage };
   const [user] = useState({ name, email, image });
   const [payMethod, setPaymentMethod] = useState(null);
-  const { planid: ID } = useParams();
+  const { planid: PLAN_ID } = useParams();
   const priceWithComma = separtePriceToComma(price);
 
-  const { data, loading, error } = useAxios(`${API_ENDPOINT}products?id=${ID}`);
+  const {
+    data: productData,
+    loading,
+    error,
+  } = useAxios(`${API_ENDPOINT}products?id=${PLAN_ID}`);
+
+  const paymentData = PaymentGateDatas.find((el) => el.id === payMethod);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
@@ -32,26 +38,22 @@ const PaymentBox = ({ price }) => {
     const { IMP } = window;
     IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
 
-    const { pg, pay_method } = PaymentGateDatas.find(
-      (el) => el.id === payMethod
-    );
-
     const paymentInfo = {
-      pg: pg,
-      pay_method: pay_method,
+      pg: paymentData.pg,
+      pay_method: paymentData.pay_method,
       merchant_uid: `mid_${new Date().getDate()}`,
-      name: data?.title,
+      name: productData?.title,
       amount: price || 10000,
       buyer_tel: "010-0000-0000",
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `http://localhost:3000/payment/complete/${ID}`,
+      m_redirect_url: `http://localhost:3000/payment/complete/${PLAN_ID}`,
     };
 
     try {
-      const rsp = await IMP.request_pay(paymentInfo);
+      const response = await IMP.request_pay(paymentInfo);
       // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
-      console.log(rsp);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -73,7 +75,10 @@ const PaymentBox = ({ price }) => {
         </UserInfoWrapper>
 
         <Box>
-          <ClassInfoBox title={data?.title} sessions={data?.sessions} />
+          <ClassInfoBox
+            title={productData?.title}
+            sessions={productData?.sessions}
+          />
         </Box>
 
         <Box>
