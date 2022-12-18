@@ -1,26 +1,21 @@
 import React from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+import { terms } from "../../constants";
 
 const Terms = () => {
   const navigate = useNavigate();
-
   return (
     <Wrapper>
-      <Policy onClick={() => navigate("/refund")}>
-        <p>환불 안내</p>
-        <PolicyPageAnchor>보기</PolicyPageAnchor>
-      </Policy>
-
-      <Policy onClick={() => navigate("/service")}>
-        <p>이용 약관</p>
-        <PolicyPageAnchor>보기</PolicyPageAnchor>
-      </Policy>
-
-      <Policy onClick={() => navigate("/personal")}>
-        <p>개인정보처리방침</p>
-        <PolicyPageAnchor>보기</PolicyPageAnchor>
-      </Policy>
+      {terms.map(({ id, title, redirectPath }) => {
+        return (
+          <Policy key={id} onClick={() => navigate(redirectPath)}>
+            <p>{title}</p>
+            <PolicyPageAnchor>보기</PolicyPageAnchor>
+          </Policy>
+        );
+      })}
     </Wrapper>
   );
 };

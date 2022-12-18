@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../global/Header";
-import { SUCCESS, FAIL } from "../../constants/payment";
+import { SUCCESS, FAIL, paymentResultData } from "../../constants";
 import styled from "styled-components";
 import separtePriceToComma from "../../utils/separtePriceToComma";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 
-const PaymentResultBox = ({ paymentMehodId = 1 }) => {
-  const [isSuccess] = useState(true); // 서드파티에서 받아오는 결과값으로 대체할것
+const PaymentResultBox = ({ paymentMethodId = 1 }) => {
+  const [isSuccess] = useState(false); // 서드파티에서 받아오는 결과값으로 대체할것
   const [paymentResponse] = useState({
     name: "한솔빈",
     price: 10000,
@@ -20,30 +20,9 @@ const PaymentResultBox = ({ paymentMehodId = 1 }) => {
   const { planid: ID } = useParams();
   const PAYMENT_STATUS = isSuccess ? SUCCESS : FAIL;
   const price = separtePriceToComma(paymentResponse.price);
-  const paymenrResulObj = {
-    // TODO: move constants folder
-    success: {
-      title: "결제완료",
-      iconPath: "/images/payment/paymnetSuccessIcon.svg",
-      message:
-        "클래스가 성공적으로 추가됐어요. 데드라인 내에 미션 인증을 잊지 마세요!",
-      notice: "시간 내에 완수해야 다음 세션을 계속 들을 수 있어요.",
-      buttonMessage: "내 투두함으로 이동",
-      handleNavigate: () => navigate("/todobox"),
-    },
-    fail: {
-      title: "결제실패",
-      iconPath: "/images/payment/paymnetFailIcon.svg",
-      message: "결제 과정 중에 문제가 발생했습니다.",
-      notice:
-        "선택하신 출금 계좌가 출금이체 등록이 되어 있지 않아요.\n계좌를 다시 등록해 주세요.", // TODO: 서드파티에서 넘겨주는 에러메세지로 변경
-      buttonMessage: "다시 결제하기",
-      handleNavigate: () => navigate(`/payment/${ID}`),
-    },
-  };
 
-  const { title, iconPath, message, notice, buttonMessage, handleNavigate } =
-    paymenrResulObj[PAYMENT_STATUS];
+  const { title, iconPath, message, notice, buttonMessage, redirectPath } =
+    paymentResultData[PAYMENT_STATUS];
 
   return (
     <Wrapper>
@@ -77,8 +56,7 @@ const PaymentResultBox = ({ paymentMehodId = 1 }) => {
           <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
             {paymentResponse.card_name}
           </BorderText>
-          {/* should rewrite condition statement */}
-          {paymentMehodId === 1 && (
+          {paymentMethodId === 1 && (
             <>
               <ThinText margin="4px 0">카드번호</ThinText>
               <BorderText
@@ -96,13 +74,12 @@ const PaymentResultBox = ({ paymentMehodId = 1 }) => {
           </BorderText>
         </PaymentInfoBox>
       )}
-      {!isSuccess && /*<EmptyBox></EmptyBox>*/ <></>}
       {!isSuccess && (
         <MoveTodoMallButton onClick={() => navigate("/todomall")}>
           <p>투두몰로 이동</p>
         </MoveTodoMallButton>
       )}
-      <Button onClick={handleNavigate}>
+      <Button onClick={() => navigate(redirectPath ?? `/payment/${ID}`)}>
         <p>{buttonMessage}</p>
       </Button>
     </Wrapper>

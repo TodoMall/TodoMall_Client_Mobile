@@ -5,8 +5,7 @@ import styled from "styled-components";
 
 import separtePriceToComma from "../../utils/separtePriceToComma";
 
-import { PaymentGateDatas } from "../../constants/payment";
-import { API_ENDPOINT } from "../../constants/Api";
+import { PaymentGateDatas, API_ENDPOINT } from "../../constants";
 
 import TotalAmountBox from "./TotalAmountBox";
 import UserInfoBox from "./UserInfoBox";

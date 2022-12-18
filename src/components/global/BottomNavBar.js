@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import constants from "../../constants";
+import { COLOR } from "../../constants";
 import { Link } from "react-router-dom";
 
 const BottomNavBar = ({ position }) => {
@@ -16,8 +16,8 @@ const BottomNavBar = ({ position }) => {
               <img
                 src={
                   current === "TODOBOX"
-                    ? constants.TODOBOX_COLORED
-                    : constants.TODOBOX_UNCOLORED
+                    ? COLOR.TODOBOX_COLORED
+                    : COLOR.TODOBOX_UNCOLORED
                 }
                 alt="TODOBOX"
                 style={{ width: 35, height: 45, objectFit: "cover" }}
@@ -37,8 +37,8 @@ const BottomNavBar = ({ position }) => {
               <img
                 src={
                   current === "TODOMALL"
-                    ? constants.TODOMALL_COLORED
-                    : constants.TODOMALL_UNCOLORED
+                    ? COLOR.TODOMALL_COLORED
+                    : COLOR.TODOMALL_UNCOLORED
                 }
                 alt="TODOMALL"
                 style={{ width: 35, height: 45, objectFit: "cover" }}
@@ -58,8 +58,8 @@ const BottomNavBar = ({ position }) => {
               <img
                 src={
                   current === "MYPAGE"
-                    ? constants.MYPAGE_COLORED
-                    : constants.MYPAGE_UNCOLORED
+                    ? COLOR.MYPAGE_COLORED
+                    : COLOR.MYPAGE_UNCOLORED
                 }
                 alt="MYPAGE"
                 style={{ width: 35, height: 43, objectFit: "cover" }}
