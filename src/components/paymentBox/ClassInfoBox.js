@@ -1,3 +1,4 @@
+import React from "react";
 import Label from "../global/Label";
 import ThinText from "../global/ThinText";
 import BorderText from "../global/BorderText";
@@ -18,10 +19,9 @@ const ClassInfoBox = ({ title, sessions }) => {
       <ThinText>커리큘럼</ThinText>
       {sessions?.map((session) => {
         return (
-          <div key={session.orderBy}>
+          <React.Fragment key={session.orderBy}>
             <BorderText margin="12px 0">{session.title}</BorderText>
-            {/* <DDay>D-{RemainingDay}</DDay> */}
-          </div>
+          </React.Fragment>
         );
       })}
     </>
