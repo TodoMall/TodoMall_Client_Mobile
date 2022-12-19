@@ -4,7 +4,7 @@ import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 import Divider from "../global/Divider";
 
-const TotalAmountBox = ({ priceWithComma }) => {
+const PaymentAmountInfo = ({ priceWithComma }) => {
   return (
     <>
       <Label>결제 금액</Label>
@@ -35,7 +35,7 @@ const TotalAmountBox = ({ priceWithComma }) => {
   );
 };
 
-export default TotalAmountBox;
+export default PaymentAmountInfo;
 
 const TotalAmountWrapper = styled.div`
   display: flex;

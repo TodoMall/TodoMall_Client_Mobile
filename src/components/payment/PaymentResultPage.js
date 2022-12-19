@@ -7,7 +7,9 @@ import separtePriceToComma from "../../utils/separtePriceToComma";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 
-const PaymentResultBox = ({ paymentMethodId = 1 }) => {
+// 성공여부에 따른 뷰  컴포넌트 분리
+// page 는 page 폴더로 따로 파서
+const PaymentResultPage = ({ paymentMethodId = 1 }) => {
   const [isSuccess] = useState(false); // 서드파티에서 받아오는 결과값으로 대체할것
   const [paymentResponse] = useState({
     name: "한솔빈",
@@ -137,4 +139,4 @@ const MoveTodoMallButton = styled(Button)`
     color: #6b47fd;
   }
 `;
-export default PaymentResultBox;
+export default PaymentResultPage;

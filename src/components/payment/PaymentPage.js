@@ -1,31 +1,29 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import useAxios from "../../hooks/useAxios";
 import styled from "styled-components";
-
-import separtePriceToComma from "../../utils/separtePriceToComma";
 
 import { PaymentGateDatas, API_ENDPOINT } from "../../constants";
 
-import TotalAmountBox from "./TotalAmountBox";
-import UserInfoBox from "./UserInfoBox";
-import Terms from "./Terms";
-import ClassInfoBox from "./ClassInfoBox";
+import TotalAmountBox from "./PaymentAmountInfo";
+import UserInfoBox from "./PayerInfo";
+import Terms from "./TermsOfServiceSection";
+import ClassInfoBox from "./SelectedClassInfo";
 import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
 
-const PaymentBox = ({ price }) => {
+const PaymentPage = () => {
+  // localstorage 정보가 없을때 대처를 해야한다.
+  // 로그인 페이지로 리다이렉트 하든가 뭘 해라 ㅂㅅ아
   const { name, email, image } = { ...localStorage };
-  const [user] = useState({ name, email, image });
   const [payMethod, setPaymentMethod] = useState(null);
-  const { planid: PLAN_ID } = useParams();
-  const priceWithComma = separtePriceToComma(price);
-
+  const { planid } = useParams();
+  // 삭제하고 localeString 사용해서 그때그때 써라
   const {
-    data: productData,
+    data: product,
     loading,
     error,
-  } = useAxios(`${API_ENDPOINT}products?id=${PLAN_ID}`);
+  } = useAxios(`${API_ENDPOINT}products?id=${planid}`);
+  // 이걸사용해서 http request를 제대로 사용할 수 없음
 
   const paymentData = PaymentGateDatas.find((el) => el.id === payMethod);
 
@@ -34,6 +32,7 @@ const PaymentBox = ({ price }) => {
   };
 
   const handlePayment = async () => {
+    // handlepay || handlePurchase
     const { IMP } = window;
     IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
 
@@ -41,12 +40,12 @@ const PaymentBox = ({ price }) => {
       pg: paymentData.pg,
       pay_method: paymentData.pay_method,
       merchant_uid: `mid_${new Date().getDate()}`,
-      name: productData?.title,
+      name: product?.title,
       amount: price || 10000,
       buyer_tel: "010-0000-0000",
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `http://localhost:3000/payment/complete/${PLAN_ID}`,
+      m_redirect_url: `http://localhost:3000/payment/complete/${planid}`,
     };
 
     try {
@@ -58,19 +57,21 @@ const PaymentBox = ({ price }) => {
     }
   };
 
+  // data가 필요한 곳에서만 loader를 보여준다
   if (loading) {
     return <Loader />;
   }
 
+  // error alert 를 띄어준다
   if (error) {
     return <p>Error : {error.message}</p>;
   }
 
   return (
     <Container>
-      <Layout breadCrumbs="결제하기">
+      <Layout currentPage="결제하기">
         <UserInfoWrapper>
-          <UserInfoBox image={user.image} name={user.name} email={user.email} />
+          <UserInfoBox image={image} name={name} email={email} />
         </UserInfoWrapper>
 
         <Box>
@@ -96,7 +97,7 @@ const PaymentBox = ({ price }) => {
     </Container>
   );
 };
-export default PaymentBox;
+export default PaymentPage;
 
 const Container = styled.div`
   display: flex;

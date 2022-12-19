@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PaymentGateDatas } from "../../constants/";
+import { PaymentGateDatas } from "../../constants";
 
 const PaymentMethodList = ({ onClickPaymentMethod }) => {
   return (

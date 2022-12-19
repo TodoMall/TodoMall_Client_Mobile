@@ -4,7 +4,8 @@ import ThinText from "../global/ThinText";
 import BorderText from "../global/BorderText";
 import Divider from "../global/Divider";
 
-const ClassInfoBox = ({ title, sessions }) => {
+// paying || selected 을 붙이는게 나으려나 고민
+const SelectedClassInfo = ({ title, sessions }) => {
   return (
     <>
       <Label>도전 클래스</Label>
@@ -27,4 +28,4 @@ const ClassInfoBox = ({ title, sessions }) => {
     </>
   );
 };
-export default ClassInfoBox;
+export default SelectedClassInfo;

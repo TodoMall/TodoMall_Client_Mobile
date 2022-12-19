@@ -4,7 +4,7 @@ import ThinText from "../global/ThinText";
 import BorderText from "../global/BorderText";
 import Label from "../global/Label";
 
-const UserInfoBox = ({ image, name, email }) => {
+const PayerInfo = ({ image, name, email }) => {
   return (
     <Fragment>
       <Label>도전자</Label>
@@ -25,6 +25,8 @@ const UserInfoBox = ({ image, name, email }) => {
     </Fragment>
   );
 };
+
+export default PayerInfo;
 
 const ProfileImage = styled.img`
   width: 50px;
@@ -50,5 +52,3 @@ const User = styled.div`
   margin-left: 15px;
   width: 100%;
 `;
-
-export default UserInfoBox;

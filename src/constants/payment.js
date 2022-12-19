@@ -1,5 +1,8 @@
+// text case 통일하기
 export const SUCCESS = "success";
 export const FAIL = "fail";
+// 변경될 이름 : PaymentMethods
+
 export const PaymentGateDatas = [
   {
     id: 1,
@@ -35,6 +38,7 @@ export const PaymentGateDatas = [
   },
 ];
 
+// 삭제 예정이라 이름은 변경하지 않습니다
 export const paymentResultData = {
   success: {
     title: "결제완료",

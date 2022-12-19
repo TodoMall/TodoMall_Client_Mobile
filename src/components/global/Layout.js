@@ -2,10 +2,10 @@ import { Fragment } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const Layout = ({ children, breadCrumbs }) => {
+const Layout = ({ children, currentPage }) => {
   return (
     <Fragment>
-      <Header title={breadCrumbs} />
+      <Header title={currentPage} />
       {children}
       <Footer />
     </Fragment>

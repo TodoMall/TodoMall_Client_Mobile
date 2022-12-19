@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import { terms } from "../../constants";
 
-const Terms = () => {
+// termsofServiceSection
+// terms 는 payment와 관련이 없다?
+const TermsOfServiceSection = () => {
   const navigate = useNavigate();
   return (
     <Wrapper>
@@ -19,6 +21,9 @@ const Terms = () => {
     </Wrapper>
   );
 };
+
+export default TermsOfServiceSection;
+
 const Wrapper = styled.div`
   width: 90%;
   margin: 0 16px 16px 16px;
@@ -44,4 +49,3 @@ const PolicyPageAnchor = styled.a`
   color: #888888;
   text-decoration: underline;
 `;
-export default Terms;
