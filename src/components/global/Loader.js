@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Loader = ({ width, height }) => {
   return (
-    <Container>
-      <Loading width={width} height={height} color="secondary" size="lg" />
+    <Container width={width} height={height}>
+      <Loading color="secondary" size="lg" />
     </Container>
   );
 };
