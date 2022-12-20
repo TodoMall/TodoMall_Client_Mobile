@@ -15,19 +15,24 @@ import { Loader, Layout } from "../global";
 const PaymentPage = () => {
   const { name, email, image, access } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
+  const navigate = useNavigate();
   const { planid } = useParams();
-  const [{ data: product, loading, error }] = useAxios(
+  const [{ data: product, loading }] = useAxios(
     `${API_ENDPOINT}products?id=${planid}`
   );
-
   const paymentData = PaymentGateDatas.find((el) => el.id === payMethod);
+  // 삭제하고 localeString 사용해서 그때그때 써라
+  const price = "10,000";
+
+  useEffect(() => {
+    if (!access) {
+      return navigate("/");
+    }
+  }, [access]);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
   };
-
-  // 삭제하고 localeString 사용해서 그때그때 써라
-  const price = "10,000";
 
   const handlePurchase = async () => {
     const { IMP } = window;
