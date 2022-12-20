@@ -8,7 +8,7 @@ import PlanCurriculum from "./PlanCurriculum";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { MAX_WIDTH } from "../../../constants";
-import { Layout, Divider, Loader, Header } from "../../global";
+import { Layout, Divider, Loader } from "../../global";
 
 const PlanDetail = () => {
   const [isLogin] = useState(!!localStorage.getItem("access"));
