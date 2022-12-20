@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 import { IconDict } from "../../global/Icon";
 
-import SmallAmountBox from "../PlanAmount/SmallAmountBox";
-import BigAmountBox from "../PlanAmount/BigAmountBox";
+import SmallAmountBox from "./SmallAmountBox";
 
 const PlanIntro = ({
   image,
@@ -18,27 +17,13 @@ const PlanIntro = ({
   creator_intro,
 }) => {
   const amount = Number(20000).toLocaleString();
-  const [toggle, setToggle] = useState(false);
-  const handleToggle = () => {
-    setToggle((prevState) => !prevState);
-  };
   return (
     <>
       <Image alt="plan" src={image ? image : "/images/dummy_plan.png"} />
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
-        {/* todo : should be delete toggle */}
-        <div
-          onClick={handleToggle}
-          style={{ display: "flex", justifyContent: "center", width: "95%" }}
-        >
-          {toggle ? (
-            <SmallAmountBox amount={amount} />
-          ) : (
-            <BigAmountBox amount={amount} />
-          )}
-        </div>
+        <SmallAmountBox amount={amount} />
         <LargeTags>
           {largetag.map((tag) => (
             <LargeTagCover>
