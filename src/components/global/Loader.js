@@ -12,9 +12,9 @@ const Loader = ({ width, height }) => {
 export default Loader;
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;

@@ -1,27 +1,22 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useAxios from "axios-hooks";
 
 import { PaymentGateDatas, API_ENDPOINT } from "../../constants";
 
-import TotalAmountBox from "./PaymentAmountInfo";
-import UserInfoBox from "./PayerInfo";
-import Terms from "./TermsOfServiceSection";
-import ClassInfoBox from "./SelectedClassInfo";
+import PaymentAmountInfo from "./PaymentAmountInfo";
+import PayerInfo from "./PayerInfo";
+import TermsOfServiceSection from "./TermsOfServiceSection";
+import SelectedClassInfo from "./SelectedClassInfo";
 import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
 
 const PaymentPage = () => {
-  // localstorage 정보가 없을때 대처를 해야한다.
-  // 로그인 페이지로 리다이렉트 하든가 뭘 해라 ㅂㅅ아
-  const { name, email, image } = { ...localStorage };
+  const { name, email, image, access } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
   const { planid } = useParams();
-
-  // 삭제하고 localeString 사용해서 그때그때 써라
-  // 이걸사용해서 http request를 제대로 사용할 수 없음
-  const [{ product, loading, error }] = useAxios(
+  const [{ data: product, loading, error }] = useAxios(
     `${API_ENDPOINT}products?id=${planid}`
   );
 
@@ -30,9 +25,11 @@ const PaymentPage = () => {
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
   };
+
+  // 삭제하고 localeString 사용해서 그때그때 써라
   const price = "10,000";
-  const handlePayment = async () => {
-    // handlepay || handlePurchase
+
+  const handlePurchase = async () => {
     const { IMP } = window;
     IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
 
@@ -57,40 +54,37 @@ const PaymentPage = () => {
     }
   };
 
-  // data가 필요한 곳에서만 loader를 보여준다
-
-  // error alert 를 띄어준다
-  // if (error) {
-  //   return <p>Error : {error.message}</p>;
-  // }
-
   return (
     <Container>
       <Layout currentPage="결제하기">
         <UserInfoWrapper>
-          {!loading ? (
-            <Loader />
+          {loading ? (
+            <Loader width="100%" height="100%" />
           ) : (
-            <UserInfoBox image={image} name={name} email={email} />
+            <PayerInfo image={image} name={name} email={email} />
           )}
         </UserInfoWrapper>
 
         <Box>
-          <ClassInfoBox title={product?.title} sessions={product?.sessions} />
+          <SelectedClassInfo
+            loading={loading}
+            title={product?.title}
+            sessions={product?.sessions}
+          />
         </Box>
 
         <Box>
-          <TotalAmountBox priceWithComma={price} />
+          <PaymentAmountInfo loading={loading} priceWithComma={price} />
         </Box>
 
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
-        <PaymentButton disabled={!payMethod} onClick={handlePayment}>
+        <PaymentButton disabled={!payMethod} onClick={handlePurchase}>
           {price}원 결제하기
         </PaymentButton>
 
-        <Terms />
+        <TermsOfServiceSection />
       </Layout>
     </Container>
   );
