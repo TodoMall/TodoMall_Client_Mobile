@@ -10,7 +10,7 @@ const PaymentAmountInfo = ({ loading, priceWithComma }) => {
     <>
       <Label>결제 금액</Label>
       {loading ? (
-        <Loader />
+        <Loader width="100%" height="100%" />
       ) : (
         <>
           <TotalAmountWrapper>
