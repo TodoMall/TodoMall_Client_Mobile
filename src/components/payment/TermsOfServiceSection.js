@@ -2,22 +2,22 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { terms } from "../../constants";
-
-// termsofServiceSection
-// terms 는 payment와 관련이 없다?
 const TermsOfServiceSection = () => {
   const navigate = useNavigate();
   return (
     <Wrapper>
-      {terms.map(({ id, title, redirectPath }) => {
-        return (
-          <Policy key={id} onClick={() => navigate(redirectPath)}>
-            <p>{title}</p>
-            <PolicyPageAnchor>보기</PolicyPageAnchor>
-          </Policy>
-        );
-      })}
+      <Policy onClick={() => navigate("/refund")}>
+        <p>환불 안내</p>
+        <PolicyPageAnchor>보기</PolicyPageAnchor>
+      </Policy>
+      <Policy onClick={() => navigate("/service")}>
+        <p>이용 약관</p>
+        <PolicyPageAnchor>보기</PolicyPageAnchor>
+      </Policy>
+      <Policy onClick={() => navigate("/personal")}>
+        <p>개인정보처리방침</p>
+        <PolicyPageAnchor>보기</PolicyPageAnchor>
+      </Policy>
     </Wrapper>
   );
 };
