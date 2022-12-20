@@ -5,7 +5,6 @@ import BorderText from "../global/BorderText";
 import Divider from "../global/Divider";
 import Loader from "../global/Loader";
 
-// paying || selected 을 붙이는게 나으려나 고민
 const SelectedClassInfo = ({ loading, title, sessions }) => {
   return (
     <>
