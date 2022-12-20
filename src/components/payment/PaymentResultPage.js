@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../global/Header";
 import { Success, Fail, paymentResultData } from "../../constants";
@@ -6,17 +5,17 @@ import styled from "styled-components";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 
-const PaymentResultPage = ({ paymentMethodId = 1 }) => {
-  const [isSuccess] = useState(false); // should be replace
-  const [paymentResponse] = useState({
+const PaymentResultPage = ({ paymentMethodId }) => {
+  const isSuccess = false; // should be replace
+  const paymentResponse = {
     name: "한솔빈",
     price: 10000,
     card_name: "롯데카드",
     card_number: "3213-****-****-323*",
     pay_date: "2022.12.02 14:30:32",
-  });
+  };
   const navigate = useNavigate();
-  const { planid: ID } = useParams();
+  const { planid } = useParams();
   const PAYMENT_STATUS = isSuccess ? Success : Fail;
   const price = paymentResponse.price.toLocaleString();
 
@@ -78,7 +77,7 @@ const PaymentResultPage = ({ paymentMethodId = 1 }) => {
           <p>투두몰로 이동</p>
         </MoveTodoMallButton>
       )}
-      <Button onClick={() => navigate(redirectPath ?? `/payment/${ID}`)}>
+      <Button onClick={() => navigate(redirectPath ?? `/payment/${planid}`)}>
         <p>{buttonMessage}</p>
       </Button>
     </Wrapper>
