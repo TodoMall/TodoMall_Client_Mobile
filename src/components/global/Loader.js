@@ -15,6 +15,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  width: ${(props) => props.width ?? "100vm"};
+  height: ${(props) => props.height ?? "100vh"};
 `;
