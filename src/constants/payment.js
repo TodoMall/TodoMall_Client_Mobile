@@ -1,6 +1,5 @@
-// text case 통일하기
-export const SUCCESS = "success";
-export const FAIL = "fail";
+export const Success = "success";
+export const Fail = "fail";
 // 변경될 이름 : PaymentMethods
 
 export const PaymentGateDatas = [

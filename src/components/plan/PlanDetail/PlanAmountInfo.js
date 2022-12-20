@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 
-const SmallAmountBox = ({ amount }) => {
+const PlanAmountInfo = ({ amount }) => {
   return (
     <>
-      <AmountBox>
+      <AmountInfo>
         <p className="label">클래스 구매가</p>
         <div className="right">
           <p className="amount">{amount}</p>
           <p className="description">원</p>
         </div>
-      </AmountBox>
+      </AmountInfo>
     </>
   );
 };
 
-export default SmallAmountBox;
+export default PlanAmountInfo;
 
-const AmountBox = styled.div`
+const AmountInfo = styled.div`
   max-width: ${MAX_WIDTH};
   width: 95%;
   height: 64px;

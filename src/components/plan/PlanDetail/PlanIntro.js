@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 import { IconDict } from "../../global/Icon";
 
-import SmallAmountBox from "./SmallAmountBox";
+import PlanAmountInfo from "./PlanAmountInfo";
 
 const PlanIntro = ({
   image,
@@ -23,7 +23,7 @@ const PlanIntro = ({
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
-        <SmallAmountBox amount={amount} />
+        <PlanAmountInfo amount={amount} />
         <LargeTags>
           {largetag.map((tag) => (
             <LargeTagCover>

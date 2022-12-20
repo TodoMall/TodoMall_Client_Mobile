@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../global/Header";
-import { SUCCESS, FAIL, paymentResultData } from "../../constants";
+import { Success, Fail, paymentResultData } from "../../constants";
 import styled from "styled-components";
-import separtePriceToComma from "../../utils/separtePriceToComma";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 
-// 성공여부에 따른 뷰  컴포넌트 분리
-// page 는 page 폴더로 따로 파서
 const PaymentResultPage = ({ paymentMethodId = 1 }) => {
-  const [isSuccess] = useState(false); // 서드파티에서 받아오는 결과값으로 대체할것
+  const [isSuccess] = useState(false); // should be replace
   const [paymentResponse] = useState({
     name: "한솔빈",
     price: 10000,
@@ -20,8 +17,8 @@ const PaymentResultPage = ({ paymentMethodId = 1 }) => {
   });
   const navigate = useNavigate();
   const { planid: ID } = useParams();
-  const PAYMENT_STATUS = isSuccess ? SUCCESS : FAIL;
-  const price = separtePriceToComma(paymentResponse.price);
+  const PAYMENT_STATUS = isSuccess ? Success : Fail;
+  const price = paymentResponse.price.toLocaleString();
 
   const { title, iconPath, message, notice, buttonMessage, redirectPath } =
     paymentResultData[PAYMENT_STATUS];
