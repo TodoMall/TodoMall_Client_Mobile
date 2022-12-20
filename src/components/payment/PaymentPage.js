@@ -21,14 +21,14 @@ const PaymentPage = () => {
     `${API_ENDPOINT}products?id=${planid}`
   );
   const paymentData = PaymentGateDatas.find((el) => el.id === payMethod);
-  // 삭제하고 localeString 사용해서 그때그때 써라
-  const price = "10,000";
+
+  const price = Number(10000).toLocaleString();
 
   useEffect(() => {
     if (!access) {
       return navigate("/");
     }
-  }, [access]);
+  }, [access, navigate]);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);

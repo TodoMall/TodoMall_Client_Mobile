@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 import { IconDict } from "../../global/Icon";
 
-import separtePriceToComma from "../../../utils/separtePriceToComma";
 import SmallAmountBox from "../PlanAmount/SmallAmountBox";
 import BigAmountBox from "../PlanAmount/BigAmountBox";
 
@@ -18,7 +17,7 @@ const PlanIntro = ({
   creator_name,
   creator_intro,
 }) => {
-  const amount = separtePriceToComma(20000);
+  const amount = Number(20000).toLocaleString();
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => {
     setToggle((prevState) => !prevState);
