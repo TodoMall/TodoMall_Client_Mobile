@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useAxios from "axios-hooks";
 
-import { PaymentGateDatas, API_ENDPOINT } from "../../constants";
+import { PaymentMethods, API_ENDPOINT } from "../../constants";
 
 import PaymentAmountInfo from "./PaymentAmountInfo";
 import PayerInfo from "./PayerInfo";
@@ -20,7 +20,7 @@ const PaymentPage = () => {
   const [{ data: product, loading }] = useAxios(
     `${API_ENDPOINT}products?id=${planid}`
   );
-  const paymentData = PaymentGateDatas.find((el) => el.id === payMethod);
+  const paymentData = PaymentMethods.find((el) => el.id === payMethod);
 
   const price = Number(10000).toLocaleString();
 

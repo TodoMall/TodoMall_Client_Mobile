@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { PaymentGateDatas } from "../../constants";
+import { PaymentMethods } from "../../constants";
 
 const PaymentMethodList = ({ onClickPaymentMethod }) => {
   return (
     <>
       <Label>결제 수단</Label>
       <PaymentIconList>
-        {PaymentGateDatas.map(({ id, iconPath, description }) => {
+        {PaymentMethods.map(({ id, iconPath, description }) => {
           return (
             <PaymentIconItem key={id} onClick={() => onClickPaymentMethod(id)}>
               <PaymentIcon src={iconPath} alt="" />

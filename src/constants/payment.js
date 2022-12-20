@@ -1,8 +1,7 @@
 export const Success = "success";
 export const Fail = "fail";
-// 변경될 이름 : PaymentMethods
 
-export const PaymentGateDatas = [
+export const PaymentMethods = [
   {
     id: 1,
     pg: "uplus",
@@ -53,7 +52,7 @@ export const paymentResultData = {
     iconPath: "/images/payment/paymnetFailIcon.svg",
     message: "결제 과정 중에 문제가 발생했습니다.",
     notice:
-      "선택하신 출금 계좌가 출금이체 등록이 되어 있지 않아요.\n계좌를 다시 등록해 주세요.", // TODO: 서드파티에서 넘겨주는 에러메세지로 변경
+      "선택하신 출금 계좌가 출금이체 등록이 되어 있지 않아요.\n계좌를 다시 등록해 주세요.",
     buttonMessage: "다시 결제하기",
   },
 };
