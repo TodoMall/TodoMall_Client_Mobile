@@ -1,10 +1,10 @@
 import { Loading } from "@nextui-org/react";
 import styled from "styled-components";
 
-const Loader = () => {
+const Loader = ({ width, height }) => {
   return (
     <Container>
-      <Loading color="secondary" size="lg" />
+      <Loading width={width} height={height} color="secondary" size="lg" />
     </Container>
   );
 };

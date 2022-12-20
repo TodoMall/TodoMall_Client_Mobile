@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import useAxios from "axios-hooks";
 
 import { PaymentGateDatas, API_ENDPOINT } from "../../constants";
 
@@ -17,20 +18,19 @@ const PaymentPage = () => {
   const { name, email, image } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
   const { planid } = useParams();
+
   // 삭제하고 localeString 사용해서 그때그때 써라
-  const {
-    data: product,
-    loading,
-    error,
-  } = useAxios(`${API_ENDPOINT}products?id=${planid}`);
   // 이걸사용해서 http request를 제대로 사용할 수 없음
+  const [{ product, loading, error }] = useAxios(
+    `${API_ENDPOINT}products?id=${planid}`
+  );
 
   const paymentData = PaymentGateDatas.find((el) => el.id === payMethod);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
   };
-
+  const price = "10,000";
   const handlePayment = async () => {
     // handlepay || handlePurchase
     const { IMP } = window;
@@ -58,38 +58,36 @@ const PaymentPage = () => {
   };
 
   // data가 필요한 곳에서만 loader를 보여준다
-  if (loading) {
-    return <Loader />;
-  }
 
   // error alert 를 띄어준다
-  if (error) {
-    return <p>Error : {error.message}</p>;
-  }
+  // if (error) {
+  //   return <p>Error : {error.message}</p>;
+  // }
 
   return (
     <Container>
       <Layout currentPage="결제하기">
         <UserInfoWrapper>
-          <UserInfoBox image={image} name={name} email={email} />
+          {!loading ? (
+            <Loader />
+          ) : (
+            <UserInfoBox image={image} name={name} email={email} />
+          )}
         </UserInfoWrapper>
 
         <Box>
-          <ClassInfoBox
-            title={productData?.title}
-            sessions={productData?.sessions}
-          />
+          <ClassInfoBox title={product?.title} sessions={product?.sessions} />
         </Box>
 
         <Box>
-          <TotalAmountBox priceWithComma={priceWithComma} />
+          <TotalAmountBox priceWithComma={price} />
         </Box>
 
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
         <PaymentButton disabled={!payMethod} onClick={handlePayment}>
-          {priceWithComma}원 결제하기
+          {price}원 결제하기
         </PaymentButton>
 
         <Terms />

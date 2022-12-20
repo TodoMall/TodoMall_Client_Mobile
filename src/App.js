@@ -21,8 +21,9 @@ import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
 import TodoAnswer from "./components/todo/TodoAnswer";
 import Social from "./components/login/Social";
 import { CAREER } from "./components/main/TodoMall/Constant";
-import PaymentBox from "./components/paymentBox/PaymentBox";
-import PaymentResultBox from "./components/paymentBox/PaymentResultBox";
+
+import PaymentPage from "./components/payment/PaymentPage";
+import PaymentResultPage from "./components/payment/PaymentResultPage";
 
 function App() {
   const [current, setCurrent] = useState(CAREER);
@@ -70,10 +71,10 @@ function App() {
         <Route path="/announcement/:id" element={<AnnouncementDetail />} />
 
         {/* Payment Routes */}
-        <Route path="/payment/:planid" element={<PaymentBox />} />
+        <Route path="/payment/:planid" element={<PaymentPage />} />
         <Route
           path="/payment/complete/:planid"
-          element={<PaymentResultBox />}
+          element={<PaymentResultPage />}
         />
       </Routes>
     </Container>
