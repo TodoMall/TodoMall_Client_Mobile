@@ -145,7 +145,6 @@ const HTMLDiv = styled.div`
 
   h1 {
     font-family: "Pretendard";
-    font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
@@ -159,7 +158,6 @@ const HTMLDiv = styled.div`
     border: 1px solid #6b47fd;
     border-radius: 20px;
     font-family: "Pretendard";
-    font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
@@ -169,7 +167,6 @@ const HTMLDiv = styled.div`
 
   ol {
     font-family: "Pretendard";
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -179,7 +176,6 @@ const HTMLDiv = styled.div`
 
   ul {
     font-family: "Pretendard";
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -194,7 +190,6 @@ const HTMLDiv = styled.div`
 
   p {
     font-family: "Pretendard";
-    font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -226,7 +221,6 @@ const TodoDetailAnswer = styled.div`
 `;
 
 const TodoDetailText = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
@@ -245,7 +239,6 @@ const TodoDetailButton = styled.button`
   border: 1px solid #6b47fd;
   border-radius: 20px;
   background-color: #fbfbfb;
-  font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -266,7 +259,6 @@ const TodoDetailTask = styled.div`
 
 const TodoDetailTaskTitle = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
@@ -274,7 +266,6 @@ const TodoDetailTaskTitle = styled.p`
 `;
 
 const TodoDetailTaskSubtitle = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -321,7 +312,6 @@ const TodoDetailTaskBoxToggleOn = styled.div`
 const TodoDetailTaskBoxTitle = styled.p`
   width: 85%;
   padding-left: 30px;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -341,7 +331,6 @@ const TodoDetailFinishButton = styled.div`
   margin: 30px 0;
   background: ${(props) => (props.done ? "#6b47fd" : "#EDEDED")};
   border-radius: 20px;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   color: ${(props) => (props.done ? "white" : "#929292")};

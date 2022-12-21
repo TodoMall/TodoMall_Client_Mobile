@@ -56,14 +56,12 @@ const AnnouncementRow = styled.div`
 `;
 
 const AnnouncementDate = styled.p`
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   color: #979797;
 `;
 
 const AnnouncementTitle = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   color: #000000;

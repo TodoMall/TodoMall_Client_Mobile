@@ -32,7 +32,6 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 25px;
@@ -63,7 +62,6 @@ const Detail = styled.div`
 
 const Order = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 24px;
@@ -74,7 +72,6 @@ const Order = styled.p`
 
 const Who = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;

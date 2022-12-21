@@ -44,7 +44,6 @@ const TodoSubmitSuccessBody = styled.div`
 
 const TodoSubmitSuccessTitle = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
@@ -54,7 +53,6 @@ const TodoSubmitSuccessTitle = styled.p`
 `;
 
 const TodoSubmitSuccessSubtitle = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -90,7 +88,6 @@ const TodoSubmitSuccessButton = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;

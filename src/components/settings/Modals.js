@@ -131,7 +131,6 @@ const Container = styled.div`
 `;
 
 const ModalTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 22px;
   text-align: center;
@@ -140,7 +139,6 @@ const ModalTitle = styled.p`
 `;
 
 const ModalDetail = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   text-align: center;

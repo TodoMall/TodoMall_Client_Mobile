@@ -103,7 +103,6 @@ const Text = styled.div`
 
 const BodyText = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
@@ -125,7 +124,7 @@ const BodyImage = styled.img`
 
 const BodyDescription = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 25px;
@@ -154,7 +153,7 @@ const Button = styled.div`
   justify-content: center;
   color: #6b47fd;
   font-family: "Pretendard";
-  font-style: normal;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
@@ -172,7 +171,7 @@ const ButtonNavigate = styled.div`
   align-items: center;
   justify-content: center;
   background: #6b47fd;
-  font-style: normal;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;

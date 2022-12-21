@@ -129,7 +129,6 @@ const PaymentButton = styled.div`
   height: 52px;
   background: ${(props) => (props.disabled ? "#A9A9A9" : "#6b47fd")};
   border-radius: 20px;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;

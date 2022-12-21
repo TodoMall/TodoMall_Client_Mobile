@@ -27,7 +27,6 @@ export default BorderText;
 
 const BorderTag = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   letter-spacing: -0.01em;
   color: #222222;
   font-size: ${(props) => props.fontSize ?? "14px"};

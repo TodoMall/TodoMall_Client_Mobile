@@ -26,7 +26,6 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 32px;
@@ -34,7 +33,6 @@ const FirstTitle = styled.p`
 
 const SubTitle = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 16px;
@@ -46,7 +44,6 @@ const Body = styled.div``;
 
 const Paragraph = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;

@@ -141,7 +141,6 @@ const BuyButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;

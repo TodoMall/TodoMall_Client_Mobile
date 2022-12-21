@@ -56,7 +56,6 @@ const TodoAnswerContainer = styled.div`
 
 const TodoAnswerTitle = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -69,7 +68,6 @@ const TodoAnswerTitle = styled.p`
 
 const TodoAnswerDescription = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;

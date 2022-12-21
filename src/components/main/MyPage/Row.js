@@ -63,14 +63,12 @@ const Detail = styled.div`
 `;
 
 const Tries = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   color: #a9a9a9;
 `;
 
 const Title = styled.p`
-  font-style: normal;
   font-weight: 600;
   font-size: 1.1rem;
   color: #000000;
