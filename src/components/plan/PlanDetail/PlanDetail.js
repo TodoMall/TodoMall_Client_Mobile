@@ -6,18 +6,16 @@ import PlanSecond from "./PlanSecond";
 import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { MAX_WIDTH } from "../../../constants";
 import { Layout, Divider, Loader } from "../../global";
+import useAxios from "axios-hooks";
 
 const PlanDetail = () => {
   const [isLogin] = useState(!!localStorage.getItem("access"));
+  const email = localStorage.getItem("email");
   const [duplicate, setDuplicate] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [plan, setPlan] = useState();
   const navigate = useNavigate();
-
-  const ID = useParams().planid;
+  const { planid: ID } = useParams();
 
   const sendToPaymentPage = () => {
     if (!isLogin) {
@@ -27,44 +25,38 @@ const PlanDetail = () => {
       navigate(`/payment/${plan.id}/`);
     }
   };
-  const fetch = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
-      .then((res) => {
-        setPlan(res.data);
-        setLoading(false);
-        document.title = res.data.title;
-      });
-    const email = localStorage.getItem("email");
-    const response = await axios.get(
-      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
-    );
-    setDuplicate(checkDuplicate(response.data.ownProducts));
-  };
+
+  const [{ data: plan, loading: isLoading }] = useAxios(
+    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`
+  );
+  const [{ data: userProduct }] = useAxios(
+    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+  );
 
   const checkDuplicate = (data) => {
     const temp = data.filter(
-      (data) => data.productId === ID && data.status === false
+      ({ productId, status }) => productId === ID && status === false
     );
-    if (temp.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return temp.length > 0;
   };
 
   useEffect(() => {
-    fetch();
+    if (plan) {
+      document.title = plan?.title;
+    }
+    if (userProduct) {
+      setDuplicate(checkDuplicate(userProduct?.ownProducts));
+    }
+  }, [plan, userProduct]);
 
-    return () => {
-      document.title = "TodoMall";
-    };
-  }, []);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Container>
-      <Layout breadCrumbs="결제하기">
-        {loading ? (
+      <Layout currentPage="결제하기">
+        {isLoading ? (
           <Loader />
         ) : (
           <Body>
