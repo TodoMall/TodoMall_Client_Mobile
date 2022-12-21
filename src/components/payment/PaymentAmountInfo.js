@@ -5,11 +5,11 @@ import ThinText from "../global/ThinText";
 import Divider from "../global/Divider";
 import Loader from "../global/Loader";
 
-const PaymentAmountInfo = ({ loading, priceWithComma }) => {
+const PaymentAmountInfo = ({ isLoading, priceWithComma }) => {
   return (
     <>
       <Label>결제 금액</Label>
-      {loading ? (
+      {isLoading ? (
         <Loader width="100%" height="100%" />
       ) : (
         <>

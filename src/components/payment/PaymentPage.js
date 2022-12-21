@@ -17,7 +17,7 @@ const PaymentPage = () => {
   const [payMethod, setPaymentMethod] = useState(null);
   const navigate = useNavigate();
   const { planid } = useParams();
-  const [{ data: product, loading }] = useAxios(
+  const [{ data: product, loading: isLoading }] = useAxios(
     `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${planid}`
   );
   const paymentData = PaymentMethods.find((el) => el.id === payMethod);
@@ -63,7 +63,7 @@ const PaymentPage = () => {
     <Container>
       <Layout currentPage="결제하기">
         <UserInfoWrapper>
-          {loading ? (
+          {isLoading ? (
             <Loader width="100%" height="100%" />
           ) : (
             <PayerInfo image={image} name={name} email={email} />
@@ -72,14 +72,14 @@ const PaymentPage = () => {
 
         <Box>
           <SelectedClassInfo
-            loading={loading}
+            isLoading={isLoading}
             title={product?.title}
             sessions={product?.sessions}
           />
         </Box>
 
         <Box>
-          <PaymentAmountInfo loading={loading} priceWithComma={price} />
+          <PaymentAmountInfo isLoading={isLoading} priceWithComma={price} />
         </Box>
 
         <Box>

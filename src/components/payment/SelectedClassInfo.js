@@ -5,12 +5,12 @@ import BorderText from "../global/BorderText";
 import Divider from "../global/Divider";
 import Loader from "../global/Loader";
 
-const SelectedClassInfo = ({ loading, title, sessions }) => {
+const SelectedClassInfo = ({ isLoading, title, sessions }) => {
   return (
     <>
       <Label>도전 클래스</Label>
       <ThinText margin="0 0 8px 0">클래스명</ThinText>
-      {loading ? <Loader width="100%" height="100%" /> : <p>{title}</p>}
+      {isLoading ? <Loader width="100%" height="100%" /> : <p>{title}</p>}
       <Divider
         margin="16px 0"
         border="1px solid #ededed"
@@ -18,8 +18,8 @@ const SelectedClassInfo = ({ loading, title, sessions }) => {
         height="none"
       />
       <ThinText>커리큘럼</ThinText>
-      {loading && <Loader width="100%" height="100%" />}
-      {!loading &&
+      {isLoading && <Loader width="100%" height="100%" />}
+      {!isLoading &&
         sessions?.map((session) => {
           return (
             <React.Fragment key={session.orderBy}>
