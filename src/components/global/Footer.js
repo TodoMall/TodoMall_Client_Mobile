@@ -9,7 +9,7 @@ const Footer = () => {
       <Divider
         margin="16px 0"
         border="1px solid #888888"
-        width="100%"
+        maxWidth="100%"
         height="none"
       />
 

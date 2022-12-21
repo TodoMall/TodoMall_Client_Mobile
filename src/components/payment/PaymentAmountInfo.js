@@ -22,7 +22,7 @@ const PaymentAmountInfo = ({ loading, priceWithComma }) => {
           <Divider
             margin="16px 0"
             border="1px solid #ededed"
-            width="100%"
+            maxWidth="100%"
             height="none"
           />
 

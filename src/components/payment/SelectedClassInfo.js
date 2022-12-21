@@ -14,7 +14,7 @@ const SelectedClassInfo = ({ loading, title, sessions }) => {
       <Divider
         margin="16px 0"
         border="1px solid #ededed"
-        width="100%"
+        maxWidth="100%"
         height="none"
       />
       <ThinText>커리큘럼</ThinText>
