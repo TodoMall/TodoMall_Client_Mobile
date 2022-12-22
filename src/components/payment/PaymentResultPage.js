@@ -1,12 +1,17 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Header from "../global/Header";
-import { Success, Fail, paymentResultData } from "../../constants";
+import { paymentResultData } from "../../constants";
 import styled from "styled-components";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 
 const PaymentResultPage = ({ paymentMethodId }) => {
-  const isSuccess = false; // should be replace
+  const { search } = useLocation();
+  const queryString = new URLSearchParams(search);
+  const isSuccess = JSON.parse(queryString.get("imp_success"));
+  const imp_uid = queryString.get("imp_uid");
+  const error_msg = queryString.get("error_msg");
+
   const paymentResponse = {
     name: "한솔빈",
     price: 10000,
@@ -16,7 +21,7 @@ const PaymentResultPage = ({ paymentMethodId }) => {
   };
   const navigate = useNavigate();
   const { planid } = useParams();
-  const PAYMENT_STATUS = isSuccess ? Success : Fail;
+  const PAYMENT_STATUS = isSuccess ? "success" : "fail";
   const price = paymentResponse.price.toLocaleString();
 
   const { title, iconPath, message, notice, buttonMessage, redirectPath } =
