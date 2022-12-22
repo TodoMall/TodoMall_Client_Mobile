@@ -5,7 +5,16 @@ import { COLOR } from "../../constants";
 import { Link } from "react-router-dom";
 
 const BottomNavBar = ({ position }) => {
-  const [current, setCurrent] = useState(position);
+  const [currentLocation, setCurrentLocation] = useState(position);
+
+  const getImageSource = (currentLocation, location) => {
+    if (currentLocation === location) {
+      return COLOR[`${location}_COLORED`];
+    }
+    if (currentLocation !== location) {
+      return COLOR[`${location}_UNCOLORED`];
+    }
+  };
 
   return (
     <>
@@ -14,11 +23,7 @@ const BottomNavBar = ({ position }) => {
           icon={
             <>
               <img
-                src={
-                  current === "TODOBOX"
-                    ? COLOR.TODOBOX_COLORED
-                    : COLOR.TODOBOX_UNCOLORED
-                }
+                src={getImageSource(currentLocation, "TODOBOX")}
                 alt="TODOBOX"
                 style={{ width: 35, height: 45, objectFit: "cover" }}
                 height={20}
@@ -26,7 +31,7 @@ const BottomNavBar = ({ position }) => {
             </>
           }
           onClick={() => {
-            setCurrent("TODOBOX");
+            setCurrentLocation("TODOBOX");
           }}
           component={Link}
           to="/todobox"
@@ -35,11 +40,7 @@ const BottomNavBar = ({ position }) => {
           icon={
             <>
               <img
-                src={
-                  current === "TODOMALL"
-                    ? COLOR.TODOMALL_COLORED
-                    : COLOR.TODOMALL_UNCOLORED
-                }
+                src={getImageSource(currentLocation, "TODOMALL")}
                 alt="TODOMALL"
                 style={{ width: 35, height: 45, objectFit: "cover" }}
                 height={25}
@@ -47,7 +48,7 @@ const BottomNavBar = ({ position }) => {
             </>
           }
           onClick={() => {
-            setCurrent("TODOMALL");
+            setCurrentLocation("TODOMALL");
           }}
           component={Link}
           to="/todomall"
@@ -56,11 +57,7 @@ const BottomNavBar = ({ position }) => {
           icon={
             <>
               <img
-                src={
-                  current === "MYPAGE"
-                    ? COLOR.MYPAGE_COLORED
-                    : COLOR.MYPAGE_UNCOLORED
-                }
+                src={getImageSource(currentLocation, "MYPAGE")}
                 alt="MYPAGE"
                 style={{ width: 35, height: 43, objectFit: "cover" }}
                 height={25}
@@ -68,7 +65,7 @@ const BottomNavBar = ({ position }) => {
             </>
           }
           onClick={() => {
-            setCurrent("MYPAGE");
+            setCurrentLocation("MYPAGE");
           }}
           component={Link}
           to="/mypage"
