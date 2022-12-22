@@ -24,11 +24,13 @@ const PaymentPage = () => {
 
   const price = Number(10000).toLocaleString();
 
-  useEffect(() => {
-    if (!access) {
-      return navigate("/");
-    }
-  }, [access, navigate]);
+  /* Feature Flagging : vercel에서 제공하는 도메인에서 QA를 진행하기 위해 잠시 feature flagging */
+
+  // useEffect(() => {
+  //   if (!access) {
+  //     return navigate("/");
+  //   }
+  // }, [access, navigate]);
 
   const handleSelectPaymentMethod = (id) => {
     setPaymentMethod(id);
