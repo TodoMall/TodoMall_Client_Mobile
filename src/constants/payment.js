@@ -5,7 +5,7 @@ export const PaymentMethods = [
   {
     id: 1,
     name: "card",
-    pg: "uplus",
+    pg: "uplus.tlgdacomxpay",
     MID: "tlgdacomxpay",
     pay_method: "card",
     iconPath: "/images/payment/accountTransferIcon.svg",
@@ -14,7 +14,7 @@ export const PaymentMethods = [
   {
     id: 2,
     name: "trans",
-    pg: "uplus",
+    pg: "uplus.tlgdacomxpay",
     MID: "tlgdacomxpay",
     pay_method: "trans",
     iconPath: "/images/payment/cardPayIcon.svg",
@@ -23,7 +23,7 @@ export const PaymentMethods = [
   {
     id: 3,
     name: "tosspay",
-    pg: "tosspay",
+    pg: "tosspay.tosstest",
     MID: "tosstest",
     pay_method: "card",
     iconPath: "/images/payment/tossPayIcon.svg",
@@ -32,7 +32,7 @@ export const PaymentMethods = [
   {
     id: 4,
     name: "kakaopay",
-    pg: "kakaopay",
+    pg: "kakaopay.TC0ONETIME",
     MID: "TC0ONETIME",
     pay_method: "card",
     iconPath: "/images/payment/kakaoPayIcon.svg",
