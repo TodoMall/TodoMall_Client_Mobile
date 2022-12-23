@@ -5,7 +5,7 @@ import styled from "styled-components";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
 
-const PaymentResultPage = ({ paymentMethodId }) => {
+const PaymentResultPage = ({ paymentMethod }) => {
   const { search } = useLocation();
   const queryString = new URLSearchParams(search);
   const isSuccess = JSON.parse(queryString.get("imp_success"));
@@ -59,7 +59,7 @@ const PaymentResultPage = ({ paymentMethodId }) => {
           <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
             {paymentResponse.card_name}
           </BorderText>
-          {paymentMethodId === 1 && (
+          {paymentMethod === "card" && (
             <>
               <ThinText margin="4px 0">카드번호</ThinText>
               <BorderText

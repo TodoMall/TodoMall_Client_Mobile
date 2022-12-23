@@ -32,8 +32,8 @@ const PaymentPage = () => {
   //   }
   // }, [access, navigate]);
 
-  const handleSelectPaymentMethod = (id) => {
-    setPaymentMethod(id);
+  const handleSelectPaymentMethod = (name) => {
+    setPaymentMethod(name);
   };
 
   const handlePurchase = async () => {
@@ -45,7 +45,7 @@ const PaymentPage = () => {
       pay_method: paymentData.pay_method,
       merchant_uid: `mid_${new Date().getDate()}`,
       name: product?.title,
-      amount: price || 10000,
+      amount: 20000,
       buyer_tel: "010-0000-0000",
       buyer_email: email,
       buyer_name: name,
@@ -53,9 +53,16 @@ const PaymentPage = () => {
     };
 
     try {
+      IMP.request_pay(paymentInfo, (res) => {
+        if (res.success) {
+          console.log("success res : ", res);
+        } else {
+          console.log("fail res : ", res);
+        }
+      });
       const response = await IMP.request_pay(paymentInfo);
       // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
-      console.log(response);
+      console.log("response : ", response);
     } catch (error) {
       console.error(error);
     }

@@ -6,9 +6,12 @@ const PaymentMethodList = ({ onClickPaymentMethod }) => {
     <>
       <Label>결제 수단</Label>
       <PaymentIconList>
-        {PaymentMethods.map(({ id, iconPath, description }) => {
+        {PaymentMethods.map(({ id, name, iconPath, description }) => {
           return (
-            <PaymentIconItem key={id} onClick={() => onClickPaymentMethod(id)}>
+            <PaymentIconItem
+              key={id}
+              onClick={() => onClickPaymentMethod(name)}
+            >
               <PaymentIcon src={iconPath} alt="" />
               {description}
             </PaymentIconItem>

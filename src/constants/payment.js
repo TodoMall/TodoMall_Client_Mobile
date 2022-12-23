@@ -4,6 +4,7 @@ export const Fail = "fail";
 export const PaymentMethods = [
   {
     id: 1,
+    name: "card",
     pg: "uplus",
     MID: "tlgdacomxpay",
     pay_method: "card",
@@ -12,6 +13,7 @@ export const PaymentMethods = [
   },
   {
     id: 2,
+    name: "trans",
     pg: "uplus",
     MID: "tlgdacomxpay",
     pay_method: "trans",
@@ -20,6 +22,7 @@ export const PaymentMethods = [
   },
   {
     id: 3,
+    name: "tosspay",
     pg: "tosspay",
     MID: "tosstest",
     pay_method: "card",
@@ -28,6 +31,7 @@ export const PaymentMethods = [
   },
   {
     id: 4,
+    name: "kakaopay",
     pg: "kakaopay",
     MID: "TC0ONETIME",
     pay_method: "card",
