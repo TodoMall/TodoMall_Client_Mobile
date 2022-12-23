@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const ThinText = ({
   children,
-  width,
-  margin,
-  textAlign,
-  fontWeight,
-  fontSize,
-  lineHeight,
+  width = "50%",
+  margin = "none",
+  textAlign = "left",
+  fontWeight = "400",
+  fontSize = "14px",
+  lineHeight = "21px",
 }) => {
   return (
     <ThinTag
@@ -29,10 +29,10 @@ const ThinTag = styled.p`
   font-family: Pretendard;
   letter-spacing: -0.01em;
   color: #888888;
-  font-weight: ${(props) => props.fontWeight ?? "400"};
-  font-size: ${(props) => props.fontSize ?? "14px"};
-  line-height: ${(props) => props.lineHeight ?? "21px"};
-  text-align: ${(props) => props.textAlign ?? "left"};
-  width: ${(props) => props.width ?? "50%"};
-  margin: ${(props) => props.margin ?? ""};
+  font-weight: ${(props) => props.fontWeight};
+  font-size: ${(props) => props.fontSize};
+  line-height: ${(props) => props.lineHeight};
+  text-align: ${(props) => props.textAlign};
+  width: ${(props) => props.width};
+  margin: ${(props) => props.margin};
 `;

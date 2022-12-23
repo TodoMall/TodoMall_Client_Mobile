@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const BorderText = ({
   children,
-  width,
   margin,
-  textAlign,
-  fontWeight,
-  fontSize,
-  lineHeight,
+  width = "50%",
+  textAlign = "none",
+  fontWeight = "400",
+  fontSize = "14px",
+  lineHeight = "21px",
 }) => {
   return (
     <BorderTag
@@ -29,10 +29,10 @@ const BorderTag = styled.p`
   font-family: "Pretendard";
   letter-spacing: -0.01em;
   color: #222222;
-  font-size: ${(props) => props.fontSize ?? "14px"};
-  line-height: ${(props) => props.lineHeight ?? "21px"};
-  font-weight: ${(props) => props.fontWeight ?? "400"};
-  text-align: ${(props) => props.textAlign ?? "none"};
-  width: ${(props) => props.width ?? "50%"};
+  font-size: ${(props) => props.fontSize};
+  line-height: ${(props) => props.lineHeight};
+  font-weight: ${(props) => props.fontWeight};
+  text-align: ${(props) => props.textAlign};
+  width: ${(props) => props.width};
   margin: ${(props) => props.margin};
 `;
