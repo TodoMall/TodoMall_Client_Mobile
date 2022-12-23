@@ -35,7 +35,7 @@ const Settings = () => {
         </Rows>
         <Divider width="100vw" />
         <Rows>
-          <a href="http://pf.kakao.com/_xhSxjExj">
+          <a href="http://pf.kakao.com/_xhSxjExj/chat">
             <Row>
               <RowTitle>문의하기</RowTitle>
               <DetailIcon src={`/images/todo_detail.svg`} />
