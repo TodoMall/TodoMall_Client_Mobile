@@ -36,6 +36,7 @@ function App() {
         <Route path="/agreement" element={<Agreement />} />
         <Route path="/service" element={<Service />} />
         <Route path="/personal" element={<Personal />} />
+        <Route path="/refund" element={<Personal />} />
 
         {/* Main pages Routes */}
         <Route path="/todobox" element={<TodoBox />} />
