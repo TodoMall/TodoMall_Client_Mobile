@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BottomNavBar from "../../global/BottomNavBar";
-import { Loader } from "../../global/Loader";
+import { Loader, BottomNavBar } from "../../global";
 import TodoBoxContent from "./TodoBoxContent";
 import TodoBoxHeader from "./TodoBoxHeader";
 
@@ -43,7 +42,6 @@ const TodoBox = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
       );
-      console.log(response.data);
       setPlans(handlePlan(response.data.ownProducts));
       setLoading(false);
     };
@@ -102,7 +100,6 @@ const TodoBoxEmptyImage = styled.img`
 `;
 
 const TodoBoxEmptyWelcome = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
@@ -111,7 +108,6 @@ const TodoBoxEmptyWelcome = styled.p`
 `;
 
 const TodoBoxEmptyDescription = styled.p`
-  font-style: normal;
   font-weight: 300;
   font-size: 16px;
   line-height: 24px;

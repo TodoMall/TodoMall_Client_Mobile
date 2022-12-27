@@ -22,6 +22,9 @@ import TodoAnswer from "./components/todo/TodoAnswer";
 import Social from "./components/login/Social";
 import { CAREER } from "./components/main/TodoMall/Constant";
 
+import PaymentPage from "./components/payment/PaymentPage";
+import PaymentResultPage from "./components/payment/PaymentResultPage";
+
 function App() {
   const [current, setCurrent] = useState(CAREER);
   return (
@@ -66,6 +69,13 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/announcement/:id" element={<AnnouncementDetail />} />
+
+        {/* Payment Routes */}
+        <Route path="/payment/:planid" element={<PaymentPage />} />
+        <Route
+          path="/payment/complete/:planid"
+          element={<PaymentResultPage />}
+        />
       </Routes>
     </Container>
   );

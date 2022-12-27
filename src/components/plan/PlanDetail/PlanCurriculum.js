@@ -42,7 +42,6 @@ const Container = styled.div`
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 25px;
@@ -53,7 +52,6 @@ const Body = styled.div``;
 const Intro = styled.div``;
 
 const SessionCount = styled.p`
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 14px;
@@ -62,7 +60,6 @@ const SessionCount = styled.p`
 `;
 
 const Title = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 16px;
@@ -84,7 +81,6 @@ const AssignmentImage = styled.img`
 `;
 
 const AssignmentTitle = styled.p`
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 14px;
@@ -105,7 +101,6 @@ const Todo = styled.div`
 `;
 
 const TodoTitle = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 14px;

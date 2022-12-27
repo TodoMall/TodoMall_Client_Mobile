@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../global/Header";
 import axios from "axios";
-import { Loader } from "../global/Loader";
+import { Loader } from "../global";
 
 const PlanPurchase = () => {
   const [loading, setLoading] = useState(false);
@@ -103,7 +103,6 @@ const Text = styled.div`
 
 const BodyText = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
@@ -125,7 +124,6 @@ const BodyImage = styled.img`
 
 const BodyDescription = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 25px;
@@ -154,7 +152,6 @@ const Button = styled.div`
   justify-content: center;
   color: #6b47fd;
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
@@ -172,7 +169,6 @@ const ButtonNavigate = styled.div`
   align-items: center;
   justify-content: center;
   background: #6b47fd;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;

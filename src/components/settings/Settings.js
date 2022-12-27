@@ -35,7 +35,7 @@ const Settings = () => {
         </Rows>
         <Divider width="100vw" />
         <Rows>
-          <a href="http://pf.kakao.com/_xhSxjExj">
+          <a href="http://pf.kakao.com/_xhSxjExj/chat">
             <Row>
               <RowTitle>문의하기</RowTitle>
               <DetailIcon src={`/images/todo_detail.svg`} />
@@ -98,7 +98,6 @@ const Row = styled.div`
 `;
 
 const RowTitle = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 14px;
@@ -106,7 +105,6 @@ const RowTitle = styled.p`
 `;
 
 const DetailVersion = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 14px;

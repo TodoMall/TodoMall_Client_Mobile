@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Header from "../global/Header";
 import AWS from "aws-sdk";
 import axios from "axios";
-import { Loader } from "../global/Loader";
+import { Loader } from "../global";
 
 const TodoSubmit = () => {
   const [image, setImage] = useState("");
@@ -168,7 +168,6 @@ const TodoSubmitBody = styled.div`
 const TodoSubmitTitle = styled.p`
   width: 90vw;
   max-width: 450px;
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -184,7 +183,6 @@ const TodoSubmitSubtitle = styled.p`
   max-width: 450px;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -236,14 +234,12 @@ const TodoSubmitButtonActive = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;
 `;
 
 const TodoSubmitButtonActiveText = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
@@ -261,7 +257,6 @@ const TodoSubmitButtonInactive = styled.div`
   justify-content: center;
   background: #ededed;
   color: #929292;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;

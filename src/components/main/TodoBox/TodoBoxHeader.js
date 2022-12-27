@@ -29,7 +29,6 @@ const TodoBoxHeaderContainer = styled.div`
 `;
 
 const TodoBoxHeaderName = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
@@ -41,7 +40,6 @@ const TodoBoxHeaderName = styled.p`
 
 const TodoBoxHeaderTry = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 22px;

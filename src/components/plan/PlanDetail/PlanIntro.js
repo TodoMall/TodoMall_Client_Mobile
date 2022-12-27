@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 import { IconDict } from "../../global/Icon";
 
+import PlanAmountInfo from "./PlanAmountInfo";
+
 const PlanIntro = ({
   image,
   subtitle,
@@ -14,13 +16,14 @@ const PlanIntro = ({
   creator_name,
   creator_intro,
 }) => {
+  const amount = Number(20000).toLocaleString();
   return (
     <>
       <Image alt="plan" src={image ? image : "/images/dummy_plan.png"} />
       <Container>
         <Subtitle>{subtitle}</Subtitle>
         <Title>{title}</Title>
-
+        <PlanAmountInfo amount={amount} />
         <LargeTags>
           {largetag.map((tag) => (
             <LargeTagCover>
@@ -74,7 +77,6 @@ const Container = styled.div`
 
 const Subtitle = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
@@ -85,7 +87,6 @@ const Subtitle = styled.p`
 
 const Title = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 700;
   font-size: 21px;
   line-height: 21px;
@@ -102,7 +103,6 @@ const SmallTags = styled.div`
   max-width: ${MAX_WIDTH};
   margin-bottom: 10px;
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
@@ -149,7 +149,6 @@ const LargeTagCover = styled.div`
 
 const LargeTagText = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -178,7 +177,6 @@ const Description = styled.p`
   max-width: ${MAX_WIDTH};
 
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -215,7 +213,6 @@ const ProfileDescription = styled.div`
 
 const Name = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;
@@ -224,7 +221,6 @@ const Name = styled.p`
   margin-bottom: 10px;
   span {
     font-family: "Pretendard";
-    font-style: normal;
     font-weight: 500;
     font-size: 10px;
     line-height: 11px;
@@ -236,7 +232,6 @@ const Name = styled.p`
 
 const Intro = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;

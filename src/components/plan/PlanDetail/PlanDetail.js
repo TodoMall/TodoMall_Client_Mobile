@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../global/Header";
 import styled from "styled-components";
 import PlanFirst from "./PlanFirst";
 import PlanIntro from "./PlanIntro";
@@ -7,96 +6,92 @@ import PlanSecond from "./PlanSecond";
 import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
 import { useNavigate, useParams } from "react-router-dom";
-import Divider from "../../global/Divider";
-import axios from "axios";
-import { Loader } from "../../global/Loader";
 import { MAX_WIDTH } from "../../../constants";
+import { Layout, Divider, Loader } from "../../global";
+import useAxios from "axios-hooks";
 
 const PlanDetail = () => {
+  const [isLogin] = useState(!!localStorage.getItem("access"));
+  const email = localStorage.getItem("email");
   const [duplicate, setDuplicate] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [plan, setPlan] = useState();
   const navigate = useNavigate();
+  const { planid: ID } = useParams();
 
-  const ID = useParams().planid;
-
-  const fetch = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`)
-      .then((res) => {
-        setPlan(res.data);
-        setLoading(false);
-        document.title = res.data.title;
-      });
-    const email = localStorage.getItem("email");
-    const response = await axios.get(
-      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
-    );
-    setDuplicate(checkDuplicate(response.data.ownProducts));
-  };
-
-  const checkDuplicate = (data) => {
-    const temp = data.filter(
-      (data) => data.productId === ID && data.status === false
-    );
-    if (temp.length > 0) {
-      return true;
-    } else {
-      return false;
+  const sendToPaymentPage = () => {
+    if (!isLogin) {
+      navigate("/");
+    }
+    if (isLogin) {
+      navigate(`/payment/${plan.id}/`);
     }
   };
 
-  useEffect(() => {
-    fetch();
+  const [{ data: plan, loading: isLoading }] = useAxios(
+    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`
+  );
+  const [{ data: userProduct }] = useAxios(
+    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+  );
 
-    return () => {
-      document.title = "TodoMall";
-    };
-  }, []);
+  const checkDuplicate = (data) => {
+    const temp = data.filter(
+      ({ productId, status }) => productId === ID && status === false
+    );
+    return temp.length > 0;
+  };
+
+  useEffect(() => {
+    if (plan) {
+      document.title = plan?.title;
+    }
+    if (userProduct) {
+      setDuplicate(checkDuplicate(userProduct?.ownProducts));
+    }
+  }, [plan, userProduct]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Container>
-      <Header title="" />
-      {loading ? (
-        <Loader />
-      ) : (
-        <Body>
-          <PlanIntro
-            image={plan.image}
-            subtitle={plan.subDescription}
-            title={plan.title}
-            smalltag={plan.informationTags}
-            largetag={plan.summarizedTags}
-            description={plan.description}
-            creator_image={plan.creator.image}
-            creator_name={plan.creatorName}
-            creator_intro={plan.creator.description}
-          />
-          <Divider />
-          <PlanFirst data={plan.expectIts[0]} />
-          <Divider />
-          <PlanSecond data={plan.recommends} />
-          <Divider />
-          <PlanThird data={plan.recommendUsers} />
-          <Divider />
-          <PlanCurriculum data={plan.sessions} />
-        </Body>
-      )}
-
-      <Footer>
-        {duplicate ? (
-          <BuyButton disabled>이미 도전중인 플랜입니다</BuyButton>
+      <Layout currentPage="결제하기">
+        {isLoading ? (
+          <Loader />
         ) : (
-          <BuyButton
-            onClick={() => {
-              navigate(`/purchase/${plan.id}/`);
-            }}
-            id="download_button"
-          >
-            무료로 도전하기
-          </BuyButton>
+          <Body>
+            <PlanIntro
+              image={plan.image}
+              subtitle={plan.subDescription}
+              title={plan.title}
+              smalltag={plan.informationTags}
+              largetag={plan.summarizedTags}
+              description={plan.description}
+              creator_image={plan.creator.image}
+              creator_name={plan.creatorName}
+              creator_intro={plan.creator.description}
+            />
+            <Divider />
+            <PlanFirst data={plan.expectIts[0]} />
+            <Divider />
+            <PlanSecond data={plan.recommends} />
+            <Divider />
+            <PlanThird data={plan.recommendUsers} />
+            <Divider />
+            <PlanCurriculum data={plan.sessions} />
+          </Body>
         )}
-      </Footer>
+
+        <Footer>
+          {duplicate ? (
+            <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
+          ) : (
+            <BuyButton onClick={sendToPaymentPage} id="download_button">
+              클래스 도전하기
+            </BuyButton>
+          )}
+        </Footer>
+      </Layout>
     </Container>
   );
 };
@@ -114,13 +109,11 @@ const Body = styled.div`
   justify-content: center;
   flex-direction: column;
   padding-top: 60px;
-  padding-bottom: 90px;
   max-width: ${MAX_WIDTH};
 `;
 
 const Footer = styled.div`
   display: flex;
-  position: fixed;
   padding-bottom: 20px;
   bottom: 0;
   background: #fbfbfb;
@@ -140,7 +133,6 @@ const BuyButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;

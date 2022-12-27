@@ -70,20 +70,8 @@ const Modals = ({
             지금 로그아웃 하면, 이후에 서비스를 이용할 때 다시 로그인 해야 해요.
           </ModalDetail>
           <ModalButton>
-            <Button
-              title="로그아웃"
-              width={45}
-              onClick={() => {
-                handleLogout();
-              }}
-            />
-            <CancelButton
-              onClick={() => {
-                closeHandlerLogout();
-              }}
-            >
-              취소
-            </CancelButton>
+            <Button title="로그아웃" width={45} onClick={handleLogout} />
+            <CancelButton onClick={closeHandlerLogout}>취소</CancelButton>
           </ModalButton>
         </Container>
       </Modal>
@@ -105,17 +93,9 @@ const Modals = ({
               color="#F65050"
               title="탈퇴하기"
               width={45}
-              onClick={() => {
-                handleDelete();
-              }}
+              onClick={handleDelete}
             />
-            <CancelButton
-              onClick={() => {
-                closeHandlerDelete();
-              }}
-            >
-              취소
-            </CancelButton>
+            <CancelButton onClick={closeHandlerDelete}>취소</CancelButton>
           </ModalButton>
         </Container>
       </Modal>
@@ -131,7 +111,6 @@ const Container = styled.div`
 `;
 
 const ModalTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 22px;
   text-align: center;
@@ -140,7 +119,6 @@ const ModalTitle = styled.p`
 `;
 
 const ModalDetail = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   text-align: center;

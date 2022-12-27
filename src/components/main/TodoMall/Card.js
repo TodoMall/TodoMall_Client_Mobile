@@ -60,7 +60,6 @@ const CardIcon = styled.img`
 `;
 
 const DescriptionFor = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 5px;
@@ -68,7 +67,6 @@ const DescriptionFor = styled.p`
 `;
 
 const CardTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   color: #000000;
@@ -78,7 +76,6 @@ const CardTitle = styled.p`
 
 const CardDescription = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -106,7 +103,6 @@ const CardTag = styled.div`
   align-items: center;
   justify-content: center;
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;

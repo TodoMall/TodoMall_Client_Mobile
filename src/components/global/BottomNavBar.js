@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import constants from "../../constants";
+import { COLOR } from "../../constants";
 import { Link } from "react-router-dom";
 
-export default function BottomNavBar({ position }) {
-  const [current, setCurrent] = useState(position);
+const BottomNavBar = ({ position }) => {
+  const [currentLocation, setCurrentLocation] = useState(position);
+
+  const getImageSource = (currentLocation, location) => {
+    if (currentLocation === location) {
+      return COLOR[`${location}_COLORED`];
+    }
+    if (currentLocation !== location) {
+      return COLOR[`${location}_UNCOLORED`];
+    }
+  };
 
   return (
     <>
@@ -14,11 +23,7 @@ export default function BottomNavBar({ position }) {
           icon={
             <>
               <img
-                src={
-                  current === "TODOBOX"
-                    ? constants.TODOBOX_COLORED
-                    : constants.TODOBOX_UNCOLORED
-                }
+                src={getImageSource(currentLocation, "TODOBOX")}
                 alt="TODOBOX"
                 style={{ width: 35, height: 45, objectFit: "cover" }}
                 height={20}
@@ -26,7 +31,7 @@ export default function BottomNavBar({ position }) {
             </>
           }
           onClick={() => {
-            setCurrent("TODOBOX");
+            setCurrentLocation("TODOBOX");
           }}
           component={Link}
           to="/todobox"
@@ -35,11 +40,7 @@ export default function BottomNavBar({ position }) {
           icon={
             <>
               <img
-                src={
-                  current === "TODOMALL"
-                    ? constants.TODOMALL_COLORED
-                    : constants.TODOMALL_UNCOLORED
-                }
+                src={getImageSource(currentLocation, "TODOMALL")}
                 alt="TODOMALL"
                 style={{ width: 35, height: 45, objectFit: "cover" }}
                 height={25}
@@ -47,7 +48,7 @@ export default function BottomNavBar({ position }) {
             </>
           }
           onClick={() => {
-            setCurrent("TODOMALL");
+            setCurrentLocation("TODOMALL");
           }}
           component={Link}
           to="/todomall"
@@ -56,11 +57,7 @@ export default function BottomNavBar({ position }) {
           icon={
             <>
               <img
-                src={
-                  current === "MYPAGE"
-                    ? constants.MYPAGE_COLORED
-                    : constants.MYPAGE_UNCOLORED
-                }
+                src={getImageSource(currentLocation, "MYPAGE")}
                 alt="MYPAGE"
                 style={{ width: 35, height: 43, objectFit: "cover" }}
                 height={25}
@@ -68,7 +65,7 @@ export default function BottomNavBar({ position }) {
             </>
           }
           onClick={() => {
-            setCurrent("MYPAGE");
+            setCurrentLocation("MYPAGE");
           }}
           component={Link}
           to="/mypage"
@@ -76,7 +73,9 @@ export default function BottomNavBar({ position }) {
       </StyledBottomNavBar>
     </>
   );
-}
+};
+
+export default BottomNavBar;
 
 const StyledBottomNavBar = styled(BottomNavigation)`
   position: fixed;

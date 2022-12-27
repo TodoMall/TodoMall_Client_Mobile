@@ -1,18 +1,20 @@
 import { Loading } from "@nextui-org/react";
 import styled from "styled-components";
 
-export const Loader = () => {
+const Loader = ({ width = "100vm", height = "100vh" }) => {
   return (
-    <Container>
+    <Container width={width} height={height}>
       <Loading color="secondary" size="lg" />
     </Container>
   );
 };
 
+export default Loader;
+
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;

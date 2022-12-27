@@ -217,7 +217,6 @@ const TodoBoxCardContainer = styled.div`
 const TodoBoxCardHeader = styled.div``;
 
 const TodoBoxCardHeaderTitle = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
@@ -226,7 +225,6 @@ const TodoBoxCardHeaderTitle = styled.p`
 `;
 
 const TodoBoxCardHeaderSession = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 20px;
@@ -249,7 +247,6 @@ const TodoBoxCardHeaderDDay = styled.div`
 const TodoBoxCardHeaderTime = styled.p`
   position: absolute;
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
@@ -272,7 +269,6 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
   span {
     position: absolute;
     top: -20px;
-    font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 12px;
@@ -282,7 +278,6 @@ const TodoBoxCardHeaderDDaySubmit = styled.div`
 
 const TodoBoxCardHeaderDDayText = styled.p`
   position: relative;
-  font-style: normal;
   font-weight: 800;
   font-size: 16px;
   line-height: 16px;
@@ -291,7 +286,6 @@ const TodoBoxCardHeaderDDayText = styled.p`
 
 const TodoBoxCardHeaderDDayTextSubmit = styled.p`
   color: ${(props) => (props.day === 0 ? "#F65050" : "#6b47fd")};
-  font-style: normal;
   font-weight: 800;
   font-size: 16px;
   line-height: 16px;
@@ -319,7 +313,6 @@ const BlurredCover = styled.div`
 
 const BlurredTime = styled.p`
   padding: 5px;
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
@@ -334,7 +327,6 @@ const BlurredBox = styled.div`
   height: 24px;
   background: #ffc6c6;
   border-radius: 4px;
-  font-style: normal;
   font-weight: 800;
   font-size: 16px;
   line-height: 16px;
@@ -362,7 +354,6 @@ const TodoBoxCardTodo = styled.div`
 const TodoBoxCardTodoCheckBox = styled.img``;
 
 const TodoBoxCardTodoText = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
@@ -381,7 +372,6 @@ const TodoBoxCardSubmitButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;
@@ -397,7 +387,6 @@ const TodoBoxCardEndButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 16px;
@@ -406,7 +395,6 @@ const TodoBoxCardEndButton = styled.div`
 `;
 
 const TodoBoxCardEndText = styled.p`
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;

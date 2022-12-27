@@ -17,6 +17,8 @@ const Header = ({ title }) => {
   );
 };
 
+export default Header;
+
 const Container = styled.div`
   width: 100%;
   height: 50px;
@@ -39,7 +41,6 @@ const BackArrow = styled(ArrowBackIosIcon)`
 `;
 const HeaderTitle = styled.p`
   font-family: "Pretendard";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
@@ -48,5 +49,3 @@ const HeaderTitle = styled.p`
   text-align: center;
   text-align: center;
 `;
-
-export default Header;

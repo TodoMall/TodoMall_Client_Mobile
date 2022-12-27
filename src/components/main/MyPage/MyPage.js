@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Row from "./Row";
-import { Loader } from "../../global/Loader";
+import { Loader, BottomNavBar } from "../../global";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -129,7 +128,6 @@ const User = styled.div`
 `;
 
 const UserName = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   margin-top: 10px;
@@ -137,7 +135,6 @@ const UserName = styled.p`
 `;
 
 const UserEmail = styled.p`
-  font-style: normal;
   font-weight: 100;
   font-size: 14px;
   margin-bottom: 5px;
@@ -173,7 +170,6 @@ const NoPlanImage = styled.img`
 `;
 
 const NoPlanTitle = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
@@ -182,7 +178,6 @@ const NoPlanTitle = styled.p`
 `;
 
 const NoPlanSubtitle = styled.p`
-  font-style: normal;
   font-weight: 300;
   font-size: 16px;
   line-height: 24px;

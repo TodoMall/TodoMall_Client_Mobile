@@ -61,7 +61,6 @@ const Text = styled.div`
 `;
 
 const BodyText = styled.p`
-  font-style: normal;
   font-weight: 700;
   font-size: 23px;
   line-height: 30px;
@@ -71,7 +70,6 @@ const BodyText = styled.p`
 
 const BodyDescription = styled.p`
   color: #888888;
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   margin: 0;
