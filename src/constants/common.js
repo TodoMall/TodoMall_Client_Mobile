@@ -7,6 +7,6 @@ export const COLOR = {
   MYPAGE_UNCOLORED: "/images/mypage_off.png",
 };
 
-export const VERSION = "0.0.1 ver";
+export const VERSION = "0.1.0 ver";
 
 export const MAX_WIDTH = "500px";
