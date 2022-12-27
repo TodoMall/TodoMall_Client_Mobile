@@ -1,8 +1,8 @@
 import { rest } from "msw";
 
 export const paymentHandlers = [
-  // Handles a POST /login request
+  // Handles a POST /payment/complete request
   rest.post("/payment/complete", null),
-  // Handles a GET /user request
+  // Handles a GET /payment request
   rest.get("/payment", null),
 ];
