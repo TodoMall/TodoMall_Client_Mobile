@@ -26,65 +26,63 @@ const Settings = () => {
   return (
     <>
       <Header title="설정" />
-      <Rows>
-        <Row>
-          <RowTitle>앱 버전</RowTitle>
-          <DetailVersion>{VERSION}</DetailVersion>
-        </Row>
-      </Rows>
-      <Divider />
-      <Rows>
-        <Row
-          onClick={() => {
-            navigate("/announcement");
-          }}
-        >
-          <RowTitle>공지사항</RowTitle>
-          <DetailIcon src={`/images/todo_detail.svg`} />
-        </Row>
-        <a href="mailto:myplanit.unicorn@gmail.com">
+      <Body>
+        <Rows>
           <Row>
-            <RowTitle>문의하기</RowTitle>
+            <RowTitle>앱 버전</RowTitle>
+            <DetailVersion>{VERSION}</DetailVersion>
+          </Row>
+        </Rows>
+        <Divider width="100vw" />
+        <Rows>
+          <a href="http://pf.kakao.com/_xhSxjExj">
+            <Row>
+              <RowTitle>문의하기</RowTitle>
+              <DetailIcon src={`/images/todo_detail.svg`} />
+            </Row>
+          </a>
+          <Row
+            onClick={() => {
+              navigate("/service");
+            }}
+          >
+            <RowTitle>이용약관</RowTitle>
             <DetailIcon src={`/images/todo_detail.svg`} />
           </Row>
-        </a>
-        <Row
-          onClick={() => {
-            navigate("/service");
-          }}
-        >
-          <RowTitle>이용약관</RowTitle>
-          <DetailIcon src={`/images/todo_detail.svg`} />
-        </Row>
-        <Row
-          onClick={() => {
-            navigate("/personal");
-          }}
-        >
-          <RowTitle>개인정보 처리방침</RowTitle>
-          <DetailIcon src={`/images/todo_detail.svg`} />
-        </Row>
-      </Rows>
-      <Divider />
-      <Rows>
-        <Row onClick={handlerLogout}>
-          <RowTitle>로그아웃</RowTitle>
-          <DetailIcon src={`/images/todo_detail.svg`} />
-        </Row>
-        <Row onClick={handlerDelete}>
-          <RowTitle red>탈퇴하기</RowTitle>
-          <DetailIcon src={`/images/todo_detail.svg`} />
-        </Row>
-      </Rows>
-      <Modals
-        visibleLogout={visibleLogout}
-        visibleDelete={visibleDelete}
-        closeHandlerLogout={closeHandlerLogout}
-        closeHandlerDelete={closeHandlerDelete}
-      />
+          <Row
+            onClick={() => {
+              navigate("/personal");
+            }}
+          >
+            <RowTitle>개인정보 처리방침</RowTitle>
+            <DetailIcon src={`/images/todo_detail.svg`} />
+          </Row>
+        </Rows>
+        <Divider width="100vw" />
+        <Rows>
+          <Row onClick={handlerLogout}>
+            <RowTitle>로그아웃</RowTitle>
+            <DetailIcon src={`/images/todo_detail.svg`} />
+          </Row>
+          <Row onClick={handlerDelete}>
+            <RowTitle red>탈퇴하기</RowTitle>
+            <DetailIcon src={`/images/todo_detail.svg`} />
+          </Row>
+        </Rows>
+        <Modals
+          visibleLogout={visibleLogout}
+          visibleDelete={visibleDelete}
+          closeHandlerLogout={closeHandlerLogout}
+          closeHandlerDelete={closeHandlerDelete}
+        />
+      </Body>
     </>
   );
 };
+
+const Body = styled.div`
+  padding-top: 50px;
+`;
 
 const Rows = styled.div`
   margin: 0px 5vw;
@@ -100,7 +98,6 @@ const Row = styled.div`
 `;
 
 const RowTitle = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -109,7 +106,6 @@ const RowTitle = styled.p`
 `;
 
 const DetailVersion = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

@@ -1,9 +1,23 @@
 import React from "react";
 import Header from "../global/Header";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PlanRetry = () => {
-  const handleRetry = () => {};
+  const navigate = useNavigate();
+
+  const handleRetry = () => {
+    const response = axios.post(
+      `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`,
+      {
+        // productId: productId,
+        // userId : userId
+      }
+    );
+
+    navigate("/todobox");
+  };
 
   return (
     <>
@@ -37,6 +51,7 @@ const PlanRetry = () => {
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 60px;
 `;
 
 const Text = styled.div`
@@ -46,7 +61,6 @@ const Text = styled.div`
 `;
 
 const BodyText = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 700;
   font-size: 23px;
@@ -56,7 +70,6 @@ const BodyText = styled.p`
 `;
 
 const BodyDescription = styled.p`
-  font-family: "PretendardMedium";
   color: #888888;
   font-style: normal;
   font-weight: 700;
@@ -68,6 +81,8 @@ const BodyDescription = styled.p`
 
 const BodyImage = styled.img`
   width: 80vw;
+  max-width: 600px;
+
   margin: auto;
   margin-bottom: 10vh;
 `;
@@ -90,7 +105,6 @@ const Button = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  font-family: "PretendardMedium";
   font-size: 17px;
 `;
 

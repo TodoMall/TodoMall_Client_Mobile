@@ -2,15 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = ({ title, link, color = "#6b47fd" }) => {
+const Button = ({ title, link, color = "#6b47fd", width = 90, onClick }) => {
   const navigate = useNavigate();
-
   return (
     <NoPlanButton
       onClick={() => {
-        navigate(link);
+        if (onClick) {
+          onClick();
+        } else {
+          navigate(link);
+        }
       }}
       color={color}
+      width={width}
     >
       {title}
     </NoPlanButton>
@@ -18,8 +22,7 @@ const Button = ({ title, link, color = "#6b47fd" }) => {
 };
 
 const NoPlanButton = styled.div`
-  font-family: "PretendardMedium";
-  width: 90%;
+  width: ${(props) => props.width}%;
   height: 60px;
   background: ${(props) => props.color};
   border: 1px solid ${(props) => props.color};
@@ -27,7 +30,10 @@ const NoPlanButton = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  color: white;
+  ${({ color }) =>
+    color === "#6b47fd" || color === "#F65050"
+      ? "color: white;"
+      : "color: #929292;"}
   font-size: 18px;
   margin-top: 40px;
   text-align: center;

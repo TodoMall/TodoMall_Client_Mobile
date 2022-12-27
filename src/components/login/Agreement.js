@@ -14,10 +14,10 @@ const Agreement = () => {
 
   return (
     <>
-      <Header title="약관 동의" />
+      <Header title="회원 가입" />
       <Body>
         <Text>
-          <BodyText>서비스 이용을 위해</BodyText>
+          <BodyText>더 나은 서비스 품질을 위해서</BodyText>
           <BodyText>필수 약관에 동의해주세요</BodyText>
         </Text>
         <BodyImage src="/images/agreement_image.svg" />
@@ -105,12 +105,17 @@ const Agreement = () => {
         {isPersonalOn && isServiceOn ? (
           <Button
             onClick={() => {
+              localStorage.setItem("personal", true);
+              localStorage.setItem("service", true);
               navigate("/todobox");
             }}
-            src="/images/check_button_on.svg"
-          />
+          >
+            제출하기
+          </Button>
         ) : (
-          <Button src="/images/check_button_off.svg" />
+          <Button bgcolor="#ededed" color="#888888">
+            제출하기
+          </Button>
         )}
       </Footer>
     </>
@@ -120,38 +125,50 @@ const Agreement = () => {
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #fbfbfb;
+  padding-top: 80px;
+  width: 100vw;
+  max-width: 450px;
 `;
 
 const Text = styled.div`
   flex-direction: column;
-  margin-left: 5vw;
-  margin-bottom: 5vh;
 `;
 
 const BodyText = styled.p`
-  font-family: "PretendardMedium";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 23px;
+  font-weight: bolder;
+  font-size: 22px;
   line-height: 30px;
-  margin: 0;
+  padding-left: 15px;
   text-align: left;
 `;
 
 const BodyImage = styled.img`
-  width: 80%;
+  width: 18rem;
   margin: auto;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -58%);
+  left: 50%;
 `;
 
 const Footer = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #fbfbfb;
+  margin-top: 40px;
 `;
 
 const Table = styled.div`
-  width: 80%;
+  max-width: 380px;
+  width: 90vw;
   margin-bottom: 30px;
 `;
 
@@ -159,12 +176,23 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: "PretendardMedium";
-  margin: 10px;
+  margin: 15px;
 `;
 
-const Button = styled.img`
-  width: 85%;
+const Button = styled.div`
+  max-width: 380px;
+  width: 90vw;
+  background-color: ${(props) => props.bgcolor || "#6b47fd"};
+  border-radius: 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: ${(props) => props.color || "white"};
 `;
 
 export default Agreement;

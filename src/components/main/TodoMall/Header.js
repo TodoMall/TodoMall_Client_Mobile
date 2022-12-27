@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { CAREER, SELF, INVESTMENT } from "./Constant";
 
 const Header = ({ current, setCurrent }) => {
   return (
@@ -8,44 +9,61 @@ const Header = ({ current, setCurrent }) => {
       <Themes>
         <Theme
           onClick={() => {
-            setCurrent("health");
+            setCurrent(CAREER);
           }}
-          style={
-            current === "health" ? { borderBottom: "2px solid black" } : {}
-          }
+          style={current === CAREER ? { borderBottom: "2px solid black" } : {}}
+          id="category_job_developement"
         >
-          {current === "health" ? (
-            <ThemeIcon src="/images/health_on.svg" />
+          {current === CAREER ? (
+            <ThemeIcon
+              id="category_job_developement"
+              src={`/images/${CAREER}_on.svg`}
+            />
           ) : (
-            <ThemeIcon src="/images/health_off.svg" />
+            <ThemeIcon
+              id="category_job_developement"
+              src={`/images/${CAREER}_off.svg`}
+            />
           )}
         </Theme>
         <Theme
           onClick={() => {
-            setCurrent("invest");
+            setCurrent(SELF);
           }}
-          style={
-            current === "invest" ? { borderBottom: "2px solid black" } : {}
-          }
+          style={current === SELF ? { borderBottom: "2px solid black" } : {}}
+          id="category_self_improvement"
         >
-          {current === "invest" ? (
-            <ThemeIcon src="/images/invest_on.svg" />
+          {current === SELF ? (
+            <ThemeIcon
+              id="category_self_improvement"
+              src={`/images/${SELF}_on.svg`}
+            />
           ) : (
-            <ThemeIcon src="/images/invest_off.svg" />
+            <ThemeIcon
+              id="category_self_improvement"
+              src={`/images/${SELF}_off.svg`}
+            />
           )}
         </Theme>
         <Theme
           onClick={() => {
-            setCurrent("employment");
+            setCurrent(INVESTMENT);
           }}
           style={
-            current === "employment" ? { borderBottom: "2px solid black" } : {}
+            current === INVESTMENT ? { borderBottom: "2px solid black" } : {}
           }
+          id="category_finance"
         >
-          {current === "employment" ? (
-            <ThemeIcon src="/images/employment_on.svg" />
+          {current === INVESTMENT ? (
+            <ThemeIcon
+              id="category_finance"
+              src={`/images/${INVESTMENT}_on.svg`}
+            />
           ) : (
-            <ThemeIcon src="/images/employment_off.svg" />
+            <ThemeIcon
+              id="category_finance"
+              src={`/images/${INVESTMENT}_off.svg`}
+            />
           )}
         </Theme>
       </Themes>
@@ -54,13 +72,15 @@ const Header = ({ current, setCurrent }) => {
 };
 
 const Container = styled.div`
-  padding-top: 35px; //IPHONE camera
+  padding-top: 20px;
   background-color: #fbfbfb;
   position: fixed;
+  width: 100%;
+  z-index: 10000;
 `;
 
 const Logo = styled.img`
-  width: 35%;
+  width: 150px;
   margin-left: 5%;
 `;
 
@@ -72,11 +92,9 @@ const Themes = styled.div`
 `;
 
 const Theme = styled.div`
-  font-family: "PretendardMedium";
   width: 33%;
   text-align: center;
   align-self: flex-end;
-  // margin-bottom: 10px;
 `;
 
 const ThemeIcon = styled.img`

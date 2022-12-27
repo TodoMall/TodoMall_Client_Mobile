@@ -19,25 +19,34 @@ const Header = ({ title }) => {
 
 const Container = styled.div`
   width: 100%;
-  height: 10%;
+  height: 50px;
+  padding-top: 30px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  background-color: #fbfbfb;
+  position: fixed;
+  top: -2px;
 `;
 
 const BackArrow = styled(ArrowBackIosIcon)`
+  position: absolute;
   height: 56px;
   color: black;
-  margin-left: 5vw;
+  left: 15px;
 `;
 const HeaderTitle = styled.p`
-  font-size: 20px;
-  font-family: "PretendardMedium";
-  display: block;
-  flex-grow: 1;
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
   text-align: center;
-  margin-right: 40px;
+  text-align: center;
 `;
 
 export default Header;

@@ -45,6 +45,7 @@ const Announcement = () => {
 const Announcements = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
 `;
 
 const AnnouncementRow = styled.div`
@@ -55,7 +56,6 @@ const AnnouncementRow = styled.div`
 `;
 
 const AnnouncementDate = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -63,7 +63,6 @@ const AnnouncementDate = styled.p`
 `;
 
 const AnnouncementTitle = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

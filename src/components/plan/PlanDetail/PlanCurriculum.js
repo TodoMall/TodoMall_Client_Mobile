@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { MAX_WIDTH } from "../../../constants";
 
 const PlanCurriculum = ({ data }) => {
   return (
@@ -8,21 +9,20 @@ const PlanCurriculum = ({ data }) => {
         <FirstTitle>커리큘럼</FirstTitle>
       </Header>
       <Body>
-        {data.map((session) => (
+        {data.map((session, i) => (
           <>
             <Intro>
-              <SessionCount>Session {session.id}</SessionCount>
-              <Title>{session.name}</Title>
+              <SessionCount>Session {i + 1}</SessionCount>
+              <Title>{session.title}</Title>
             </Intro>
             <Assignment>
               <AssignmentImage src={`/images/assignment_icon.svg`} />
-              <AssignmentTitle>{session.mission}</AssignmentTitle>
+              <AssignmentTitle>{session.missionTitle}</AssignmentTitle>
             </Assignment>
             <Todos>
               {session.todos.map((todo) => (
                 <Todo>
-                  <TodoTitle>{todo.name}</TodoTitle>
-                  <DetailIcon src={`/images/todo_detail.svg`} />
+                  <TodoTitle>{todo.title}</TodoTitle>
                 </Todo>
               ))}
             </Todos>
@@ -36,12 +36,12 @@ const PlanCurriculum = ({ data }) => {
 const Container = styled.div`
   padding: 20px;
   width: 100vw;
+  max-width: ${MAX_WIDTH};
 `;
 
 const Header = styled.div``;
 
 const FirstTitle = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -53,7 +53,6 @@ const Body = styled.div``;
 const Intro = styled.div``;
 
 const SessionCount = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -63,7 +62,6 @@ const SessionCount = styled.p`
 `;
 
 const Title = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -73,7 +71,7 @@ const Title = styled.p`
 `;
 
 const Assignment = styled.div`
-  background: #f1f3f5;
+  background: #fff2e2;
   border-radius: 8px;
   height: 50px;
   display: flex;
@@ -86,12 +84,11 @@ const AssignmentImage = styled.img`
 `;
 
 const AssignmentTitle = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 14px;
-  color: #6b47fd;
+  color: #ff9900;
   margin-left: 15px;
 `;
 
@@ -108,13 +105,10 @@ const Todo = styled.div`
 `;
 
 const TodoTitle = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 14px;
 `;
-
-const DetailIcon = styled.img``;
 
 export default PlanCurriculum;

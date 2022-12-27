@@ -2,29 +2,45 @@ import React, { useEffect, useState } from "react";
 import BottomNavBar from "../../global/BottomNavBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "../../../api/axios";
-import requests from "../../../api/request";
+import axios from "axios";
 import Row from "./Row";
-import Button from "../../global/Button";
+import { Loader } from "../../global/Loader";
 
 const MyPage = () => {
   const navigate = useNavigate();
   const [plans, setPlans] = useState([]);
+  const [name, setName] = useState(localStorage.getItem("name"));
+  const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [image, setImage] = useState(localStorage.getItem("image"));
 
+  const checkFail = (plan) => {
+    let check = false;
+    plan.sessions.forEach((session) => {
+      if (check) {
+        return;
+      }
+      if (!session.endedDate) {
+        let expireDate = new Date(session.expireDate);
+        expireDate.setDate(expireDate.getDate());
+        expireDate.setHours(0);
+        expireDate.setMinutes(0);
+        expireDate.setSeconds(0);
+        if (expireDate < new Date()) {
+          check = true;
+        }
+      }
+    });
+    return check;
+  };
+
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetch = async () => {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(requests.getUserPlanList, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      let temp = [];
-      for (const [date, plans] of Object.entries(response.data)) {
-        temp = [...temp, [date, plans]];
-      }
-      setPlans([...temp]);
+      const response = await axios.get(
+        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
+      );
+      setPlans(response.data.ownProducts.reverse());
+      setLoading(false);
     };
     fetch();
   }, []);
@@ -34,10 +50,10 @@ const MyPage = () => {
       <Container>
         <Header>
           <UserInfo>
-            <ProfileImage src="/images/dummy_profile_image.png" />
+            <ProfileImage src={image} alt={image} />
             <User>
-              <UserName>솔빈</UserName>
-              <UserEmail>solbing@gmail.com</UserEmail>
+              <UserName>{name}</UserName>
+              <UserEmail>{email}</UserEmail>
             </User>
           </UserInfo>
           <Settings
@@ -48,38 +64,35 @@ const MyPage = () => {
           />
         </Header>
 
-        <Body>
-          {plans.length > 0 ? (
-            plans.map((plan) => {
-              let year = plan[0].split("-")[0];
-              let month = plan[0].split("-")[1] * 1;
-              console.log(year, month);
-              return (
-                <>
-                  <PlanDate>
-                    {year}년 {month}월
-                  </PlanDate>
-                  {plan[1].map((item) => (
-                    <Row
-                      key={item.id}
-                      is_completed={item.is_completed}
-                      id={item.id}
-                      title={item.plan.title}
-                      showDate={false}
-                    />
-                  ))}
-                </>
-              );
-            })
-          ) : (
-            <NoPlan>
-              <NoPlanImage src="/images/mypage_no_plan.svg" />
-              <NoPlanTitle>아직 도전 중인 클래스가 없어요.</NoPlanTitle>
-              <NoPlanTitle>나에게 맞는 클래스를 찾아볼까요?</NoPlanTitle>
-              <Button link="/todomall" title="클래스 찾아보기" />
-            </NoPlan>
-          )}
-        </Body>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Body>
+            {plans?.length > 0 ? (
+              plans.map((plan, i) => {
+                return (
+                  <Row
+                    key={plan.id}
+                    is_failed={checkFail(plan)}
+                    is_completed={plan.status}
+                    id={plans.length - i}
+                    title={plan.title}
+                    icon={plan.icon}
+                  />
+                );
+              })
+            ) : (
+              <NoPlan>
+                <NoPlanImage src="/images/mypage_no_plan.svg" />
+                <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
+                <NoPlanSubtitle>
+                  앞으로 클래스를 탐색하고 완료하면
+                </NoPlanSubtitle>
+                <NoPlanSubtitle>여기에 표시되어요.</NoPlanSubtitle>
+              </NoPlan>
+            )}
+          </Body>
+        )}
       </Container>
       <BottomNavBar position={"MYPAGE"} />
     </>
@@ -94,13 +107,16 @@ const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px 10px 25px;
-  background-color: white;
+  background-color: #fbfbfb;
   width: 100vw;
   border-bottom: 2px solid #f1f3f5;
 `;
 
 const ProfileImage = styled.img`
   width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  object-fit: cover;
 `;
 
 const UserInfo = styled.span`
@@ -113,7 +129,6 @@ const User = styled.div`
 `;
 
 const UserName = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -122,7 +137,6 @@ const UserName = styled.p`
 `;
 
 const UserEmail = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 100;
   font-size: 14px;
@@ -141,33 +155,39 @@ const Body = styled.div`
 `;
 
 const NoPlan = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const NoPlanImage = styled.img`
   width: 90vw;
+  max-width: 450px;
+  margin-top: 20px;
   margin-bottom: 20px;
 `;
 
 const NoPlanTitle = styled.p`
-  font-family: "PretendardMedium";
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
-  text-align: center;
-  margin-top: 10px;
+  font-size: 20px;
+  line-height: 30px;
+  color: #222222;
+  margin-bottom: 15px;
 `;
 
-const PlanDate = styled.p`
-  font-family: "PretendardMedium";
+const NoPlanSubtitle = styled.p`
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 16px;
-  color: #dbdbdb;
-  margin-left: 25px;
+  line-height: 24px;
+  text-align: center;
+  color: #888888;
 `;
 
 export default MyPage;

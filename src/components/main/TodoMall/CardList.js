@@ -2,13 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
 
-const CardList = () => {
+const CardList = ({ classData }) => {
   return (
     <CardListBox>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {classData.map((preview) => (
+        <Card
+          title={preview.title}
+          description={preview.description}
+          smallTags={preview.informationTags}
+          largeTags={preview.summarizedTags}
+          subDescription={preview.subDescription}
+          dataid={preview.id}
+          icon={preview.icon}
+          key={preview.id}
+          id="category-img"
+        />
+      ))}
     </CardListBox>
   );
 };
