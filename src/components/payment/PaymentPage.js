@@ -13,6 +13,10 @@ import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
 
 const PaymentPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { name, email, image, access } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
   const navigate = useNavigate();
