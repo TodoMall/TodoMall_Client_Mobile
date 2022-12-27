@@ -20,8 +20,9 @@ const PaymentPage = () => {
   const [{ data: product, loading: isLoading }] = useAxios(
     `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${planid}`
   );
-  const paymentData = PaymentMethods.find((el) => el.id === payMethod);
+  const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
+  // todo : price to be removed & replace product.price
   const price = Number(10000).toLocaleString();
 
   /* Feature Flagging : vercel에서 제공하는 도메인에서 QA를 진행하기 위해 잠시 feature flagging */
