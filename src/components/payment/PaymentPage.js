@@ -54,16 +54,7 @@ const PaymentPage = () => {
     };
 
     try {
-      IMP.request_pay(paymentInfo, (res) => {
-        if (res.success) {
-          console.log("success res : ", res);
-        } else {
-          console.log("fail res : ", res);
-        }
-      });
-      const response = await IMP.request_pay(paymentInfo);
-      // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
-      console.log("response : ", response);
+      await IMP.request_pay(paymentInfo);
     } catch (error) {
       console.error(error);
     }
