@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Agreement from "./components/login/Agreement";
 import Login from "./components/login/Login";
@@ -27,6 +27,8 @@ import PaymentResultPage from "./components/payment/PaymentResultPage";
 
 function App() {
   const [current, setCurrent] = useState(CAREER);
+  const domain = window.location.hostname;
+  const isVercelDomain = domain.endsWith("vercel.app");
   return (
     <Container>
       <Routes>
