@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { isVercelDomain } from "../../constants/domain";
 
 const Login = () => {
   useEffect(() => {
@@ -47,9 +48,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const kakaoLogin = () => {
-    console.log(window.location.origin);
-
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
+    const kakaoRedirectUri = isVercelDomain
+      ? window.location.origin + "/social"
+      : process.env.REACT_APP_KAKAO_REDIRECT_URI;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${kakaoRedirectUri}&response_type=code`;
   };
 
   return (

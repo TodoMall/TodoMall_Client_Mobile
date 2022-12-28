@@ -2,16 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import { isVercelDomain } from "../../constants/domain";
 
 const Social = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const KAKAO_CODE = location.search.split("=")[1];
+
   useEffect(() => {
+    const kakaoRedirectUri = isVercelDomain
+      ? window.location.origin + "/social"
+      : process.env.REACT_APP_KAKAO_REDIRECT_URI;
+
     const fetchCode = async () => {
       await axios
         .post(
-          `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&code=${KAKAO_CODE}`,
+          `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${kakaoRedirectUri}&code=${KAKAO_CODE}`,
           {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
           }

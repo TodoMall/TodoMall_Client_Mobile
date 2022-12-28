@@ -5,6 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MAX_WIDTH } from "../../constants";
+import { isVercelDomain } from "../../constants/domain";
 
 const Modals = ({
   visibleLogout,
@@ -17,9 +18,13 @@ const Modals = ({
   const navigate = useNavigate();
   const access_token = localStorage.getItem("access");
   const handleLogout = () => {
+    const kakaoLogoutRedirectUri = isVercelDomain
+      ? window.location.origin + "/"
+      : process.env.REACT_APP_KAKAO_REDIRECT_URI;
+
     axios
       .get(
-        `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_KAKAO_LOGOUT_REDIRECT_URI}`
+        `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${kakaoLogoutRedirectUri}`
       )
       .then((res) => {
         localStorage.removeItem("access");
