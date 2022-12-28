@@ -63,19 +63,6 @@ const Login = () => {
           }}
           src="/images/kakao_login.png"
         />
-        {/* <LoginButton
-          onClick={() => {
-            getToken();
-            navigate("/agreement");
-          }}
-          src="/images/google_login.png"
-        /> */}
-        {/* <LoginButton
-        onClick={() => {
-          navigate("/agreement");
-        }}
-        src="/images/apple_login.png"
-      /> */}
       </Footer>
       <CompanyText
         onClick={() => {
