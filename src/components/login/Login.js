@@ -14,7 +14,7 @@ const Login = () => {
           },
         })
         .then((res) => {
-          if (res.status == 200) {
+          if (res.status === 200) {
             const refresh_token = localStorage.getItem("refresh");
             axios
               .post(
@@ -32,20 +32,14 @@ const Login = () => {
                 navigate("/todobox");
               })
               .catch((err) => {
-                localStorage.removeItem("access");
-                localStorage.removeItem("refresh");
-                localStorage.removeItem("ID");
+                localStorage.clear();
               });
           } else {
-            localStorage.removeItem("access");
-            localStorage.removeItem("refresh");
-            localStorage.removeItem("ID");
+            localStorage.clear();
           }
         })
         .catch((err) => {
-          localStorage.removeItem("access");
-          localStorage.removeItem("refresh");
-          localStorage.removeItem("ID");
+          localStorage.clear();
         });
     }
   });
@@ -53,6 +47,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const kakaoLogin = () => {
+    console.log(window.location.origin);
+
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
   };
 
