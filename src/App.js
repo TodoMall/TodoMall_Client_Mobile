@@ -27,8 +27,6 @@ import PaymentResultPage from "./components/payment/PaymentResultPage";
 
 function App() {
   const [current, setCurrent] = useState(CAREER);
-  const domain = window.location.hostname;
-  const isVercelDomain = domain.endsWith("vercel.app");
   return (
     <Container>
       <Routes>
