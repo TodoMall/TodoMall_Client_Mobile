@@ -47,8 +47,9 @@ const TermsOfServiceSection = () => {
 export default TermsOfServiceSection;
 
 const Wrapper = styled.div`
-  width: 90%;
-  margin: 0 16px 16px 16px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 0 24px;
 `;
 
 const Policy = styled.div`
