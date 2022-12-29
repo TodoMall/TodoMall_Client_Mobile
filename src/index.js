@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
+import ScrollToTop from "./utils/ScrollToTop";
 
 if (process.env.NODE_ENV === "development") {
   worker.start();
@@ -12,6 +13,7 @@ if (process.env.NODE_ENV === "development") {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
+    <ScrollToTop />
     <App />
   </BrowserRouter>
 );
