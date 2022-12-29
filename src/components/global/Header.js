@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const Header = ({ title }) => {
   const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(-1);
+  };
   return (
     <Container>
       <BackArrow
-        onClick={() => {
-          navigate(-1);
-        }}
+        src="/images/arrowbackIcon.png"
+        alt=""
+        onClick={handleNavigate}
       />
       <HeaderTitle>{title}</HeaderTitle>
     </Container>
@@ -33,9 +35,10 @@ const Container = styled.div`
   top: -2px;
 `;
 
-const BackArrow = styled(ArrowBackIosIcon)`
+const BackArrow = styled.img`
   position: absolute;
-  height: 56px;
+  width: 24px;
+  height: 24px;
   color: black;
   left: 15px;
 `;
