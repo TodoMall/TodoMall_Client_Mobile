@@ -113,7 +113,7 @@ const Icon = styled.img`
 `;
 const EmptyBox = styled.div`
   width: 95%;
-  height: 200px;
+  height: 172px;
   margin: 20px 0;
   padding: 20px;
 `;
@@ -132,7 +132,6 @@ const Button = styled.button`
   align-items: flex-end;
   background-color: #6b47fd;
   border-radius: 20px;
-  margin-bottom: 34px;
   p {
     font-family: Pretendard;
     font-size: 16px;
