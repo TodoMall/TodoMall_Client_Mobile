@@ -118,7 +118,7 @@ const UserInfoWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin: 66px 0 0 0;
+  margin: 66px 0 0 6;
 `;
 
 const PaymentButton = styled.div`
