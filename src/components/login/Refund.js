@@ -6,7 +6,7 @@ import ThinText from "../global/ThinText";
 const Refund = () => {
   const termOfRefundTableUrl = "/images/TermOfRefund.png";
   return (
-    <>
+    <RefundWrapper>
       <BorderText
         width="100%"
         textAlign="left"
@@ -15,6 +15,7 @@ const Refund = () => {
         fontSize="12px"
       >
         환불이 불가능한 경우
+        <br />
       </BorderText>
       <ThinText width="100%" fontSize="12px" lineHeight="18px">
         ① 주어진 시간 내 미션 인증을 성공하지 못해 소멸된 클래스
@@ -29,8 +30,10 @@ const Refund = () => {
         fontWeight="700"
         fontSize="12px"
       >
+        <br />
         환불이 가능한 경우
       </BorderText>
+
       <ThinText width="100%" fontSize="12px" lineHeight="18px">
         ① myplanit.unicorn@gmail.com으로 환불을 요청하시면, 담당자가
         도와드립니다.
@@ -49,6 +52,7 @@ const Refund = () => {
         fontWeight="700"
         fontSize="12px"
       >
+        <br />
         부분 환불 방식
       </BorderText>
       <ThinText width="100%" fontSize="12px" lineHeight="18px">
@@ -66,14 +70,27 @@ const Refund = () => {
         ④ 환불 요청이 접수된 날로부터, 3 영업일 이내 진행됩니다. 단, PG사 및
         카드사의 상황에 따라 환불이 최대 7일까지 지연될 수 있습니다.
       </ThinText>
-      <RefundImage src={termOfRefundTableUrl} alt="" />
-    </>
+      <RefundImageWrapper>
+        <RefundImage src={termOfRefundTableUrl} alt="" />
+      </RefundImageWrapper>
+    </RefundWrapper>
   );
 };
 
 export default Refund;
 
+const RefundWrapper = styled.div`
+  background-color: #ffffff;
+  border-radius: 20px;
+`;
+const RefundImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const RefundImage = styled.img`
+  max-width: 500px;
   width: 100%;
   margin-top: 8px;
   transform: translateZ(0);
