@@ -4,14 +4,19 @@ import { paymentResultData } from "../../constants";
 import styled from "styled-components";
 import BorderText from "../global/BorderText";
 import ThinText from "../global/ThinText";
+import { useState } from "react";
 
 const PaymentResultPage = ({ paymentMethod }) => {
   const { search } = useLocation();
   const queryString = new URLSearchParams(search);
-  const isSuccess = JSON.parse(queryString.get("imp_success"));
+  /* QA를 위한 상태 변경 코드, 머지 전 삭제 예정 */
+  const [isSuccess, setIsSuccess] = useState(
+    JSON.parse(queryString.get("imp_success"))
+  );
+  /* 원본 코드 */
+  // const isSuccess = JSON.parse(queryString.get("imp_success"));
   const imp_uid = queryString.get("imp_uid");
   const error_msg = queryString.get("error_msg");
-
   const paymentResponse = {
     name: "한솔빈",
     price: 10000,
@@ -77,6 +82,13 @@ const PaymentResultPage = ({ paymentMethod }) => {
           </BorderText>
         </PaymentInfoBox>
       )}
+      <Button
+        onClick={() => {
+          setIsSuccess(!isSuccess);
+        }}
+      >
+        성공 여부 변경
+      </Button>
       {!isSuccess && (
         <MoveTodoMallButton onClick={() => navigate("/todomall")}>
           <p>투두몰로 이동</p>
