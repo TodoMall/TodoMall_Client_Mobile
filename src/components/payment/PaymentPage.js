@@ -106,7 +106,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  width: 95%;
+  width: 100%;
   padding: 16px 20px;
   box-sizing: border-box;
   background: #ffffff;
@@ -118,7 +118,7 @@ const UserInfoWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin: 66px 0 0 6;
+  margin: 66px 0 6px 0;
 `;
 
 const PaymentButton = styled.div`
