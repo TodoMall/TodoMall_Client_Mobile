@@ -38,7 +38,7 @@ const CompanyInfo = styled.div`
   p {
     font-family: Pretendard;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
