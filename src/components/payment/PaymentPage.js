@@ -106,11 +106,11 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  width: 100%;
+  width: calc(100% - 32px);
   padding: 16px 20px;
   box-sizing: border-box;
   background: #ffffff;
-  margin: 6px 0;
+  margin: 6px 16px;
   border-radius: 16px;
 `;
 
@@ -125,7 +125,7 @@ const PaymentButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: calc(100% - 32px);
   max-width: 380px;
   height: 52px;
   background: ${(props) => (props.disabled ? "#A9A9A9" : "#6b47fd")};
@@ -135,5 +135,5 @@ const PaymentButton = styled.div`
   line-height: 16px;
   text-align: center;
   color: #f1efff;
-  margin: 24px 0;
+  margin: 24px 16px;
 `;

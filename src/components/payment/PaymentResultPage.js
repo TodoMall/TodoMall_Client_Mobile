@@ -112,22 +112,20 @@ const Icon = styled.img`
   margin: 98px 128px 48px 128px;
 `;
 const EmptyBox = styled.div`
-  width: 95%;
   height: 172px;
-  margin: 20px 0;
-  padding: 20px;
 `;
 const PaymentInfoBox = styled(EmptyBox)`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 90%;
+  width: calc(100% - 32px);
   background-color: white;
   border-radius: 16px;
   margin: 24px 16px;
 `;
 const Button = styled.button`
-  width: 95%;
+  width: calc(100% - 32px);
+  margin: 0px 16px;
   height: 52px;
   align-items: flex-end;
   background-color: #6b47fd;

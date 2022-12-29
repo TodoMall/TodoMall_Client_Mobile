@@ -46,7 +46,7 @@ const PaymentIconItem = styled.button`
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid #ededed;
-  flex: 1 0 33%;
+  flex: 1 0 34%;
   margin: 4px 3px;
   height: 100px;
   &:focus {
