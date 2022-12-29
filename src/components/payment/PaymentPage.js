@@ -111,7 +111,7 @@ const Box = styled.div`
   box-sizing: border-box;
   background: #ffffff;
   margin: 6px 0;
-  border-radius: 8px;
+  border-radius: 16px;
 `;
 
 const UserInfoWrapper = styled(Box)`
