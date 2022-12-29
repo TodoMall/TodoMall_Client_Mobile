@@ -35,7 +35,13 @@ const PaymentResultPage = ({ paymentMethod }) => {
   return (
     <Wrapper>
       <Header title={title} />
-      <Icon src={iconPath} alt="" />
+      <Icon
+        src={iconPath}
+        alt=""
+        onClick={() => {
+          setIsSuccess(!isSuccess);
+        }}
+      />
       <BorderText
         width="90%"
         textAlign="center"
@@ -82,13 +88,6 @@ const PaymentResultPage = ({ paymentMethod }) => {
           </BorderText>
         </PaymentInfoBox>
       )}
-      <Button
-        onClick={() => {
-          setIsSuccess(!isSuccess);
-        }}
-      >
-        성공 여부 변경
-      </Button>
       {!isSuccess && (
         <MoveTodoMallButton onClick={() => navigate("/todomall")}>
           <p>투두몰로 이동</p>
@@ -114,14 +113,16 @@ const Icon = styled.img`
 const EmptyBox = styled.div`
   height: 172px;
 `;
-const PaymentInfoBox = styled(EmptyBox)`
+const PaymentInfoBox = styled.div`
+  width: calc(100% - 32px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: calc(100% - 32px);
   background-color: white;
   border-radius: 16px;
   margin: 24px 16px;
+  padding: 20px;
+  height: 172px;
 `;
 const Button = styled.button`
   width: calc(100% - 32px);
