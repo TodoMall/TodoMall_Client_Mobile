@@ -8,7 +8,7 @@ export const PaymentMethods = [
     pg: "uplus.tlgdacomxpay",
     MID: "tlgdacomxpay",
     pay_method: "card",
-    iconPath: "/images/payment/accountTransferIcon.svg",
+    iconPath: "/images/payment/cardPayIcon.svg",
     description: "카드결제",
   },
   {
@@ -17,7 +17,7 @@ export const PaymentMethods = [
     pg: "uplus.tlgdacomxpay",
     MID: "tlgdacomxpay",
     pay_method: "trans",
-    iconPath: "/images/payment/cardPayIcon.svg",
+    iconPath: "/images/payment/accountTransferIcon.svg",
     description: "실시간 계좌이체",
   },
   {
