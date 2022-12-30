@@ -57,7 +57,6 @@ const PaymentIconItem = styled.button`
   height: 100px;
   &:focus {
     border: 2px solid #6b47fd;
-    box-shadow: 0px 0px 2px red;
   }
 `;
 const PaymentIcon = styled.img`
