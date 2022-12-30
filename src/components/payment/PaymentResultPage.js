@@ -131,6 +131,7 @@ const Button = styled.button`
   align-items: flex-end;
   background-color: #6b47fd;
   border-radius: 20px;
+  border: 1px solid #6b47fd;
   p {
     font-family: Pretendard;
     font-size: 16px;
