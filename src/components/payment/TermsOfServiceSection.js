@@ -71,6 +71,9 @@ const PolicyPageAnchor = styled.a`
   letter-spacing: -0.01em;
   color: #888888;
   text-decoration: underline;
+  :active {
+    color: #000000;
+  }
 `;
 
 const RefundDescription = styled.div`
