@@ -10,7 +10,11 @@ const SelectedClassInfo = ({ isLoading, title, sessions }) => {
     <>
       <Label>도전 클래스</Label>
       <ThinText margin="0 0 8px 0">클래스명</ThinText>
-      {isLoading ? <Loader width="100%" height="100%" /> : <p>{title}</p>}
+      {isLoading ? (
+        <Loader width="100%" height="100%" />
+      ) : (
+        <BorderText>{title}</BorderText>
+      )}
       <Divider
         margin="16px 0"
         border="1px solid #ededed"

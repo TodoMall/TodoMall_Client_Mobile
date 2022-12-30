@@ -105,7 +105,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #f5f5f5;
+  background-color: #fbfbfb;
 `;
 const Icon = styled.img`
   margin: 98px 128px 48px 128px;
@@ -146,7 +146,7 @@ const Button = styled.button`
 const MoveTodoMallButton = styled(Button)`
   margin: 0 0 4px 0;
   border: 1px solid #6b47fd;
-  background-color: #ffffff;
+  background-color: #fbfbfb;
   p {
     color: #6b47fd;
   }

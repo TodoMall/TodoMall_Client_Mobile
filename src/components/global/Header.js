@@ -23,9 +23,8 @@ export default Header;
 
 const Container = styled.div`
   width: 100%;
-  height: 50px;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  height: 56px;
+  padding: 25px 0;
   display: flex;
   flex-direction: row;
   align-items: center;

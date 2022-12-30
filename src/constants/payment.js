@@ -26,7 +26,7 @@ export const PaymentMethods = [
     pg: "tosspay.tosstest",
     MID: "tosstest",
     pay_method: "card",
-    iconPath: "/images/payment/tossPayIcon.svg",
+    iconPath: "/images/payment/tossPayIcon.png",
     description: "토스페이",
   },
   {

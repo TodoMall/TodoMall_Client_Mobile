@@ -13,34 +13,42 @@ const TermsOfServiceSection = () => {
     setIsVisibleRefundDescription((prev) => !prev);
   };
   return (
-    <Wrapper>
-      <Policy onClick={() => navigate("/service")}>
-        <p>이용 약관</p>
-        <PolicyPageAnchor>보기</PolicyPageAnchor>
-      </Policy>
-      <Policy onClick={() => navigate("/personal")}>
-        <p>개인정보처리방침</p>
-        <PolicyPageAnchor>보기</PolicyPageAnchor>
-      </Policy>
-      <Policy onClick={handleShowRefund}>
-        <p>환불 안내</p>
-        <PolicyPageAnchor>
-          <ToggleIcon
-            src={
-              isVisibleRefundDescription
-                ? "/images/unshowAccordion.png"
-                : "/images/showAccordion.png"
-            }
-            alt=""
-          />
-        </PolicyPageAnchor>
-      </Policy>
-      {isVisibleRefundDescription && (
-        <RefundDescription>
-          <Refund />
-        </RefundDescription>
-      )}
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Policy onClick={() => navigate("/service")}>
+          <p>이용 약관</p>
+          <PolicyPageAnchor>보기</PolicyPageAnchor>
+        </Policy>
+        <Policy onClick={() => navigate("/personal")}>
+          <p>개인정보처리방침</p>
+          <PolicyPageAnchor>보기</PolicyPageAnchor>
+        </Policy>
+      </Wrapper>
+      <RefundWrapper>
+        <RefundPolicy
+          className="refundPolicy"
+          onClick={handleShowRefund}
+          isVisibleRefundDescription={isVisibleRefundDescription}
+        >
+          <p>환불 안내</p>
+          <PolicyPageAnchor>
+            <ToggleIcon
+              src={
+                isVisibleRefundDescription
+                  ? "/images/showAccordion.png"
+                  : "/images/unshowAccordion.png"
+              }
+              alt=""
+            />
+          </PolicyPageAnchor>
+        </RefundPolicy>
+        {isVisibleRefundDescription && (
+          <RefundDescription>
+            <Refund />
+          </RefundDescription>
+        )}
+      </RefundWrapper>
+    </>
   );
 };
 
@@ -52,6 +60,12 @@ const Wrapper = styled.div`
   padding: 0 24px;
 `;
 
+const RefundWrapper = styled.div`
+  width: 100%;
+  padding: 0 8px;
+  margin-bottom: 16px;
+`;
+
 const Policy = styled.div`
   display: inline-flex;
   align-items: center;
@@ -61,6 +75,19 @@ const Policy = styled.div`
     width: 50%;
   }
 `;
+
+const RefundPolicy = styled(Policy)`
+  padding: 0 16px;
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: ${(props) =>
+    props.isVisibleRefundDescription ? "0" : "20px"};
+  border-bottom-right-radius: ${(props) =>
+    props.isVisibleRefundDescription ? "0" : "20px"};
+  ${(props) => props.fontWeight};
+`;
+
 const PolicyPageAnchor = styled.a`
   width: 50%;
   text-align: right;
@@ -79,10 +106,15 @@ const PolicyPageAnchor = styled.a`
 const RefundDescription = styled.div`
   width: 100%;
   position: relative;
-  margin: 16px 0 16px 0;
+  padding: 16px 0;
+  background-color: #ffffff;
+  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 `;
 
 const ToggleIcon = styled.img`
+  position: relative;
+  top: 3px;
   height: 24px;
   width: 24px;
 `;
