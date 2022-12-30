@@ -8,6 +8,7 @@ const ThinText = ({
   fontWeight = "400",
   fontSize = "14px",
   lineHeight = "21px",
+  wordBreak = "normal",
 }) => {
   return (
     <ThinTag
@@ -17,6 +18,7 @@ const ThinText = ({
       fontWeight={fontWeight}
       fontSize={fontSize}
       lineHeight={lineHeight}
+      wordBreak={wordBreak}
     >
       {children}
     </ThinTag>
@@ -35,4 +37,5 @@ const ThinTag = styled.p`
   text-align: ${(props) => props.textAlign};
   width: ${(props) => props.width};
   margin: ${(props) => props.margin};
+  word-break: keep-all;
 `;

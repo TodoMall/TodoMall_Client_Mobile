@@ -9,6 +9,7 @@ export default function Personal() {
     font-family: Pretendard;
     color: #808080;
     font-size: 13px;
+    word-break: keep-all;
   "
 >
 <마이플랜잇> 개인정보 처리방침
