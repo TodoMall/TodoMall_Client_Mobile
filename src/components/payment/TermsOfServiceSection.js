@@ -25,7 +25,7 @@ const TermsOfServiceSection = () => {
       <Policy onClick={handleShowRefund}>
         <p>환불 안내</p>
         <PolicyPageAnchor>
-          <img
+          <ToggleIcon
             src={
               isVisibleRefundDescription
                 ? "/images/unshowAccordion.png"
@@ -77,4 +77,9 @@ const RefundDescription = styled.div`
   width: 100%;
   position: relative;
   margin: 16px 0 16px 0;
+`;
+
+const ToggleIcon = styled.img`
+  height: 24px;
+  width: 24px;
 `;

@@ -5,7 +5,7 @@ import Divider from "../global/Divider";
 const Footer = () => {
   return (
     <Wrapper>
-      <img src="/images/DarkLogo.png" alt="img error" />
+      <FooterIcon src="/images/DarkLogo.png" alt="img error" />
       <Divider
         margin="16px 0"
         border="1px solid #888888"
@@ -53,4 +53,8 @@ const Copyright = styled.p`
   line-height: 21px;
   letter-spacing: -0.01em;
   text-align: left;
+`;
+const FooterIcon = styled.img`
+  width: 120px;
+  height: 18px;
 `;
