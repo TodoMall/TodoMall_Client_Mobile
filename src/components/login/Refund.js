@@ -76,6 +76,7 @@ export default Refund;
 const RefundWrapper = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
+  padding: 0 16px;
 `;
 const RefundImageWrapper = styled.div`
   display: flex;
