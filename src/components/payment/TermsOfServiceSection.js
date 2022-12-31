@@ -56,7 +56,6 @@ export default TermsOfServiceSection;
 
 const Wrapper = styled.div`
   width: 100%;
-  margin-bottom: 16px;
   padding: 0 24px;
 `;
 
@@ -77,7 +76,7 @@ const Policy = styled.div`
 `;
 
 const RefundPolicy = styled(Policy)`
-  padding: 0 16px;
+  padding: 16px;
   background-color: #ffffff;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
