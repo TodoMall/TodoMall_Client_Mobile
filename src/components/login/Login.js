@@ -20,13 +20,13 @@ const Login = () => {
               .post(
                 `https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&refresh_token=${refresh_token}`,
                 {
-                  data: {
-                    client_secret: process.env.REACT_APP_KAKAO_CLIENT_SECRET,
+                  headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
                   },
                 },
                 {
-                  headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                  data: {
+                    client_secret: process.env.REACT_APP_KAKAO_CLIENT_SECRET,
                   },
                 }
               )
