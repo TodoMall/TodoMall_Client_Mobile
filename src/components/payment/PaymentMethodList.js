@@ -55,8 +55,13 @@ const PaymentIconItem = styled.button`
   flex: 1 0 34%;
   margin: 4px 3px;
   height: 100px;
-  &:hover {
+  &:focus {
     border: 2px solid #6b47fd;
+  }
+  @media screen and (max-width: 500px) {
+    &:hover {
+      border: 2px solid #6b47fd;
+    }
   }
 `;
 const PaymentIcon = styled.img`
