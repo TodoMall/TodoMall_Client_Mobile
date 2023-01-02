@@ -6,8 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
 import ScrollToTop from "./utils/ScrollToTop";
 
-// test push for testing deploy speed
-if (process.env.NODE_ENV === "development") {
+if (process.env.REACT_APP_NODE_ENV === "development") {
   worker.start();
 }
 
