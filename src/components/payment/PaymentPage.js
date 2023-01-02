@@ -22,8 +22,8 @@ const PaymentPage = () => {
   );
   const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
-  // todo : price to be removed & replace product.price
-  const price = Number(10000).toLocaleString();
+  // todo : price to be replace product.amount
+  const price = Number(product?.amount || 20000).toLocaleString();
 
   /* Feature Flagging : vercel에서 제공하는 도메인에서 QA를 진행하기 위해 잠시 feature flagging */
 
@@ -46,8 +46,7 @@ const PaymentPage = () => {
       pay_method: paymentData.pay_method,
       merchant_uid: `mid_${new Date().getDate()}`,
       name: product?.title,
-      amount: 20000,
-      buyer_tel: "010-0000-0000",
+      amount: product?.amount || 20000,
       buyer_email: email,
       buyer_name: name,
       m_redirect_url: `http://localhost:3000/payment/complete/${planid}`,
@@ -56,7 +55,7 @@ const PaymentPage = () => {
     try {
       await IMP.request_pay(paymentInfo);
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
