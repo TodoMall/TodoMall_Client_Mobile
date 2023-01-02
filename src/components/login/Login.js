@@ -14,7 +14,7 @@ const Login = () => {
           },
         })
         .then((res) => {
-          if (res.status == 200) {
+          if (res.status === 200) {
             const refresh_token = localStorage.getItem("refresh");
             axios
               .post(
