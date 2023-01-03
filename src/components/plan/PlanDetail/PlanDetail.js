@@ -17,12 +17,12 @@ const PlanDetail = () => {
   const navigate = useNavigate();
   const { planid: ID } = useParams();
 
-  const sendToPaymentPage = () => {
+  const sendToPurchasePage = () => {
     if (!isLogin) {
       navigate("/");
     }
     if (isLogin) {
-      navigate(`/payment/${plan.id}/`);
+      navigate(`/detail/purchase/${plan.id}/`);
     }
   };
 
@@ -86,7 +86,7 @@ const PlanDetail = () => {
           {duplicate ? (
             <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
           ) : (
-            <BuyButton onClick={sendToPaymentPage} id="download_button">
+            <BuyButton onClick={sendToPurchasePage} id="download_button">
               클래스 도전하기
             </BuyButton>
           )}

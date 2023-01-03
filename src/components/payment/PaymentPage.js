@@ -25,13 +25,11 @@ const PaymentPage = () => {
   // todo : price to be replace product.amount
   const price = Number(product?.amount || 20000).toLocaleString();
 
-  /* Feature Flagging : vercel에서 제공하는 도메인에서 QA를 진행하기 위해 잠시 feature flagging */
-
-  // useEffect(() => {
-  //   if (!access) {
-  //     return navigate("/");
-  //   }
-  // }, [access, navigate]);
+  useEffect(() => {
+    if (!access) {
+      return navigate("/");
+    }
+  }, [access, navigate]);
 
   const handleSelectPaymentMethod = (name) => {
     setPaymentMethod(name);
@@ -49,7 +47,7 @@ const PaymentPage = () => {
       amount: product?.amount || 20000,
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `http://localhost:3000/payment/complete/${planid}`,
+      m_redirect_url: `http://localhost:3000/detail/purchase/complete/${planid}`,
     };
 
     try {
