@@ -3,7 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useAxios from "axios-hooks";
 
-import { PaymentMethods } from "../../constants";
+import { PaymentMethods, baseApiUrl } from "../../constants";
+import { RedirectByAuthStatus } from "../../utils";
 
 import PaymentAmountInfo from "./PaymentAmountInfo";
 import PayerInfo from "./PayerInfo";
@@ -13,24 +14,17 @@ import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
 
 const PaymentPage = () => {
-  const { name, email, image, access } = { ...localStorage };
+  const { name, email, image } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
   const navigate = useNavigate();
   const { planid } = useParams();
   const [{ data: product, loading: isLoading }] = useAxios(
-    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${planid}`
+    `${baseApiUrl}products?id=${planid}`
   );
-  const paymentData = PaymentMethods.find((el) => el.id === payMethod);
+  const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
-  const price = Number(10000).toLocaleString();
-
-  /* Feature Flagging : vercel에서 제공하는 도메인에서 QA를 진행하기 위해 잠시 feature flagging */
-
-  // useEffect(() => {
-  //   if (!access) {
-  //     return navigate("/");
-  //   }
-  // }, [access, navigate]);
+  // todo : price to be replace product.amount
+  const price = Number(product?.amount || 20000).toLocaleString();
 
   const handleSelectPaymentMethod = (name) => {
     setPaymentMethod(name);
@@ -45,31 +39,22 @@ const PaymentPage = () => {
       pay_method: paymentData.pay_method,
       merchant_uid: `mid_${new Date().getDate()}`,
       name: product?.title,
-      amount: 20000,
-      buyer_tel: "010-0000-0000",
+      amount: product?.amount || 20000,
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `http://localhost:3000/payment/complete/${planid}`,
+      m_redirect_url: `http://localhost:3000/detail/purchase/complete/${planid}`,
     };
 
     try {
-      IMP.request_pay(paymentInfo, (res) => {
-        if (res.success) {
-          console.log("success res : ", res);
-        } else {
-          console.log("fail res : ", res);
-        }
-      });
-      const response = await IMP.request_pay(paymentInfo);
-      // request server with { imp_uid , merchant_uid } & headers: { "Content-Type": "application/json" },
-      console.log("response : ", response);
+      await IMP.request_pay(paymentInfo);
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
   return (
     <Container>
+      <RedirectByAuthStatus />
       <Layout currentPage="결제하기">
         <UserInfoWrapper>
           {isLoading ? (
@@ -110,30 +95,30 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #f6f8ff;
+  background-color: #fbfbfb;
 `;
 
 const Box = styled.div`
-  width: 95%;
+  width: calc(100% - 32px);
   padding: 16px 20px;
   box-sizing: border-box;
   background: #ffffff;
-  margin: 6px 0;
-  border-radius: 8px;
+  margin: 6px 16px;
+  border-radius: 16px;
 `;
 
 const UserInfoWrapper = styled(Box)`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin: 66px 0 0 0;
+  margin: 66px 0 6px 0;
 `;
 
 const PaymentButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: calc(100% - 32px);
   max-width: 380px;
   height: 52px;
   background: ${(props) => (props.disabled ? "#A9A9A9" : "#6b47fd")};
@@ -143,5 +128,5 @@ const PaymentButton = styled.div`
   line-height: 16px;
   text-align: center;
   color: #f1efff;
-  margin: 24px 0;
+  margin: 24px 16px;
 `;

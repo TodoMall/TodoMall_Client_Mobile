@@ -9,6 +9,7 @@ white-space: pre-wrap;
 font-family: Pretendard;
 color: #808080;
 font-size: 13px;
+word-break: keep-all;
 "
 >
 제 1장. 총칙

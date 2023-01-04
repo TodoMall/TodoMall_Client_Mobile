@@ -7,7 +7,6 @@ const whiteColor = "#FFFFFF";
 const grayColor = "#929292";
 
 const Button = ({ title, color = "#6b47fd", width = 90, onClick }) => {
-  console.log(onClick);
   return (
     <NoPlanButton onClick={onClick} color={color} width={width}>
       {title}

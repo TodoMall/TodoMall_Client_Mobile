@@ -9,7 +9,8 @@ const PayerInfo = ({ image, name, email }) => {
     <Fragment>
       <Label>도전자</Label>
       <UserWrapper>
-        <ProfileImage src={image} alt={image} />
+        <ProfileImage src={image} alt="" />
+
         <UserInfo>
           <User>
             <ThinText width="20%">이름 </ThinText>
@@ -29,8 +30,8 @@ const PayerInfo = ({ image, name, email }) => {
 export default PayerInfo;
 
 const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50px;
   object-fit: cover;
 `;

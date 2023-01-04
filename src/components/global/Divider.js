@@ -27,5 +27,6 @@ const DividerStyle = styled.hr`
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor};
   margin: ${(props) => props.margin};
-  border: ${(props) => props.border};
+  border-bottom: ${(props) => props.border};
+  border-top: none;
 `;

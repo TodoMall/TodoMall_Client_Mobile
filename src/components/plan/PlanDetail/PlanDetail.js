@@ -6,7 +6,7 @@ import PlanSecond from "./PlanSecond";
 import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
 import { useNavigate, useParams } from "react-router-dom";
-import { MAX_WIDTH } from "../../../constants";
+import { MAX_WIDTH, baseApiUrl } from "../../../constants";
 import { Layout, Divider, Loader } from "../../global";
 import useAxios from "axios-hooks";
 
@@ -17,21 +17,19 @@ const PlanDetail = () => {
   const navigate = useNavigate();
   const { planid: ID } = useParams();
 
-  const sendToPaymentPage = () => {
+  const sendToPurchasePage = () => {
     if (!isLogin) {
       navigate("/");
     }
     if (isLogin) {
-      navigate(`/payment/${plan.id}/`);
+      navigate(`/detail/purchase/${plan.id}/`);
     }
   };
 
   const [{ data: plan, loading: isLoading }] = useAxios(
-    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products?id=${ID}`
+    `${baseApiUrl}products?id=${ID}`
   );
-  const [{ data: userProduct }] = useAxios(
-    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
-  );
+  const [{ data: userProduct }] = useAxios(`${baseApiUrl}user?email=${email}`);
 
   const checkDuplicate = (data) => {
     const temp = data.filter(
@@ -78,7 +76,7 @@ const PlanDetail = () => {
             <Divider />
             <PlanThird data={plan.recommendUsers} />
             <Divider />
-            <PlanCurriculum data={plan.sessions} />
+            <PlanCurriculum sessions={plan.sessions} />
           </Body>
         )}
 
@@ -86,7 +84,7 @@ const PlanDetail = () => {
           {duplicate ? (
             <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
           ) : (
-            <BuyButton onClick={sendToPaymentPage} id="download_button">
+            <BuyButton onClick={sendToPurchasePage} id="download_button">
               클래스 도전하기
             </BuyButton>
           )}

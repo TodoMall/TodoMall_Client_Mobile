@@ -71,9 +71,9 @@ function App() {
         <Route path="/announcement/:id" element={<AnnouncementDetail />} />
 
         {/* Payment Routes */}
-        <Route path="/payment/:planid" element={<PaymentPage />} />
+        <Route path="/detail/purchase/:planid" element={<PaymentPage />} />
         <Route
-          path="/payment/complete/:planid"
+          path="/detail/purchase/complete/:planid"
           element={<PaymentResultPage />}
         />
       </Routes>

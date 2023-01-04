@@ -5,7 +5,7 @@ import Divider from "../global/Divider";
 const Footer = () => {
   return (
     <Wrapper>
-      <img src="/images/DarkLogo.png" alt="img error" />
+      <FooterIcon src="/images/DarkLogo.png" alt="img error" />
       <Divider
         margin="16px 0"
         border="1px solid #888888"
@@ -18,8 +18,8 @@ const Footer = () => {
         <p>사업자등록번호 : 274-12-01980 | 대표 : 최현권</p>
         <p>주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호</p>
         <p>메일 : myplanit.unicorn@gmail.com</p>
-        <Copyright>Copyright ⓒ 2022 myplanit. All rights reserved.</Copyright>
       </CompanyInfo>
+      <Copyright>Copyright ⓒ 2022 myplanit. All rights reserved.</Copyright>
     </Wrapper>
   );
 };
@@ -53,4 +53,9 @@ const Copyright = styled.p`
   line-height: 21px;
   letter-spacing: -0.01em;
   text-align: left;
+  color: #ffffff;
+`;
+const FooterIcon = styled.img`
+  width: 120px;
+  height: 18px;
 `;

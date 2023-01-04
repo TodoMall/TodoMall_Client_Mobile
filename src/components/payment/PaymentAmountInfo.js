@@ -17,7 +17,10 @@ const PaymentAmountInfo = ({ isLoading, priceWithComma }) => {
             <BorderText width="50%" fontWeight="700">
               총 결제 금액
             </BorderText>
-            <TotalAmount>{priceWithComma}원</TotalAmount>
+            <TotalAmount>{priceWithComma}</TotalAmount>
+            <ThinText width="auto" margin="0 0 0 4px" color="#222222">
+              원
+            </ThinText>
           </TotalAmountWrapper>
           <Divider
             margin="16px 0"
@@ -46,14 +49,13 @@ export default PaymentAmountInfo;
 
 const TotalAmountWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: end;
 `;
 
 const TotalAmount = styled.p`
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
-  line-height: 32px;
   letter-spacing: -0.01em;
   text-align: right;
   width: 50%;

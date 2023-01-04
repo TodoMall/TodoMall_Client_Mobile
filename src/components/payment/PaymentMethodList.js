@@ -7,12 +7,17 @@ const PaymentMethodList = ({ onClickPaymentMethod }) => {
       <Label>결제 수단</Label>
       <PaymentIconList>
         {PaymentMethods.map(({ id, name, iconPath, description }) => {
+          const isKakao = name === "kakaopay";
           return (
             <PaymentIconItem
               key={id}
               onClick={() => onClickPaymentMethod(name)}
             >
-              <PaymentIcon src={iconPath} alt="" />
+              <PaymentIcon
+                src={iconPath}
+                alt=""
+                width={isKakao ? "52px" : "36px"}
+              />
               {description}
             </PaymentIconItem>
           );
@@ -21,6 +26,7 @@ const PaymentMethodList = ({ onClickPaymentMethod }) => {
     </>
   );
 };
+
 export default PaymentMethodList;
 const Label = styled.div`
   height: 35px;
@@ -46,14 +52,20 @@ const PaymentIconItem = styled.button`
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid #ededed;
-  flex: 1 0 33%;
+  flex: 1 0 34%;
   margin: 4px 3px;
   height: 100px;
   &:focus {
     border: 2px solid #6b47fd;
-    box-shadow: 0px 0px 2px red;
+  }
+  @media screen and (max-width: 500px) {
+    &:hover {
+      border: 2px solid #6b47fd;
+    }
   }
 `;
 const PaymentIcon = styled.img`
   margin-bottom: 8px;
+  width: ${(props) => props.width};
+  height: 36px;
 `;

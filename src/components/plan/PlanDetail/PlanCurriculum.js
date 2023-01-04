@@ -1,16 +1,16 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import { MAX_WIDTH } from "../../../constants";
 
-const PlanCurriculum = ({ data }) => {
+const PlanCurriculum = ({ sessions }) => {
   return (
     <Container>
       <Header>
         <FirstTitle>커리큘럼</FirstTitle>
       </Header>
       <Body>
-        {data.map((session, i) => (
-          <>
+        {sessions.map((session, i) => (
+          <Fragment key={session.id}>
             <Intro>
               <SessionCount>Session {i + 1}</SessionCount>
               <Title>{session.title}</Title>
@@ -20,13 +20,15 @@ const PlanCurriculum = ({ data }) => {
               <AssignmentTitle>{session.missionTitle}</AssignmentTitle>
             </Assignment>
             <Todos>
-              {session.todos.map((todo) => (
-                <Todo>
-                  <TodoTitle>{todo.title}</TodoTitle>
-                </Todo>
-              ))}
+              {session.todos.map((todo) => {
+                return (
+                  <Todo key={todo.id}>
+                    <TodoTitle>{todo.title}</TodoTitle>
+                  </Todo>
+                );
+              })}
             </Todos>
-          </>
+          </Fragment>
         ))}
       </Body>
     </Container>

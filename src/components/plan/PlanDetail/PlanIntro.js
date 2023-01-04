@@ -25,8 +25,8 @@ const PlanIntro = ({
         <Title>{title}</Title>
         <PlanAmountInfo amount={amount} />
         <LargeTags>
-          {largetag.map((tag) => (
-            <LargeTagCover>
+          {largetag.map((tag, idx) => (
+            <LargeTagCover key={idx}>
               <LargeTag>
                 <LargeTagIcon src={`/images/${IconDict[tag]}.svg`} />
               </LargeTag>
@@ -36,8 +36,8 @@ const PlanIntro = ({
         </LargeTags>
         <Description>{description}</Description>
         <SmallTags>
-          {smalltag.map((tag) => (
-            <SmallTag>
+          {smalltag.map((tag, idx) => (
+            <SmallTag key={idx}>
               <TagIcon src={`/images/${IconDict[tag]}.svg`} />
               {tag}
             </SmallTag>
