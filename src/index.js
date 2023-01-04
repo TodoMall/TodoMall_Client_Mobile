@@ -4,7 +4,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
-import ScrollToTop from "./utils/ScrollToTop";
+import { ScrollToTop } from "./utils";
 
 if (process.env.REACT_APP_NODE_ENV === "development") {
   worker.start();

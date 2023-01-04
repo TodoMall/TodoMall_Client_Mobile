@@ -4,6 +4,7 @@ import styled from "styled-components";
 import useAxios from "axios-hooks";
 
 import { PaymentMethods, baseApiUrl } from "../../constants";
+import { RedirectByAuthStatus } from "../../utils";
 
 import PaymentAmountInfo from "./PaymentAmountInfo";
 import PayerInfo from "./PayerInfo";
@@ -13,7 +14,7 @@ import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
 
 const PaymentPage = () => {
-  const { name, email, image, access } = { ...localStorage };
+  const { name, email, image } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
   const navigate = useNavigate();
   const { planid } = useParams();
@@ -24,12 +25,6 @@ const PaymentPage = () => {
 
   // todo : price to be replace product.amount
   const price = Number(product?.amount || 20000).toLocaleString();
-
-  useEffect(() => {
-    if (!access) {
-      return navigate("/");
-    }
-  }, [access, navigate]);
 
   const handleSelectPaymentMethod = (name) => {
     setPaymentMethod(name);
@@ -59,6 +54,7 @@ const PaymentPage = () => {
 
   return (
     <Container>
+      <RedirectByAuthStatus />
       <Layout currentPage="결제하기">
         <UserInfoWrapper>
           {isLoading ? (

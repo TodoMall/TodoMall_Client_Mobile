@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { paymentResultData, baseApiUrl } from "../../constants";
-import styled from "styled-components";
 import { Loader, ThinText, BorderText, Header } from "../global";
+import { RedirectByAuthStatus } from "../../utils";
+
+import styled from "styled-components";
 import axios from "axios";
 
 const PaymentResultPage = () => {
@@ -66,6 +68,7 @@ const PaymentResultPage = () => {
 
   return (
     <Wrapper>
+      <RedirectByAuthStatus />
       <Header title={title} />
       <Icon src={iconPath} alt="" />
       <BorderText
