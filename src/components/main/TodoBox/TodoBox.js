@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Loader, BottomNavBar, ThinText } from "../../global";
+import { Loader, BottomNavBar, ThinText, Header } from "../../global";
 import TodoBoxContent from "./TodoBoxContent";
-import TodoBoxHeader from "./TodoBoxHeader";
 
 const TodoBox = () => {
   const [email, setEmail] = useState(localStorage.getItem("email"));
@@ -50,7 +49,7 @@ const TodoBox = () => {
 
   return (
     <>
-      <TodoBoxHeader length={plans?.length > 0 ? plans.length : 0} />
+      <Header image={"/images/Logo.png"} containerHeight="48px" />
       {loading ? (
         <Loader />
       ) : (
