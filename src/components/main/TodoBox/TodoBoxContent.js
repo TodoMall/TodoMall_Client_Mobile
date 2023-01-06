@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TodoBoxCard from "./TodoBoxCard";
+import UserInfo from "./UserInfo";
 
 const handleSession = (session) => {
   let temp = [];
@@ -17,6 +18,7 @@ const handleSession = (session) => {
 const TodoBoxContent = ({ plans, check, setCheck }) => {
   return (
     <TodoBoxContentContainer>
+      <UserInfo plans={plans} />
       {plans.map((plan) => {
         if (Date.now() >= Date.parse(plan.expireDate)) {
           return (
