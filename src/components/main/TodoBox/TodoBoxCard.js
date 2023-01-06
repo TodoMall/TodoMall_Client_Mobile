@@ -207,7 +207,7 @@ const TodoBoxCard = ({
 
 const TodoBoxCardContainer = styled.div`
   width: 90%;
-  background: #f7f7f7;
+  background: #ffffff;
   border-radius: 24px;
   padding: 30px;
   padding-bottom: 0;
