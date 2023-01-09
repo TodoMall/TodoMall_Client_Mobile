@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { baseApiUrl } from "../../../constants";
 import { Loader, BottomNavBar, ThinText, Header } from "../../global";
 import TodoBoxContent from "./TodoBoxContent";
 
 const TodoBox = () => {
-  const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [email] = useState(localStorage.getItem("email"));
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [check, setCheck] = useState(false);
@@ -38,10 +39,10 @@ const TodoBox = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
-      );
-      setPlans(handlePlan(response.data.ownProducts));
+      const {
+        data: { ownProducts },
+      } = await axios.get(`${baseApiUrl}user?email=${email}`);
+      setPlans(handlePlan(ownProducts));
       setLoading(false);
     };
     fetch();
