@@ -1,17 +1,17 @@
 export const mockData = [
   {
-    id: "0",
+    id: "1",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활",
-    status: false,
+    title: "슬기로운 투두몰 생활(성공)",
+    status: true,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
       {
         id: "8871905b-d7d4-4bdd-b1f9-aebc2cc94a2d100",
         title: "튜토리얼_0",
-        status: false,
+        status: true,
         startDate: "2023-01-07T15:11:45.404Z",
-        expireDate: "2023-01-09T15:11:45.404Z",
+        expireDate: "2023-01-11T15:11:45.404Z",
         orderBy: 0,
         todos: [
           {
@@ -34,7 +34,7 @@ export const mockData = [
     ],
   },
   {
-    id: "1",
+    id: "2",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "슬기로운 투두몰 생활",
     status: false,
@@ -68,7 +68,7 @@ export const mockData = [
     ],
   },
   {
-    id: "2",
+    id: "3",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "슬기로운 투두몰 생활",
     status: false,
@@ -102,7 +102,7 @@ export const mockData = [
     ],
   },
   {
-    id: "3",
+    id: "4",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "슬기로운 투두몰 생활",
     status: false,
@@ -136,7 +136,7 @@ export const mockData = [
     ],
   },
   {
-    id: "4",
+    id: "5",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "슬기로운 투두몰 생활",
     status: false,
@@ -170,7 +170,7 @@ export const mockData = [
     ],
   },
   {
-    id: "5",
+    id: "6",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "슬기로운 투두몰 생활",
     status: false,

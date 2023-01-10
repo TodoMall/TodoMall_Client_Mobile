@@ -24,6 +24,7 @@ import { CAREER } from "./components/main/TodoMall/Constant";
 
 import PaymentPage from "./components/payment/PaymentPage";
 import PaymentResultPage from "./components/payment/PaymentResultPage";
+import MyDashboard from "./components/main/MyPage/MyDashboard";
 
 function App() {
   const [current, setCurrent] = useState(CAREER);
@@ -44,6 +45,7 @@ function App() {
           element={<TodoMall current={current} setCurrent={setCurrent} />}
         />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/dashboard" element={<MyDashboard />} />
 
         {/* Todo Detail, Assignment Routes */}
         <Route
