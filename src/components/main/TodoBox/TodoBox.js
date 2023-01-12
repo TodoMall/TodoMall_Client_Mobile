@@ -46,7 +46,7 @@ const TodoBox = () => {
       setLoading(false);
     };
     fetch();
-  }, [check]);
+  }, [email, check]);
 
   return (
     <>
@@ -105,7 +105,9 @@ const SpeechBubble = styled.div`
   }
 `;
 
-const TodoBoxBody = styled.div``;
+const TodoBoxBody = styled.div`
+  background-color: #fafaff;
+`;
 
 const TodoBoxEmptyContainer = styled.div`
   position: fixed;

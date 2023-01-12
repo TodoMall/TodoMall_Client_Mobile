@@ -6,6 +6,7 @@ import Header from "./Header";
 import axios from "axios";
 import { Loader, Footer } from "../../global";
 import { Tabs, Tab } from "@tarragon/swipeable-tabs";
+import { baseApiUrl } from "../../../constants";
 
 const TodoMall = ({ current, setCurrent }) => {
   const [careerData, setCareerData] = useState([]);
@@ -14,27 +15,21 @@ const TodoMall = ({ current, setCurrent }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const getCareerData = axios.get(
-    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/preview?type=career`
-  );
+  const getUserInfo = async () => {
+    try {
+      const [careerData, selfData, investmentData] = await Promise.all([
+        axios.get(`${baseApiUrl}products/preview?type=career`),
+        axios.get(`${baseApiUrl}products/preview?type=self`),
+        axios.get(`${baseApiUrl}products/preview?type=investment`),
+      ]);
 
-  const getSelfData = axios.get(
-    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/preview?type=self`
-  );
-
-  const getInvestmentData = axios.get(
-    `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/preview?type=investment`
-  );
-
-  const getUserInfo = () => {
-    axios.all([getCareerData, getSelfData, getInvestmentData]).then(
-      axios.spread((car, sel, inv) => {
-        setCareerData(car.data);
-        setSelfData(sel.data);
-        setInvestmentData(inv.data);
-        setLoading(false);
-      })
-    );
+      setCareerData(careerData.data);
+      setSelfData(selfData.data);
+      setInvestmentData(investmentData.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -53,10 +48,6 @@ const TodoMall = ({ current, setCurrent }) => {
             setCurrent(updatedTab.label);
           }}
           tabBarCSS={`display: none`}
-          // blacklistedElement={{
-          //   identifierType: "id",
-          //   identifierName: "category-img",
-          // }}
         >
           <Tab label="career" key={0}>
             <Body>

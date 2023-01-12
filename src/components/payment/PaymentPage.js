@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import useAxios from "axios-hooks";
 
@@ -16,7 +16,6 @@ import { Loader, Layout } from "../global";
 const PaymentPage = () => {
   const { name, email, image } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
-  const navigate = useNavigate();
   const { planid } = useParams();
   const [{ data: product, loading: isLoading }] = useAxios(
     `${baseApiUrl}products?id=${planid}`

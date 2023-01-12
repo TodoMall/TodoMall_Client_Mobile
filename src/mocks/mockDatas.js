@@ -2,12 +2,12 @@ export const mockData = [
   {
     id: "1",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활(성공)",
+    title: "슬기로운 투두몰 생활(성공)  -1",
     status: true,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
       {
-        id: "8871905b-d7d4-4bdd-b1f9-aebc2cc94a2d100",
+        id: "74be6f7d-6188-4843-9c46-b5e777cd2f08",
         title: "튜토리얼_0",
         status: true,
         startDate: "2023-01-07T15:11:45.404Z",
@@ -36,7 +36,7 @@ export const mockData = [
   {
     id: "2",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활",
+    title: "슬기로운 투두몰 생활 -2",
     status: false,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
@@ -70,7 +70,7 @@ export const mockData = [
   {
     id: "3",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활",
+    title: "슬기로운 투두몰 생활 -3",
     status: false,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
@@ -104,7 +104,7 @@ export const mockData = [
   {
     id: "4",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활",
+    title: "슬기로운 투두몰 생활 -4",
     status: false,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
@@ -138,7 +138,7 @@ export const mockData = [
   {
     id: "5",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활",
+    title: "슬기로운 투두몰 생활 -5",
     status: false,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
@@ -172,7 +172,7 @@ export const mockData = [
   {
     id: "6",
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
-    title: "슬기로운 투두몰 생활",
+    title: "슬기로운 투두몰 생활 -6",
     status: false,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [

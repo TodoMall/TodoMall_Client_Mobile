@@ -43,6 +43,7 @@ const Wrapper = styled.div`
   width: 90%;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 const RowDirectionDiv = styled.div`

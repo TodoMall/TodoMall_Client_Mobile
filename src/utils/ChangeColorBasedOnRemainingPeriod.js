@@ -10,19 +10,19 @@ const changeColorBasedOnRemainingPeriod = (period, isText, isDone, todos) => {
 
   switch (true) {
     case isFalsy?.length === 0:
-      color = isText ? "rgba(24, 144, 255, 1)" : "rgba(24, 144, 255, 0.2)";
+      color = isText ? "rgba(24, 144, 255, 1)" : "rgba(24, 144, 255, 0.1)";
       break;
     case isDone && isText:
       color = "#222222";
       break;
     case period >= 4:
-      color = isText ? "rgba(82, 196, 26, 1)" : "rgba(82, 196, 26, 0.2)";
+      color = isText ? "rgba(82, 196, 26, 1)" : "rgba(82, 196, 26, 0.1)";
       break;
     case period >= 1:
-      color = isText ? "rgba(250, 173, 20, 1)" : "rgba(250, 173, 20, 0.2)";
+      color = isText ? "rgba(250, 173, 20, 1)" : "rgba(250, 173, 20, 0.1)";
       break;
     case period < 1:
-      color = isText ? "rgba(255, 77, 79, 1)" : "rgba(255, 77, 79, 0.2)";
+      color = isText ? "rgba(255, 77, 79, 1)" : "rgba(255, 77, 79, 0.1)";
       break;
 
     default:

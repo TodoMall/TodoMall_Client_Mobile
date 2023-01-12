@@ -71,9 +71,8 @@ const TodoBoxContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 90px;
-  padding-bottom: 90px;
-  gap: 20px;
+  padding-top: 64px;
+  padding-bottom: 82px;
 `;
 
 export default TodoBoxContent;

@@ -95,19 +95,19 @@ const TodoBoxCard = ({
       <div>
         <BorderText
           width="auto"
-          fontWeight="500"
+          fontWeight="400"
           lineHeight="14px"
-          color="#9e9e9e"
-          margin="0 0 10px 0"
+          color="#888888"
+          margin="0 0 8px 0"
         >
           {title}
         </BorderText>
         <BorderText
           width="auto"
           fontWeight="700"
-          fontSize="20px"
+          fontSize="18px"
           lineHeight="20px"
-          color="#000000"
+          color="#222222"
         >
           {session.title}
         </BorderText>
@@ -196,10 +196,9 @@ const TodoBoxCard = ({
                 <img src={checkBoxImgUrl(todo.status)} alt="" />
                 <BorderText
                   width="auto"
-                  fontWeight="500"
                   fontSize="16px"
                   lineHeight="16px"
-                  margin="0 0 0 10px"
+                  margin="0 0 0 8px"
                   color={changeColorBasedOnRemainingPeriod(
                     FormattedExpireDate,
                     true,
@@ -210,6 +209,7 @@ const TodoBoxCard = ({
                   {todo.title}
                 </BorderText>
               </TodoBoxCardTodoLeft>
+              {/* 이미지 OBT 버전으로 변경 */}
               <img src="images/todo_detail.svg" alt="" />
             </TodoBoxCardTodo>
           ))}
@@ -220,9 +220,8 @@ const TodoBoxCard = ({
         <>
           <BorderText
             width="auto"
-            fontWeight="500"
-            fontSize="16px"
-            lineHeight="16px"
+            fontSize="14px"
+            lineHeight="21px"
             color="#a9a9a9"
             textAlign="center"
             margin="0 0 8px 0"
@@ -243,10 +242,11 @@ const TodoBoxCard = ({
 };
 
 const Container = styled.div`
-  width: 90%;
+  width: calc(100% - 32px);
   background: #ffffff;
+  margin: 6px 0;
+  padding: 16px;
   border-radius: 24px;
-  padding: 30px;
   padding-bottom: 0;
   position: relative;
 `;
@@ -254,11 +254,11 @@ const Container = styled.div`
 const TodoBoxCardHeaderTime = styled.p`
   position: absolute;
   font-family: "Pretendard";
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
-  line-height: 12px;
+  line-height: 18px;
   color: #f65050;
-  bottom: 30px;
+  bottom: 24px;
 `;
 
 // 인증이 필요한 아이콘의 D-day 배경화면
@@ -271,7 +271,7 @@ const DDayIcon = styled.div`
   justify-content: center;
   border-radius: 4px;
   background: ${(props) => props.background};
-  padding: 0 10px;
+  width: 66px;
   height: 24px;
   position: absolute;
   right: 25px;
@@ -308,8 +308,8 @@ const BlurredCover = styled.div`
   justify-content: center;
   text-align: center;
   position: absolute;
-  top: 45%;
-  left: 35%;
+  top: 37%;
+  left: 33%;
 `;
 
 const Blurred = styled.div`
@@ -329,11 +329,11 @@ const BlurredBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 103px;
+  width: 110px;
   height: 24px;
-  background: #ffc6c6;
+  background: #ffeded;
   border-radius: 4px;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 16px;
   line-height: 16px;
   color: #f65050;
@@ -374,14 +374,14 @@ const TodoBoxCardSubmitButton = styled.div`
 `;
 
 const TodoBoxCardEndButton = styled.div`
-  height: 50px;
+  height: 52px;
   background: #f65050;
   border-radius: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   line-height: 16px;
   color: #ffffff;
