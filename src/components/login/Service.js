@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../global";
 import Header from "../global/Header";
 
 export default function Service() {
@@ -398,13 +399,20 @@ word-break: keep-all;
 >`;
 
   return (
-    <>
+    <Wrapper>
       <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-    </>
+      <Button title="제출하기" color="#ffffff" margin="40px 0 50px 0" />
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 const HTMLDiv = styled.div`
-  padding: 60px 20px;
+  padding: 60px 16px 0 16px;
 `;

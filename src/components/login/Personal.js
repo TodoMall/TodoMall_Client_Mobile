@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../global/Header";
+import { Button } from "../global";
 
 export default function Personal() {
   const HTML = `
@@ -194,14 +195,22 @@ export default function Personal() {
 이 개인정보처리방침은 2023년 1월 1일부터 적용됩니다.
 공고일 : 2023년 1월 1일</pre
 >`;
+
   return (
-    <>
-      <Header title="개인정보 처리방침" />
+    <Wrapper>
+      <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-    </>
+      <Button title="제출하기" color="#ffffff" margin="40px 0 50px 0" />
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 const HTMLDiv = styled.div`
-  padding: 60px 20px;
+  padding: 60px 16px 0 16px;
 `;
