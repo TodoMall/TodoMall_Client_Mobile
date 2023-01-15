@@ -27,7 +27,6 @@ const BottomNavBar = ({ position }) => {
             <img
               src={getImageSource(currentLocation, "TODOBOX")}
               alt="TODOBOX"
-              style={{ width: 28, height: 38, objectFit: "cover" }}
             />
           </>
         }
@@ -43,7 +42,6 @@ const BottomNavBar = ({ position }) => {
             <img
               src={getImageSource(currentLocation, "TODOMALL")}
               alt="TODOMALL"
-              style={{ width: 28, height: 38, objectFit: "cover" }}
             />
           </>
         }
@@ -56,11 +54,7 @@ const BottomNavBar = ({ position }) => {
       <NavBarButton
         icon={
           <>
-            <img
-              src={getImageSource(currentLocation, "MYPAGE")}
-              alt="MYPAGE"
-              style={{ width: 32, height: 38, objectFit: "cover" }}
-            />
+            <img src={getImageSource(currentLocation, "MYPAGE")} alt="MYPAGE" />
           </>
         }
         onClick={() => {
