@@ -1,28 +1,44 @@
 import React from "react";
 import styled from "styled-components";
-import { ThinText, BorderText } from "../../global";
 
-const MyTodos = ({ isCompleted, isFailed, id, title, icon }) => {
+import { ThinText, BorderText } from "../../global";
+import { useNavigate } from "react-router-dom";
+const MyTodoItem = ({ status, id, title, icon, productId }) => {
+  const navigate = useNavigate();
+  const handleDetailTodo = () => {
+    navigate(`/mypage/detail/${productId}`);
+  };
+  console.log("status : ", status);
   let iconImage;
   switch (true) {
-    case isCompleted:
-      iconImage = "/images/mypage_plan_finished.svg";
+    case status === "success":
+      iconImage = "/images/class_success_icon.svg";
       break;
-    case isFailed:
+    case status === "inprogress":
+      iconImage = "/images/class_inprogress_icon.svg";
+      break;
+    // 삭제 예정
+    case status === "fail":
       iconImage = "/images/mypage_plan_failed.svg";
       break;
-    case !isCompleted && !isFailed:
-      iconImage = "/images/mypage_plan_inprogress.svg";
-      break;
+    /*        
+      TODO : 1회 실패
+      case ...judge value:
+        iconImage = "class_one_fail_icon";
+        break;
+      TODO : 2회 실패
+      case ...judge value:
+        iconImage = "class_two_fail_icon";
+        break;
+    */
     default:
   }
-
   return (
-    <>
+    <div onClick={handleDetailTodo}>
       <Container>
         <TodoInfo>
           <IconWrapper>
-            <Icon src={icon} />
+            <Icon src={icon} alt="" />
           </IconWrapper>
           <Detail>
             <ThinText width="auto" fontSize="12px" lineHeight="18px">
@@ -40,11 +56,16 @@ const MyTodos = ({ isCompleted, isFailed, id, title, icon }) => {
           </Detail>
         </TodoInfo>
 
-        <img src={iconImage} alt="" />
+        <DDayIcon src={iconImage} alt="" />
       </Container>
-    </>
+    </div>
   );
 };
+
+const DDayIcon = styled.img`
+  width: "59px";
+  height: "32px";
+`;
 
 const Container = styled.div`
   display: flex;
@@ -52,7 +73,7 @@ const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 74px;
-  padding: 0 18px;
+  padding: 0 16px 0 20px;
   background-color: #fafaff;
 `;
 
@@ -78,4 +99,4 @@ const Detail = styled.div`
   margin-left: 1rem;
 `;
 
-export default MyTodos;
+export default MyTodoItem;

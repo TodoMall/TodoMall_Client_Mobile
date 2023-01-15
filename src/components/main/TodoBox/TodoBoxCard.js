@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { changeColorBasedOnRemainingPeriod } from "../../../utils";
 import { BorderText } from "../../global";
 import { baseApiUrl } from "../../../constants";
+import selectCheckBoxBasedOnPeriod from "../../../utils/SelectCheckBoxBasedOnPeriod";
 
 const TodoBoxCard = ({
   title,
@@ -23,7 +24,8 @@ const TodoBoxCard = ({
     expireDate.setHours(0);
     expireDate.setMinutes(0);
     expireDate.setSeconds(0);
-    // replace unit smaller than day. Ex.Mon Jan 09 2023 00:00:00 GMT+0900 (한국 표준시)
+    // replace unit smaller than day.
+    // Ex.Mon Jan 09 2023 00:00:00 GMT+0900 (한국 표준시)
     const difference = expireDate - new Date();
 
     let timeLeft = {};
@@ -85,90 +87,96 @@ const TodoBoxCard = ({
   };
 
   const checkBoxImgUrl = (status) => {
-    return status
-      ? "images/TodoBoxCheckBoxOn.svg"
-      : "images/TodoBoxCheckBoxOff.svg";
+    if (!status) {
+      //
+    }
+    return `images/TodoBoxCheckBox${status ? "On" : "Off"}.svg`;
   };
+
+  const isEnded = end || curTime.ended;
 
   return (
     <Container>
-      <div>
-        <BorderText
-          width="auto"
-          fontWeight="400"
-          lineHeight="14px"
-          color="#888888"
-          margin="0 0 8px 0"
+      <BorderText
+        width="auto"
+        fontWeight="400"
+        lineHeight="14px"
+        color="#888888"
+        margin="0 0 8px 0"
+      >
+        {title}
+      </BorderText>
+      <BorderText
+        width="auto"
+        fontWeight="700"
+        fontSize="18px"
+        lineHeight="20px"
+        color="#222222"
+      >
+        {session.title}
+      </BorderText>
+
+      {submit ? (
+        <DDayIcon
+          background={changeColorBasedOnRemainingPeriod(
+            FormattedExpireDate,
+            false,
+            submit,
+            session.todos
+          )}
         >
-          {title}
-        </BorderText>
-        <BorderText
-          width="auto"
-          fontWeight="700"
-          fontSize="18px"
-          lineHeight="20px"
-          color="#222222"
-        >
-          {session.title}
-        </BorderText>
-        {submit ? (
-          <DDayIcon
-            background={changeColorBasedOnRemainingPeriod(
+          <span>인증필요</span>
+          <DDayText
+            color={changeColorBasedOnRemainingPeriod(
               FormattedExpireDate,
-              false,
+              true,
               submit,
-              session.todos
+              [submit]
             )}
           >
-            <span>인증필요</span>
-            <DDayText
-              color={changeColorBasedOnRemainingPeriod(
-                FormattedExpireDate,
-                true,
-                submit,
-                [submit]
-              )}
-            >
-              D-{FormattedExpireDate}
-            </DDayText>
-          </DDayIcon>
-        ) : end || curTime.ended ? null : (
-          <DDayIcon
-            background={changeColorBasedOnRemainingPeriod(
-              FormattedExpireDate,
-              false,
-              submit,
-              session.todos
-            )}
+            D-{FormattedExpireDate}
+          </DDayText>
+        </DDayIcon>
+      ) : isEnded ? null : (
+        <DDayIcon
+          background={changeColorBasedOnRemainingPeriod(
+            FormattedExpireDate,
+            false,
+            submit,
+            session.todos
+          )}
+        >
+          {FormattedExpireDate === 0 && (
+            <TodoBoxCardHeaderTime>
+              {curTime.hours}:{curTime.minutes}:{curTime.seconds}
+            </TodoBoxCardHeaderTime>
+          )}
+          <BorderText
+            width="auto"
+            fontWeight="700"
+            fontSize="16px"
+            lineHeight="16px"
+            color={changeColorBasedOnRemainingPeriod(FormattedExpireDate, true)}
           >
-            {FormattedExpireDate === 0 && (
-              <TodoBoxCardHeaderTime>
-                {curTime.hours}:{curTime.minutes}:{curTime.seconds}
-              </TodoBoxCardHeaderTime>
-            )}
-            <BorderText
-              width="auto"
-              fontWeight="700"
-              fontSize="16px"
-              lineHeight="16px"
-              color={changeColorBasedOnRemainingPeriod(
-                FormattedExpireDate,
-                true
-              )}
-            >
-              D-{FormattedExpireDate}
-            </BorderText>
-          </DDayIcon>
-        )}
-      </div>
-      {end || curTime.ended ? (
+            D-{FormattedExpireDate}
+          </BorderText>
+        </DDayIcon>
+      )}
+      {isEnded ? (
         <TodoBoxCardBodyEnded>
           <Blurred>
             <TodoBoxCardBody>
               {session.todos.map((todo) => (
                 <TodoBoxCardTodo onClick={handleTodoDetail} key={todo.id}>
                   <TodoBoxCardTodoLeft>
-                    <img src={checkBoxImgUrl(todo.status)} alt="" />
+                    <TodoCheckBox
+                      src={selectCheckBoxBasedOnPeriod(
+                        FormattedExpireDate,
+                        todo.status
+                      )}
+                      alt=""
+                    />
+
                     <BorderText
                       width="auto"
                       fontWeight="500"
@@ -190,10 +198,17 @@ const TodoBoxCard = ({
         </TodoBoxCardBodyEnded>
       ) : (
         <TodoBoxCardBody>
-          {session.todos.map((todo, idx) => (
+          {session.todos.map((todo) => (
             <TodoBoxCardTodo onClick={handleTodoDetail} key={todo.id}>
               <TodoBoxCardTodoLeft>
-                <img src={checkBoxImgUrl(todo.status)} alt="" />
+                <TodoCheckBox
+                  src={selectCheckBoxBasedOnPeriod(
+                    FormattedExpireDate,
+                    todo.status
+                  )}
+                  alt=""
+                />
+
                 <BorderText
                   width="auto"
                   fontSize="16px"
@@ -209,14 +224,13 @@ const TodoBoxCard = ({
                   {todo.title}
                 </BorderText>
               </TodoBoxCardTodoLeft>
-              {/* 이미지 OBT 버전으로 변경 */}
-              <img src="images/todo_detail.svg" alt="" />
+              <img src="/images/arrow_icon.svg" alt="" />
             </TodoBoxCardTodo>
           ))}
         </TodoBoxCardBody>
       )}
 
-      {end || curTime.ended ? (
+      {isEnded ? (
         <>
           <BorderText
             width="auto"
@@ -234,12 +248,24 @@ const TodoBoxCard = ({
         </>
       ) : submit ? (
         <TodoBoxCardSubmitButton onClick={handleValidSession}>
-          ({session.current_session}/{session.total_session}) 세션 인증하러 가기
+          세션 인증하러 가기
         </TodoBoxCardSubmitButton>
-      ) : null}
+      ) : (
+        <TodoBoxCardSubmitButton
+          background="#C0C0C0"
+          border="#C0C0C0"
+          onClick={handleValidSession}
+        >
+          세션 인증하러 가기
+        </TodoBoxCardSubmitButton>
+      )}
     </Container>
   );
 };
+const TodoCheckBox = styled.img`
+  width: 16px;
+  height: 16px;
+`;
 
 const Container = styled.div`
   width: calc(100% - 32px);
@@ -261,21 +287,17 @@ const TodoBoxCardHeaderTime = styled.p`
   bottom: 24px;
 `;
 
-// 인증이 필요한 아이콘의 D-day 배경화면
-// 인증이 불필요한 D-day 배경화면
-/* background: ${(props) => (props.day === 0 ? "#FFC6C6" : "#e1dcfe")};
-background: ${(props) => (props.day === 0 ? "#FFC6C6" : "#dddddd")}; */
 const DDayIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  background: ${(props) => props.background};
   width: 66px;
   height: 24px;
   position: absolute;
   right: 25px;
-  top: 52px;
+  background: ${(props) => props.background};
+  top: 36px;
   span {
     position: absolute;
     top: -20px;
@@ -288,8 +310,6 @@ const DDayIcon = styled.div`
   }
 `;
 
-// 인증이 불필요한 아이콘의 D-day 텍스트
-// 인증이 필요한 아이콘의 D-day 텍스트
 const DDayText = styled.p`
   font-weight: 800;
   font-size: 16px;
@@ -340,7 +360,7 @@ const BlurredBox = styled.div`
 `;
 
 const TodoBoxCardBody = styled.div`
-  padding: 30px 0;
+  padding: 30px 0 16px 0;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -357,10 +377,11 @@ const TodoBoxCardTodo = styled.div`
   justify-content: space-between;
 `;
 
-const TodoBoxCardSubmitButton = styled.div`
+const TodoBoxCardSubmitButton = styled.button`
+  width: 100%;
   height: 50px;
-  background: #6b47fd;
-  border: 1px solid #6b47fd;
+  background: ${(props) => props.background};
+  border: ${(props) => props.border};
   border-radius: 20px;
   display: flex;
   flex-direction: row;

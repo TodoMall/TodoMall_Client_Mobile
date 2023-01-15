@@ -1,188 +1,271 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Row from "./Row";
-import { Loader, BottomNavBar } from "../../global";
+import MyTodoItem from "./MyTodoItem";
+import {
+  Loader,
+  BottomNavBar,
+  Header,
+  UserImageProfile,
+  BorderText,
+  ThinText,
+  Divider,
+} from "../../global";
+import { baseApiUrl } from "../../../constants";
+import dayjs from "dayjs";
 
 const MyPage = () => {
   const navigate = useNavigate();
-  const [plans, setPlans] = useState([]);
-  const [name, setName] = useState(localStorage.getItem("name"));
-  const [email, setEmail] = useState(localStorage.getItem("email"));
-  const [image, setImage] = useState(localStorage.getItem("image"));
+  const [plans, setPlans] = useState();
+  const { name, email, image } = { ...localStorage };
 
-  const checkFail = (plan) => {
-    let check = false;
-    plan.sessions.forEach((session) => {
-      if (check) {
-        return;
+  const setClassStatus = (plan) => {
+    let status;
+    plan.sessions.forEach((session, idx) => {
+      let expireDate = dayjs(session.expireDate).startOf("day");
+      const currentDate = dayjs().startOf("day");
+      const deadLine = expireDate - currentDate > 0;
+      if (plan.status) {
+        status = "success";
       }
-      if (!session.endedDate) {
-        let expireDate = new Date(session.expireDate);
-        expireDate.setDate(expireDate.getDate());
-        expireDate.setHours(0);
-        expireDate.setMinutes(0);
-        expireDate.setSeconds(0);
-        if (expireDate < new Date()) {
-          check = true;
-        }
+      if (!plan.status && deadLine) {
+        status = "inprogress";
+      }
+      if (!plan.status && !deadLine) {
+        status = "fail";
       }
     });
-    return check;
+    return status;
+  };
+
+  const SuccessTodos = plans?.filter((plan) => plan.status === true);
+  const failTodos = plans?.filter((plan) => setClassStatus(plan) === "fail");
+  const inProgressTodos = plans?.filter(
+    (plan) => !plan.status && setClassStatus(plan) === "inprogress"
+  );
+  const classesInfo = [
+    {
+      status: "성공",
+      identifier: "success",
+      count: SuccessTodos?.length,
+    },
+    { status: "실패", identifier: "fail", count: failTodos?.length },
+    {
+      status: "진행",
+      identifier: "inProgress",
+      count: inProgressTodos?.length,
+    },
+  ];
+
+  const handleDashboard = (status) => {
+    navigate({
+      pathname: "dashboard",
+      search: `?status=${status}`,
+    });
   };
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
-      );
-      setPlans(response.data.ownProducts.reverse());
+      const {
+        data: { ownProducts },
+      } = await axios.get(`${baseApiUrl}user?email=${email}`);
+      setPlans(ownProducts);
       setLoading(false);
     };
     fetch();
-  }, []);
+  }, [email]);
 
+  const formattedPlans = plans
+    ?.sort((prev, next) => {
+      return (
+        new Date(prev.sessions[0].startDate) -
+        new Date(next.sessions[0].startDate)
+      );
+    })
+    ?.reverse();
+  if (loading) {
+    return <Loader />;
+  }
+  const handleSettingPage = () => {
+    navigate("/settings");
+  };
   return (
-    <>
+    <Wrapper>
       <Container>
-        <Header>
-          <UserInfo>
-            <ProfileImage src={image} alt={image} />
-            <User>
-              <UserName>{name}</UserName>
-              <UserEmail>{email}</UserEmail>
-            </User>
-          </UserInfo>
-          <Settings
-            src="/images/settings.svg"
-            onClick={() => {
-              navigate("/settings");
-            }}
-          />
-        </Header>
+        <Header image={"/images/Logo.png"} containerHeight="48px" />
+        <ImageWrapper>
+          <div style={{ width: "64px", height: "64px" }}>
+            <UserImageProfile
+              image={image}
+              isProgress={!!plans}
+              width="64px"
+              height="64px"
+              isShowSettingIcon={true}
+              onClick={handleSettingPage}
+            />
+          </div>
+          <BorderText
+            width="auto"
+            textAlign="center"
+            fontSize="16px"
+            lineHeight="24px"
+            fontWeight="600"
+            margin="8px 0 0 0 "
+          >
+            {name}
+          </BorderText>
+          <ThinText width="auto" textAlign="center">
+            {email}
+          </ThinText>
+        </ImageWrapper>
+        <ProgressInfo>
+          {classesInfo.map((el) => {
+            return (
+              <Classes onClick={() => handleDashboard(el.identifier)}>
+                <ClassStatus>
+                  <ThinText width="auto" textAlign="center">
+                    {el.status}&nbsp;클래스
+                  </ThinText>
+                </ClassStatus>
+                <BorderText
+                  fontSize="18px"
+                  fontWeight="700"
+                  lineHeight="28px"
+                  textAlign="center"
+                  color={el.status === "진행" ? "#6B47FD" : "#222222"}
+                >
+                  {el.count}
+                </BorderText>
+              </Classes>
+            );
+          })}
+        </ProgressInfo>
+        <Divider
+          border="1px solid #ededed"
+          maxWidth="100%"
+          height="4px"
+          margin="2px 0 4px 0"
+        />
+        <Body>
+          {formattedPlans?.length > 0 &&
+            formattedPlans.map((plan, idx) => {
+              const formattedStartDate = new Date(plan.sessions[0].startDate);
+              const isSamePeriod =
+                idx === 0
+                  ? false
+                  : dayjs(
+                      formattedPlans[idx - 1]?.sessions[0].startDate
+                    ).format("YYYY MM") ===
+                    dayjs(formattedPlans[idx]?.sessions[0].startDate).format(
+                      "YYYY MM"
+                    );
 
-        {loading ? (
-          <Loader />
-        ) : (
-          <Body>
-            {plans?.length > 0 ? (
-              plans.map((plan, i) => {
-                return (
-                  <Row
-                    key={plan.id}
-                    is_failed={checkFail(plan)}
-                    is_completed={plan.status}
-                    id={plans.length - i}
+              return (
+                <Fragment key={plan.id}>
+                  {!isSamePeriod && (
+                    <div style={{ padding: "12px 0 8px 16px" }}>
+                      <BorderText
+                        width="auto"
+                        fontWeight="500"
+                        fontSize="16px"
+                        lineHeight="24px"
+                        textAlign="left"
+                      >
+                        {formattedStartDate.getFullYear()}년 &nbsp;
+                        {formattedStartDate.getMonth() + 1}월
+                      </BorderText>
+                    </div>
+                  )}
+                  {/* FIXME : 클래스 상태 판별식 재작성 필요, 현재 실패클래스에서도 성공 클래스가 나오는 현상 발생 */}
+                  <MyTodoItem
+                    productId={plan.productId}
+                    status={setClassStatus(plan)}
+                    // isFailed={setClassStatus(plan)}
+                    // isCompleted={plan.status}
+                    id={formattedPlans.length - idx}
                     title={plan.title}
                     icon={plan.icon}
                   />
-                );
-              })
-            ) : (
-              <NoPlan>
-                <NoPlanImage src="/images/mypage_no_plan.svg" />
-                <NoPlanTitle>아직 경험한 클래스가 없네요!</NoPlanTitle>
-                <NoPlanSubtitle>
-                  앞으로 클래스를 탐색하고 완료하면
-                </NoPlanSubtitle>
-                <NoPlanSubtitle>여기에 표시되어요.</NoPlanSubtitle>
-              </NoPlan>
-            )}
-          </Body>
-        )}
+                </Fragment>
+              );
+            })}
+
+          {formattedPlans?.length === 0 && (
+            <MyClass>
+              <BorderText
+                width="auto"
+                fontSize="20px"
+                fontWeight="700"
+                lineHeight="32px"
+                textAlign="center"
+              >
+                아직 경험한 클래스가 없네요!
+              </BorderText>
+              <ThinText width="auto" textAlign="center">
+                앞으로 클래스를 탐색하고 완료하면
+              </ThinText>
+              <ThinText width="auto" textAlign="center">
+                여기에 표시되어요
+              </ThinText>
+            </MyClass>
+          )}
+        </Body>
       </Container>
       <BottomNavBar position={"MYPAGE"} />
-    </>
+    </Wrapper>
   );
 };
 
-const Container = styled.div``;
-
-const Header = styled.div`
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px 10px 25px;
-  background-color: #fbfbfb;
-  width: 100vw;
-  border-bottom: 2px solid #f1f3f5;
+const ClassStatus = styled.div`
+  width: 100%;
+  border-right: 1px solid #dbdbdb;
 `;
-
-const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  object-fit: cover;
+const Wrapper = styled.div`
+  padding-bottom: 63px;
 `;
-
-const UserInfo = styled.span`
-  display: flex;
-  align-items: center;
-`;
-
-const User = styled.div`
-  margin-left: 15px;
-`;
-
-const UserName = styled.p`
-  font-weight: 700;
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-`;
-
-const UserEmail = styled.p`
-  font-weight: 100;
-  font-size: 14px;
-  margin-bottom: 5px;
-  color: #c4c4c4;
-`;
-
-const Settings = styled.img`
-  width: 50px;
+const Container = styled.div`
+  height: 100%;
 `;
 
 const Body = styled.div`
-  height: calc(100vh - 36px - 50px);
-  padding-top: 100px;
-  overflow-y: scroll;
+  height: 100%;
+  background-color: #fafaff;
 `;
 
-const NoPlan = styled.div`
-  position: fixed;
+const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-top: 72px;
+  width: 100%;
 `;
 
-const NoPlanImage = styled.img`
-  width: 90vw;
-  max-width: 450px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+const ProgressInfo = styled.div`
+  display: flex;
+  width: 100%;
+  height: 85px;
+  margin-top: 24px;
 `;
 
-const NoPlanTitle = styled.p`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 30px;
-  color: #222222;
-  margin-bottom: 15px;
+const Classes = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: calc(100% / 3);
+  height: 100%;
 `;
 
-const NoPlanSubtitle = styled.p`
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #888888;
+const MyClass = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafaff;
+  height: 80%;
 `;
 
 export default MyPage;
