@@ -1,14 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-const primaryColor = "#6b47fd";
-const secondaryColor = "#F65050";
-const whiteColor = "#FFFFFF";
-const grayColor = "#929292";
-
-const Button = ({ title, color = "#6b47fd", width = 90, onClick }) => {
+const Button = ({
+  title,
+  background = "#6b47fd",
+  color = "#6b47fd",
+  width = 90,
+  onClick,
+  borderRadius = "20px",
+  border = "#6b47fd",
+  margin = "40px 0 0 0",
+}) => {
   return (
-    <NoPlanButton onClick={onClick} color={color} width={width}>
+    <NoPlanButton
+      onClick={onClick}
+      color={color}
+      border={border}
+      width={width}
+      borderRadius={borderRadius}
+      background={background}
+      margin={margin}
+    >
       {title}
     </NoPlanButton>
   );
@@ -16,17 +28,16 @@ const Button = ({ title, color = "#6b47fd", width = 90, onClick }) => {
 
 export default Button;
 const NoPlanButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: ${(props) => props.width}%;
   height: 60px;
-  border: 1px solid ${(props) => props.color};
-  border-radius: 30px;
-  background: ${(props) => props.color};
-  ${({ color }) =>
-    color === primaryColor || color === secondaryColor ? whiteColor : grayColor}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => props.color};
+  background: ${(props) => props.background};
+  border: 1px solid ${(props) => props.border};
+  border-radius: ${(props) => props.borderRadius};
   font-size: 18px;
   text-align: center;
-  margin-top: 40px;
+  margin: ${(props) => props.margin}; ;
 `;
