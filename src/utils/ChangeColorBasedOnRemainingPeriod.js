@@ -6,10 +6,10 @@
 
 const changeColorBasedOnRemainingPeriod = (period, isText, isDone, todos) => {
   let color;
-  const isFalsy = todos?.filter((el) => el.status === false);
+  const unfinishedTodos = todos?.filter((el) => el.status === false);
 
   switch (true) {
-    case isFalsy?.length === 0:
+    case unfinishedTodos?.length === 0:
       color = isText ? "rgba(24, 144, 255, 1)" : "rgba(24, 144, 255, 0.1)";
       break;
     case isDone && isText:
