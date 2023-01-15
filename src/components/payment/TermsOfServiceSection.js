@@ -35,8 +35,8 @@ const TermsOfServiceSection = () => {
             <ToggleIcon
               src={
                 isVisibleRefundDescription
-                  ? "/images/showAccordion.png"
-                  : "/images/unshowAccordion.png"
+                  ? "/images/showAccordion.svg"
+                  : "/images/unshowAccordion.svg"
               }
               alt=""
             />

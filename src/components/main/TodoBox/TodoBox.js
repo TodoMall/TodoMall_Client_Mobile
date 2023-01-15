@@ -106,6 +106,7 @@ const SpeechBubble = styled.div`
 `;
 
 const TodoBoxBody = styled.div`
+  height: 100%;
   background-color: #fafaff;
 `;
 
