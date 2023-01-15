@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Header from "../global/Header";
 import styled from "styled-components";
 import { VERSION } from "../../constants";
-import Divider from "../global/Divider";
 import { useNavigate } from "react-router-dom";
 import Modals from "./Modals";
+import { BorderText, Divider, Header, ThinText } from "../global";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -23,52 +22,80 @@ const Settings = () => {
     setVisibleDelete(false);
   };
 
+  const CustomBorderText = ({ children, isWarning }) => {
+    return (
+      <BorderText
+        lineHeight="24px"
+        fontSize="16px"
+        textAlign="left"
+        color={isWarning ? "#FF4D4F" : "#222222"}
+      >
+        {children}
+      </BorderText>
+    );
+  };
+
   return (
     <>
       <Header title="설정" />
       <Body>
-        <Rows>
+        {/* should be renamed */}
+        <Row>
+          <CustomBorderText
+            lineHeight="24px"
+            fontSize="16px"
+            textAlign="left"
+            color="#222222"
+          >
+            앱 버전
+          </CustomBorderText>
+          <ThinText fontSize="16px" lineHeight="24px" textAlign="right">
+            {VERSION}
+          </ThinText>
+        </Row>
+        <Divider margin="8px 0" border="1px solid #ededed" height="4px" />
+
+        <Row
+          onClick={() => {
+            navigate("/notice");
+          }}
+        >
+          <CustomBorderText>공지사항</CustomBorderText>
+          <DetailIcon />
+        </Row>
+
+        <a href="http://pf.kakao.com/_xhSxjExj/chat">
           <Row>
-            <RowTitle>앱 버전</RowTitle>
-            <DetailVersion>{VERSION}</DetailVersion>
+            <CustomBorderText>문의하기</CustomBorderText>
+            <DetailIcon />
           </Row>
-        </Rows>
-        <Divider width="100vw" />
-        <Rows>
-          <a href="http://pf.kakao.com/_xhSxjExj/chat">
-            <Row>
-              <RowTitle>문의하기</RowTitle>
-              <DetailIcon src={`/images/todo_detail.svg`} />
-            </Row>
-          </a>
-          <Row
-            onClick={() => {
-              navigate("/service");
-            }}
-          >
-            <RowTitle>이용약관</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-          <Row
-            onClick={() => {
-              navigate("/personal");
-            }}
-          >
-            <RowTitle>개인정보 처리방침</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-        </Rows>
-        <Divider width="100vw" />
-        <Rows>
-          <Row onClick={handlerLogout}>
-            <RowTitle>로그아웃</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-          <Row onClick={handlerDelete}>
-            <RowTitle red>탈퇴하기</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-        </Rows>
+        </a>
+        <Row
+          onClick={() => {
+            navigate("/service");
+          }}
+        >
+          <CustomBorderText>이용약관</CustomBorderText>
+          <DetailIcon />
+        </Row>
+        <Row
+          onClick={() => {
+            navigate("/personal");
+          }}
+        >
+          <CustomBorderText>개인정보 처리방침</CustomBorderText>
+          <DetailIcon />
+        </Row>
+        <Divider margin="8px 0" border="1px solid #ededed" height="4px" />
+
+        <Row onClick={handlerLogout}>
+          <CustomBorderText>로그아웃</CustomBorderText>
+          <DetailIcon />
+        </Row>
+        <Row onClick={handlerDelete}>
+          <CustomBorderText isWarning={true}>탈퇴하기</CustomBorderText>
+          <DetailIcon />
+        </Row>
         <Modals
           visibleLogout={visibleLogout}
           visibleDelete={visibleDelete}
@@ -84,33 +111,17 @@ const Body = styled.div`
   padding-top: 50px;
 `;
 
-const Rows = styled.div`
-  margin: 0px 5vw;
-`;
-
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
-  height: 50px;
+  align-items: center;
+  padding: 0px 24px;
+  height: 52px;
 `;
 
-const RowTitle = styled.p`
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 14px;
-  color: ${(props) => (props.red ? "#EE7272" : "black")};
+const DetailIcon = styled.img`
+  content: url("/images/arrow_icon.svg");
 `;
-
-const DetailVersion = styled.p`
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 14px;
-  color: #979797;
-`;
-
-const DetailIcon = styled.img``;
 
 export default Settings;
