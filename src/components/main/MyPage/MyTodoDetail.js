@@ -1,7 +1,14 @@
 import useAxios from "axios-hooks";
 import { useParams, useNavigate } from "react-router-dom";
 import { baseApiUrl } from "../../../constants";
-import { Divider, Header, ThinText, IconDict, BorderText } from "../../global";
+import {
+  Divider,
+  Header,
+  ThinText,
+  IconDict,
+  BorderText,
+  Loader,
+} from "../../global";
 import styled from "styled-components";
 import dayjs from "dayjs";
 
@@ -14,10 +21,6 @@ const MyTodoDetail = () => {
   const currentPlanSessions = myPlans?.ownProducts.find(
     (el) => el.productId === planId
   );
-
-  // 진행중 : (expireDate - now > 0) &&
-  // 완료 : status === true
-  // 실패 : expireDate - now > 0 && status === false
 
   const selectTodoSuccessIcon = (expireDate, status) => {
     let iconPath;
@@ -67,69 +70,67 @@ const MyTodoDetail = () => {
     return status;
   };
 
-  const displayClassStatusIcon = (planStatus, sessionStatus) => {
-    let iconImage;
-    switch (true) {
-      case !planStatus && sessionStatus === "fail":
-        iconImage = "mypage_plan_inprogress";
-        break;
-      case planStatus:
-        iconImage = "mypage_plan_finished";
-        break;
-      case sessionStatus === "fail":
-        iconImage = "mypage_plan_failed";
-        break;
-      default:
+  const setClassIconBasedOnStatus = (classStatus) => {
+    if (classStatus === "inprogress") {
+      return "/images/mypage_plan_inprogress.svg";
     }
-    return `/images/${iconImage}.svg`;
+    if (classStatus === "success") {
+      return "/images/mypage_plan_finished.svg";
+    }
+    if (classStatus === "fail") {
+      return "/images/mypage_plan_failed.svg";
+    }
   };
 
   return (
     <Wrapper>
       <Header title="클래스" containerHeight="48px" />
-      <ImageContainer backgroundImage={plan?.image} />
-      <TodoInfo>
-        <img
-          src={displayClassStatusIcon(plan?.status, setClassStatus(plan))}
-          alt=""
-        />
-        <ThinText
-          width="auto"
-          color="#444444"
-          fontSize="16px"
-          lineHeight="24px"
-        >
-          {plan?.subDescription}
-        </ThinText>
-        <BorderText
-          width="auto"
-          fontWeight="700"
-          fontSize="24px"
-          lineHeight="36px"
-          textAlign="left"
-        >
-          {plan?.title}
-        </BorderText>
-        <CardTags>
-          {plan?.informationTags.map((tag, index) => {
-            return (
-              <div key={index}>
-                <CardTag>
-                  <img src={`/images/${IconDict[tag]}.svg`} alt="" />
-                  <ThinText
-                    width="auto"
-                    textAlign="center"
-                    fontWeight="500"
-                    lineHeight="14px"
-                  >
-                    {tag}
-                  </ThinText>
-                </CardTag>
-              </div>
-            );
-          })}
-        </CardTags>
-      </TodoInfo>
+      {plan ? (
+        <>
+          <ImageContainer backgroundImage={plan?.image} />
+          <TodoInfo>
+            <img src={setClassIconBasedOnStatus(setClassStatus(plan))} alt="" />
+            <ThinText
+              width="auto"
+              color="#444444"
+              fontSize="16px"
+              lineHeight="24px"
+            >
+              {plan?.subDescription}
+            </ThinText>
+            <BorderText
+              width="auto"
+              fontWeight="700"
+              fontSize="24px"
+              lineHeight="36px"
+              textAlign="left"
+            >
+              {plan?.title}
+            </BorderText>
+            <CardTags>
+              {plan?.informationTags.map((tag) => {
+                return (
+                  <div key={tag}>
+                    <CardTag>
+                      <img src={`/images/${IconDict[tag]}.svg`} alt="" />
+                      <ThinText
+                        width="auto"
+                        textAlign="center"
+                        fontWeight="500"
+                        lineHeight="14px"
+                      >
+                        {tag}
+                      </ThinText>
+                    </CardTag>
+                  </div>
+                );
+              })}
+            </CardTags>
+          </TodoInfo>
+        </>
+      ) : (
+        <Loader height="279px" />
+      )}
       <Divider
         margin="24px 0"
         border="1px solid #ededed"
