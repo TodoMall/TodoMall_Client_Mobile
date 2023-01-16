@@ -22,14 +22,7 @@ const BottomNavBar = ({ position }) => {
       style={{ height: "64px", backgroundColor: "#ffffff" }}
     >
       <NavBarButton
-        icon={
-          <>
-            <img
-              src={getImageSource(currentLocation, "TODOBOX")}
-              alt="TODOBOX"
-            />
-          </>
-        }
+        icon={<img src={getImageSource(currentLocation, "TODOBOX")} alt="" />}
         onClick={() => {
           setCurrentLocation("TODOBOX");
         }}
@@ -37,14 +30,7 @@ const BottomNavBar = ({ position }) => {
         to="/todobox"
       />
       <NavBarButton
-        icon={
-          <>
-            <img
-              src={getImageSource(currentLocation, "TODOMALL")}
-              alt="TODOMALL"
-            />
-          </>
-        }
+        icon={<img src={getImageSource(currentLocation, "TODOMALL")} alt="" />}
         onClick={() => {
           setCurrentLocation("TODOMALL");
         }}
@@ -52,11 +38,7 @@ const BottomNavBar = ({ position }) => {
         to="/todomall"
       />
       <NavBarButton
-        icon={
-          <>
-            <img src={getImageSource(currentLocation, "MYPAGE")} alt="MYPAGE" />
-          </>
-        }
+        icon={<img src={getImageSource(currentLocation, "MYPAGE")} alt="" />}
         onClick={() => {
           setCurrentLocation("MYPAGE");
         }}
