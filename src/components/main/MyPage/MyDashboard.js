@@ -2,24 +2,28 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BottomNavBar, Header } from "../../global";
 import styled from "styled-components";
-import axios from "axios";
 import { baseApiUrl } from "../../../constants/env";
 import MyTodoItem from "./MyTodoItem";
 import dayjs from "dayjs";
+import useAxios from "axios-hooks";
 
 const MyDashboard = () => {
   const { email } = { ...localStorage };
   const [searchParams] = useSearchParams();
+  const currentStatus = searchParams.get("status");
   const [plans, setPlans] = useState();
+  const [{ data }] = useAxios(`${baseApiUrl}user?email=${email}`);
+
   const keywords = {
     success: "성공",
     fail: "실패",
     inProgress: "진행",
   };
+
   const setClassStatus = (plan) => {
     let status;
-    plan.sessions.forEach((session, idx) => {
-      let expireDate = dayjs(session.expireDate).startOf("day");
+    plan.sessions.forEach((session) => {
+      const expireDate = dayjs(session.expireDate).startOf("day");
       const currentDate = dayjs().startOf("day");
       const deadLine = expireDate - currentDate > 0;
       if (plan.status) {
@@ -36,32 +40,25 @@ const MyDashboard = () => {
   };
 
   useEffect(() => {
-    const fetch = async () => {
-      const {
-        data: { ownProducts },
-      } = await axios.get(`${baseApiUrl}user?email=${email}`);
-      setPlans(ownProducts);
-    };
-    fetch();
-  }, [email]);
+    setPlans(data?.ownProducts);
+  }, [data]);
 
-  const currentStatus = searchParams.get("status");
-  const SuccessTodos = plans?.filter((plan) => plan.status === true);
-  const failTodos = plans?.filter((plan) => setClassStatus(plan) === "fail");
-  const inProgressTodos = plans?.filter(
+  const SuccessPlans = plans?.filter((plan) => plan.status === true);
+  const failPlans = plans?.filter((plan) => setClassStatus(plan) === "fail");
+  const inProgressPlans = plans?.filter(
     (plan) => !plan.status && setClassStatus(plan) === "inprogress"
   );
   let formattedPlans;
   switch (true) {
     case keywords[currentStatus] === keywords.success:
-      formattedPlans = SuccessTodos;
+      formattedPlans = SuccessPlans;
       break;
 
     case keywords[currentStatus] === keywords.fail:
-      formattedPlans = failTodos;
+      formattedPlans = failPlans;
       break;
     case keywords[currentStatus] === keywords.inProgress:
-      formattedPlans = inProgressTodos;
+      formattedPlans = inProgressPlans;
       break;
     default:
   }
@@ -89,7 +86,6 @@ const MyDashboard = () => {
 };
 
 const Wrapper = styled.div`
-  height: 100%;
   padding-bottom: 63px;
   background-color: #fafaff;
 `;
