@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../global";
 import Header from "../global/Header";
+import { useNavigate } from "react-router-dom";
 
 export default function Service() {
   const HTML = `
@@ -397,12 +398,25 @@ word-break: keep-all;
 이 약관은 2023년 1월 1일부터 시행합니다.
 공고일 : 2023년 1월 1일</pre
 >`;
+  const navigate = useNavigate();
+  const isValid = localStorage.getItem("service");
+  const handleAgreeTermofService = () => {
+    localStorage.setItem("service", true);
+    navigate(-1);
+  };
 
   return (
     <Wrapper>
       <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-      <Button title="제출하기" color="#ffffff" margin="40px 0 50px 0" />
+      {!isValid && (
+        <Button
+          title="제출하기"
+          color="#ffffff"
+          margin="40px 0 50px 0"
+          onClick={handleAgreeTermofService}
+        />
+      )}
     </Wrapper>
   );
 }

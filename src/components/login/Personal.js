@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../global/Header";
 import { Button } from "../global";
+import { useNavigate } from "react-router-dom";
 
 export default function Personal() {
   const HTML = `
@@ -195,12 +196,25 @@ export default function Personal() {
 이 개인정보처리방침은 2023년 1월 1일부터 적용됩니다.
 공고일 : 2023년 1월 1일</pre
 >`;
+  const navigate = useNavigate();
+  const isValid = localStorage.getItem("personal");
+  const handleAgreeTermofPersonal = () => {
+    localStorage.setItem("personal", true);
+    navigate(-1);
+  };
 
   return (
     <Wrapper>
       <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-      <Button title="제출하기" color="#ffffff" margin="40px 0 50px 0" />
+      {!isValid && (
+        <Button
+          title="제출하기"
+          color="#ffffff"
+          margin="40px 0 50px 0"
+          onClick={handleAgreeTermofPersonal}
+        />
+      )}
     </Wrapper>
   );
 }

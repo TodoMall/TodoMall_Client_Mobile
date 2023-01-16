@@ -6,8 +6,9 @@ import Header from "../global/Header";
 const Agreement = () => {
   const navigate = useNavigate();
 
-  const [isServiceOn, setIsServiceOn] = useState(false);
-  const [isPersonalOn, setIsPersonalOn] = useState(false);
+  const { service, personal } = { ...localStorage };
+  const [isServiceOn, setIsServiceOn] = useState(!!service);
+  const [isPersonalOn, setIsPersonalOn] = useState(!!personal);
 
   const TOGGLE_BUTTON_OFF = "/images/toggle_button_off.svg";
   const TOGGLE_BUTTON_ON = "/images/toggle_button_on.svg";
@@ -38,7 +39,7 @@ const Agreement = () => {
                   onClick={() => {
                     setIsServiceOn(!isServiceOn);
                   }}
-                  alt="TOGGLE_BUTTON_ON"
+                  alt=""
                   src={TOGGLE_BUTTON_ON}
                 />
               ) : (
@@ -47,7 +48,7 @@ const Agreement = () => {
                   onClick={() => {
                     setIsServiceOn(!isServiceOn);
                   }}
-                  alt="TOGGLE_BUTTON_OFF"
+                  alt=""
                   src={TOGGLE_BUTTON_OFF}
                 />
               )}
