@@ -45,6 +45,8 @@ function App() {
           element={<TodoMall current={current} setCurrent={setCurrent} />}
         />
         <Route path="/mypage" element={<MyPage />} />
+
+        {/* mypage Detail, pages Routes */}
         <Route path="/mypage/dashboard" element={<MyDashboard />} />
         <Route path="/mypage/detail/:planId" element={<MyTodoDetail />} />
 
