@@ -89,7 +89,9 @@ const MyDashboard = () => {
 };
 
 const Wrapper = styled.div`
+  height: 100%;
   padding-bottom: 63px;
+  background-color: #fafaff;
 `;
 const Container = styled.div`
   height: 100%;
