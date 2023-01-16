@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { baseApiUrl } from "../../../constants";
 import { Divider, Header, ThinText, IconDict, BorderText } from "../../global";
 import styled from "styled-components";
+import dayjs from "dayjs";
 
 const MyTodoDetail = () => {
   const navigate = useNavigate();
@@ -47,42 +48,40 @@ const MyTodoDetail = () => {
     return `/images/${iconPath}.svg`;
   };
 
-  const displayClassStatusIcon = (isCompleted, isFailed) => {
+  const setClassStatus = (plan) => {
+    let status;
+    plan?.sessions.forEach((session) => {
+      let expireDate = dayjs(session.expireDate).startOf("day");
+      const currentDate = dayjs().startOf("day");
+      const deadLine = expireDate - currentDate > 0;
+      if (plan.status) {
+        status = "success";
+      }
+      if (!plan.status && deadLine) {
+        status = "inprogress";
+      }
+      if (!plan.status && !deadLine) {
+        status = "fail";
+      }
+    });
+    return status;
+  };
+
+  const displayClassStatusIcon = (planStatus, sessionStatus) => {
     let iconImage;
     switch (true) {
-      case !isCompleted && !isFailed:
+      case !planStatus && sessionStatus === "fail":
         iconImage = "mypage_plan_inprogress";
         break;
-      case isCompleted:
+      case planStatus:
         iconImage = "mypage_plan_finished";
         break;
-      case isFailed:
+      case sessionStatus === "fail":
         iconImage = "mypage_plan_failed";
         break;
       default:
     }
     return `/images/${iconImage}.svg`;
-  };
-
-  const checkFail = (plan) => {
-    let check = false;
-    plan?.sessions.forEach((session) => {
-      if (check) {
-        return;
-      }
-
-      if (!session.endedDate) {
-        let expireDate = new Date(session.expireDate);
-        expireDate.setDate(expireDate.getDate());
-        expireDate.setHours(0);
-        expireDate.setMinutes(0);
-        expireDate.setSeconds(0);
-        if (expireDate < new Date()) {
-          check = true;
-        }
-      }
-    });
-    return check;
   };
 
   return (
@@ -91,7 +90,7 @@ const MyTodoDetail = () => {
       <ImageContainer backgroundImage={plan?.image} />
       <TodoInfo>
         <img
-          src={displayClassStatusIcon(plan?.status, checkFail(plan))}
+          src={displayClassStatusIcon(plan?.status, setClassStatus(plan))}
           alt=""
         />
         <ThinText

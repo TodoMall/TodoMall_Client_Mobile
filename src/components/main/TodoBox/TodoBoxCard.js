@@ -18,24 +18,23 @@ const TodoBoxCard = ({
 }) => {
   const navigate = useNavigate();
   const [userId] = useState(localStorage.getItem("userid"));
+
   let expireDate = new Date(session.expireDate);
+
   const calculateTimeLeft = () => {
     expireDate.setDate(expireDate.getDate());
     expireDate.setHours(0);
     expireDate.setMinutes(0);
     expireDate.setSeconds(0);
-    // replace unit smaller than day.
+    // TODO replace unit smaller than day.
     // Ex.Mon Jan 09 2023 00:00:00 GMT+0900 (한국 표준시)
     const difference = expireDate - new Date();
-
     let timeLeft = {};
-
     if (difference <= 0) {
       timeLeft = {
         ended: true,
       };
     }
-
     if (difference > 0) {
       let remainHour = Math.floor(difference / (1000 * 60 * 60));
       let remainMin = Math.floor((difference / 1000 / 60) % 60);
@@ -84,13 +83,6 @@ const TodoBoxCard = ({
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const checkBoxImgUrl = (status) => {
-    if (!status) {
-      //
-    }
-    return `images/TodoBoxCheckBox${status ? "On" : "Off"}.svg`;
   };
 
   const isEnded = end || curTime.ended;
@@ -246,15 +238,11 @@ const TodoBoxCard = ({
             도전 삭제하기
           </TodoBoxCardEndButton>
         </>
-      ) : submit ? (
-        <TodoBoxCardSubmitButton onClick={handleValidSession}>
-          세션 인증하러 가기
-        </TodoBoxCardSubmitButton>
       ) : (
         <TodoBoxCardSubmitButton
-          background="#C0C0C0"
-          border="#C0C0C0"
-          onClick={handleValidSession}
+          background={submit ? "#6B47FD" : "#C0C0C0"}
+          border={submit ? "#6B47FD" : "#C0C0C0"}
+          onClick={submit ? handleValidSession : () => {}}
         >
           세션 인증하러 가기
         </TodoBoxCardSubmitButton>

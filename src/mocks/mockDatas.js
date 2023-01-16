@@ -3,14 +3,14 @@ export const mockData = [
     id: 0,
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "피그마 마스터하고 UI 디자인(성공)",
-    status: true,
+    status: false,
     icon: "https://todomall-content.s3.ap-northeast-2.amazonaws.com/product_emoji/CompositingClassIcon_Person.svg",
     sessions: [
       {
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "알리오올리오 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-11T20:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: true,
         orderBy: 1,
         todos: [
@@ -35,7 +35,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "바질페스토 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-11T20:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: true,
         orderBy: 1,
         todos: [
@@ -60,8 +60,8 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "봉골레 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-15T22:10:13Z",
-        status: false,
+        expireDate: "2023-01-18T22:10:13Z",
+        status: true,
         orderBy: 1,
         todos: [
           {
@@ -85,7 +85,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "차돌박이 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-15T20:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: false,
         orderBy: 1,
         todos: [
@@ -97,7 +97,7 @@ export const mockData = [
           {
             id: "41749a1b-7ef1-484c-9737-7067033baa41",
             title: "차돌박이 파스타 재료 손질하기",
-            status: false,
+            status: true,
           },
           {
             id: "e0ef31e7-d7d2-4a50-90c6-604f8c0a32a0",
@@ -119,7 +119,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "알리오올리오 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-11T20:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: true,
         orderBy: 1,
         todos: [
@@ -144,7 +144,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "바질페스토 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-11T20:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: true,
         orderBy: 1,
         todos: [
@@ -169,7 +169,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "봉골레 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-15T22:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: false,
         orderBy: 1,
         todos: [
@@ -194,7 +194,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "차돌박이 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-15T20:10:13Z",
+        expireDate: "2023-01-18T20:10:13Z",
         status: false,
         orderBy: 1,
         todos: [
@@ -278,7 +278,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "봉골레 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-11T22:10:13Z",
+        expireDate: "2023-01-20T22:10:13Z",
         status: false,
         orderBy: 1,
         todos: [

@@ -8,7 +8,6 @@ const MyTodoItem = ({ status, id, title, icon, productId }) => {
   const handleDetailTodo = () => {
     navigate(`/mypage/detail/${productId}`);
   };
-  console.log("status : ", status);
   let iconImage;
   switch (true) {
     case status === "success":

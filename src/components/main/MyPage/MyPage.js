@@ -22,7 +22,7 @@ const MyPage = () => {
 
   const setClassStatus = (plan) => {
     let status;
-    plan.sessions.forEach((session, idx) => {
+    plan.sessions.forEach((session) => {
       let expireDate = dayjs(session.expireDate).startOf("day");
       const currentDate = dayjs().startOf("day");
       const deadLine = expireDate - currentDate > 0;
@@ -150,7 +150,7 @@ const MyPage = () => {
         />
         <Body>
           {formattedPlans?.length > 0 &&
-            formattedPlans.map((plan, idx) => {
+            formattedPlans?.map((plan, idx) => {
               const formattedStartDate = new Date(plan.sessions[0].startDate);
               const isSamePeriod =
                 idx === 0
@@ -178,12 +178,9 @@ const MyPage = () => {
                       </BorderText>
                     </div>
                   )}
-                  {/* FIXME : 클래스 상태 판별식 재작성 필요, 현재 실패클래스에서도 성공 클래스가 나오는 현상 발생 */}
                   <MyTodoItem
                     productId={plan.productId}
                     status={setClassStatus(plan)}
-                    // isFailed={setClassStatus(plan)}
-                    // isCompleted={plan.status}
                     id={formattedPlans.length - idx}
                     title={plan.title}
                     icon={plan.icon}
