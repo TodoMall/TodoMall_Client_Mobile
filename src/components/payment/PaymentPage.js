@@ -22,7 +22,7 @@ const PaymentPage = () => {
   );
   const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
-  // todo : price to be replace product.amount
+  // TODO : price to be replace product.amount
   const price = Number(product?.amount || 20000).toLocaleString();
 
   const handleSelectPaymentMethod = (name) => {
@@ -36,14 +36,14 @@ const PaymentPage = () => {
     const paymentInfo = {
       pg: paymentData.pg,
       pay_method: paymentData.pay_method,
+      // TODO  backend 에서 받을 데이터로 변경
       merchant_uid: `mid_${new Date().getDate()}`,
       name: product?.title,
       amount: product?.amount || 20000,
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `http://localhost:3000/detail/purchase/complete/${planid}`,
+      m_redirect_url: `${window.location.origin}/detail/purchase/complete/${planid}`,
     };
-
     try {
       await IMP.request_pay(paymentInfo);
     } catch (error) {
