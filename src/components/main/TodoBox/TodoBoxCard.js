@@ -159,7 +159,10 @@ const TodoBoxCard = ({
           <Blurred>
             <TodoBoxCardBody>
               {session.todos.map((todo) => (
-                <TodoBoxCardTodo onClick={handleTodoDetail} key={todo.id}>
+                <TodoBoxCardTodo
+                  onClick={() => handleTodoDetail(todo)}
+                  key={todo.id}
+                >
                   <TodoBoxCardTodoLeft>
                     <TodoCheckBox
                       src={selectCheckBoxBasedOnPeriod(
@@ -191,7 +194,10 @@ const TodoBoxCard = ({
       ) : (
         <TodoBoxCardBody>
           {session.todos.map((todo) => (
-            <TodoBoxCardTodo onClick={handleTodoDetail} key={todo.id}>
+            <TodoBoxCardTodo
+              onClick={() => handleTodoDetail(todo)}
+              key={todo.id}
+            >
               <TodoBoxCardTodoLeft>
                 <TodoCheckBox
                   src={selectCheckBoxBasedOnPeriod(
