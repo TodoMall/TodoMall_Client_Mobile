@@ -10,7 +10,7 @@ import {
   Loader,
 } from "../../global";
 import styled from "styled-components";
-import dayjs from "dayjs";
+import { setClassStatus } from "../../../utils";
 
 const MyTodoDetail = () => {
   const navigate = useNavigate();
@@ -18,25 +18,26 @@ const MyTodoDetail = () => {
   const { email } = { ...localStorage };
   const [{ data: plan }] = useAxios(`${baseApiUrl}products?id=${planId}`);
   const [{ data: myPlans }] = useAxios(`${baseApiUrl}user?email=${email}`);
-  const currentPlanSessions = myPlans?.ownProducts.find(
+  const currentPlan = myPlans?.ownProducts.find(
     (el) => el.productId === planId
   );
 
   const selectTodoSuccessIcon = (expireDate, status) => {
     let iconPath;
     const FormattedExpireDate = new Date(expireDate);
-    const currentTime = new Date();
+    const currentDate = new Date();
+
     switch (true) {
       case status === true:
         iconPath = "class_success_icon";
         break;
-      case status === false && FormattedExpireDate - currentTime > 0:
+      case status === false && FormattedExpireDate - currentDate > 0:
         iconPath = "class_inprogress_icon";
         break;
       case status === false:
         iconPath = "mypage_plan_failed";
         break;
-      /*        
+      /* Feature Flagging
         TODO : 1회 실패
         case ...judge value:
           iconImage = "class_one_fail_icon";
@@ -49,25 +50,6 @@ const MyTodoDetail = () => {
       default:
     }
     return `/images/${iconPath}.svg`;
-  };
-
-  const setClassStatus = (plan) => {
-    let status;
-    plan?.sessions.forEach((session) => {
-      let expireDate = dayjs(session.expireDate).startOf("day");
-      const currentDate = dayjs().startOf("day");
-      const deadLine = expireDate - currentDate > 0;
-      if (plan.status) {
-        status = "success";
-      }
-      if (!plan.status && deadLine) {
-        status = "inprogress";
-      }
-      if (!plan.status && !deadLine) {
-        status = "fail";
-      }
-    });
-    return status;
   };
 
   const setClassIconBasedOnStatus = (classStatus) => {
@@ -89,7 +71,10 @@ const MyTodoDetail = () => {
         <>
           <ImageContainer backgroundImage={plan?.image} />
           <TodoInfo>
-            <img src={setClassIconBasedOnStatus(setClassStatus(plan))} alt="" />
+            <img
+              src={setClassIconBasedOnStatus(setClassStatus(currentPlan))}
+              alt=""
+            />
             <ThinText
               width="auto"
               color="#444444"
@@ -147,9 +132,9 @@ const MyTodoDetail = () => {
         커리큘럼
       </BorderText>
       <SessionWrapper>
-        {currentPlanSessions?.sessions?.map((session, idx) => {
+        {currentPlan?.sessions?.map((session, idx) => {
           const beforeSessionInProgress =
-            idx === 0 ? true : currentPlanSessions?.sessions[idx - 1]?.status;
+            idx === 0 ? true : currentPlan?.sessions[idx - 1]?.status;
 
           return (
             <Sessions key={session.id} opacity={!beforeSessionInProgress}>

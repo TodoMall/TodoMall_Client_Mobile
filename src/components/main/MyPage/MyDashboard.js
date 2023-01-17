@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BottomNavBar, Header } from "../../global";
 import styled from "styled-components";
-import { baseApiUrl } from "../../../constants/env";
+import { baseApiUrl } from "../../../constants";
 import MyTodoItem from "./MyTodoItem";
-import dayjs from "dayjs";
 import useAxios from "axios-hooks";
+import { classFilter, setClassStatus } from "../../../utils";
 
 const MyDashboard = () => {
   const { email } = { ...localStorage };
@@ -14,65 +14,47 @@ const MyDashboard = () => {
   const [plans, setPlans] = useState();
   const [{ data }] = useAxios(`${baseApiUrl}user?email=${email}`);
 
-  const keywords = {
+  const classStatus = {
     success: "성공",
     fail: "실패",
     inProgress: "진행",
   };
 
-  const setClassStatus = (plan) => {
-    let status;
-    plan.sessions.forEach((session) => {
-      const expireDate = dayjs(session.expireDate).startOf("day");
-      const currentDate = dayjs().startOf("day");
-      const deadLine = expireDate - currentDate > 0;
-      if (plan.status) {
-        status = "success";
-      }
-      if (!plan.status && deadLine) {
-        status = "inprogress";
-      }
-      if (!plan.status && !deadLine) {
-        status = "fail";
-      }
-    });
-    return status;
-  };
-
-  useEffect(() => {
-    setPlans(data?.ownProducts);
-  }, [data]);
-
-  const SuccessPlans = plans?.filter((plan) => plan.status === true);
-  const failPlans = plans?.filter((plan) => setClassStatus(plan) === "fail");
-  const inProgressPlans = plans?.filter(
-    (plan) => !plan.status && setClassStatus(plan) === "inprogress"
+  const { SuccessClass, failClass, inProgressClass } = classFilter(
+    data?.ownProducts
   );
+
   let formattedPlans;
   switch (true) {
-    case keywords[currentStatus] === keywords.success:
-      formattedPlans = SuccessPlans;
+    case classStatus[currentStatus] === classStatus.success:
+      formattedPlans = SuccessClass;
       break;
 
-    case keywords[currentStatus] === keywords.fail:
-      formattedPlans = failPlans;
+    case classStatus[currentStatus] === classStatus.fail:
+      formattedPlans = failClass;
       break;
-    case keywords[currentStatus] === keywords.inProgress:
-      formattedPlans = inProgressPlans;
+    case classStatus[currentStatus] === classStatus.inProgress:
+      formattedPlans = inProgressClass;
       break;
     default:
   }
 
+  useEffect(() => {
+    if (data) {
+      setPlans(data?.ownProducts);
+    }
+  }, [data]);
+
   return (
     <Wrapper>
       <Container>
-        <Header title={`${keywords[currentStatus]} 클래스`} />
+        <Header title={`${classStatus[currentStatus]} 클래스`} />
         {formattedPlans?.reverse().map((plan, idx) => {
           return (
             <MyTodoItem
               key={plan.id}
               status={setClassStatus(plan)}
-              id={plans.length - idx}
+              id={plans?.length - idx}
               title={plan.title}
               icon={plan.icon}
               productId={plan.productId}
