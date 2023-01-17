@@ -1,4 +1,4 @@
-import axios from "axios";
+import useAxios from "axios-hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { baseApiUrl } from "../../../constants";
@@ -8,8 +8,9 @@ import TodoBoxContent from "./TodoBoxContent";
 const TodoBox = () => {
   const [email] = useState(localStorage.getItem("email"));
   const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [check, setCheck] = useState(false);
+  const [{ data, isLoading }] = useAxios(`${baseApiUrl}user?email=${email}`);
+
   const handlePlan = (plans) => {
     let temp_plans = [];
     plans.forEach((plan) => {
@@ -38,20 +39,15 @@ const TodoBox = () => {
   };
 
   useEffect(() => {
-    const fetch = async () => {
-      const {
-        data: { ownProducts },
-      } = await axios.get(`${baseApiUrl}user?email=${email}`);
-      setPlans(handlePlan(ownProducts));
-      setLoading(false);
-    };
-    fetch();
-  }, [email, check]);
+    if (data) {
+      setPlans(handlePlan(data?.ownProducts));
+    }
+  }, [data]);
 
   return (
     <>
       <Header image={"/images/Logo.png"} containerHeight="48px" />
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <TodoBoxBody>

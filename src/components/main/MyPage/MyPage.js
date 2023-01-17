@@ -16,14 +16,11 @@ import { setClassStatus, classFilter } from "../../../utils";
 import useAxios from "axios-hooks";
 import dayjs from "dayjs";
 
-// TODO https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/in
-
 const MyPage = () => {
   const navigate = useNavigate();
   const [plans, setPlans] = useState();
-  const [loading, setLoading] = useState(true);
   const { name, email, image } = { ...localStorage };
-  const [{ data }] = useAxios(`${baseApiUrl}user?email=${email}`);
+  const [{ data, isLoading }] = useAxios(`${baseApiUrl}user?email=${email}`);
   const { SuccessClass, failClass, inProgressClass } = classFilter(plans);
   const classesInfo = [
     {
@@ -51,7 +48,6 @@ const MyPage = () => {
         })
         ?.reverse();
       setPlans(formattedPlans);
-      setLoading(false);
     }
   }, [data]);
 
@@ -66,7 +62,7 @@ const MyPage = () => {
     navigate("/settings");
   };
 
-  if (loading) {
+  if (isLoading) {
     return <Loader />;
   }
 
