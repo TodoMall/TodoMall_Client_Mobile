@@ -1,6 +1,6 @@
 export const mockData = [
   {
-    id: 0,
+    id: 123,
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "피그마 마스터하고 UI 디자인(성공)",
     status: false,
@@ -109,7 +109,7 @@ export const mockData = [
     ],
   },
   {
-    id: 0,
+    id: 456,
     productId: "02d1c4f7-ea1a-4d2f-bfae-92bc73efe6b7",
     title: "피그마 마스터하고 UI 디자인(진행)",
     status: false,
@@ -566,7 +566,7 @@ export const mockData = [
           {
             id: "41749a1b-7ef1-484c-9737-7067033baa41",
             title: "Mrs",
-            status: false,
+            status: true,
           },
           {
             id: "e0ef31e7-d7d2-4a50-90c6-604f8c0a32a0",
@@ -576,7 +576,7 @@ export const mockData = [
           {
             id: "44e81f3b-27ef-4f9c-a1c8-617e5907104b",
             title: "Mr",
-            status: false,
+            status: true,
           },
           {
             id: "4f2934b2-98b5-4d86-a4f5-3ca2c0c0a71f",
@@ -760,6 +760,7 @@ export const mockData = [
     ],
   },
 ];
+
 export const noticeList = [
   {
     id: 1,
