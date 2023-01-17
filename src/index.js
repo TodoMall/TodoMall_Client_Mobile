@@ -7,7 +7,9 @@ import { worker } from "./mocks/browser";
 import { ScrollToTop } from "./utils";
 
 if (process.env.REACT_APP_NODE_ENV === "development") {
-  worker.start();
+  worker.start({
+    onUnhandledRequest: "bypass",
+  });
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
