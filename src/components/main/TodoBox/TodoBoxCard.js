@@ -56,7 +56,7 @@ const TodoBoxCard = ({
     }, 1000);
   });
 
-  let FormattedExpireDate = Math.floor(
+  let formattedExpireDate = Math.floor(
     (Date.parse(new Date(expireDate)) - Date.parse(new Date())) / 86400000
   );
   const handleTodoDetail = (todo) => {
@@ -87,6 +87,11 @@ const TodoBoxCard = ({
 
   const isEnded = end || curTime.ended;
 
+  const getInProgressTodo = (todos) => {
+    const [inProgressTodo] = todos?.filter((todo) => todo?.status === false);
+    return inProgressTodo;
+  };
+
   return (
     <Container>
       <BorderText
@@ -111,7 +116,7 @@ const TodoBoxCard = ({
       {submit ? (
         <DDayIcon
           background={changeColorBasedOnRemainingPeriod(
-            FormattedExpireDate,
+            formattedExpireDate,
             false,
             submit,
             session.todos
@@ -120,25 +125,25 @@ const TodoBoxCard = ({
           <span>인증필요</span>
           <DDayText
             color={changeColorBasedOnRemainingPeriod(
-              FormattedExpireDate,
+              formattedExpireDate,
               true,
               submit,
               [submit]
             )}
           >
-            D-{FormattedExpireDate}
+            D-{formattedExpireDate}
           </DDayText>
         </DDayIcon>
       ) : isEnded ? null : (
         <DDayIcon
           background={changeColorBasedOnRemainingPeriod(
-            FormattedExpireDate,
+            formattedExpireDate,
             false,
             submit,
             session.todos
           )}
         >
-          {FormattedExpireDate === 0 && (
+          {formattedExpireDate === 0 && (
             <TodoBoxCardHeaderTime>
               {curTime.hours}:{curTime.minutes}:{curTime.seconds}
             </TodoBoxCardHeaderTime>
@@ -148,84 +153,68 @@ const TodoBoxCard = ({
             fontWeight="700"
             fontSize="16px"
             lineHeight="16px"
-            color={changeColorBasedOnRemainingPeriod(FormattedExpireDate, true)}
+            color={changeColorBasedOnRemainingPeriod(formattedExpireDate, true)}
           >
-            D-{FormattedExpireDate}
+            D-{formattedExpireDate}
           </BorderText>
         </DDayIcon>
       )}
-      {isEnded ? (
-        <TodoBoxCardBodyEnded>
-          <Blurred>
-            <TodoBoxCardBody>
-              {session.todos.map((todo) => (
-                <TodoBoxCardTodo
-                  onClick={() => handleTodoDetail(todo)}
-                  key={todo.id}
-                >
-                  <TodoBoxCardTodoLeft>
-                    <TodoCheckBox
-                      src={selectCheckBoxBasedOnPeriod(
-                        FormattedExpireDate,
-                        todo.status
-                      )}
-                      alt=""
-                    />
 
-                    <BorderText
-                      width="auto"
-                      fontWeight="500"
-                      fontSize="16px"
-                      lineHeight="16px"
-                    >
-                      {todo.title}
-                    </BorderText>
-                  </TodoBoxCardTodoLeft>
-                  <img src="images/todo_detail.svg" alt="" />
-                </TodoBoxCardTodo>
-              ))}
-            </TodoBoxCardBody>
-          </Blurred>
-          <BlurredCover>
-            <BlurredTime>0:00:00:00</BlurredTime>
-            <BlurredBox>데드라인 만료</BlurredBox>
-          </BlurredCover>
-        </TodoBoxCardBodyEnded>
-      ) : (
+      <Blurred
+        blur={isEnded ? "20px" : "none"}
+        pointerEvents={isEnded ? "none" : "all"}
+      >
         <TodoBoxCardBody>
-          {session.todos.map((todo) => (
-            <TodoBoxCardTodo
-              onClick={() => handleTodoDetail(todo)}
-              key={todo.id}
-            >
-              <TodoBoxCardTodoLeft>
-                <TodoCheckBox
-                  src={selectCheckBoxBasedOnPeriod(
-                    FormattedExpireDate,
-                    todo.status
-                  )}
-                  alt=""
-                />
-
-                <BorderText
-                  width="auto"
-                  fontSize="16px"
-                  lineHeight="16px"
-                  margin="0 0 0 8px"
-                  color={changeColorBasedOnRemainingPeriod(
-                    FormattedExpireDate,
-                    true,
-                    todo.status,
-                    session.todos
-                  )}
-                >
-                  {todo.title}
-                </BorderText>
-              </TodoBoxCardTodoLeft>
-              <img src="/images/arrow_icon.svg" alt="" />
-            </TodoBoxCardTodo>
-          ))}
+          {session.todos.map((todo) => {
+            const inProgressTodoId = getInProgressTodo(session.todos)?.id;
+            const isProgress = inProgressTodoId === todo.id;
+            return (
+              <TodoBoxCardTodo
+                onClick={() => handleTodoDetail(todo)}
+                key={todo.id}
+              >
+                <TodoBoxCardTodoLeft>
+                  <TodoCheckBox
+                    src={selectCheckBoxBasedOnPeriod(
+                      formattedExpireDate,
+                      todo.status,
+                      isProgress
+                    )}
+                    alt=""
+                  />
+                  <BorderText
+                    width="auto"
+                    fontSize="16px"
+                    lineHeight="16px"
+                    margin="0 0 0 8px"
+                    fontWeight={isEnded ? "500" : null}
+                    color={
+                      isEnded
+                        ? null
+                        : isProgress
+                        ? changeColorBasedOnRemainingPeriod(
+                            formattedExpireDate,
+                            true,
+                            todo.status,
+                            session.todos
+                          )
+                        : null
+                    }
+                  >
+                    {todo.title}
+                  </BorderText>
+                </TodoBoxCardTodoLeft>
+                <img src="images/arrow_icon.svg" alt="" />
+              </TodoBoxCardTodo>
+            );
+          })}
         </TodoBoxCardBody>
+      </Blurred>
+      {isEnded && (
+        <BlurredCover>
+          <BlurredTime>0:00:00:00</BlurredTime>
+          <BlurredBox>데드라인 만료</BlurredBox>
+        </BlurredCover>
       )}
 
       {isEnded ? (
@@ -256,6 +245,7 @@ const TodoBoxCard = ({
     </Container>
   );
 };
+
 const TodoCheckBox = styled.img`
   width: 16px;
   height: 16px;
@@ -311,10 +301,6 @@ const DDayText = styled.p`
   color: ${(props) => props.color};
 `;
 
-const TodoBoxCardBodyEnded = styled.div`
-  width: 100%;
-`;
-
 const BlurredCover = styled.div`
   display: flex;
   flex-direction: column;
@@ -327,8 +313,8 @@ const BlurredCover = styled.div`
 `;
 
 const Blurred = styled.div`
-  filter: blur(20px);
-  pointer-events: none;
+  filter: blur(${(props) => props.blur});
+  pointer-events: ${(props) => props.pointerEvents};
 `;
 
 const BlurredTime = styled.p`
