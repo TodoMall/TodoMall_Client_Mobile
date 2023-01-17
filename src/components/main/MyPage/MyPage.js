@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import MyTodoItem from "./MyTodoItem";
 import {
   Loader,
@@ -13,50 +12,48 @@ import {
   Divider,
 } from "../../global";
 import { baseApiUrl } from "../../../constants";
+import { setClassStatus, classFilter } from "../../../utils";
+import useAxios from "axios-hooks";
 import dayjs from "dayjs";
+
+// TODO https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/in
 
 const MyPage = () => {
   const navigate = useNavigate();
   const [plans, setPlans] = useState();
+  const [loading, setLoading] = useState(true);
   const { name, email, image } = { ...localStorage };
-
-  const setClassStatus = (plan) => {
-    let status;
-    plan.sessions.forEach((session) => {
-      let expireDate = dayjs(session.expireDate).startOf("day");
-      const currentDate = dayjs().startOf("day");
-      const deadLine = expireDate - currentDate > 0;
-      if (plan.status) {
-        status = "success";
-      }
-      if (!plan.status && deadLine) {
-        status = "inprogress";
-      }
-      if (!plan.status && !deadLine) {
-        status = "fail";
-      }
-    });
-    return status;
-  };
-
-  const SuccessTodos = plans?.filter((plan) => plan.status === true);
-  const failTodos = plans?.filter((plan) => setClassStatus(plan) === "fail");
-  const inProgressTodos = plans?.filter(
-    (plan) => !plan.status && setClassStatus(plan) === "inprogress"
-  );
+  const [{ data }] = useAxios(`${baseApiUrl}user?email=${email}`);
+  const { SuccessClass, failClass, inProgressClass } = classFilter(plans);
   const classesInfo = [
     {
+      id: 1,
       status: "성공",
       identifier: "success",
-      count: SuccessTodos?.length,
+      count: SuccessClass?.length,
     },
-    { status: "실패", identifier: "fail", count: failTodos?.length },
+    { id: 2, status: "실패", identifier: "fail", count: failClass?.length },
     {
+      id: 3,
       status: "진행",
       identifier: "inProgress",
-      count: inProgressTodos?.length,
+      count: inProgressClass?.length,
     },
   ];
+
+  useEffect(() => {
+    if (data) {
+      const formattedPlans = data?.ownProducts
+        ?.sort((prev, next) => {
+          return dayjs(prev.sessions[0].startDate).diff(
+            next.sessions[0].startDate
+          );
+        })
+        ?.reverse();
+      setPlans(formattedPlans);
+      setLoading(false);
+    }
+  }, [data]);
 
   const handleDashboard = (status) => {
     navigate({
@@ -65,32 +62,14 @@ const MyPage = () => {
     });
   };
 
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetch = async () => {
-      const {
-        data: { ownProducts },
-      } = await axios.get(`${baseApiUrl}user?email=${email}`);
-      setPlans(ownProducts);
-      setLoading(false);
-    };
-    fetch();
-  }, [email]);
-
-  const formattedPlans = plans
-    ?.sort((prev, next) => {
-      return (
-        new Date(prev.sessions[0].startDate) -
-        new Date(next.sessions[0].startDate)
-      );
-    })
-    ?.reverse();
-  if (loading) {
-    return <Loader />;
-  }
   const handleSettingPage = () => {
     navigate("/settings");
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <Wrapper>
       <Container>
@@ -123,7 +102,10 @@ const MyPage = () => {
         <ProgressInfo>
           {classesInfo.map((el) => {
             return (
-              <Classes onClick={() => handleDashboard(el.identifier)}>
+              <Classes
+                key={el.id}
+                onClick={() => handleDashboard(el.identifier)}
+              >
                 <ClassStatus>
                   <ThinText width="auto" textAlign="center">
                     {el.status}&nbsp;클래스
@@ -149,18 +131,17 @@ const MyPage = () => {
           margin="2px 0 4px 0"
         />
         <Body>
-          {formattedPlans?.length > 0 &&
-            formattedPlans?.map((plan, idx) => {
+          {plans?.length > 0 &&
+            plans?.map((plan, idx) => {
               const formattedStartDate = new Date(plan.sessions[0].startDate);
+
+              const variablizeDate = (val) =>
+                dayjs(plans[val]?.sessions[0].startDate).format("YYYY MM");
+
               const isSamePeriod =
                 idx === 0
                   ? false
-                  : dayjs(
-                      formattedPlans[idx - 1]?.sessions[0].startDate
-                    ).format("YYYY MM") ===
-                    dayjs(formattedPlans[idx]?.sessions[0].startDate).format(
-                      "YYYY MM"
-                    );
+                  : variablizeDate(idx - 1) === variablizeDate(idx);
 
               return (
                 <Fragment key={plan.id}>
@@ -181,7 +162,7 @@ const MyPage = () => {
                   <MyTodoItem
                     productId={plan.productId}
                     status={setClassStatus(plan)}
-                    id={formattedPlans.length - idx}
+                    id={plans.length - idx}
                     title={plan.title}
                     icon={plan.icon}
                   />
@@ -189,7 +170,7 @@ const MyPage = () => {
               );
             })}
 
-          {formattedPlans?.length === 0 && (
+          {plans?.length === 0 && (
             <MyClass>
               <BorderText
                 width="auto"
