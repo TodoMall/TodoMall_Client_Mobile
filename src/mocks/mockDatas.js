@@ -181,7 +181,7 @@ export const mockData = [
           {
             id: "41749a1b-7ef1-484c-9737-7067033baa41",
             title: "차돌박이 파스타 재료 손질하기",
-            status: true,
+            status: false,
           },
           {
             id: "e0ef31e7-d7d2-4a50-90c6-604f8c0a32a0",
@@ -278,7 +278,7 @@ export const mockData = [
         id: "b7884d20-e181-49c1-a006-216128edd44e",
         title: "봉골레 파스타 만들기",
         startDate: "2022-12-11T02:44:42Z",
-        expireDate: "2023-01-20T22:10:13Z",
+        expireDate: "2023-01-11T20:10:13Z",
         status: false,
         orderBy: 1,
         todos: [
