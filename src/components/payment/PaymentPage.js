@@ -13,7 +13,7 @@ import SelectedProductInfo from "./SelectedProductInfo";
 import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
 import { useQuery } from "@apollo/client";
-import { GET_MERCHANT } from "./fetching/queries/paymentQueries";
+import { GET_MERCHANT_UID } from "./fetching/queries/getMerchantUid";
 
 const PaymentPage = () => {
   const { name, email, image } = { ...localStorage };
@@ -23,7 +23,7 @@ const PaymentPage = () => {
     `${baseApiUrl}products?id=${productId}`
   );
 
-  // const { data } = useQuery(GET_MERCHANT);
+  const { data } = useQuery(GET_MERCHANT_UID);
 
   const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
@@ -33,14 +33,14 @@ const PaymentPage = () => {
     setPaymentMethod(name);
   };
 
-  const handlePurchase = async (merchantUID) => {
+  const handlePurchase = async () => {
     const { IMP } = window;
     IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
 
     const paymentInfo = {
       pg: paymentData.pg,
       pay_method: paymentData.pay_method,
-      merchant_uid: merchantUID,
+      merchant_uid: data?.getOrderNumber.orderNumber,
       name: product?.title,
       amount: product?.amount || 20000,
       buyer_email: email,
@@ -81,12 +81,7 @@ const PaymentPage = () => {
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
-        <PaymentButton
-          disabled={!payMethod}
-          onClick={() => {
-            // handlePurchase(data?.merchantUID);
-          }}
-        >
+        <PaymentButton disabled={!payMethod} onClick={handlePurchase}>
           {price}원 결제하기
         </PaymentButton>
 

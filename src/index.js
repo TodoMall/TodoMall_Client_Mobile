@@ -12,10 +12,9 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
     onUnhandledRequest: "bypass",
   });
 }
-const SERVER_API_URL = process.env.SERVER_API_URL;
 
 const client = new ApolloClient({
-  uri: SERVER_API_URL,
+  uri: process.env.REACT_APP_GRAPHQL_DEV_SERVER,
   cache: new InMemoryCache(),
 });
 
