@@ -9,40 +9,43 @@ import { RedirectByAuthStatus } from "../../utils";
 import PaymentAmountInfo from "./PaymentAmountInfo";
 import PayerInfo from "./PayerInfo";
 import TermsOfServiceSection from "./TermsOfServiceSection";
-import SelectedClassInfo from "./SelectedClassInfo";
+import SelectedProductInfo from "./SelectedProductInfo";
 import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
+import { useQuery } from "@apollo/client";
+import { GET_MERCHANT } from "./fetching/queries/paymentQueries";
 
 const PaymentPage = () => {
   const { name, email, image } = { ...localStorage };
   const [payMethod, setPaymentMethod] = useState(null);
-  const { planid } = useParams();
+  const { productId } = useParams();
   const [{ data: product, loading: isLoading }] = useAxios(
-    `${baseApiUrl}products?id=${planid}`
+    `${baseApiUrl}products?id=${productId}`
   );
+
+  // const { data } = useQuery(GET_MERCHANT);
+
   const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
-  // TODO : price to be replace product.amount
   const price = Number(product?.amount || 20000).toLocaleString();
 
   const handleSelectPaymentMethod = (name) => {
     setPaymentMethod(name);
   };
 
-  const handlePurchase = async () => {
+  const handlePurchase = async (merchantUID) => {
     const { IMP } = window;
     IMP.init(process.env.REACT_APP_IAMPORT_MERCHANT_CODE);
 
     const paymentInfo = {
       pg: paymentData.pg,
       pay_method: paymentData.pay_method,
-      // TODO  backend 에서 받을 데이터로 변경
-      merchant_uid: `mid_${new Date().getDate()}`,
+      merchant_uid: merchantUID,
       name: product?.title,
       amount: product?.amount || 20000,
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `${window.location.origin}/detail/purchase/complete/${planid}`,
+      m_redirect_url: `${window.location.origin}/detail/purchase/complete/${productId}`,
     };
     try {
       await IMP.request_pay(paymentInfo);
@@ -64,7 +67,7 @@ const PaymentPage = () => {
         </UserInfoWrapper>
 
         <Box>
-          <SelectedClassInfo
+          <SelectedProductInfo
             isLoading={isLoading}
             title={product?.title}
             sessions={product?.sessions}
@@ -78,7 +81,12 @@ const PaymentPage = () => {
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
-        <PaymentButton disabled={!payMethod} onClick={handlePurchase}>
+        <PaymentButton
+          disabled={!payMethod}
+          onClick={() => {
+            // handlePurchase(data?.merchantUID);
+          }}
+        >
           {price}원 결제하기
         </PaymentButton>
 

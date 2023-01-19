@@ -8,7 +8,7 @@ import { Loader } from "../global";
 const PlanPurchase = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const productId = useParams().planid;
+  const { productId } = useParams();
   const userId = localStorage.getItem("userid");
   const handlePurchase = async () => {
     setLoading(true);

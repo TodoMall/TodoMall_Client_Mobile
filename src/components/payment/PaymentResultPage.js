@@ -9,7 +9,7 @@ import axios from "axios";
 
 const PaymentResultPage = () => {
   const { userid } = { ...localStorage };
-  const { planid } = useParams();
+  const { productId } = useParams();
   const { search } = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [paymentResponse, setPaymentResponse] = useState(null);
@@ -25,7 +25,7 @@ const PaymentResultPage = () => {
 
   const requestPaymentToServer = async () => {
     try {
-      const { data } = await axios.post(`${baseApiUrl}payment/${planid}`, {
+      const { data } = await axios.post(`${baseApiUrl}payment/${productId}`, {
         headers: { "Content-Type": "application/json" },
         data: { imp_uid, merchant_uid },
       });
@@ -43,7 +43,7 @@ const PaymentResultPage = () => {
   const registerProductToUser = async () => {
     try {
       await axios.post(`${baseApiUrl}user/product`, {
-        productId: planid,
+        productId: productId,
         userId: userid,
       });
     } catch (error) {
@@ -132,7 +132,7 @@ const PaymentResultPage = () => {
       )}
       <Button
         onClick={() =>
-          navigate(isPaymentSuccess ? "/todobox" : `/payment/${planid}`)
+          navigate(isPaymentSuccess ? "/todobox" : `/payment/${productId}`)
         }
       >
         <p>{locationGuideText}</p>

@@ -10,16 +10,16 @@ import {
   Loader,
 } from "../../global";
 import styled from "styled-components";
-import { setClassStatus } from "../../../utils";
+import { setProductStatus } from "../../../utils";
 
 const MyTodoDetail = () => {
   const navigate = useNavigate();
-  const { planId } = useParams();
+  const { productId } = useParams();
   const { email } = { ...localStorage };
-  const [{ data: plan }] = useAxios(`${baseApiUrl}products?id=${planId}`);
-  const [{ data: myPlans }] = useAxios(`${baseApiUrl}user?email=${email}`);
-  const currentPlan = myPlans?.ownProducts.find(
-    (el) => el.productId === planId
+  const [{ data: product }] = useAxios(`${baseApiUrl}products?id=${productId}`);
+  const [{ data: myProducts }] = useAxios(`${baseApiUrl}user?email=${email}`);
+  const currentPlan = myProducts?.ownProducts.find(
+    (el) => el.productId === productId
   );
 
   const selectTodoSuccessIcon = (expireDate, status) => {
@@ -52,7 +52,7 @@ const MyTodoDetail = () => {
     return `/images/${iconPath}.svg`;
   };
 
-  const setClassIconBasedOnStatus = (classStatus) => {
+  const setProductIconBasedOnStatus = (classStatus) => {
     if (classStatus === "inprogress") {
       return "/images/mypage_plan_inprogress.svg";
     }
@@ -67,12 +67,12 @@ const MyTodoDetail = () => {
   return (
     <Wrapper>
       <Header title="클래스" containerHeight="48px" />
-      {plan ? (
+      {product ? (
         <>
-          <ImageContainer backgroundImage={plan?.image} />
+          <ImageContainer backgroundImage={product?.image} />
           <TodoInfo>
             <img
-              src={setClassIconBasedOnStatus(setClassStatus(currentPlan))}
+              src={setProductIconBasedOnStatus(setProductStatus(currentPlan))}
               alt=""
             />
             <ThinText
@@ -81,7 +81,7 @@ const MyTodoDetail = () => {
               fontSize="16px"
               lineHeight="24px"
             >
-              {plan?.subDescription}
+              {product?.subDescription}
             </ThinText>
             <BorderText
               width="auto"
@@ -90,10 +90,10 @@ const MyTodoDetail = () => {
               lineHeight="36px"
               textAlign="left"
             >
-              {plan?.title}
+              {product?.title}
             </BorderText>
             <CardTags>
-              {plan?.informationTags.map((tag) => {
+              {product?.informationTags.map((tag) => {
                 return (
                   <div key={tag}>
                     <CardTag>
@@ -166,7 +166,7 @@ const MyTodoDetail = () => {
                     pointEvent={beforeSessionInProgress}
                     onClick={() => {
                       navigate(
-                        `/todo/${todo?.id}/${session?.id}/${planId}/detail/${todo?.status}`
+                        `/todo/${todo?.id}/${session?.id}/${productId}/detail/${todo?.status}`
                       );
                     }}
                   >

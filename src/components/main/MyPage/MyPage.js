@@ -12,42 +12,43 @@ import {
   Divider,
 } from "../../global";
 import { baseApiUrl } from "../../../constants";
-import { setClassStatus, classFilter } from "../../../utils";
+import { setProductStatus, productFilter } from "../../../utils";
 import useAxios from "axios-hooks";
 import dayjs from "dayjs";
 
 const MyPage = () => {
   const navigate = useNavigate();
-  const [plans, setPlans] = useState();
+  const [products, setproducts] = useState();
   const { name, email, image } = { ...localStorage };
   const [{ data, isLoading }] = useAxios(`${baseApiUrl}user?email=${email}`);
-  const { SuccessClass, failClass, inProgressClass } = classFilter(plans);
+  const { SuccessProducts, failProducts, inProgressProducts } =
+    productFilter(products);
   const classesInfo = [
     {
       id: 1,
       status: "성공",
       identifier: "success",
-      count: SuccessClass?.length,
+      count: SuccessProducts?.length,
     },
-    { id: 2, status: "실패", identifier: "fail", count: failClass?.length },
+    { id: 2, status: "실패", identifier: "fail", count: failProducts?.length },
     {
       id: 3,
       status: "진행",
       identifier: "inProgress",
-      count: inProgressClass?.length,
+      count: inProgressProducts?.length,
     },
   ];
 
   useEffect(() => {
     if (data) {
-      const formattedPlans = data?.ownProducts
+      const formattedProducts = data?.ownProducts
         ?.sort((prev, next) => {
           return dayjs(prev.sessions[0].startDate).diff(
             next.sessions[0].startDate
           );
         })
         ?.reverse();
-      setPlans(formattedPlans);
+      setproducts(formattedProducts);
     }
   }, [data]);
 
@@ -74,7 +75,7 @@ const MyPage = () => {
           <div style={{ width: "64px", height: "64px" }}>
             <UserImageProfile
               image={image}
-              isProgress={!!plans}
+              isProgress={!!products}
               width="64px"
               height="64px"
               isShowSettingIcon={true}
@@ -127,12 +128,14 @@ const MyPage = () => {
           margin="2px 0 4px 0"
         />
         <Body>
-          {plans?.length > 0 &&
-            plans?.map((plan, idx) => {
-              const formattedStartDate = new Date(plan.sessions[0].startDate);
+          {products?.length > 0 &&
+            products?.map((product, idx) => {
+              const formattedStartDate = new Date(
+                product.sessions[0].startDate
+              );
 
               const variablizeDate = (val) =>
-                dayjs(plans[val]?.sessions[0].startDate).format("YYYY MM");
+                dayjs(products[val]?.sessions[0].startDate).format("YYYY MM");
 
               const isSamePeriod =
                 idx === 0
@@ -140,7 +143,7 @@ const MyPage = () => {
                   : variablizeDate(idx - 1) === variablizeDate(idx);
 
               return (
-                <Fragment key={plan.id}>
+                <Fragment key={product.id}>
                   {!isSamePeriod && (
                     <div style={{ padding: "12px 0 8px 16px" }}>
                       <BorderText
@@ -156,17 +159,17 @@ const MyPage = () => {
                     </div>
                   )}
                   <MyTodoItem
-                    productId={plan.productId}
-                    status={setClassStatus(plan)}
-                    id={plans.length - idx}
-                    title={plan.title}
-                    icon={plan.icon}
+                    productId={product.productId}
+                    status={setProductStatus(product)}
+                    id={products.length - idx}
+                    title={product.title}
+                    icon={product.icon}
                   />
                 </Fragment>
               );
             })}
 
-          {plans?.length === 0 && (
+          {products?.length === 0 && (
             <MyClass>
               <BorderText
                 width="auto"

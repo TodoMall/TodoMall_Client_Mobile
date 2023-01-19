@@ -5,59 +5,59 @@ import styled from "styled-components";
 import { baseApiUrl } from "../../../constants";
 import MyTodoItem from "./MyTodoItem";
 import useAxios from "axios-hooks";
-import { classFilter, setClassStatus } from "../../../utils";
+import { productFilter, setProductStatus } from "../../../utils";
 
 const MyDashboard = () => {
   const { email } = { ...localStorage };
   const [searchParams] = useSearchParams();
   const currentStatus = searchParams.get("status");
-  const [plans, setPlans] = useState();
+  const [products, setProducts] = useState();
   const [{ data }] = useAxios(`${baseApiUrl}user?email=${email}`);
 
-  const classStatus = {
+  const productStatus = {
     success: "성공",
     fail: "실패",
     inProgress: "진행",
   };
 
-  const { SuccessClass, failClass, inProgressClass } = classFilter(
+  const { SuccessProducts, failProducts, inProgressProducts } = productFilter(
     data?.ownProducts
   );
 
-  let formattedPlans;
+  let formattedProducts;
   switch (true) {
-    case classStatus[currentStatus] === classStatus.success:
-      formattedPlans = SuccessClass;
+    case productStatus[currentStatus] === productStatus.success:
+      formattedProducts = SuccessProducts;
       break;
 
-    case classStatus[currentStatus] === classStatus.fail:
-      formattedPlans = failClass;
+    case productStatus[currentStatus] === productStatus.fail:
+      formattedProducts = failProducts;
       break;
-    case classStatus[currentStatus] === classStatus.inProgress:
-      formattedPlans = inProgressClass;
+    case productStatus[currentStatus] === productStatus.inProgress:
+      formattedProducts = inProgressProducts;
       break;
     default:
   }
 
   useEffect(() => {
     if (data) {
-      setPlans(data?.ownProducts);
+      setProducts(data?.ownProducts);
     }
   }, [data]);
 
   return (
     <Wrapper>
       <Container>
-        <Header title={`${classStatus[currentStatus]} 클래스`} />
-        {formattedPlans?.reverse().map((plan, idx) => {
+        <Header title={`${productStatus[currentStatus]} 클래스`} />
+        {formattedProducts?.reverse().map((product, idx) => {
           return (
             <MyTodoItem
-              key={plan.id}
-              status={setClassStatus(plan)}
-              id={plans?.length - idx}
-              title={plan.title}
-              icon={plan.icon}
-              productId={plan.productId}
+              key={product.id}
+              status={setProductStatus(product)}
+              id={products?.length - idx}
+              title={product.title}
+              icon={product.icon}
+              productId={product.productId}
             />
           );
         })}

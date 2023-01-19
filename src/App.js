@@ -9,10 +9,11 @@ import Personal from "./components/login/Personal";
 import TodoBox from "./components/main/TodoBox/TodoBox";
 import TodoMall from "./components/main/TodoMall/TodoMall";
 import MyPage from "./components/main/MyPage/MyPage";
+// TODO : rename plan folder to product
 import PlanPurchase from "./components/plan/PlanPurchase";
 import PlanDetail from "./components/plan/PlanDetail/PlanDetail";
-import Settings from "./components/settings/Settings";
 import PlanRetry from "./components/plan/PlanRetry";
+import Settings from "./components/settings/Settings";
 import NoticeList from "./components/settings/NoticeList";
 import TodoDetail from "./components/todo/TodoDetail";
 import TodoSubmit from "./components/todo/TodoSubmit";
@@ -48,7 +49,7 @@ function App() {
 
         {/* mypage Detail, pages Routes */}
         <Route path="/mypage/dashboard" element={<MyDashboard />} />
-        <Route path="/mypage/detail/:planId" element={<MyTodoDetail />} />
+        <Route path="/mypage/detail/:productId" element={<MyTodoDetail />} />
 
         {/* Todo Detail, Assignment Routes */}
         <Route
@@ -66,18 +67,18 @@ function App() {
         <Route path="/todo/success" element={<TodoSubmitSuccess />} />
 
         {/* Plan Routes */}
-        <Route path="/detail/:planid" element={<PlanDetail />} />
-        <Route path="/purchase/:planid" element={<PlanPurchase />} />
-        <Route path="/retry/:planid" element={<PlanRetry />} />
+        <Route path="/detail/:productId" element={<PlanDetail />} />
+        <Route path="/purchase/:productId" element={<PlanPurchase />} />
+        <Route path="/retry/:productId" element={<PlanRetry />} />
 
         {/* Setting Routes */}
         <Route path="/settings" element={<Settings />} />
         <Route path="/notice" element={<NoticeList />} />
 
         {/* Payment Routes */}
-        <Route path="/detail/purchase/:planid" element={<PaymentPage />} />
+        <Route path="/detail/purchase/:productId" element={<PaymentPage />} />
         <Route
-          path="/detail/purchase/complete/:planid"
+          path="/detail/purchase/complete/:productId"
           element={<PaymentResultPage />}
         />
       </Routes>

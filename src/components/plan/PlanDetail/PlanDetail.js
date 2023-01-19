@@ -15,37 +15,37 @@ const PlanDetail = () => {
   const email = localStorage.getItem("email");
   const [duplicate, setDuplicate] = useState(false);
   const navigate = useNavigate();
-  const { planid: ID } = useParams();
+  const { productId } = useParams();
 
   const sendToPurchasePage = () => {
     if (!isLogin) {
       navigate("/");
     }
     if (isLogin) {
-      navigate(`/detail/purchase/${plan.id}/`);
+      navigate(`/detail/purchase/${productId}/`);
     }
   };
 
-  const [{ data: plan, loading: isLoading }] = useAxios(
-    `${baseApiUrl}products?id=${ID}`
+  const [{ data: product, loading: isLoading }] = useAxios(
+    `${baseApiUrl}products?id=${productId}`
   );
   const [{ data: userProduct }] = useAxios(`${baseApiUrl}user?email=${email}`);
 
   const checkDuplicate = (data) => {
     const temp = data.filter(
-      ({ productId, status }) => productId === ID && status === false
+      (product) => product.productId === productId && product.status === false
     );
     return temp.length > 0;
   };
 
   useEffect(() => {
-    if (plan) {
-      document.title = plan?.title;
+    if (product) {
+      document.title = product?.title;
     }
     if (userProduct) {
       setDuplicate(checkDuplicate(userProduct?.ownProducts));
     }
-  }, [plan, userProduct]);
+  }, [product, userProduct]);
 
   if (isLoading) {
     return <Loader />;
@@ -59,24 +59,24 @@ const PlanDetail = () => {
         ) : (
           <Body>
             <PlanIntro
-              image={plan.image}
-              subtitle={plan.subDescription}
-              title={plan.title}
-              smalltag={plan.informationTags}
-              largetag={plan.summarizedTags}
-              description={plan.description}
-              creator_image={plan.creator.image}
-              creator_name={plan.creatorName}
-              creator_intro={plan.creator.description}
+              image={product.image}
+              subtitle={product.subDescription}
+              title={product.title}
+              smalltag={product.informationTags}
+              largetag={product.summarizedTags}
+              description={product.description}
+              creator_image={product.creator.image}
+              creator_name={product.creatorName}
+              creator_intro={product.creator.description}
             />
             <Divider />
-            <PlanFirst data={plan.expectIts[0]} />
+            <PlanFirst data={product.expectIts[0]} />
             <Divider />
-            <PlanSecond data={plan.recommends} />
+            <PlanSecond data={product.recommends} />
             <Divider />
-            <PlanThird data={plan.recommendUsers} />
+            <PlanThird data={product.recommendUsers} />
             <Divider />
-            <PlanCurriculum sessions={plan.sessions} />
+            <PlanCurriculum sessions={product.sessions} />
           </Body>
         )}
 

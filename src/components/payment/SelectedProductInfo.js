@@ -6,7 +6,7 @@ import Divider from "../global/Divider";
 import Loader from "../global/Loader";
 import styled from "styled-components";
 
-const SelectedClassInfo = ({ isLoading, title, sessions }) => {
+const SelectedProductInfo = ({ isLoading, title, sessions }) => {
   const getColorForDuration = (duration, isText = false) => {
     let color;
     switch (true) {
@@ -87,4 +87,4 @@ const DDayIconText = styled.p`
   font-family: "Pretendard";
 `;
 
-export default SelectedClassInfo;
+export default SelectedProductInfo;

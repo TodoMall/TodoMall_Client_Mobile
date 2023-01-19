@@ -1,21 +1,21 @@
 import dayjs from "dayjs";
 
-const setClassStatus = (plan) => {
+const setProductStatus = (product) => {
   let status;
-  plan.sessions.forEach((session) => {
+  product.sessions.forEach((session) => {
     let expireDate = dayjs(session.expireDate).startOf("day");
     const currentDate = dayjs().startOf("day");
     const deadLine = expireDate - currentDate > 0;
-    if (plan.status) {
+    if (product.status) {
       status = "success";
     }
-    if (!plan.status && deadLine) {
+    if (!product.status && deadLine) {
       status = "inprogress";
     }
-    if (!plan.status && !deadLine) {
+    if (!product.status && !deadLine) {
       status = "fail";
     }
   });
   return status;
 };
-export default setClassStatus;
+export default setProductStatus;
