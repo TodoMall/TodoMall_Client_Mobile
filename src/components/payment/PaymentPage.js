@@ -42,7 +42,7 @@ const PaymentPage = () => {
       pay_method: paymentData.pay_method,
       merchant_uid: data?.getOrderNumber.orderNumber,
       name: product?.title,
-      amount: product?.amount || 20000,
+      amount: product?.amount || 1,
       buyer_email: email,
       buyer_name: name,
       m_redirect_url: `${window.location.origin}/detail/purchase/complete/${productId}`,
