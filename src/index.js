@@ -14,7 +14,8 @@ if (process.env.REACT_APP_NODE_ENV === "development") {
 }
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_DEV_SERVER,
+  // TODO : process.env.REACT_APP_GRAPHQL_DEV_SERVER,
+  uri: "http://10.7.201.83:8080/graphql",
   cache: new InMemoryCache(),
 });
 
