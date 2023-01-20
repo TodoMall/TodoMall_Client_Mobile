@@ -3,6 +3,9 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { paymentResultData, baseApiUrl } from "../../constants";
 import { Loader, ThinText, BorderText, Header } from "../global";
 import { RedirectByAuthStatus } from "../../utils";
+import { useQuery, useMutation } from "@apollo/client";
+import { VERIFY_ORDER } from "./fetching/mutations/requestPurchase";
+import { GET_PAID_PRODUCT } from "./fetching/queries/getPaidProduct";
 
 import styled from "styled-components";
 import axios from "axios";
@@ -11,7 +14,7 @@ const PaymentResultPage = () => {
   const { userid } = { ...localStorage };
   const { productId } = useParams();
   const { search } = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const [paymentResponse, setPaymentResponse] = useState(null);
   const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
   const queryString = new URLSearchParams(search);
@@ -22,49 +25,70 @@ const PaymentResultPage = () => {
   if (!imp_success) {
     error_msg = queryString.get("error_msg");
   }
+  const [verifyOrder, { data, loading, error: isError }] = useMutation(
+    VERIFY_ORDER,
+    {
+      variables: { impUid: imp_uid, merchantUid: merchant_uid },
+    }
+  );
+  // const { data: paidProduct, error: isError } = useQuery(GET_PAID_PRODUCT, {
+  //   variables: { id: productId },
+  // });
 
   const requestPaymentToServer = async () => {
     try {
-      const { data } = await axios.post(`${baseApiUrl}payment/${productId}`, {
-        headers: { "Content-Type": "application/json" },
-        data: { imp_uid, merchant_uid },
+      const { data } = await verifyOrder({
+        context: {
+          headers: {
+            "Content-Type": "application/json",
+            "Hasura-Client-Name": "hasura-console",
+            "x-hasura-admin-secret": "qwer1234",
+          },
+        },
       });
-      if (data?.status === "success" && imp_success) {
-        setPaymentResponse(data?.response);
+      if (data && imp_success) {
+        console.log("isVerify{data} : ", data);
         setIsPaymentSuccess(true);
-        registerProductToUser();
+        // registerProductToUser();
       }
-      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("isError : ", JSON.stringify(isError, null, 2));
     }
   };
 
-  const registerProductToUser = async () => {
-    try {
-      await axios.post(`${baseApiUrl}user/product`, {
-        productId: productId,
-        userId: userid,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const registerProductToUser = async () => {
+  //   try {
+  //     await axios.post(`${baseApiUrl}user/product`, {
+  //       productId: productId,
+  //       userId: userid,
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    requestPaymentToServer();
-  }, []);
-
-  const navigate = useNavigate();
   const PAYMENT_STATUS = isPaymentSuccess ? "success" : "fail";
   const price = paymentResponse?.price.toLocaleString();
 
   const { title, iconPath, notice, locationGuideText } =
     paymentResultData[PAYMENT_STATUS];
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    requestPaymentToServer();
+  }, []);
+
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
+  // console.log(JSON.stringify(isError, null, 2));
+  // if (isError) {
+  //   return (
+  //     <>
+  //       <h1>Error</h1>
+  //       <p>{isError.message}</p>
+  //     </>
+  //   );
+  // }
 
   return (
     <Wrapper>
@@ -132,7 +156,9 @@ const PaymentResultPage = () => {
       )}
       <Button
         onClick={() =>
-          navigate(isPaymentSuccess ? "/todobox" : `/payment/${productId}`)
+          navigate(
+            isPaymentSuccess ? "/todobox" : `/detail/purchase/${productId}`
+          )
         }
       >
         <p>{locationGuideText}</p>
@@ -140,6 +166,8 @@ const PaymentResultPage = () => {
     </Wrapper>
   );
 };
+
+export default PaymentResultPage;
 
 const Wrapper = styled.div`
   display: flex;
@@ -191,4 +219,3 @@ const MoveTodoMallButton = styled(Button)`
     color: #6b47fd;
   }
 `;
-export default PaymentResultPage;
