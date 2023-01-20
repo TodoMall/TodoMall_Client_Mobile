@@ -167,20 +167,6 @@ const ModalButton = styled.div`
   width: calc(100% - 29px);
 `;
 
-const CancelButton = styled.div`
-  height: 60px;
-  border-radius: 30px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  font-size: 18px;
-  margin-top: 40px;
-  text-align: center;
-  background: #ededed;
-  border: 1px solid #ededed;
-  width: 45%;
-`;
-
 const ModalImage = styled.img`
   width: 80%;
   max-width: ${MAX_WIDTH};
