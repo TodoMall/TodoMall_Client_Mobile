@@ -9,4 +9,5 @@ export { default as Divider } from "./Divider";
 export { default as Header } from "./Header";
 export { default as Loader } from "./Loader";
 export { default as UserImageProfile } from "./UserImageProfile";
+export { default as LoginModal } from "./LoginModal";
 export { IconDict } from "./Icon";
