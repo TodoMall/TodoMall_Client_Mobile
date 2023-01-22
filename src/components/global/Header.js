@@ -37,7 +37,7 @@ const Container = styled.div`
   background-color: #fbfbfb;
   position: fixed;
   top: -2px;
-  z-index: 9999;
+  z-index: 9;
 `;
 
 const BackArrow = styled.img`
