@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loader } from "../global";
 import { MAX_WIDTH, baseApiUrl } from "../../constants";
+import { RedirectByAuthStatus } from "../../utils";
 
 const TodoDetail = () => {
   const userId = localStorage.getItem("userid");
@@ -64,6 +65,7 @@ const TodoDetail = () => {
   }
   return (
     <Wrapper>
+      <RedirectByAuthStatus />
       <Header title={`${data.title}`} />
       <Progress
         squared

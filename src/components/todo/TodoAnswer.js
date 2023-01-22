@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../global/Header";
 import { Loader } from "../global";
+import { RedirectByAuthStatus } from "../../utils";
 
 const TodoAnswer = () => {
   const params = useParams();
@@ -27,6 +28,7 @@ const TodoAnswer = () => {
 
   return (
     <>
+      <RedirectByAuthStatus />
       <Header />
       <TodoAnswerContainer>
         <TodoAnswerTitle>
