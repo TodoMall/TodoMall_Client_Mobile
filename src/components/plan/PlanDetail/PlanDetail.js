@@ -7,15 +7,20 @@ import PlanThird from "./PlanThird";
 import PlanCurriculum from "./PlanCurriculum";
 import { useNavigate, useParams } from "react-router-dom";
 import { MAX_WIDTH, baseApiUrl } from "../../../constants";
-import { Layout, Divider, Loader } from "../../global";
+import { Layout, Divider, Loader, LoginModal } from "../../global";
+import { useModal } from "../../../utils";
 import useAxios from "axios-hooks";
 
 const PlanDetail = () => {
-  const [isLogin] = useState(!!localStorage.getItem("access"));
-  const email = localStorage.getItem("email");
-  const [duplicate, setDuplicate] = useState(false);
-  const navigate = useNavigate();
+  const { access, email } = { ...localStorage };
   const { productId } = useParams();
+  const navigate = useNavigate();
+  const [isLogin] = useState(Boolean(access));
+  const [duplicate, setDuplicate] = useState(false);
+  const [{ data: product, loading: isLoading }] = useAxios(
+    `${baseApiUrl}products?id=${productId}`
+  );
+  const [{ data: userProduct }] = useAxios(`${baseApiUrl}user?email=${email}`);
 
   const sendToPurchasePage = () => {
     if (!isLogin) {
@@ -25,17 +30,13 @@ const PlanDetail = () => {
       navigate(`/detail/purchase/${productId}/`);
     }
   };
-
-  const [{ data: product, loading: isLoading }] = useAxios(
-    `${baseApiUrl}products?id=${productId}`
-  );
-  const [{ data: userProduct }] = useAxios(`${baseApiUrl}user?email=${email}`);
+  const { isVisible, isGuest, handleVisibleState } = useModal(false);
 
   const checkDuplicate = (data) => {
-    const temp = data.filter(
+    const duplicatedProduct = data.filter(
       (product) => product.productId === productId && product.status === false
     );
-    return temp.length > 0;
+    return duplicatedProduct.length > 0;
   };
 
   useEffect(() => {
@@ -53,6 +54,12 @@ const PlanDetail = () => {
 
   return (
     <Container>
+      {isVisible && (
+        <LoginModal
+          isVisible={isVisible && isGuest}
+          onToggle={handleVisibleState}
+        />
+      )}
       <Layout currentPage="결제하기">
         {isLoading ? (
           <Loader />
@@ -81,12 +88,14 @@ const PlanDetail = () => {
         )}
 
         <Footer>
-          {duplicate ? (
+          {duplicate && (
             <BuyButton disabled>이미 도전중인 클래스입니다</BuyButton>
-          ) : (
-            <BuyButton onClick={sendToPurchasePage} id="download_button">
-              클래스 도전하기
-            </BuyButton>
+          )}
+          {!isGuest && !duplicate && (
+            <BuyButton onClick={sendToPurchasePage}>클래스 도전하기</BuyButton>
+          )}
+          {isGuest && (
+            <BuyButton onClick={handleVisibleState}>클래스 도전하기</BuyButton>
           )}
         </Footer>
       </Layout>

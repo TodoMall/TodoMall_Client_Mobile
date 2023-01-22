@@ -2,8 +2,16 @@ import useAxios from "axios-hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { baseApiUrl } from "../../../constants";
-import { Loader, BottomNavBar, ThinText, Header } from "../../global";
+import {
+  Loader,
+  BottomNavBar,
+  ThinText,
+  Header,
+  LoginModal,
+} from "../../global";
+
 import TodoBoxContent from "./TodoBoxContent";
+import { useModal } from "../../../utils";
 
 const TodoBox = () => {
   const [email] = useState(localStorage.getItem("email"));
@@ -38,6 +46,8 @@ const TodoBox = () => {
     return temp_plans;
   };
 
+  const { isVisible, isGuest, handleVisibleState } = useModal();
+
   useEffect(() => {
     if (data) {
       setPlans(handlePlan(data?.ownProducts));
@@ -46,6 +56,10 @@ const TodoBox = () => {
 
   return (
     <>
+      <LoginModal
+        isVisible={isGuest && isVisible}
+        onToggle={handleVisibleState}
+      />
       <Header image={"/images/Logo.png"} containerHeight="48px" />
       {isLoading ? (
         <Loader />

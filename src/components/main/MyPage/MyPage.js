@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import MyTodoItem from "./MyTodoItem";
 import {
   Loader,
   BottomNavBar,
@@ -10,27 +8,48 @@ import {
   BorderText,
   ThinText,
   Divider,
+  LoginModal,
 } from "../../global";
+import MyTodoItem from "./MyTodoItem";
 import { baseApiUrl } from "../../../constants";
-import { setProductStatus, productFilter } from "../../../utils";
+import { setProductStatus, productFilter, useModal } from "../../../utils";
 import useAxios from "axios-hooks";
 import dayjs from "dayjs";
+import styled from "styled-components";
 
 const MyPage = () => {
+  const { name, email, image } = { ...localStorage };
   const navigate = useNavigate();
   const [products, setproducts] = useState();
-  const { name, email, image } = { ...localStorage };
   const [{ data, isLoading }] = useAxios(`${baseApiUrl}user?email=${email}`);
   const { SuccessProducts, failProducts, inProgressProducts } =
     productFilter(products);
-  const classesInfo = [
+
+  const { isVisible, isGuest, handleVisibleState } = useModal();
+
+  const sortingProduct = (products) => {
+    return products?.ownProducts
+      ?.sort((prev, next) => {
+        return dayjs(prev.sessions[0].startDate).diff(
+          next.sessions[0].startDate
+        );
+      })
+      ?.reverse();
+  };
+
+  const productInfo = [
     {
       id: 1,
       status: "성공",
       identifier: "success",
       count: SuccessProducts?.length,
     },
-    { id: 2, status: "실패", identifier: "fail", count: failProducts?.length },
+    {
+      id: 2,
+      status: "실패",
+      identifier: "fail",
+      count: failProducts?.length,
+    },
     {
       id: 3,
       status: "진행",
@@ -41,13 +60,7 @@ const MyPage = () => {
 
   useEffect(() => {
     if (data) {
-      const formattedProducts = data?.ownProducts
-        ?.sort((prev, next) => {
-          return dayjs(prev.sessions[0].startDate).diff(
-            next.sessions[0].startDate
-          );
-        })
-        ?.reverse();
+      const formattedProducts = sortingProduct(data);
       setproducts(formattedProducts);
     }
   }, [data]);
@@ -69,45 +82,49 @@ const MyPage = () => {
 
   return (
     <Wrapper>
+      <LoginModal
+        isVisible={isGuest && isVisible}
+        onToggle={handleVisibleState}
+      />
       <Container>
         <Header image={"/images/Logo.png"} containerHeight="48px" />
-        <ImageWrapper>
-          <div style={{ width: "64px", height: "64px" }}>
+        <UserInfoContainer>
+          <ImageWrapper>
             <UserImageProfile
-              image={image}
+              image={isGuest ? "/images/guest_profile.svg" : image}
               isProgress={!!products}
               width="64px"
               height="64px"
               isShowSettingIcon={true}
               onClick={handleSettingPage}
             />
-          </div>
+          </ImageWrapper>
           <BorderText
             width="auto"
             textAlign="center"
             fontSize="16px"
             lineHeight="24px"
-            fontWeight="600"
+            fontWeight={isGuest ? "500" : "600"}
             margin="8px 0 0 0 "
           >
-            {name}
+            {isGuest ? "로그인 후 이용해주세요" : name}
           </BorderText>
           <ThinText width="auto" textAlign="center">
-            {email}
+            {isGuest ? "-" : email}
           </ThinText>
-        </ImageWrapper>
+        </UserInfoContainer>
         <ProgressInfo>
-          {classesInfo.map((el) => {
+          {productInfo.map((el) => {
             return (
-              <Classes
+              <Products
                 key={el.id}
                 onClick={() => handleDashboard(el.identifier)}
               >
-                <ClassStatus>
+                <ProductStatus>
                   <ThinText width="auto" textAlign="center">
                     {el.status}&nbsp;클래스
                   </ThinText>
-                </ClassStatus>
+                </ProductStatus>
                 <BorderText
                   fontSize="18px"
                   fontWeight="700"
@@ -115,9 +132,9 @@ const MyPage = () => {
                   textAlign="center"
                   color={el.status === "진행" ? "#6B47FD" : "#222222"}
                 >
-                  {el.count}
+                  {el.count || 0}
                 </BorderText>
-              </Classes>
+              </Products>
             );
           })}
         </ProgressInfo>
@@ -195,7 +212,7 @@ const MyPage = () => {
   );
 };
 
-const ClassStatus = styled.div`
+const ProductStatus = styled.div`
   width: 100%;
   border-right: 1px solid #dbdbdb;
 `;
@@ -211,13 +228,18 @@ const Body = styled.div`
   background-color: #fafaff;
 `;
 
-const ImageWrapper = styled.div`
+const UserInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 72px;
   width: 100%;
+`;
+
+const ImageWrapper = styled.div`
+  width: 64px;
+  height: 64px;
 `;
 
 const ProgressInfo = styled.div`
@@ -227,7 +249,7 @@ const ProgressInfo = styled.div`
   margin-top: 24px;
 `;
 
-const Classes = styled.div`
+const Products = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
