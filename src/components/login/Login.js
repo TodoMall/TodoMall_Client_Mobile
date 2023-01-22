@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ThinText, BorderText } from "../global";
+import { USER_TYPE } from "../../constants/common";
 
 const Login = () => {
   useEffect(() => {
     const access_token = localStorage.getItem("access");
-    if (access_token) {
+    if (access_token && access_token !== USER_TYPE.GUEST) {
       axios
         .get("https://kapi.kakao.com/v1/user/access_token_info", {
           headers: {
@@ -52,11 +52,14 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const handleGuest = () => {
-    // ...
-  };
   const kakaoLogin = () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&response_type=code`;
+  };
+
+  const handleGuest = () => {
+    localStorage.clear();
+    localStorage.setItem("access", USER_TYPE.GUEST);
+    navigate("/todomall");
   };
 
   return (

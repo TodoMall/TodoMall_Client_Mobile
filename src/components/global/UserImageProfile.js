@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 const UserImageProfile = ({
+  isGuest = false,
   image,
   isProgress,
   width = "52px",
   height = "52px",
-  isShowSettingIcon = false,
   onClick: handleClick = () => {},
+  isShowSettingIcon = false,
 }) => {
   const blue = "rgba(86, 53, 213, 1)";
   const gray = "rgba(219, 219, 219, 1)";
@@ -21,7 +22,7 @@ const UserImageProfile = ({
         height={height}
         onClick={handleClick}
       />
-      {isShowSettingIcon && <SettingIcon alt="" />}
+      {!isGuest && isShowSettingIcon && <SettingIcon alt="" />}
     </>
   );
 };
