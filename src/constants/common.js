@@ -10,3 +10,9 @@ export const COLOR = {
 export const VERSION = "0.1.0 ver";
 
 export const MAX_WIDTH = "500px";
+
+export const USER_TYPE = {
+  MEMBER: "member",
+  ADMIN: "admin",
+  GUEST: "guest",
+};
