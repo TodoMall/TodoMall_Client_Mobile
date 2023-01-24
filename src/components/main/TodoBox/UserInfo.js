@@ -22,7 +22,7 @@ const UserInfo = ({ plans }) => {
             lineHeight="32px"
             color="#6B47FD"
           >
-            {planLength}개의 투두 &nbsp;
+            {planLength}개의 클래스 &nbsp;
           </BorderText>
           <BorderText
             width="auto"
