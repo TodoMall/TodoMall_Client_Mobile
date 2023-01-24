@@ -3,7 +3,14 @@ import styled from "styled-components";
 import { VERSION } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import Modals from "./Modals";
-import { BorderText, Divider, Header, ThinText, LoginModal } from "../global";
+import {
+  CustomizedSwitche,
+  BorderText,
+  Divider,
+  Header,
+  ThinText,
+  LoginModal,
+} from "../global";
 import { useModal } from "../../utils";
 
 const Settings = () => {
@@ -58,6 +65,14 @@ const Settings = () => {
           </ThinText>
         </Row>
         <Divider margin="8px 0" border="1px solid #ededed" height="4px" />
+        <Row>
+          <CustomBorderText>마케팅 활용 / 광고성 정보 동의</CustomBorderText>
+          <CustomizedSwitche
+            onToggle={() => {
+              console.log("onToggle");
+            }}
+          />
+        </Row>
         <Row
           onClick={() => {
             navigate("/notice");
