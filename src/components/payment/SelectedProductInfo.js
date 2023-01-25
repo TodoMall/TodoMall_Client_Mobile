@@ -46,7 +46,7 @@ const SelectedProductInfo = ({ isLoading, title, sessions }) => {
         sessions?.map((session) => {
           return (
             <CurriculumWrapper key={session.orderBy}>
-              <BorderText margin="6px 0" textAlign="left">
+              <BorderText width="auto" margin="6px 0" textAlign="left">
                 {session.title}
               </BorderText>
               <DDayIcon bgColor={getColorForDuration(session.duration, false)}>
@@ -62,6 +62,7 @@ const SelectedProductInfo = ({ isLoading, title, sessions }) => {
     </>
   );
 };
+
 const CurriculumWrapper = styled.div`
   display: flex;
   align-items: center;
