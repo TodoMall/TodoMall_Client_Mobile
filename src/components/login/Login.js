@@ -5,6 +5,12 @@ import axios from "axios";
 import { USER_TYPE } from "../../constants/common";
 
 const Login = () => {
+  const handleStorage = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("ID");
+  };
+
   useEffect(() => {
     const access_token = localStorage.getItem("access");
     if (access_token && access_token !== USER_TYPE.GUEST) {
@@ -33,20 +39,14 @@ const Login = () => {
                 navigate("/todobox");
               })
               .catch((err) => {
-                localStorage.removeItem("access");
-                localStorage.removeItem("refresh");
-                localStorage.removeItem("ID");
+                handleStorage();
               });
           } else {
-            localStorage.removeItem("access");
-            localStorage.removeItem("refresh");
-            localStorage.removeItem("ID");
+            handleStorage();
           }
         })
         .catch((err) => {
-          localStorage.removeItem("access");
-          localStorage.removeItem("refresh");
-          localStorage.removeItem("ID");
+          handleStorage();
         });
     }
   });
@@ -57,7 +57,7 @@ const Login = () => {
   };
 
   const handleGuest = () => {
-    localStorage.clear();
+    handleStorage();
     localStorage.setItem("access", USER_TYPE.GUEST);
     navigate("/todomall");
   };
@@ -83,6 +83,7 @@ const GuestAnchor = styled.a`
   letter-spacing: -0.01em;
   text-decoration-line: underline;
   color: #222222;
+  cursor: pointer;
 `;
 
 const Container = styled.div`
