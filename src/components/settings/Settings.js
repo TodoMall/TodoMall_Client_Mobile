@@ -24,9 +24,9 @@ const Settings = () => {
   const handlerLogout = () => setVisibleLogout(true);
   const handlerDelete = () => setVisibleDelete(true);
 
-  const handleTermOfPersonal = () => navigate("personal");
-  const handleTermOfService = () => navigate("service");
-  const handleNotice = () => navigate("notice");
+  const handleTermOfPersonal = () => navigate("/personal");
+  const handleTermOfService = () => navigate("/service");
+  const handleNotice = () => navigate("/notice");
 
   const CustomBorderText = ({ children, isWarning, border }) => {
     return (

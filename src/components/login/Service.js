@@ -400,20 +400,22 @@ word-break: keep-all;
 공고일 : 2023년 1월 1일</pre
 >`;
   const navigate = useNavigate();
-  const { sercice, access } = { ...localStorage };
+  const { service, access } = { ...localStorage };
   const isGuest = access === USER_TYPE.GUEST;
   const handleAgreeTermofService = () => {
     localStorage.setItem("service", true);
     navigate(-1);
   };
 
+  console.log(typeof service, service);
+
   return (
     <Wrapper>
       <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-      {!isGuest && !sercice && (
+      {!isGuest && !(service === "true") && (
         <Button
-          title="제출하기"
+          title="동의하기"
           color="#ffffff"
           margin="40px 0 50px 0"
           onClick={handleAgreeTermofService}

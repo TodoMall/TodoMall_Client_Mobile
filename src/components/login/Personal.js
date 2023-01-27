@@ -204,14 +204,15 @@ export default function Personal() {
     localStorage.setItem("personal", true);
     navigate(-1);
   };
+  console.log(typeof personal, personal);
 
   return (
     <Wrapper>
       <Header title="개인정보처리방침" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-      {!isGuest && !personal && (
+      {!isGuest && !(personal === "true") && (
         <Button
-          title="제출하기"
+          title="동의하기"
           color="#ffffff"
           margin="40px 0 50px 0"
           onClick={handleAgreeTermofPersonal}
