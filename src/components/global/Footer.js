@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Divider from "../global/Divider";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const handleTermOfService = () => navigate("/service");
+  const handleTermOfPersonal = () => navigate("/personal");
   return (
     <Wrapper>
       <FooterIcon src="/images/DarkLogo.png" alt="img error" />
@@ -12,8 +16,15 @@ const Footer = () => {
         maxWidth="100%"
         height="none"
       />
-
       <CompanyInfo>
+        <p onClick={handleTermOfService}>이용약관</p>
+        <p onClick={handleTermOfPersonal}>개인정보처리방침</p>
+        <Divider
+          margin="16px 0"
+          border="1px solid #888888"
+          maxWidth="100%"
+          height="none"
+        />
         <p>마이플랜잇</p>
         <p>사업자등록번호 : 274-12-01980 | 대표 : 최현권</p>
         <p>주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호</p>
@@ -28,7 +39,7 @@ export default Footer;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 212px;
+  height: 289px;
   padding: 24px;
   background: #444444;
 `;

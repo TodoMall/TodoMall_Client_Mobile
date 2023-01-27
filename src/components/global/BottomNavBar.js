@@ -17,10 +17,7 @@ const BottomNavBar = ({ position }) => {
   };
 
   return (
-    <StyledBottomNavBar
-      showLabels
-      style={{ height: "64px", backgroundColor: "#ffffff" }}
-    >
+    <StyledBottomNavBar showLabels>
       <NavBarButton
         icon={<img src={getImageSource(currentLocation, "TODOBOX")} alt="" />}
         onClick={() => {
@@ -56,8 +53,9 @@ const StyledBottomNavBar = styled(BottomNavigation)`
   left: 0;
   right: 0;
   bottom: 0;
-  height: 72px;
+  height: 56px;
   border-top: 1px solid #ededed;
+  background-color: #ffffff;
 `;
 
 const NavBarButton = styled(BottomNavigationAction)``;

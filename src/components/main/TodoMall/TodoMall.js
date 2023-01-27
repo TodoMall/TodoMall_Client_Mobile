@@ -37,7 +37,7 @@ const TodoMall = ({ current, setCurrent }) => {
   }, []);
 
   return (
-    <>
+    <Container>
       <Header current={current} setCurrent={setCurrent} />
       {loading ? (
         <Loader />
@@ -131,10 +131,13 @@ const TodoMall = ({ current, setCurrent }) => {
       )}
 
       <BottomNavBar position={"TODOMALL"} />
-    </>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  padding-bottom: 56px;
+`;
 const Body = styled.div`
   background-color: #f6f8ff;
   padding-top: 100px;
