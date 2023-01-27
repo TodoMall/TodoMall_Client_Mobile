@@ -3,7 +3,7 @@ import { Modal } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Button } from "../global";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -19,9 +19,14 @@ const style = {
 
 const LoginModal = ({ isVisible, onToggle }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
+  const isProductDetail = pathname.includes("/detail/");
   const handleModal = () => {
     onToggle((prev) => !prev);
+    if (!isProductDetail) {
+      navigate("/todomall");
+    }
   };
 
   const handleLogin = () => {
@@ -42,12 +47,14 @@ const LoginModal = ({ isVisible, onToggle }) => {
           <ModalDetail>
             로그인 하시면 투두몰의
             <br />
-            모든 컨텐츠를 확인하실 수 있습니다!
+            {isProductDetail
+              ? "투두 클래스를 시작할 수 있습니다"
+              : "모든 기능을 사용할 수 있습니다!"}
           </ModalDetail>
           <ModalButton>
             <Button
               title="취소"
-              onClick={onToggle}
+              onClick={handleModal}
               width={45}
               borderRadius="20px"
               background="#FFFFFF"
