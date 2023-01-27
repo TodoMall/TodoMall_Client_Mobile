@@ -57,7 +57,7 @@ const Login = () => {
   };
 
   const handleGuest = () => {
-    handleStorage();
+    localStorage.clear();
     localStorage.setItem("access", USER_TYPE.GUEST);
     navigate("/todomall");
   };
