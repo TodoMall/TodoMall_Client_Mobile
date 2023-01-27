@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-export const getOrderStateByOrderNumber = gql`
-  query getOrderStateByOrderNumber($orderNumber: String!) {
-    getOrderStateByOrderNumber(orderNumber: $orderNumber) {
+export const getOrderByOrderNumber = gql`
+  query getOrderByOrderNumber($orderNumber: String!) {
+    getOrderByOrderNumber(orderNumber: $orderNumber) {
       id
       createdAt
       updatedAt

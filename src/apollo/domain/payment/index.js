@@ -3,4 +3,4 @@ export { verifyOrder, createOrder, buyProduct } from "./payment.mutations";
 
 // Queries
 
-export { getOrderStateByOrderNumber, getProductById } from "./payment.queries";
+export { getOrderByOrderNumber, getProductById } from "./payment.queries";
