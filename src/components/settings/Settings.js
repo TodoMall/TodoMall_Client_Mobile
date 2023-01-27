@@ -17,23 +17,23 @@ const Settings = () => {
   const navigate = useNavigate();
   const { isVisible, isGuest, handleVisibleState } = useModal();
   const [visibleLogout, setVisibleLogout] = useState(false);
-  const handlerLogout = () => setVisibleLogout(true);
-
-  const closeHandlerLogout = () => {
-    setVisibleLogout(false);
-  };
-
   const [visibleDelete, setVisibleDelete] = useState(false);
+
+  const closeHandlerLogout = () => setVisibleLogout(false);
+  const closeHandlerDelete = () => setVisibleDelete(false);
+  const handlerLogout = () => setVisibleLogout(true);
   const handlerDelete = () => setVisibleDelete(true);
 
-  const closeHandlerDelete = () => {
-    setVisibleDelete(false);
-  };
+  const handleTermOfPersonal = () => navigate("personal");
+  const handleTermOfService = () => navigate("service");
+  const handleNotice = () => navigate("notice");
 
-  const CustomBorderText = ({ children, isWarning }) => {
+  const CustomBorderText = ({ children, isWarning, border }) => {
     return (
       <BorderText
+        width="auto"
         lineHeight="24px"
+        fontWeight={border ? 700 : null}
         fontSize="16px"
         textAlign="left"
         color={isWarning ? "#FF4D4F" : "#222222"}
@@ -67,17 +67,9 @@ const Settings = () => {
         <Divider margin="8px 0" border="1px solid #ededed" height="4px" />
         <Row>
           <CustomBorderText>마케팅 활용 / 광고성 정보 동의</CustomBorderText>
-          <CustomizedSwitche
-            onToggle={() => {
-              console.log("onToggle");
-            }}
-          />
+          <CustomizedSwitche onToggle={() => {}} />
         </Row>
-        <Row
-          onClick={() => {
-            navigate("/notice");
-          }}
-        >
+        <Row onClick={handleNotice}>
           <CustomBorderText>공지사항</CustomBorderText>
           <DetailIcon />
         </Row>
@@ -87,20 +79,12 @@ const Settings = () => {
             <DetailIcon />
           </Row>
         </a>
-        <Row
-          onClick={() => {
-            navigate("/service");
-          }}
-        >
-          <CustomBorderText>이용약관</CustomBorderText>
+        <Row onClick={handleTermOfService}>
+          <CustomBorderText border={true}>이용약관</CustomBorderText>
           <DetailIcon />
         </Row>
-        <Row
-          onClick={() => {
-            navigate("/personal");
-          }}
-        >
-          <CustomBorderText>개인정보 처리방침</CustomBorderText>
+        <Row onClick={handleTermOfPersonal}>
+          <CustomBorderText border={true}>개인정보처리방침</CustomBorderText>
           <DetailIcon />
         </Row>
         {!isGuest && (
