@@ -60,7 +60,7 @@ const PlanDetail = () => {
           onToggle={handleVisibleState}
         />
       )}
-      <Layout currentPage="결제하기">
+      <Layout currentPage={product?.title}>
         {isLoading ? (
           <Loader />
         ) : (
