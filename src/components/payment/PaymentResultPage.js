@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { paymentResultData, ORDER_STATE } from "../../constants";
+import {
+  paymentResultData,
+  ORDER_STATE,
+  PaymentMethods,
+} from "../../constants";
 import { Loader, ThinText, BorderText, Header } from "../global";
 import { RedirectByAuthStatus } from "../../utils";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   verifyOrder,
   buyProduct,
-  getOrderStateByOrderNumber,
+  getOrderByOrderNumber,
 } from "../../apollo/domain/payment";
-import styled from "styled-components";
 import dayjs from "dayjs";
+import styled from "styled-components";
 
 const PaymentResultPage = () => {
   const { productId } = useParams();
@@ -18,6 +22,8 @@ const PaymentResultPage = () => {
   const navigate = useNavigate();
 
   const [isPaidSuccess, setIsPaidSuccess] = useState(false);
+  const [orderByOrderNumberOutput, setOrderByOrderNumberOutput] =
+    useState(null);
 
   const queryString = new URLSearchParams(search);
   const imp_success = JSON.parse(queryString.get("imp_success"));
@@ -32,52 +38,43 @@ const PaymentResultPage = () => {
 
   const [verifyOrderFunc, { loading: isLoading }] = useMutation(verifyOrder, {
     variables: { impUid, merchantUid },
-    onCompleted: ({ verifyOrder: { state } }) => {
-      setIsPaidSuccess(state === ORDER_STATE.SUCCESS);
-    },
-    onError: (error) => {
-      console.log("verify order error : ", JSON.stringify(error, null, 2));
+    onCompleted: (data) => {
+      setIsPaidSuccess(data.verifyOrder.state === ORDER_STATE.SUCCESS);
     },
   });
 
   const [buyProductFunc] = useMutation(buyProduct, {
     variables: {
-      // productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
-      // memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
-      // orderNumber: "ORD2023125-000059",
-      productId: productId,
-      memberId: memberId,
+      productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
+      memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
+      // productId: productId,
+      // memberId: memberId,
       orderNumber: merchantUid,
-    },
-    onCompleted: (data) => {
-      console.log("buyProductOutput : ", data);
-    },
-    onError: (err) => {
-      console.log("buyProduct Error : ", err);
     },
   });
 
-  // FIXME: should be replace to -> const { data: orderedInfoOutput } = useQuery(getOrderStateByOrderNumber);
-  const orderedInfoOutput = {
-    updatedAt: dayjs().format("YYYY.MM.DD HH:mm:ss"),
-    member: {
-      name: "김상혁",
+  const { data: orderByOrderNumber } = useQuery(getOrderByOrderNumber, {
+    variables: {
+      orderNumber: merchantUid,
     },
-    product: {
-      price: 1,
-    },
-    card_name: "신한카드",
-  };
+  });
 
   const { title, iconPath, notice, locationGuideText } =
     paymentResultData[isPaidSuccess ? "success" : "fail"];
 
   useEffect(() => {
     verifyOrderFunc();
+    if (orderByOrderNumber) {
+      setOrderByOrderNumberOutput(orderByOrderNumber.getOrderByOrderNumber);
+    }
     if (isPaidSuccess && imp_success) {
       buyProductFunc();
     }
-  }, [isPaidSuccess]);
+  }, [isPaidSuccess, orderByOrderNumber]);
+
+  const fotmattedPgProvider = PaymentMethods.find(
+    (el) => el.name === orderByOrderNumberOutput?.pgProvider
+  );
 
   const PaymentInfoRowItem = ({ label, content }) => {
     return (
@@ -125,19 +122,21 @@ const PaymentResultPage = () => {
         <PaymentInfoBox>
           <PaymentInfoRowItem
             label={"결제 금액"}
-            data={`${orderedInfoOutput.product.price}원`}
+            content={`${orderByOrderNumberOutput?.product?.price}원`}
           />
           <PaymentInfoRowItem
             label={"사용자"}
-            data={orderedInfoOutput.member.name}
+            content={orderByOrderNumberOutput?.member?.name}
           />
           <PaymentInfoRowItem
             label={"결제 방법"}
-            data={orderedInfoOutput.card_name}
+            content={fotmattedPgProvider?.description}
           />
           <PaymentInfoRowItem
             label={"결제 일시"}
-            data={orderedInfoOutput.updatedAt}
+            content={dayjs(orderByOrderNumberOutput?.createdAt).format(
+              `YYYY.MM.DD HH:mm:ss`
+            )}
           />
         </PaymentInfoBox>
       )}

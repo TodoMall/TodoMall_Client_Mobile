@@ -27,7 +27,8 @@ const PaymentPage = () => {
     getProductById,
     {
       variables: {
-        id: productId,
+        // id: productId,
+        id: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
       },
       onCompleted: ({ getProductById }) => {
         setProductByIdOutput(getProductById);
@@ -40,18 +41,17 @@ const PaymentPage = () => {
 
   const [getOrderNumber] = useMutation(createOrder, {
     variables: {
-      // productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
-      // memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
-      // creatorId: "52b28932-7b60-42e2-890d-89f4dc66bfc0",
-      productId: productId,
-      memberId: memberId,
+      productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
+      memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
+      // productId: productId,
+      // memberId: memberId,
       creatorId: productByIdOutput?.creator.id,
     },
     onCompleted: ({ createOrder }) => {
       setOrderNumber(createOrder.orderNumber);
     },
     onError: (error) => {
-      console.error("onError : ", error.message);
+      console.error("onError : ", error);
     },
   });
 
