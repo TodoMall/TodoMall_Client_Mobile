@@ -10,6 +10,7 @@ const Agreement = () => {
   const [isServiceOn, setIsServiceOn] = useState(!!service);
   const [isPersonalOn, setIsPersonalOn] = useState(!!personal);
   const [isMarketingOn, setIsMarketingOn] = useState(false);
+  const [isOverTeenager, setIsOverTeenager] = useState(false);
 
   const TOGGLE_BUTTON_OFF = "/images/toggle_button_off.svg";
   const TOGGLE_BUTTON_ON = "/images/toggle_button_on.svg";
@@ -20,15 +21,39 @@ const Agreement = () => {
     navigate("/todobox");
   };
 
-  const handleCheckService = () => {
-    setIsServiceOn((prevState) => !prevState);
-  };
-  const handleCheckPersonal = () => {
-    setIsPersonalOn((prevState) => !prevState);
-  };
-
-  const handleCheckMarketing = () => {
+  const handleCheckService = () => setIsServiceOn((prevState) => !prevState);
+  const handleCheckPersonal = () => setIsPersonalOn((prevState) => !prevState);
+  const handleCheckOverTeenager = () =>
+    setIsOverTeenager((prevState) => !prevState);
+  const handleCheckMarketing = () =>
     setIsMarketingOn((prevState) => !prevState);
+
+  const handleService = () => navigate("/service");
+  const handlePersonal = () => navigate("/personal");
+
+  const AgreementItem = ({
+    handleState,
+    state,
+    description,
+    handlePage,
+    isLast = false,
+  }) => {
+    return (
+      <>
+        <ItemWrapper>
+          <Item>
+            <CheckIcon
+              onClick={handleState}
+              src={state ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
+            />
+            <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
+            <p>{description}</p>
+            {handlePage && <ArrowIcon onClick={handleService} />}
+          </Item>
+        </ItemWrapper>
+        {!isLast && <hr style={{ opacity: 0.3 }} />}
+      </>
+    );
   };
 
   return (
@@ -43,51 +68,29 @@ const Agreement = () => {
       </Body>
       <Footer>
         <Table>
-          <ItemWrapper>
-            <Item>
-              <CheckIcon
-                onClick={handleCheckService}
-                src={isServiceOn ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
-              />
-              <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
-              <p> 서비스 이용약관 동의</p>
-            </Item>
-            <ArrowIcon
-              onClick={() => {
-                navigate("/service");
-              }}
-            />
-          </ItemWrapper>
-          <hr style={{ opacity: 0.3 }} />
-          <ItemWrapper>
-            <Item>
-              <CheckIcon
-                onClick={handleCheckPersonal}
-                src={isPersonalOn ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
-              />
-              <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
-              <p> 개인정보 처리방침 동의</p>
-            </Item>
-            <ArrowIcon
-              onClick={() => {
-                navigate("/personal");
-              }}
-            />
-          </ItemWrapper>
-
-          <hr style={{ opacity: 0.3 }} />
-
-          <ItemWrapper>
-            <Item>
-              <CheckIcon
-                onClick={handleCheckMarketing}
-                src={isMarketingOn ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
-              />
-              <p style={{ color: "#6B47FD", marginRight: "5px" }}>(선택) </p>
-              <p> 마케팅 활용 / 광고성 정보 동의</p>
-            </Item>
-            <ArrowIcon onClick={() => {}} />
-          </ItemWrapper>
+          <AgreementItem
+            handleState={handleCheckService}
+            state={isServiceOn}
+            description={"서비스 이용약관 동의"}
+            handlePage={handleService}
+          />
+          <AgreementItem
+            handleState={handleCheckPersonal}
+            state={isPersonalOn}
+            description={"개인정보 처리방침 동의"}
+            handlePage={handlePersonal}
+          />
+          <AgreementItem
+            handleState={handleCheckOverTeenager}
+            state={isOverTeenager}
+            description={"만 14세 이상입니다"}
+          />
+          <AgreementItem
+            handleState={handleCheckMarketing}
+            state={isMarketingOn}
+            description={"마케팅 활용 / 광고성 정보 동의"}
+            isLast={true}
+          />
         </Table>
 
         {isPersonalOn && isServiceOn ? (
@@ -135,7 +138,7 @@ const BodyImage = styled.img`
   height: 250px;
   margin: auto;
   position: fixed;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -58%);
   content: url("/images/agreement_image.svg");
