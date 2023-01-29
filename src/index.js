@@ -6,16 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
 import { ScrollToTop } from "./utils";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { API_ENDPOINT, isProd } from "./constants";
 
-if (process.env.REACT_APP_NODE_ENV === "development") {
+if (!isProd) {
   worker.start({
     onUnhandledRequest: "bypass",
   });
 }
 
 const client = new ApolloClient({
-  // TODO : process.env.REACT_APP_GRAPHQL_DEV_SERVER,
-  uri: "http://10.7.201.83:8080/graphql",
+  uri: API_ENDPOINT,
   cache: new InMemoryCache(),
 });
 
