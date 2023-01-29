@@ -3,15 +3,14 @@ import gql from "graphql-tag";
 export const getOrderByOrderNumber = gql`
   query getOrderByOrderNumber($orderNumber: String!) {
     getOrderByOrderNumber(orderNumber: $orderNumber) {
-      id
-      createdAt
-      updatedAt
-      member {
-        name
-      }
+      pgProvider
       product {
         price
       }
+      member {
+        name
+      }
+      createdAt
     }
   }
 `;
