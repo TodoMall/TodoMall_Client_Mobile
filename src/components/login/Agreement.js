@@ -36,6 +36,7 @@ const Agreement = () => {
     state,
     description,
     handlePage,
+    optionDescription = "필수",
     isLast = false,
   }) => {
     return (
@@ -46,7 +47,9 @@ const Agreement = () => {
               onClick={handleState}
               src={state ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
             />
-            <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
+            <p style={{ color: "#6B47FD", marginRight: "5px" }}>
+              ({optionDescription})
+            </p>
             <p>{description}</p>
           </Item>
           {handlePage && <ArrowIcon onClick={handlePage} />}
@@ -89,6 +92,7 @@ const Agreement = () => {
             handleState={handleCheckMarketing}
             state={isMarketingOn}
             description={"마케팅 활용 / 광고성 정보 동의"}
+            optionDescription={"선택"}
             isLast={true}
           />
         </Table>
