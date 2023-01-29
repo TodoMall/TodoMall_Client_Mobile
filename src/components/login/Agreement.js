@@ -48,8 +48,8 @@ const Agreement = () => {
             />
             <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
             <p>{description}</p>
-            {handlePage && <ArrowIcon onClick={handleService} />}
           </Item>
+          {handlePage && <ArrowIcon onClick={handlePage} />}
         </ItemWrapper>
         {!isLast && <hr style={{ opacity: 0.3 }} />}
       </>
@@ -159,7 +159,7 @@ const Footer = styled.div`
 
 const Table = styled.div`
   max-width: 380px;
-  width: 90vw;
+  width: 100%;
   margin-bottom: 30px;
 `;
 
