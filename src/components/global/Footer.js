@@ -17,7 +17,7 @@ const Footer = () => {
         height="none"
       />
       <CompanyInfo>
-        <p style={{ margin: "4px 0" }} sonClick={handleTermOfService}>
+        <p style={{ margin: "4px 0" }} onClick={handleTermOfService}>
           이용약관
         </p>
         <p style={{ margin: "4px 0" }} onClick={handleTermOfPersonal}>
