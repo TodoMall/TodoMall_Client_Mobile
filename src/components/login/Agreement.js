@@ -37,25 +37,22 @@ const Agreement = () => {
     description,
     handlePage,
     optionDescription = "필수",
-    isLast = false,
+    optionDescriptionColor = "#6B47FD",
   }) => {
     return (
-      <>
-        <ItemWrapper>
-          <Item>
-            <CheckIcon
-              onClick={handleState}
-              src={state ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
-            />
-            <p style={{ color: "#6B47FD", marginRight: "5px" }}>
-              ({optionDescription})
-            </p>
-            <p>{description}</p>
-          </Item>
-          {handlePage && <ArrowIcon onClick={handlePage} />}
-        </ItemWrapper>
-        {!isLast && <hr style={{ opacity: 0.3 }} />}
-      </>
+      <ItemWrapper>
+        <Item>
+          <CheckIcon
+            onClick={handleState}
+            src={state ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
+          />
+          <p style={{ color: optionDescriptionColor, marginRight: "5px" }}>
+            ({optionDescription})
+          </p>
+          <p>{description}</p>
+        </Item>
+        {handlePage && <ArrowIcon onClick={handlePage} />}
+      </ItemWrapper>
     );
   };
 
@@ -94,6 +91,7 @@ const Agreement = () => {
             description={"마케팅 활용 / 광고성 정보 동의"}
             optionDescription={"선택"}
             isLast={true}
+            optionDescriptionColor={"#666666"}
           />
         </Table>
 

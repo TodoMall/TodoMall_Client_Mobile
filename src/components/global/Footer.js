@@ -17,8 +17,12 @@ const Footer = () => {
         height="none"
       />
       <CompanyInfo>
-        <p onClick={handleTermOfService}>이용약관</p>
-        <p onClick={handleTermOfPersonal}>개인정보처리방침</p>
+        <p style={{ margin: "4px 0" }} sonClick={handleTermOfService}>
+          이용약관
+        </p>
+        <p style={{ margin: "4px 0" }} onClick={handleTermOfPersonal}>
+          개인정보처리방침
+        </p>
         <Divider
           margin="16px 0"
           border="1px solid #888888"

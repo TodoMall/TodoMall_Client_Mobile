@@ -65,6 +65,7 @@ const LoginModal = ({ isVisible, onToggle }) => {
             <Button
               title="로그인"
               width={45}
+              border="#1890FF"
               borderRadius="20px"
               background="#1890FF"
               onClick={handleLogin}
