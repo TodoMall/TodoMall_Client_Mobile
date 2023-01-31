@@ -97,7 +97,7 @@ const Agreement = () => {
           />
         </Table>
 
-        {isPersonalOn && isServiceOn ? (
+        {isPersonalOn && isServiceOn && isOverTeenager ? (
           <Button onClick={handleSubmit}>제출하기</Button>
         ) : (
           <Button bgcolor="#ededed" color="#888888">
