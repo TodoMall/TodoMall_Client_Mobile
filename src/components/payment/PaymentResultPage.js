@@ -94,7 +94,7 @@ const PaymentResultPage = () => {
   return (
     <Wrapper>
       <RedirectByAuthStatus />
-      <Header title={title} />
+      <Header title={title} backIcon={false} />
       <Icon src={iconPath} alt="" />
       <BorderText
         width="90%"

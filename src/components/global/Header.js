@@ -2,23 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ title, image, containerHeight = "56px" }) => {
+const Header = ({
+  title,
+  image,
+  backIcon = true,
+  containerHeight = "56px",
+}) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(-1);
   };
   return (
     <Container containerHeight={containerHeight}>
-      {title && (
-        <>
-          <BackArrow
-            src="/images/arrowbackIcon.png"
-            alt=""
-            onClick={handleNavigate}
-          />
-          <HeaderTitle>{title}</HeaderTitle>
-        </>
+      {title && backIcon && (
+        <BackArrow
+          src="/images/arrowbackIcon.png"
+          alt=""
+          onClick={handleNavigate}
+        />
       )}
+      {title && <HeaderTitle>{title}</HeaderTitle>}
       {image && <HeaderImage src={image} alt="" />}
     </Container>
   );
