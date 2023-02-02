@@ -6,7 +6,7 @@ import Divider from "../global/Divider";
 import Loader from "../global/Loader";
 import styled from "styled-components";
 
-const SelectedClassInfo = ({ isLoading, title, sessions }) => {
+const SelectedProductInfo = ({ isLoading, title, sessions }) => {
   const getColorForDuration = (duration, isText = false) => {
     let color;
     switch (true) {
@@ -46,7 +46,7 @@ const SelectedClassInfo = ({ isLoading, title, sessions }) => {
         sessions?.map((session) => {
           return (
             <CurriculumWrapper key={session.orderBy}>
-              <BorderText margin="6px 0" textAlign="left">
+              <BorderText width="auto" margin="6px 0" textAlign="left">
                 {session.title}
               </BorderText>
               <DDayIcon bgColor={getColorForDuration(session.duration, false)}>
@@ -62,6 +62,7 @@ const SelectedClassInfo = ({ isLoading, title, sessions }) => {
     </>
   );
 };
+
 const CurriculumWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -87,4 +88,4 @@ const DDayIconText = styled.p`
   font-family: "Pretendard";
 `;
 
-export default SelectedClassInfo;
+export default SelectedProductInfo;

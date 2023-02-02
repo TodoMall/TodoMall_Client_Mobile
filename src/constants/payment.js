@@ -1,5 +1,9 @@
-export const Success = "success";
-export const Fail = "fail";
+export const ORDER_STATE = {
+  READY: "READY",
+  SUCCESS: "SUCCESS",
+  PAID: "PAID",
+  CANCEL: "CANCEL",
+};
 
 export const PaymentMethods = [
   {

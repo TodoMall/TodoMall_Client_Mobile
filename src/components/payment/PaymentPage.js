@@ -1,30 +1,63 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import useAxios from "axios-hooks";
 
-import { PaymentMethods, baseApiUrl } from "../../constants";
+import { PaymentMethods } from "../../constants";
 import { RedirectByAuthStatus } from "../../utils";
 
 import PaymentAmountInfo from "./PaymentAmountInfo";
 import PayerInfo from "./PayerInfo";
 import TermsOfServiceSection from "./TermsOfServiceSection";
-import SelectedClassInfo from "./SelectedClassInfo";
+import SelectedProductInfo from "./SelectedProductInfo";
 import PaymentMethodList from "./PaymentMethodList";
 import { Loader, Layout } from "../global";
+import { useQuery, useMutation } from "@apollo/client";
+import { createOrder, getProductById } from "../../apollo/domain/payment";
 
 const PaymentPage = () => {
-  const { name, email, image } = { ...localStorage };
+  const { name, email, image, userid: memberId } = { ...localStorage };
+
+  const { productId } = useParams();
+
   const [payMethod, setPaymentMethod] = useState(null);
-  const navigate = useNavigate();
-  const { planid } = useParams();
-  const [{ data: product, loading: isLoading }] = useAxios(
-    `${baseApiUrl}products?id=${planid}`
+  const [orderNumber, setOrderNumber] = useState(null);
+  const [productByIdOutput, setProductByIdOutput] = useState(null);
+
+  const { data: getProductByIdOutput, loading: isLoading } = useQuery(
+    getProductById,
+    {
+      variables: {
+        // id: productId,
+        id: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
+      },
+      onCompleted: ({ getProductById }) => {
+        setProductByIdOutput(getProductById);
+      },
+      onError: (err) => {
+        console.log("onError :  ", err.message);
+      },
+    }
   );
+
+  const [getOrderNumber] = useMutation(createOrder, {
+    variables: {
+      productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
+      memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
+      // productId: productId,
+      // memberId: memberId,
+      creatorId: productByIdOutput?.creator.id,
+    },
+    onCompleted: ({ createOrder }) => {
+      setOrderNumber(createOrder.orderNumber);
+    },
+    onError: (error) => {
+      console.error("onError : ", error);
+    },
+  });
+
   const paymentData = PaymentMethods.find((el) => el.name === payMethod);
 
-  // todo : price to be replace product.amount
-  const price = Number(product?.amount || 20000).toLocaleString();
+  const fotamttedPrice = Number(productByIdOutput?.price).toLocaleString();
 
   const handleSelectPaymentMethod = (name) => {
     setPaymentMethod(name);
@@ -37,20 +70,25 @@ const PaymentPage = () => {
     const paymentInfo = {
       pg: paymentData.pg,
       pay_method: paymentData.pay_method,
-      merchant_uid: `mid_${new Date().getDate()}`,
-      name: product?.title,
-      amount: product?.amount || 20000,
+      merchant_uid: orderNumber,
+      name: productByIdOutput?.title,
+      amount: productByIdOutput?.price,
       buyer_email: email,
       buyer_name: name,
-      m_redirect_url: `http://localhost:3000/detail/purchase/complete/${planid}`,
+      m_redirect_url: `${window.location.origin}/detail/purchase/complete/${productId}`,
     };
-
     try {
       await IMP.request_pay(paymentInfo);
     } catch (error) {
       alert(error);
     }
   };
+
+  useEffect(() => {
+    if (getProductByIdOutput) {
+      getOrderNumber();
+    }
+  }, [getProductByIdOutput]);
 
   return (
     <Container>
@@ -65,22 +103,25 @@ const PaymentPage = () => {
         </UserInfoWrapper>
 
         <Box>
-          <SelectedClassInfo
+          <SelectedProductInfo
             isLoading={isLoading}
-            title={product?.title}
-            sessions={product?.sessions}
+            title={productByIdOutput?.title}
+            sessions={productByIdOutput?.sessions}
           />
         </Box>
 
         <Box>
-          <PaymentAmountInfo isLoading={isLoading} priceWithComma={price} />
+          <PaymentAmountInfo
+            isLoading={isLoading}
+            priceWithComma={fotamttedPrice}
+          />
         </Box>
 
         <Box>
           <PaymentMethodList onClickPaymentMethod={handleSelectPaymentMethod} />
         </Box>
         <PaymentButton disabled={!payMethod} onClick={handlePurchase}>
-          {price}원 결제하기
+          {fotamttedPrice}원 결제하기
         </PaymentButton>
 
         <TermsOfServiceSection />

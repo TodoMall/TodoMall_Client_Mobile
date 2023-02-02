@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { RedirectByAuthStatus } from "../../utils";
 import Header from "../global/Header";
 
 const TodoSubmitSuccess = () => {
@@ -9,6 +10,7 @@ const TodoSubmitSuccess = () => {
   return (
     <>
       <Header title="" />
+      <RedirectByAuthStatus />
       <TodoSubmitSuccessBody>
         <TodoSubmitSuccessTitle>
           인증이 성공적으로 진행되었어요!

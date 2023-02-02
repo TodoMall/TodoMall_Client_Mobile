@@ -5,16 +5,27 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
 import { ScrollToTop } from "./utils";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { API_ENDPOINT, isProd } from "./constants";
 
-if (process.env.REACT_APP_NODE_ENV === "development") {
-  worker.start();
+if (!isProd) {
+  worker.start({
+    onUnhandledRequest: "bypass",
+  });
 }
+
+const client = new ApolloClient({
+  uri: API_ENDPOINT,
+  cache: new InMemoryCache(),
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <ScrollToTop />
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </BrowserRouter>
 );
 

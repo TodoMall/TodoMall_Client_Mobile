@@ -1,15 +1,24 @@
-import axios from "axios";
+import useAxios from "axios-hooks";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Loader, BottomNavBar } from "../../global";
+import { baseApiUrl } from "../../../constants";
+import {
+  Loader,
+  BottomNavBar,
+  ThinText,
+  Header,
+  LoginModal,
+} from "../../global";
+
 import TodoBoxContent from "./TodoBoxContent";
-import TodoBoxHeader from "./TodoBoxHeader";
+import { useModal } from "../../../utils";
 
 const TodoBox = () => {
-  const [email, setEmail] = useState(localStorage.getItem("email"));
+  const [email] = useState(localStorage.getItem("email"));
   const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [check, setCheck] = useState(false);
+  const [{ data, isLoading }] = useAxios(`${baseApiUrl}user?email=${email}`);
+
   const handlePlan = (plans) => {
     let temp_plans = [];
     plans.forEach((plan) => {
@@ -37,21 +46,22 @@ const TodoBox = () => {
     return temp_plans;
   };
 
+  const { isVisible, isGuest, handleVisibleState } = useModal();
+
   useEffect(() => {
-    const fetch = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user?email=${email}`
-      );
-      setPlans(handlePlan(response.data.ownProducts));
-      setLoading(false);
-    };
-    fetch();
-  }, [check]);
+    if (data) {
+      setPlans(handlePlan(data?.ownProducts));
+    }
+  }, [data]);
 
   return (
     <>
-      <TodoBoxHeader length={plans?.length > 0 ? plans.length : 0} />
-      {loading ? (
+      <LoginModal
+        isVisible={isGuest && isVisible}
+        onToggle={handleVisibleState}
+      />
+      <Header image={"/images/Logo.png"} containerHeight="48px" />
+      {isLoading ? (
         <Loader />
       ) : (
         <TodoBoxBody>
@@ -59,7 +69,7 @@ const TodoBox = () => {
             <TodoBoxContent plans={plans} check={check} setCheck={setCheck} />
           ) : (
             <TodoBoxEmptyContainer>
-              <TodoBoxEmptyImage src="/images/TodoBoxEmptyImage.svg" />
+              <TodoBoxEmptyImage src="/images/purchase_first.svg" />
               <TodoBoxEmptyWelcome>
                 아직 도전중인 클래스가 없네요!
               </TodoBoxEmptyWelcome>
@@ -69,6 +79,11 @@ const TodoBox = () => {
               <TodoBoxEmptyDescription>
                 여기에서 모아볼 수 있어요.
               </TodoBoxEmptyDescription>
+              <SpeechBubble>
+                <ThinText color="#ffffff" width="auto">
+                  지금 투두몰과 함께 시작해보시는건 어때요?
+                </ThinText>
+              </SpeechBubble>
             </TodoBoxEmptyContainer>
           )}
         </TodoBoxBody>
@@ -79,7 +94,31 @@ const TodoBox = () => {
   );
 };
 
-const TodoBoxBody = styled.div``;
+const SpeechBubble = styled.div`
+  width: 276px;
+  height: 37px;
+  padding: 8px 20px;
+  gap: 10px;
+  background-color: #6b47fd;
+  border-radius: 14.5px;
+  position: relative;
+  top: 77px;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    border: 19px solid transparent;
+    border-top-color: #6b47fd;
+    border-bottom: 0;
+    margin-left: -20px;
+    margin-bottom: -20px;
+  }
+`;
+
+const TodoBoxBody = styled.div`
+  height: 100%;
+  background-color: #fafaff;
+`;
 
 const TodoBoxEmptyContainer = styled.div`
   position: fixed;
@@ -95,7 +134,8 @@ const TodoBoxEmptyContainer = styled.div`
 `;
 
 const TodoBoxEmptyImage = styled.img`
-  width: 90vw;
+  width: 295.11px;
+  height: 230.22px;
   max-width: 450px;
 `;
 

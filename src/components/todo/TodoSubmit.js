@@ -5,6 +5,7 @@ import Header from "../global/Header";
 import AWS from "aws-sdk";
 import axios from "axios";
 import { Loader } from "../global";
+import { RedirectByAuthStatus } from "../../utils";
 
 const TodoSubmit = () => {
   const [image, setImage] = useState("");
@@ -118,6 +119,7 @@ const TodoSubmit = () => {
   return (
     <>
       <Header title={plan.title} />
+      <RedirectByAuthStatus />
       <TodoSubmitBody>
         <TodoSubmitTitle>
           세션 인증을 위해 <span>{plan.missionTitle}</span>

@@ -5,24 +5,25 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Loader } from "../global";
-import { MAX_WIDTH } from "../../constants";
+import { MAX_WIDTH, baseApiUrl } from "../../constants";
+import { RedirectByAuthStatus } from "../../utils";
 
 const TodoDetail = () => {
-  const id = useParams();
+  const userId = localStorage.getItem("userid");
+  const { todoid, productid, sessionid, status } = useParams();
   const [width, setWidth] = useState(0);
   const [todo, setTodo] = useState(false);
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-
   const navigate = useNavigate();
 
   const handleFinish = () => {
     axios
       .patch(`${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}user/product`, {
-        userId: localStorage.getItem("userid"),
-        productId: id.productid,
-        sessionId: id.sessionid,
-        todoId: id.todoid,
+        userId: userId,
+        productId: productid,
+        sessionId: sessionid,
+        todoId: todoid,
       })
       .then(() => {
         navigate("/todobox");
@@ -41,9 +42,7 @@ const TodoDetail = () => {
   }, []);
 
   const handleAnswer = () => {
-    navigate(
-      `/todo/${id.todoid}/${id.sessionid}/${id.productid}/${data.title}/answer`
-    );
+    navigate(`/todo/${todoid}/${sessionid}/${productid}/${data.title}/answer`);
   };
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const TodoDetail = () => {
 
     const fetch = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_TODO_MALL_API_ENDPOINT}products/todo?id=${id.todoid}`
+        `${baseApiUrl}products/todo?id=${todoid}`
       );
       setData(response.data);
       setLoading(false);
@@ -66,6 +65,7 @@ const TodoDetail = () => {
   }
   return (
     <Wrapper>
+      <RedirectByAuthStatus />
       <Header title={`${data.title}`} />
       <Progress
         squared
@@ -77,7 +77,7 @@ const TodoDetail = () => {
       <TodoDetailBody>
         <HTMLDiv dangerouslySetInnerHTML={{ __html: data.body }} />
 
-        {id.status === "false" ? (
+        {status === "false" ? (
           <>
             {data.basePractice ? (
               <TodoDetailAnswer>
@@ -104,7 +104,7 @@ const TodoDetail = () => {
                 <TodoDetailTaskBoxToggleOff />
               ) : (
                 <TodoDetailTaskBoxToggleOn>
-                  <img src="/images/purple_tick.svg" />
+                  <img src="/images/purple_tick.svg" alt="" />
                 </TodoDetailTaskBoxToggleOn>
               )}
               <TodoDetailTaskBoxTitle>{data.taskTitle}</TodoDetailTaskBoxTitle>

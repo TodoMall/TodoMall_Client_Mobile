@@ -2,19 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ title }) => {
+const Header = ({
+  title,
+  image,
+  backIcon = true,
+  containerHeight = "56px",
+}) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(-1);
   };
   return (
-    <Container>
-      <BackArrow
-        src="/images/arrowbackIcon.png"
-        alt=""
-        onClick={handleNavigate}
-      />
-      <HeaderTitle>{title}</HeaderTitle>
+    <Container containerHeight={containerHeight}>
+      {title && backIcon && (
+        <BackArrow
+          src="/images/arrowbackIcon.png"
+          alt=""
+          onClick={handleNavigate}
+        />
+      )}
+      {title && <HeaderTitle>{title}</HeaderTitle>}
+      {image && <HeaderImage src={image} alt="" />}
     </Container>
   );
 };
@@ -23,7 +31,7 @@ export default Header;
 
 const Container = styled.div`
   width: 100%;
-  height: 56px;
+  height: ${(props) => props.containerHeight};
   padding: 25px 0;
   display: flex;
   flex-direction: row;
@@ -32,6 +40,7 @@ const Container = styled.div`
   background-color: #fbfbfb;
   position: fixed;
   top: -2px;
+  z-index: 9;
 `;
 
 const BackArrow = styled.img`
@@ -50,4 +59,10 @@ const HeaderTitle = styled.p`
   align-items: center;
   text-align: center;
   text-align: center;
+`;
+
+const HeaderImage = styled.img`
+  width: 128px;
+  height: 20px;
+  object-fit: contain;
 `;

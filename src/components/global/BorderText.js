@@ -8,6 +8,7 @@ const BorderText = ({
   fontWeight = "400",
   fontSize = "14px",
   lineHeight = "21px",
+  color = "#222222",
 }) => {
   return (
     <BorderTag
@@ -17,6 +18,7 @@ const BorderText = ({
       fontWeight={fontWeight}
       fontSize={fontSize}
       lineHeight={lineHeight}
+      color={color}
     >
       {children}
     </BorderTag>
@@ -28,7 +30,7 @@ export default BorderText;
 const BorderTag = styled.p`
   font-family: "Pretendard";
   letter-spacing: -0.01em;
-  color: #222222;
+  color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
   line-height: ${(props) => props.lineHeight};
   font-weight: ${(props) => props.fontWeight};

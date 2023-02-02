@@ -1,66 +1,91 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { paymentResultData, baseApiUrl } from "../../constants";
+import {
+  paymentResultData,
+  ORDER_STATE,
+  PaymentMethods,
+} from "../../constants";
 import { Loader, ThinText, BorderText, Header } from "../global";
 import { RedirectByAuthStatus } from "../../utils";
-
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  verifyOrder,
+  buyProduct,
+  getOrderByOrderNumber,
+} from "../../apollo/domain/payment";
+import dayjs from "dayjs";
 import styled from "styled-components";
-import axios from "axios";
 
 const PaymentResultPage = () => {
-  const { userid } = { ...localStorage };
-  const { planid } = useParams();
+  const { productId } = useParams();
   const { search } = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const [paymentResponse, setPaymentResponse] = useState(null);
-  const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  const [isPaidSuccess, setIsPaidSuccess] = useState(false);
+  const [orderByOrderNumberOutput, setOrderByOrderNumberOutput] =
+    useState(null);
+
   const queryString = new URLSearchParams(search);
   const imp_success = JSON.parse(queryString.get("imp_success"));
-  const imp_uid = queryString.get("imp_uid");
-  const merchant_uid = queryString.get("merchant_uid");
+  const impUid = queryString.get("imp_uid");
+  const merchantUid = queryString.get("merchant_uid");
   let error_msg;
   if (!imp_success) {
     error_msg = queryString.get("error_msg");
   }
 
-  const requestPaymentToServer = async () => {
-    try {
-      const { data } = await axios.post(`${baseApiUrl}payment/${planid}`, {
-        headers: { "Content-Type": "application/json" },
-        data: { imp_uid, merchant_uid },
-      });
-      if (data?.status === "success" && imp_success) {
-        setPaymentResponse(data?.response);
-        setIsPaymentSuccess(true);
-        registerProductToUser();
-      }
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { userid: memberId } = { ...localStorage };
 
-  const registerProductToUser = async () => {
-    try {
-      await axios.post(`${baseApiUrl}user/product`, {
-        productId: planid,
-        userId: userid,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [verifyOrderFunc, { loading: isLoading }] = useMutation(verifyOrder, {
+    variables: { impUid, merchantUid },
+    onCompleted: (data) => {
+      setIsPaidSuccess(data.verifyOrder.state === ORDER_STATE.SUCCESS);
+    },
+  });
 
-  useEffect(() => {
-    requestPaymentToServer();
-  }, []);
+  const [buyProductFunc] = useMutation(buyProduct, {
+    variables: {
+      productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
+      memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
+      // productId: productId,
+      // memberId: memberId,
+      orderNumber: merchantUid,
+    },
+  });
 
-  const navigate = useNavigate();
-  const PAYMENT_STATUS = isPaymentSuccess ? "success" : "fail";
-  const price = paymentResponse?.price.toLocaleString();
+  const { data: orderByOrderNumber } = useQuery(getOrderByOrderNumber, {
+    variables: {
+      orderNumber: merchantUid,
+    },
+  });
 
   const { title, iconPath, notice, locationGuideText } =
-    paymentResultData[PAYMENT_STATUS];
+    paymentResultData[isPaidSuccess ? "success" : "fail"];
+
+  useEffect(() => {
+    verifyOrderFunc();
+    if (orderByOrderNumber) {
+      setOrderByOrderNumberOutput(orderByOrderNumber.getOrderByOrderNumber);
+    }
+    if (isPaidSuccess && imp_success) {
+      buyProductFunc();
+    }
+  }, [isPaidSuccess, orderByOrderNumber]);
+
+  const fotmattedPgProvider = PaymentMethods.find(
+    (el) => el.name === orderByOrderNumberOutput?.pgProvider
+  );
+
+  const PaymentInfoRowItem = ({ label, content }) => {
+    return (
+      <>
+        <ThinText margin="4px 0">{label}</ThinText>
+        <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
+          {content}
+        </BorderText>
+      </>
+    );
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -69,7 +94,7 @@ const PaymentResultPage = () => {
   return (
     <Wrapper>
       <RedirectByAuthStatus />
-      <Header title={title} />
+      <Header title={title} backIcon={false} />
       <Icon src={iconPath} alt="" />
       <BorderText
         width="90%"
@@ -79,7 +104,7 @@ const PaymentResultPage = () => {
         lineHeight="28px"
         margin="8px 0"
       >
-        {isPaymentSuccess ? (
+        {isPaidSuccess ? (
           <>
             클래스가 성공적으로 추가됐어요.
             <br />
@@ -90,49 +115,39 @@ const PaymentResultPage = () => {
         )}
       </BorderText>
       <ThinText width="90%" textAlign="center">
-        {isPaymentSuccess ? notice : error_msg}
+        {isPaidSuccess ? notice : error_msg}
       </ThinText>
-      {!isPaymentSuccess && <EmptyBox />}
-      {isPaymentSuccess && (
+      {!isPaidSuccess && <EmptyBox />}
+      {isPaidSuccess && (
         <PaymentInfoBox>
-          <ThinText margin="4px 0">결제 금액</ThinText>
-          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
-            {price}원
-          </BorderText>
-          <ThinText margin="4px 0">사용자</ThinText>
-          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
-            {paymentResponse?.name}
-          </BorderText>
-          <ThinText margin="4px 0">결제카드</ThinText>
-          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
-            {paymentResponse?.card_name}
-          </BorderText>
-          {paymentResponse?.paymentMethod === "card" && (
-            <>
-              <ThinText margin="4px 0">카드번호</ThinText>
-              <BorderText
-                textAlign="right"
-                fontWeight="700px"
-                margin="0 0 4px 0"
-              >
-                {paymentResponse?.card_number}
-              </BorderText>
-            </>
-          )}
-          <ThinText margin="4px 0">결제 일시</ThinText>
-          <BorderText textAlign="right" fontWeight="700px" margin="0 0 4px 0">
-            {paymentResponse?.pay_date}
-          </BorderText>
+          <PaymentInfoRowItem
+            label={"결제 금액"}
+            content={`${orderByOrderNumberOutput?.product?.price}원`}
+          />
+          <PaymentInfoRowItem
+            label={"사용자"}
+            content={orderByOrderNumberOutput?.member?.name}
+          />
+          <PaymentInfoRowItem
+            label={"결제 방법"}
+            content={fotmattedPgProvider?.description}
+          />
+          <PaymentInfoRowItem
+            label={"결제 일시"}
+            content={dayjs(orderByOrderNumberOutput?.createdAt).format(
+              `YYYY.MM.DD HH:mm:ss`
+            )}
+          />
         </PaymentInfoBox>
       )}
-      {!isPaymentSuccess && (
+      {!isPaidSuccess && (
         <MoveTodoMallButton onClick={() => navigate("/todomall")}>
           <p>투두몰로 이동</p>
         </MoveTodoMallButton>
       )}
       <Button
         onClick={() =>
-          navigate(isPaymentSuccess ? "/todobox" : `/payment/${planid}`)
+          navigate(isPaidSuccess ? "/todobox" : `/detail/purchase/${productId}`)
         }
       >
         <p>{locationGuideText}</p>
@@ -140,6 +155,8 @@ const PaymentResultPage = () => {
     </Wrapper>
   );
 };
+
+export default PaymentResultPage;
 
 const Wrapper = styled.div`
   display: flex;
@@ -191,4 +208,3 @@ const MoveTodoMallButton = styled(Button)`
     color: #6b47fd;
   }
 `;
-export default PaymentResultPage;

@@ -17,61 +17,32 @@ const BottomNavBar = ({ position }) => {
   };
 
   return (
-    <>
-      <StyledBottomNavBar showLabels style={{ backgroundColor: "#fbfbfb" }}>
-        <NavBarButton
-          icon={
-            <>
-              <img
-                src={getImageSource(currentLocation, "TODOBOX")}
-                alt="TODOBOX"
-                style={{ width: 35, height: 45, objectFit: "cover" }}
-                height={20}
-              />
-            </>
-          }
-          onClick={() => {
-            setCurrentLocation("TODOBOX");
-          }}
-          component={Link}
-          to="/todobox"
-        />
-        <NavBarButton
-          icon={
-            <>
-              <img
-                src={getImageSource(currentLocation, "TODOMALL")}
-                alt="TODOMALL"
-                style={{ width: 35, height: 45, objectFit: "cover" }}
-                height={25}
-              />
-            </>
-          }
-          onClick={() => {
-            setCurrentLocation("TODOMALL");
-          }}
-          component={Link}
-          to="/todomall"
-        />
-        <NavBarButton
-          icon={
-            <>
-              <img
-                src={getImageSource(currentLocation, "MYPAGE")}
-                alt="MYPAGE"
-                style={{ width: 35, height: 43, objectFit: "cover" }}
-                height={25}
-              />
-            </>
-          }
-          onClick={() => {
-            setCurrentLocation("MYPAGE");
-          }}
-          component={Link}
-          to="/mypage"
-        />
-      </StyledBottomNavBar>
-    </>
+    <StyledBottomNavBar showLabels>
+      <NavBarButton
+        icon={<img src={getImageSource(currentLocation, "TODOBOX")} alt="" />}
+        onClick={() => {
+          setCurrentLocation("TODOBOX");
+        }}
+        component={Link}
+        to="/todobox"
+      />
+      <NavBarButton
+        icon={<img src={getImageSource(currentLocation, "TODOMALL")} alt="" />}
+        onClick={() => {
+          setCurrentLocation("TODOMALL");
+        }}
+        component={Link}
+        to="/todomall"
+      />
+      <NavBarButton
+        icon={<img src={getImageSource(currentLocation, "MYPAGE")} alt="" />}
+        onClick={() => {
+          setCurrentLocation("MYPAGE");
+        }}
+        component={Link}
+        to="/mypage"
+      />
+    </StyledBottomNavBar>
   );
 };
 
@@ -82,9 +53,9 @@ const StyledBottomNavBar = styled(BottomNavigation)`
   left: 0;
   right: 0;
   bottom: 0;
-  height: 85px !important;
+  height: 56px;
+  border-top: 1px solid #ededed;
+  background-color: #ffffff;
 `;
 
-const NavBarButton = styled(BottomNavigationAction)`
-  padding: 0px 12px 8px !important;
-`;
+const NavBarButton = styled(BottomNavigationAction)``;

@@ -1,74 +1,105 @@
 import React, { useState } from "react";
-import Header from "../global/Header";
 import styled from "styled-components";
 import { VERSION } from "../../constants";
-import Divider from "../global/Divider";
 import { useNavigate } from "react-router-dom";
 import Modals from "./Modals";
+import {
+  CustomizedSwitche,
+  BorderText,
+  Divider,
+  Header,
+  ThinText,
+  LoginModal,
+} from "../global";
+import { useModal } from "../../utils";
 
 const Settings = () => {
   const navigate = useNavigate();
-
+  const { isVisible, isGuest, handleVisibleState } = useModal();
   const [visibleLogout, setVisibleLogout] = useState(false);
-  const handlerLogout = () => setVisibleLogout(true);
-
-  const closeHandlerLogout = () => {
-    setVisibleLogout(false);
-  };
-
   const [visibleDelete, setVisibleDelete] = useState(false);
+
+  const closeHandlerLogout = () => setVisibleLogout(false);
+  const closeHandlerDelete = () => setVisibleDelete(false);
+  const handlerLogout = () => setVisibleLogout(true);
   const handlerDelete = () => setVisibleDelete(true);
 
-  const closeHandlerDelete = () => {
-    setVisibleDelete(false);
+  const handleTermOfPersonal = () => navigate("/personal");
+  const handleTermOfService = () => navigate("/service");
+  const handleNotice = () => navigate("/notice");
+
+  const CustomBorderText = ({ children, isWarning, border }) => {
+    return (
+      <BorderText
+        width="auto"
+        lineHeight="24px"
+        fontWeight={border ? 700 : null}
+        fontSize="16px"
+        textAlign="left"
+        color={isWarning ? "#FF4D4F" : "#222222"}
+      >
+        {children}
+      </BorderText>
+    );
   };
 
   return (
     <>
       <Header title="설정" />
       <Body>
-        <Rows>
+        <LoginModal
+          isVisible={isGuest && isVisible}
+          onToggle={handleVisibleState}
+        />
+        <Row>
+          <CustomBorderText
+            lineHeight="24px"
+            fontSize="16px"
+            textAlign="left"
+            color="#222222"
+          >
+            앱 버전
+          </CustomBorderText>
+          <ThinText fontSize="16px" lineHeight="24px" textAlign="right">
+            {VERSION}
+          </ThinText>
+        </Row>
+        <Divider margin="8px 0" border="1px solid #ededed" height="4px" />
+        <Row>
+          <CustomBorderText>마케팅 활용 / 광고성 정보 동의</CustomBorderText>
+          <CustomizedSwitche onToggle={() => {}} />
+        </Row>
+        <Row onClick={handleNotice}>
+          <CustomBorderText>공지사항</CustomBorderText>
+          <DetailIcon />
+        </Row>
+        <a href="http://pf.kakao.com/_xhSxjExj/chat">
           <Row>
-            <RowTitle>앱 버전</RowTitle>
-            <DetailVersion>{VERSION}</DetailVersion>
+            <CustomBorderText>문의하기</CustomBorderText>
+            <DetailIcon />
           </Row>
-        </Rows>
-        <Divider width="100vw" />
-        <Rows>
-          <a href="http://pf.kakao.com/_xhSxjExj/chat">
-            <Row>
-              <RowTitle>문의하기</RowTitle>
-              <DetailIcon src={`/images/todo_detail.svg`} />
+        </a>
+        <Row onClick={handleTermOfService}>
+          <CustomBorderText border={true}>이용약관</CustomBorderText>
+          <DetailIcon />
+        </Row>
+        <Row onClick={handleTermOfPersonal}>
+          <CustomBorderText border={true}>개인정보처리방침</CustomBorderText>
+          <DetailIcon />
+        </Row>
+        {!isGuest && (
+          <>
+            <Divider margin="8px 0" border="1px solid #ededed" height="4px" />
+            <Row onClick={handlerLogout}>
+              <CustomBorderText>로그아웃</CustomBorderText>
+              <DetailIcon />
             </Row>
-          </a>
-          <Row
-            onClick={() => {
-              navigate("/service");
-            }}
-          >
-            <RowTitle>이용약관</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-          <Row
-            onClick={() => {
-              navigate("/personal");
-            }}
-          >
-            <RowTitle>개인정보 처리방침</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-        </Rows>
-        <Divider width="100vw" />
-        <Rows>
-          <Row onClick={handlerLogout}>
-            <RowTitle>로그아웃</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-          <Row onClick={handlerDelete}>
-            <RowTitle red>탈퇴하기</RowTitle>
-            <DetailIcon src={`/images/todo_detail.svg`} />
-          </Row>
-        </Rows>
+            <Row onClick={handlerDelete}>
+              <CustomBorderText isWarning={true}>탈퇴하기</CustomBorderText>
+              <DetailIcon />
+            </Row>
+          </>
+        )}{" "}
         <Modals
           visibleLogout={visibleLogout}
           visibleDelete={visibleDelete}
@@ -84,33 +115,17 @@ const Body = styled.div`
   padding-top: 50px;
 `;
 
-const Rows = styled.div`
-  margin: 0px 5vw;
-`;
-
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
-  height: 50px;
+  align-items: center;
+  padding: 0px 24px;
+  height: 52px;
 `;
 
-const RowTitle = styled.p`
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 14px;
-  color: ${(props) => (props.red ? "#EE7272" : "black")};
+const DetailIcon = styled.img`
+  content: url("/images/arrow_icon.svg");
 `;
-
-const DetailVersion = styled.p`
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 14px;
-  color: #979797;
-`;
-
-const DetailIcon = styled.img``;
 
 export default Settings;

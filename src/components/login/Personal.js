@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import Header from "../global/Header";
+import { Button } from "../global";
+import { useNavigate } from "react-router-dom";
+import { USER_TYPE } from "../../constants";
 
 export default function Personal() {
   const HTML = `
@@ -12,7 +15,7 @@ export default function Personal() {
     word-break: keep-all;
   "
 >
-<마이플랜잇> 개인정보 처리방침
+<마이플랜잇> 개인정보  처리방침
 
 마이플랜잇은 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
 1. 이 개인정보처리방침은 2023년 1월 1부터 적용됩니다.
@@ -194,14 +197,37 @@ export default function Personal() {
 이 개인정보처리방침은 2023년 1월 1일부터 적용됩니다.
 공고일 : 2023년 1월 1일</pre
 >`;
+  const navigate = useNavigate();
+  const { personal, access } = { ...localStorage };
+  const isGuest = access === USER_TYPE.GUEST;
+  const handleAgreeTermofPersonal = () => {
+    localStorage.setItem("personal", true);
+    navigate(-1);
+  };
+  console.log(typeof personal, personal);
+
   return (
-    <>
-      <Header title="개인정보 처리방침" />
+    <Wrapper>
+      <Header title="개인정보처리방침" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-    </>
+      {!isGuest && !(personal === "true") && (
+        <Button
+          title="동의하기"
+          color="#ffffff"
+          margin="40px 0 50px 0"
+          onClick={handleAgreeTermofPersonal}
+        />
+      )}
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 const HTMLDiv = styled.div`
-  padding: 60px 20px;
+  padding: 60px 16px 40px 16px;
 `;

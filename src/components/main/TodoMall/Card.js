@@ -24,8 +24,6 @@ const Card = ({
     );
   });
 
-  const CutOff = 65;
-
   return (
     <CardBox
       onClick={() => {

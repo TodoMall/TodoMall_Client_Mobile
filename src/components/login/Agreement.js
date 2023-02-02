@@ -6,11 +6,55 @@ import Header from "../global/Header";
 const Agreement = () => {
   const navigate = useNavigate();
 
-  const [isServiceOn, setIsServiceOn] = useState(false);
-  const [isPersonalOn, setIsPersonalOn] = useState(false);
+  const { service, personal } = { ...localStorage };
+  const [isServiceOn, setIsServiceOn] = useState(!!service);
+  const [isPersonalOn, setIsPersonalOn] = useState(!!personal);
+  const [isMarketingOn, setIsMarketingOn] = useState(false);
+  const [isOverTeenager, setIsOverTeenager] = useState(false);
 
   const TOGGLE_BUTTON_OFF = "/images/toggle_button_off.svg";
   const TOGGLE_BUTTON_ON = "/images/toggle_button_on.svg";
+
+  const handleSubmit = () => {
+    localStorage.setItem("personal", true);
+    localStorage.setItem("service", true);
+    navigate("/todobox");
+  };
+
+  const handleCheckService = () => setIsServiceOn((prevState) => !prevState);
+  const handleCheckPersonal = () => setIsPersonalOn((prevState) => !prevState);
+  const handleCheckOverTeenager = () =>
+    setIsOverTeenager((prevState) => !prevState);
+  const handleCheckMarketing = () =>
+    setIsMarketingOn((prevState) => !prevState);
+
+  const handleService = () => navigate("/service");
+  const handlePersonal = () => navigate("/personal");
+
+  const AgreementItem = ({
+    handleState,
+    state,
+    description,
+    handlePage,
+    optionDescription = "필수",
+    optionDescriptionColor = "#6B47FD",
+  }) => {
+    return (
+      <ItemWrapper>
+        <Item>
+          <CheckIcon
+            onClick={handleState}
+            src={state ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
+          />
+          <p style={{ color: optionDescriptionColor, marginRight: "5px" }}>
+            ({optionDescription})
+          </p>
+          <p>{description}</p>
+        </Item>
+        {handlePage && <ArrowIcon onClick={handlePage} />}
+      </ItemWrapper>
+    );
+  };
 
   return (
     <>
@@ -20,98 +64,39 @@ const Agreement = () => {
           <BodyText>더 나은 서비스 품질을 위해서</BodyText>
           <BodyText>필수 약관에 동의해주세요</BodyText>
         </Text>
-        <BodyImage src="/images/agreement_image.svg" />
+        <BodyImage />
       </Body>
       <Footer>
         <Table>
-          <Row>
-            <span
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              {isServiceOn ? (
-                <img
-                  style={{ marginRight: "10px" }}
-                  onClick={() => {
-                    setIsServiceOn(!isServiceOn);
-                  }}
-                  alt="TOGGLE_BUTTON_ON"
-                  src={TOGGLE_BUTTON_ON}
-                />
-              ) : (
-                <img
-                  style={{ marginRight: "10px" }}
-                  onClick={() => {
-                    setIsServiceOn(!isServiceOn);
-                  }}
-                  alt="TOGGLE_BUTTON_OFF"
-                  src={TOGGLE_BUTTON_OFF}
-                />
-              )}
-              <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
-              <p> 서비스 이용약관 동의</p>
-            </span>
-            <img
-              onClick={() => {
-                navigate("/service");
-              }}
-              src="/images/next_button.svg"
-              alt="NEXT_BUTTON"
-            />
-          </Row>
-          <hr style={{ opacity: 0.3 }} />
-          <Row>
-            <span
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              {isPersonalOn ? (
-                <img
-                  style={{ marginRight: "10px" }}
-                  onClick={() => {
-                    setIsPersonalOn(!isPersonalOn);
-                  }}
-                  src={TOGGLE_BUTTON_ON}
-                  alt="TOGGLE_BUTTON_ON"
-                />
-              ) : (
-                <img
-                  style={{ marginRight: "10px" }}
-                  onClick={() => {
-                    setIsPersonalOn(!isPersonalOn);
-                  }}
-                  src={TOGGLE_BUTTON_OFF}
-                  alt="TOGGLE_BUTTON_OFF"
-                />
-              )}
-              <p style={{ color: "#6B47FD", marginRight: "5px" }}>(필수) </p>
-              <p> 개인정보 처리방침 동의</p>
-            </span>
-            <img
-              onClick={() => {
-                navigate("/personal");
-              }}
-              src="/images/next_button.svg"
-              alt="NEXT_BUTTON"
-            />
-          </Row>
+          <AgreementItem
+            handleState={handleCheckService}
+            state={isServiceOn}
+            description={"서비스 이용약관 동의"}
+            handlePage={handleService}
+          />
+          <AgreementItem
+            handleState={handleCheckPersonal}
+            state={isPersonalOn}
+            description={"개인정보 처리방침 동의"}
+            handlePage={handlePersonal}
+          />
+          <AgreementItem
+            handleState={handleCheckOverTeenager}
+            state={isOverTeenager}
+            description={"만 14세 이상입니다"}
+          />
+          <AgreementItem
+            handleState={handleCheckMarketing}
+            state={isMarketingOn}
+            description={"마케팅 활용 / 광고성 정보 동의"}
+            optionDescription={"선택"}
+            isLast={true}
+            optionDescriptionColor={"#666666"}
+          />
         </Table>
-        {isPersonalOn && isServiceOn ? (
-          <Button
-            onClick={() => {
-              localStorage.setItem("personal", true);
-              localStorage.setItem("service", true);
-              navigate("/todobox");
-            }}
-          >
-            제출하기
-          </Button>
+
+        {isPersonalOn && isServiceOn && isOverTeenager ? (
+          <Button onClick={handleSubmit}>제출하기</Button>
         ) : (
           <Button bgcolor="#ededed" color="#888888">
             제출하기
@@ -122,11 +107,18 @@ const Agreement = () => {
   );
 };
 
+const ArrowIcon = styled.img`
+  content: url("/images/next_button.svg");
+`;
+const CheckIcon = styled.img`
+  margin-right: 10px;
+  content: url(${(props) => props.src});
+`;
 const Body = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fbfbfb;
-  padding-top: 80px;
+  padding-top: 72px;
   width: 100vw;
   max-width: 450px;
 `;
@@ -144,13 +136,14 @@ const BodyText = styled.p`
 `;
 
 const BodyImage = styled.img`
-  width: 18rem;
+  width: 250px;
+  height: 250px;
   margin: auto;
-  height: 100vh;
   position: fixed;
-  top: 50%;
-  transform: translate(-50%, -58%);
+  top: 40%;
   left: 50%;
+  transform: translate(-50%, -58%);
+  content: url("/images/agreement_image.svg");
 `;
 
 const Footer = styled.div`
@@ -168,17 +161,20 @@ const Footer = styled.div`
 
 const Table = styled.div`
   max-width: 380px;
-  width: 90vw;
+  width: 100%;
   margin-bottom: 30px;
 `;
 
-const Row = styled.div`
+const ItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 15px;
 `;
-
+const Item = styled.span`
+  display: flex;
+  align-items: center;
+  height: 48px;
+`;
 const Button = styled.div`
   max-width: 380px;
   width: 90vw;
