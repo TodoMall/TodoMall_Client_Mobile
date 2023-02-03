@@ -17,6 +17,13 @@ import { createOrder, getProductById } from "../../apollo/domain/payment";
 const PaymentPage = () => {
   const { name, email, image, userid: memberId } = { ...localStorage };
 
+  // FIXME :should be deleted
+  const MOCK_DATA = {
+    productId: "f6a6629b-eae1-4488-b227-91cb5c3639f1",
+    memberId: "e155ad7c-3547-4312-b09c-b3729c0b18c3",
+    creatorId: "fd7e2d8d-6e67-4633-89c0-68549a0807a7",
+  };
+
   const { productId } = useParams();
 
   const [payMethod, setPaymentMethod] = useState(null);
@@ -28,7 +35,9 @@ const PaymentPage = () => {
     {
       variables: {
         // id: productId,
-        id: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
+
+        // FIXME :should be deleted
+        id: MOCK_DATA.productId,
       },
       onCompleted: ({ getProductById }) => {
         setProductByIdOutput(getProductById);
@@ -41,11 +50,13 @@ const PaymentPage = () => {
 
   const [getOrderNumber] = useMutation(createOrder, {
     variables: {
-      productId: "cc1d6a2c-847f-4da2-9ddf-0ba8081cb53b",
-      memberId: "ce99b7c2-e0e0-4c70-a823-0a7cc335a013",
+      // FIXME :should be deleted
+      productId: MOCK_DATA.productId,
+      memberId: MOCK_DATA.memberId,
+      creatorId: MOCK_DATA.creatorId,
       // productId: productId,
       // memberId: memberId,
-      creatorId: productByIdOutput?.creator.id,
+      // creatorId: creatorId,
     },
     onCompleted: ({ createOrder }) => {
       setOrderNumber(createOrder.orderNumber);
