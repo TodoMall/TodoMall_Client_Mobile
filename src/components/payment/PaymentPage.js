@@ -34,9 +34,7 @@ const PaymentPage = () => {
     getProductById,
     {
       variables: {
-        // id: productId,
-
-        // FIXME :should be deleted
+        // FIXME :should be delete MOCK_DATA
         id: MOCK_DATA.productId,
       },
       onCompleted: ({ getProductById }) => {
@@ -50,13 +48,10 @@ const PaymentPage = () => {
 
   const [getOrderNumber] = useMutation(createOrder, {
     variables: {
-      // FIXME :should be deleted
+      // FIXME :should be delete MOCK_DATA
       productId: MOCK_DATA.productId,
       memberId: MOCK_DATA.memberId,
       creatorId: MOCK_DATA.creatorId,
-      // productId: productId,
-      // memberId: memberId,
-      // creatorId: creatorId,
     },
     onCompleted: ({ createOrder }) => {
       setOrderNumber(createOrder.orderNumber);
