@@ -52,10 +52,7 @@ const PaymentResultPage = () => {
 
   const [buyProductFunc] = useMutation(buyProduct, {
     variables: {
-      // productId: productId,
-      // memberId: memberId,
-
-      // FIXME :should be deleted
+      // FIXME :should be delete MOCK_DATA
       productId: MOCK_DATA.productId,
       memberId: MOCK_DATA.memberId,
       orderNumber: merchantUid,
