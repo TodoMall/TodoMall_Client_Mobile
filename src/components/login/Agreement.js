@@ -166,7 +166,6 @@ const DescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${COLOR.BACKGROUND1};
-  padding-top: 4.5rem;
   width: 100%;
   max-width: 28.125rem;
 `;
