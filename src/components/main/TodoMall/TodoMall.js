@@ -13,6 +13,8 @@ const TodoMall = ({ current, setCurrent }) => {
   const [selfData, setSelfData] = useState([]);
   const [investmentData, setInvestmentData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // FIXME : 결제 심사를 위한 설정, 삭제해랏
+  const [careerProduct, setCareerProduct] = useState(null);
 
   const getAllProduct = async () => {
     try {
@@ -21,10 +23,12 @@ const TodoMall = ({ current, setCurrent }) => {
         axios.get(`${baseApiUrl}products/preview?type=self`),
         axios.get(`${baseApiUrl}products/preview?type=investment`),
       ]);
-
+      // FIXME : 결제 심사를 위한 설정, 삭제해랏
+      const [careerProduct] = careerData.data;
+      setCareerProduct([careerProduct]);
       setCareerData(careerData.data);
-      setSelfData(selfData.data);
-      setInvestmentData(investmentData.data);
+      // setSelfData(selfData.data);
+      // setInvestmentData(investmentData.data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -38,7 +42,6 @@ const TodoMall = ({ current, setCurrent }) => {
   if (isLoading) {
     return <Loader />;
   }
-
   return (
     <Container>
       <Header current={current} setCurrent={setCurrent} />
@@ -69,7 +72,8 @@ const TodoMall = ({ current, setCurrent }) => {
               <Fragment />
             ) : (
               <>
-                <CardList classData={careerData} />
+                {/* // FIXME : 결제 심사를 위한 설정, 삭제해랏 */}
+                <CardList classData={careerProduct} />
                 <Footer />
               </>
             )}
