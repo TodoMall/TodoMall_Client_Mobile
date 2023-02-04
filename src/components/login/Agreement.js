@@ -1,52 +1,65 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../global/Header";
+import { useToggle } from "../../hooks";
+import { Header } from "../global";
+import { LOCAL_STORAGE_KEYS, COLOR } from "../../constants";
+import styled from "styled-components";
 
 const Agreement = () => {
   const navigate = useNavigate();
 
-  const { service, personal } = { ...localStorage };
-  const [isServiceOn, setIsServiceOn] = useState(!!service);
-  const [isPersonalOn, setIsPersonalOn] = useState(!!personal);
-  const [isMarketingOn, setIsMarketingOn] = useState(false);
-  const [isOverTeenager, setIsOverTeenager] = useState(false);
+  const { isService, isPersonal } = { ...localStorage };
 
-  const TOGGLE_BUTTON_OFF = "/images/toggle_button_off.svg";
-  const TOGGLE_BUTTON_ON = "/images/toggle_button_on.svg";
+  const [isServiceOn, setIsServiceOn, handleCheckService] =
+    useToggle(isService);
+  const [isPersonalOn, setIsPersonalOn, handleCheckPersonal] =
+    useToggle(isPersonal);
+  const [isMarketingOn, setIsMarketingOn, handleCheckMarketing] = useToggle();
+  const [isOverTeenager, setIsOverTeenager, handleCheckOverTeenager] =
+    useToggle();
+  const [isAlarmOn, setIsAlarmOn, handleCheckAlarm] = useToggle();
+  const [isAllClauseCheck, setIsAllClauseCheck] = useToggle();
+
+  const handleCheckClause = () => {
+    setIsAllClauseCheck((isAllClauseCheck) => {
+      setIsServiceOn(!isAllClauseCheck);
+      setIsPersonalOn(!isAllClauseCheck);
+      setIsMarketingOn(!isAllClauseCheck);
+      setIsOverTeenager(!isAllClauseCheck);
+      setIsAlarmOn(!isAllClauseCheck);
+      return !isAllClauseCheck;
+    });
+  };
 
   const handleSubmit = () => {
-    localStorage.setItem("personal", true);
-    localStorage.setItem("service", true);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.isPersonal, true);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.isService, true);
     navigate("/todobox");
   };
 
-  const handleCheckService = () => setIsServiceOn((prevState) => !prevState);
-  const handleCheckPersonal = () => setIsPersonalOn((prevState) => !prevState);
-  const handleCheckOverTeenager = () =>
-    setIsOverTeenager((prevState) => !prevState);
-  const handleCheckMarketing = () =>
-    setIsMarketingOn((prevState) => !prevState);
+  const handleMoveService = () => navigate("/service");
+  const handleMovePersonal = () => navigate("/personal");
 
-  const handleService = () => navigate("/service");
-  const handlePersonal = () => navigate("/personal");
+  const getCheckIconByStatus = (status) => {
+    return `/images/agreement_check_box_${status ? "on" : "off"}.svg`;
+  };
 
   const AgreementItem = ({
-    handleState,
-    state,
+    status,
     description,
+    handleStatus,
     handlePage,
     optionDescription = "필수",
-    optionDescriptionColor = "#6B47FD",
+    optionDescriptionColor = COLOR.GRAY600,
   }) => {
     return (
       <ItemWrapper>
         <Item>
           <CheckIcon
-            onClick={handleState}
-            src={state ? TOGGLE_BUTTON_ON : TOGGLE_BUTTON_OFF}
+            onClick={handleStatus}
+            src={getCheckIconByStatus(status)}
           />
-          <p style={{ color: optionDescriptionColor, marginRight: "5px" }}>
+          <p style={{ color: optionDescriptionColor, marginRight: "0.313rem" }}>
             ({optionDescription})
           </p>
           <p>{description}</p>
@@ -58,136 +71,156 @@ const Agreement = () => {
 
   return (
     <>
-      <Header title="회원 가입" />
-      <Body>
-        <Text>
-          <BodyText>더 나은 서비스 품질을 위해서</BodyText>
-          <BodyText>필수 약관에 동의해주세요</BodyText>
-        </Text>
-        <BodyImage />
-      </Body>
-      <Footer>
-        <Table>
-          <AgreementItem
-            handleState={handleCheckService}
-            state={isServiceOn}
-            description={"서비스 이용약관 동의"}
-            handlePage={handleService}
+      <Header title="약관 동의" />
+
+      <DescriptionWrapper>
+        <Description>더 나은 학습을 위해</Description>
+        <Description>투두몰 약관에 동의해주세요</Description>
+        <DescriptionImage />
+      </DescriptionWrapper>
+      <AgreementList>
+        <AgreeAllClause>
+          <ClauseCheckBox
+            src={getCheckIconByStatus(isAllClauseCheck)}
+            onClick={handleCheckClause}
           />
-          <AgreementItem
-            handleState={handleCheckPersonal}
-            state={isPersonalOn}
-            description={"개인정보 처리방침 동의"}
-            handlePage={handlePersonal}
-          />
-          <AgreementItem
-            handleState={handleCheckOverTeenager}
-            state={isOverTeenager}
-            description={"만 14세 이상입니다"}
-          />
-          <AgreementItem
-            handleState={handleCheckMarketing}
-            state={isMarketingOn}
-            description={"마케팅 활용 / 광고성 정보 동의"}
-            optionDescription={"선택"}
-            isLast={true}
-            optionDescriptionColor={"#666666"}
-          />
-        </Table>
+          <p>약관 전체 동의</p>
+        </AgreeAllClause>
+
+        <AgreementItem
+          handleStatus={handleCheckService}
+          status={isServiceOn}
+          description={"서비스 이용약관 동의"}
+          handlePage={handleMoveService}
+        />
+        <AgreementItem
+          handleStatus={handleCheckPersonal}
+          status={isPersonalOn}
+          description={"개인정보 처리방침 동의"}
+          handlePage={handleMovePersonal}
+        />
+        <AgreementItem
+          handleStatus={handleCheckOverTeenager}
+          status={isOverTeenager}
+          description={"만 14세 이상입니다"}
+        />
+        <AgreementItem
+          handleStatus={handleCheckMarketing}
+          status={isMarketingOn}
+          description={"마케팅 활용 / 광고성 정보 동의"}
+          optionDescription={"선택"}
+          optionDescriptionColor={"#8D94A8"}
+        />
+        <AgreementItem
+          handleStatus={handleCheckAlarm}
+          status={isAlarmOn}
+          description={"앱 내 푸시알림 수신 동의"}
+          optionDescription={"선택"}
+          isLast={true}
+          optionDescriptionColor={"#8D94A8"}
+        />
 
         {isPersonalOn && isServiceOn && isOverTeenager ? (
-          <Button onClick={handleSubmit}>제출하기</Button>
-        ) : (
-          <Button bgcolor="#ededed" color="#888888">
-            제출하기
+          <Button onClick={handleSubmit} bgcolor={COLOR.DISABLED}>
+            동의합니다
           </Button>
+        ) : (
+          <Button bgcolor={COLOR.BRAND_COLOR}>동의합니다</Button>
         )}
-      </Footer>
+      </AgreementList>
     </>
   );
 };
 
-const ArrowIcon = styled.img`
-  content: url("/images/next_button.svg");
+const AgreeAllClause = styled.div`
+  display: flex;
+  align-items: center;
+  width: calc(100% - 2rem);
+  height: 3.75rem;
+  background-color: #fafafc;
+  border-radius: 1.25rem;
+  padding: 1.125rem 1rem;
+  p {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    text-align: left;
+  }
 `;
-const CheckIcon = styled.img`
-  margin-right: 10px;
+
+const ClauseCheckBox = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
   content: url(${(props) => props.src});
 `;
-const Body = styled.div`
+
+const ArrowIcon = styled.img`
+  content: url("/images/arrow_icon.svg");
+`;
+const CheckIcon = styled.img`
+  margin-right: 0.625rem;
+  content: url(${(props) => props.src});
+`;
+const DescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #fbfbfb;
-  padding-top: 72px;
-  width: 100vw;
-  max-width: 450px;
+  background-color: ${COLOR.BACKGROUND1};
+  padding-top: 4.5rem;
+  width: 100%;
+  max-width: 28.125rem;
 `;
 
-const Text = styled.div`
-  flex-direction: column;
+const Description = styled.p`
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 2rem;
+  padding-left: 1.5rem;
 `;
 
-const BodyText = styled.p`
-  font-weight: bolder;
-  font-size: 22px;
-  line-height: 30px;
-  padding-left: 15px;
-  text-align: left;
-`;
-
-const BodyImage = styled.img`
-  width: 250px;
-  height: 250px;
-  margin: auto;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -58%);
+const DescriptionImage = styled.img`
+  width: 15rem;
+  height: 15rem;
+  margin: 1.563rem auto;
   content: url("/images/agreement_image.svg");
 `;
 
-const Footer = styled.div`
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translate(-50%, 0);
+const AgreementList = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background-color: #fbfbfb;
-  margin-top: 40px;
-`;
-
-const Table = styled.div`
-  max-width: 380px;
-  width: 100%;
-  margin-bottom: 30px;
+  background-color: ${COLOR.WHITE};
 `;
 
 const ItemWrapper = styled.div`
   display: flex;
+  width: calc(100% - 4rem);
+  height: 1.5rem;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 `;
 const Item = styled.span`
   display: flex;
   align-items: center;
-  height: 48px;
+  height: 3rem;
 `;
+
 const Button = styled.div`
-  max-width: 380px;
-  width: 90vw;
-  background-color: ${(props) => props.bgcolor || "#6b47fd"};
-  border-radius: 20px;
-  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 16px;
-  color: ${(props) => props.color || "white"};
+  width: calc(100% - 2.25rem);
+  height: 3.25rem;
+  border-radius: 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: ${COLOR.WHITE};
+  background-color: ${(props) => props.bgcolor};
+  margin-top: 1.5rem;
 `;
 
 export default Agreement;
