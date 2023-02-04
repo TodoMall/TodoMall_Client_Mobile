@@ -6,6 +6,9 @@ import styled from "styled-components";
 const Social = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { isPersonal, isService } = { ...localStorage };
+
   const KAKAO_CODE = location.search.split("=")[1];
   useEffect(() => {
     const fetchCode = async () => {
@@ -46,10 +49,7 @@ const Social = () => {
                 })
                 .then((res) => {
                   localStorage.setItem("userid", res.data.id);
-                  if (
-                    localStorage.getItem("personal") &&
-                    localStorage.getItem("service")
-                  ) {
+                  if (isPersonal && isService) {
                     navigate("/todobox");
                   } else {
                     navigate("/agreement");
@@ -63,10 +63,7 @@ const Social = () => {
                     )
                     .then((res) => {
                       localStorage.setItem("userid", res.data.id);
-                      if (
-                        localStorage.getItem("personal") &&
-                        localStorage.getItem("service")
-                      ) {
+                      if (isPersonal && isService) {
                         navigate("/todobox");
                       } else {
                         navigate("/agreement");

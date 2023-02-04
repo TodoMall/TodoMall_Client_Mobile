@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../global";
 import Header from "../global/Header";
 import { useNavigate } from "react-router-dom";
-import { USER_TYPE } from "../../constants";
+import { LOCAL_STORAGE_KEYS, USER_TYPE } from "../../constants";
 
 export default function Service() {
   const HTML = `
@@ -400,20 +400,20 @@ word-break: keep-all;
 공고일 : 2023년 1월 1일</pre
 >`;
   const navigate = useNavigate();
-  const { service, access } = { ...localStorage };
+  const { isService, access } = { ...localStorage };
+
   const isGuest = access === USER_TYPE.GUEST;
+
   const handleAgreeTermofService = () => {
-    localStorage.setItem("service", true);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.isService, true);
     navigate(-1);
   };
-
-  console.log(typeof service, service);
 
   return (
     <Wrapper>
       <Header title="서비스 이용약관" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-      {!isGuest && !(service === "true") && (
+      {!isGuest && !(isService === "true") && (
         <Button
           title="동의하기"
           color="#ffffff"

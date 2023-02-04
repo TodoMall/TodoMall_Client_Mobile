@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Header from "../global/Header";
 import { Button } from "../global";
 import { useNavigate } from "react-router-dom";
-import { USER_TYPE } from "../../constants";
+import { LOCAL_STORAGE_KEYS, USER_TYPE } from "../../constants";
 
 export default function Personal() {
   const HTML = `
@@ -198,19 +198,20 @@ export default function Personal() {
 공고일 : 2023년 1월 1일</pre
 >`;
   const navigate = useNavigate();
-  const { personal, access } = { ...localStorage };
+  const { isPersonal, access } = { ...localStorage };
+
   const isGuest = access === USER_TYPE.GUEST;
+
   const handleAgreeTermofPersonal = () => {
-    localStorage.setItem("personal", true);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.isPersonal, true);
     navigate(-1);
   };
-  console.log(typeof personal, personal);
 
   return (
     <Wrapper>
       <Header title="개인정보처리방침" />
       <HTMLDiv dangerouslySetInnerHTML={{ __html: HTML }} />
-      {!isGuest && !(personal === "true") && (
+      {!isGuest && !(isPersonal === "true") && (
         <Button
           title="동의하기"
           color="#ffffff"
