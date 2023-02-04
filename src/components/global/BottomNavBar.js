@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import { COLOR } from "../../constants";
+import { GNB_IMAGE } from "../../constants";
 import { Link } from "react-router-dom";
 
 const BottomNavBar = ({ position }) => {
@@ -9,10 +9,10 @@ const BottomNavBar = ({ position }) => {
 
   const getImageSource = (currentLocation, location) => {
     if (currentLocation === location) {
-      return COLOR[`${location}_COLORED`];
+      return GNB_IMAGE[`${location}_COLORED`];
     }
     if (currentLocation !== location) {
-      return COLOR[`${location}_UNCOLORED`];
+      return GNB_IMAGE[`${location}_UNCOLORED`];
     }
   };
 
