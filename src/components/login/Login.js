@@ -5,7 +5,7 @@ import axios from "axios";
 import { USER_TYPE } from "../../constants/common";
 
 const Login = () => {
-  const handleStorage = () => {
+  const removeTokenStorage = () => {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("ID");
@@ -39,14 +39,14 @@ const Login = () => {
                 navigate("/todobox");
               })
               .catch((err) => {
-                handleStorage();
+                removeTokenStorage();
               });
           } else {
-            handleStorage();
+            removeTokenStorage();
           }
         })
         .catch((err) => {
-          handleStorage();
+          removeTokenStorage();
         });
     }
   });
