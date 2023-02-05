@@ -17,12 +17,8 @@ const Header = ({
   };
   return (
     <Container containerHeight={containerHeight}>
-      {title && (
-        <>
-          {isBackIcon && <BackArrow onClick={handleNavigate} />}
-          <HeaderTitle>{title}</HeaderTitle>
-        </>
-      )}
+      {isBackIcon && <BackArrow onClick={handleNavigate} />}
+      <HeaderTitle>{title}</HeaderTitle>
       {image && <HeaderImage src={image} />}
     </Container>
   );
