@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { COLOR } from "../../constants";
 
-// TODO: background blur 가 있다고 들었는데 다시한번 질문해서 수정
-
 const Header = ({
   title,
   image,
@@ -32,8 +30,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  background-color: ${COLOR.BACKGROUND1};
   border-bottom: 1px solid #fafafc;
+  filter: blur(90%);
   z-index: 9;
 `;
 
