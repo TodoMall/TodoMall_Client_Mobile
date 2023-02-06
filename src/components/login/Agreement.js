@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useToggle } from "../../hooks";
 import { Header } from "../global";
-import { LOCAL_STORAGE_KEYS, COLOR } from "../../constants";
+import { LOCAL_STORAGE_KEYS, COLOR, PATH } from "../../constants";
 import styled from "styled-components";
 
 const Agreement = () => {
@@ -34,11 +34,11 @@ const Agreement = () => {
   const handleSubmit = () => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.isPersonal, true);
     localStorage.setItem(LOCAL_STORAGE_KEYS.isService, true);
-    navigate("/todobox");
+    navigate(PATH.TODOBOX);
   };
 
-  const handleMoveService = () => navigate("/service");
-  const handleMovePersonal = () => navigate("/personal");
+  const handleMoveService = () => navigate(PATH.SERVICE);
+  const handleMovePersonal = () => navigate(PATH.PERSONAL);
 
   const getCheckIconByStatus = (status) => {
     return `/images/agreement_check_box_${status ? "on" : "off"}.svg`;
@@ -107,7 +107,7 @@ const Agreement = () => {
         <AgreementItem
           handleStatus={handleCheckMarketing}
           status={isMarketingOn}
-          description={"마케팅 활용 / 광고성 정보 동의"}
+          description={"이메일, SMS 마케팅 수신 동의"}
           optionDescription={"선택"}
           optionDescriptionColor={"#8D94A8"}
         />
@@ -166,10 +166,10 @@ const DescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${COLOR.BACKGROUND1};
-  width: 100%;
   max-width: 28.125rem;
 `;
 
+// FIXME : ThinText component 리팩토링 끝나면 대체하기
 const Description = styled.p`
   font-size: 1.25rem;
   font-weight: 700;

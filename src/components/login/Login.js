@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { USER_TYPE } from "../../constants/common";
+import { USER_TYPE, LOCAL_STORAGE_KEYS, PATH } from "../../constants/";
 
 const Login = () => {
   const removeTokenStorage = () => {
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("ID");
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.ACCESS);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.REFRESH);
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.ID);
   };
 
   useEffect(() => {
-    const access_token = localStorage.getItem("access");
+    const access_token = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS);
     if (access_token && access_token !== USER_TYPE.GUEST) {
       axios
         .get("https://kapi.kakao.com/v1/user/access_token_info", {
@@ -22,7 +22,9 @@ const Login = () => {
         })
         .then((res) => {
           if (res.status === 200) {
-            const refresh_token = localStorage.getItem("refresh");
+            const refresh_token = localStorage.getItem(
+              LOCAL_STORAGE_KEYS.REFRESH
+            );
             axios
               .post(
                 `https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&refresh_token=${refresh_token}`,
@@ -34,9 +36,12 @@ const Login = () => {
                 }
               )
               .then((res) => {
-                localStorage.setItem("access", res.data.access_token);
-                localStorage.setItem("ID", res.data.id_token);
-                navigate("/todobox");
+                localStorage.setItem(
+                  LOCAL_STORAGE_KEYS.ACCESS,
+                  res.data.access_token
+                );
+                localStorage.setItem(LOCAL_STORAGE_KEYS.ID, res.data.id_token);
+                navigate(PATH.TODOBOX);
               })
               .catch((err) => {
                 removeTokenStorage();
@@ -58,16 +63,17 @@ const Login = () => {
 
   const handleGuest = () => {
     localStorage.clear();
-    localStorage.setItem("access", USER_TYPE.GUEST);
+    localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS, USER_TYPE.GUEST);
     navigate("/todomall");
+    navigate(PATH.TODOMALL);
   };
 
   return (
     <Container>
-      <BackgroundBottom src="/images/main_background.svg" />
-      <Logo src="/images/logo_text.png" />
+      <BackgroundBottom />
+      <Logo />
       <Footer>
-        <LoginButton onClick={kakaoLogin} src="/images/kakao_login.png" />
+        <LoginButton onClick={kakaoLogin} />
         <GuestAnchor onClick={handleGuest}>게스트 둘러보기</GuestAnchor>
       </Footer>
       <CompanyText>c. myplanit</CompanyText>
@@ -99,6 +105,7 @@ const BackgroundBottom = styled.img`
   width: 103vw;
   max-width: 450px;
   bottom: -50px;
+  content: url("/images/main_background.svg");
 `;
 
 const Logo = styled.img`
@@ -106,6 +113,7 @@ const Logo = styled.img`
   position: fixed;
   margin: 0 auto;
   bottom: 75%;
+  content: url("/images/logo_text.png");
 `;
 
 const Footer = styled.div`
@@ -126,6 +134,7 @@ const LoginButton = styled.img`
   margin-bottom: 24px;
   cursor: pointer;
   position: relative;
+  content: url("/images/kakao_login.png");
 `;
 
 const CompanyText = styled.p`
