@@ -1,4 +1,4 @@
-export const COLOR = {
+export const GNB_IMAGE = {
   TODOMALL_COLORED: "/images/todomall_on.svg",
   TODOMALL_UNCOLORED: "/images/todomall_off.svg",
   TODOBOX_COLORED: "/images/todobox_on.svg",
