@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
 import { ScrollToTop } from "./utils";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { LocationProvider } from "./context/LocationProvider";
 import { API_ENDPOINT, isProd } from "./constants";
 
 if (!isProd) {
@@ -24,7 +25,9 @@ root.render(
   <BrowserRouter>
     <ScrollToTop />
     <ApolloProvider client={client}>
-      <App />
+      <LocationProvider>
+        <App />
+      </LocationProvider>
     </ApolloProvider>
   </BrowserRouter>
 );
