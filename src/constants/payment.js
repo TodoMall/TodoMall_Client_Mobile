@@ -1,10 +1,3 @@
-export const ORDER_STATE = {
-  READY: "READY",
-  SUCCESS: "SUCCESS",
-  PAID: "PAID",
-  CANCEL: "CANCEL",
-};
-
 export const PaymentMethods = [
   {
     id: 1,
@@ -44,6 +37,7 @@ export const PaymentMethods = [
   },
 ];
 
+// FIXME : should be deleted
 export const paymentResultData = {
   success: {
     title: "결제완료",
