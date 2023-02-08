@@ -13,7 +13,7 @@ const ArrowIcon = ({ reversal = false }) => {
         <path
           d="M10 18L16 12L10 6"
           stroke="#31363E"
-          stroke-width="2"
+          strokeWidth="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />

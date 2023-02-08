@@ -20,7 +20,7 @@ const CheckBox = ({ isCheck = false, onToggle }) => {
         <path
           d="M6.52637 12.4212L9.89479 15.7896L16.6316 9.05273"
           stroke="white"
-          stroke-width="2"
+          strokeWidth="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
