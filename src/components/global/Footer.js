@@ -31,7 +31,10 @@ const Footer = () => {
         />
         <p>마이플랜잇</p>
         <p>사업자등록번호 : 274-12-01980 | 대표 : 최현권</p>
-        <p>주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호</p>
+        <p>
+          주소 : 서울특별시 마포구 매봉산로 18 607동 003호(상암동,
+          마포창업복지관)
+        </p>
         <p>전화번호 : 010-2154-3992 | 메일 : myplanit.unicorn@gmail.com</p>
       </CompanyInfo>
       <Copyright>Copyright ⓒ 2022 myplanit. All rights reserved.</Copyright>
