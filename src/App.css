@@ -36,6 +36,8 @@
 } */
 @import url("//cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 
+/* FIXME : 스타일 수정 필요 */
+
 * {
   margin: 0;
   padding: 0;
