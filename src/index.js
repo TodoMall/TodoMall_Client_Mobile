@@ -4,7 +4,6 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { worker } from "./mocks/browser";
-import { ScrollToTop } from "./utils";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { API_ENDPOINT, isProd } from "./constants";
 
