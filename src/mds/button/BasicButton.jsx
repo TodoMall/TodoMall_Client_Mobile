@@ -33,6 +33,7 @@ const Container = styled.div`
   height: ${(props) => props.height};
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
+  cursor: pointer;
   p {
     color: ${(props) => props.fontColor};
   }

@@ -37,7 +37,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: ${(props) => props.height};
-  border: 1px solid red;
   p {
     text-align: ${(props) => props.textAlign};
     font-weight: ${(props) => props.fontWeight};
@@ -46,7 +45,6 @@ const Container = styled.div`
     text-decoration: underline;
     cursor: pointer;
     letter-spacing: -0.01em;
-    border: 1px solid blue;
     &:hover,
     &:active {
       /* TODO : wirte something.. */
