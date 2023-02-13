@@ -4,21 +4,25 @@ import { COLOR } from "../../constants/color";
 const OutlineChip = ({
   children = null,
   width = "auto",
-  height = "auto",
+  height = "2rem",
   backgroundColor = COLOR.WHITE,
-  borderColor = COLOR.BRAND_COLOR,
-  fontColor = COLOR.BRAND_COLOR,
+  borderColor = COLOR.GRAY800,
+  fontColor = COLOR.GRAY800,
   borderRadius = "1.25rem",
+  margin = "0.25rem 0.125rem",
+  isDisabled = false,
   onClick: handleClick = () => {},
 }) => {
   return (
     <Container
       width={width}
       height={height}
+      margin={margin}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       fontColor={fontColor}
       borderRadius={borderRadius}
+      isDisabled={isDisabled}
       onClick={handleClick}
     >
       <p>{children}</p>
@@ -29,8 +33,12 @@ const OutlineChip = ({
 export default OutlineChip;
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
   background-color: ${(props) => props.backgroundColor};
   border: 1px solid ${(props) => props.borderColor};
   border-radius: ${(props) => props.borderRadius};
