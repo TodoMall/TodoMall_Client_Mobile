@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR } from "../../constants/color";
+import { COLOR } from "../../constants";
 
 const BasicButton = ({
   children = null,
@@ -7,6 +7,7 @@ const BasicButton = ({
   fontColor = COLOR.WHITE,
   borderRadius = "1.25rem",
   height = "3.25rem",
+  margin = "1rem 0 0.5rem 0",
   isDisabled = false,
   onClick: handleClick = () => {},
 }) => {
@@ -16,7 +17,9 @@ const BasicButton = ({
       borderRadius={borderRadius}
       height={height}
       fontColor={fontColor}
-      onClic={handleClick}
+      margin={margin}
+      isDisabled={isDisabled}
+      onClick={handleClick}
     >
       <p>{children}</p>
     </Container>
@@ -31,9 +34,10 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
-  cursor: pointer;
+  cursor: ${(props) => (props.isDisabled ? "not-allowed" : "pointer")};
   p {
     color: ${(props) => props.fontColor};
   }
