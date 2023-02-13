@@ -6,7 +6,7 @@ const BasicButton = ({
   backgroundColor = COLOR.BRAND_COLOR,
   fontColor = COLOR.WHITE,
   borderRadius = "1.25rem",
-  height = "auto",
+  height = "3.25rem",
   isDisabled = false,
   onClick: handleClick = () => {},
 }) => {
