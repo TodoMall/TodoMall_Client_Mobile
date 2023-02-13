@@ -40,7 +40,7 @@ const Container = styled.div`
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
   p {
-    color: ${(props) => props.fontColor};
+    color: ${(props) => (props.isDisabled ? COLOR.GRAY300 : props.fontColor)};
     text-align: center;
   }
 `;
