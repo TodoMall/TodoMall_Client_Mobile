@@ -1,30 +1,31 @@
 import styled from "styled-components";
-import { COLOR } from "../../constants/color";
-import { FontStyle, FontWeigtht } from "../../constants/font";
+import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
 
 const TextButton = ({
   children = null,
   height = "auto",
+  margin = "none",
   fontColor = COLOR.BLACK,
-  fontWeight = FontWeigtht.pretendard_medium,
-  fontSize = FontStyle.pretendard_300.size,
-  lineHeight = FontStyle.pretendard_300.heigth,
+  fontWeight = FONT_WEIGTHT.PRETENDARD_MEDIUM,
+  fontSize = FONT_STYLE.PRETENDARD_300.SIZE,
+  lineHeight = FONT_STYLE.PRETENDARD_300.HEIGTH,
   textAlign = "center",
   hasUnderline = false,
   onClick: handleClick = () => {},
 }) => {
   return (
-    <Container height={height} onClick={handleClick}>
-      <p
-        fontWeight={fontWeight}
-        fontSize={fontSize}
-        fontColor={fontColor}
-        lineHeight={lineHeight}
-        textAlign={textAlign}
-        hasUnderline={hasUnderline}
-      >
-        {children}
-      </p>
+    <Container
+      height={height}
+      margin={margin}
+      fontWeight={fontWeight}
+      fontSize={fontSize}
+      fontColor={fontColor}
+      lineHeight={lineHeight}
+      textAlign={textAlign}
+      hasUnderline={hasUnderline}
+      onClick={handleClick}
+    >
+      <p>{children}</p>
     </Container>
   );
 };
@@ -32,17 +33,16 @@ const TextButton = ({
 export default TextButton;
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
   p {
+    color: ${(props) => props.fontColor};
     text-align: ${(props) => props.textAlign};
     font-weight: ${(props) => props.fontWeight};
-    font-size: ${(props) => props.fontWeight};
-    line-height: ${(props) => props.fontWeight};
-    text-decoration: underline;
+    font-size: ${(props) => props.fontSize};
+    line-height: ${(props) => props.lineHeight};
+    text-decoration: ${(props) => props.hasUnderline};
     cursor: pointer;
     letter-spacing: -0.01em;
     &:hover,
