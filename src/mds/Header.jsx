@@ -5,6 +5,7 @@ import { CategoryTabBar } from "./category";
 import { RowBox } from "./box";
 import { TextButton } from "./button";
 import { useNavigate } from "react-router-dom";
+import Divider from "./Divider";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,27 +14,30 @@ const Header = () => {
   const handleProPage = () => navigate("/");
 
   return (
-    <Container>
-      <RowBox height={"3rem"} justifyContent={"space-between"}>
-        <BrandLogo />
+    <>
+      <Container>
+        <RowBox height={"3rem"} justifyContent={"space-between"}>
+          <BrandLogo />
 
-        {/* TODO: To be add Seaarch Bar when fix design and interactions */}
-        <TextButtonGroup>
-          <TextButton margin={"0 0.5rem"} onClick={handleNoticePage}>
-            알림
-          </TextButton>
-          <TextButton margin={"0 0.5rem"} onClick={handleSignInPage}>
-            로그인/회원가입
-          </TextButton>
-          <TextButton margin={"0 0.5rem"} onClick={handleProPage}>
-            프로센터
-          </TextButton>
-        </TextButtonGroup>
-      </RowBox>
-      <RowBox height={"3rem"} justifyContent={"flex-start"}>
-        <CategoryTabBar />
-      </RowBox>
-    </Container>
+          {/* TODO: To be add Seaarch Bar when fix design and interactions */}
+          <TextButtonGroup>
+            <TextButton margin={"0 0.5rem"} onClick={handleNoticePage}>
+              알림
+            </TextButton>
+            <TextButton margin={"0 0.5rem"} onClick={handleSignInPage}>
+              로그인/회원가입
+            </TextButton>
+            <TextButton margin={"0 0.5rem"} onClick={handleProPage}>
+              프로센터
+            </TextButton>
+          </TextButtonGroup>
+        </RowBox>
+        <RowBox height={"3rem"} justifyContent={"flex-start"}>
+          <CategoryTabBar />
+        </RowBox>
+      </Container>
+      <Divider width={"100vw"} />
+    </>
   );
 };
 
@@ -45,7 +49,6 @@ const Container = styled.div`
   height: 5.5rem;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
   padding: 0 5rem;
 `;
 const TextButtonGroup = styled.div`
