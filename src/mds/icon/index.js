@@ -4,3 +4,4 @@ export { default as RadioIcon } from "./RadioIcon";
 export { default as EducationIcon } from "./EducationIcon";
 export { default as MyPageIcon } from "./MyPageIcon";
 export { default as StoreIcon } from "./StoreIcon";
+export { default as BrandLogo } from "./BrandLogo";

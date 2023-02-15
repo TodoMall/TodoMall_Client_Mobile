@@ -33,7 +33,7 @@ const TextButton = ({
 export default TextButton;
 
 const Container = styled.div`
-  width: 100%;
+  width: auto;
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   p {

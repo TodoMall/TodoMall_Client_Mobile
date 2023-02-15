@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { COLOR, FONT_WEIGTHT } from "../../constants";
 
-const CategoryItem = ({ children, isCurrent = false }) => {
+const CategoryItem = ({
+  children,
+  isCurrent = false,
+  onClick: handleClick = () => {},
+}) => {
   return (
-    <Container isCurrent={isCurrent}>
+    <Container onClick={handleClick} isCurrent={isCurrent}>
       <p>{children}</p>
     </Container>
   );
@@ -17,17 +21,14 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 2px solid ${COLOR.GRAY100};
+  cursor: pointer;
   p {
+    text-align: center;
     font-size: 1rem;
-    line-height: 2.5rem;
-    letter-spacing: 0em;
-    border-bottom: 2px solid
-      ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY100)};
-    font-weight: ${(props) =>
-      props.isCurrent
-        ? FONT_WEIGTHT.PRETENDARD_BOLD
-        : FONT_WEIGTHT.PRETENDARD_MEDIUM};
-    color: ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY500)};
+    line-height: 1.5rem;
+    text-align: center;
+    letter-spacing: -0.01em;
+    font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
+    color: ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY700)};
   }
 `;

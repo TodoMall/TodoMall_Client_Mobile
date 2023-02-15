@@ -15,11 +15,7 @@ const CategoryTabBar = () => {
   return (
     <Container>
       {categories.map((category) => {
-        return (
-          <CategoryItem key={category} isCurrent={true}>
-            {category}
-          </CategoryItem>
-        );
+        return <CategoryItem key={category}>{category}</CategoryItem>;
       })}
     </Container>
   );
@@ -29,4 +25,10 @@ export default CategoryTabBar;
 
 const Container = styled.div`
   display: flex;
+  div {
+    &:first-child {
+      margin: 0 1.25rem 0 0;
+    }
+    margin: 0 1.25rem;
+  }
 `;
