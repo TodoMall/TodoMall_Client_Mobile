@@ -86,12 +86,16 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  padding: 1rem 1.25rem;
-  background-color: ${COLOR.WHITE};
+  background-color: ${COLOR.GRAY50};
+  padding: 1.25rem 5rem 2rem 5rem;
 `;
 
 // FIXME : To be deleted  the logo is fixed

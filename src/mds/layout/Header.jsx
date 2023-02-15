@@ -48,6 +48,10 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   max-width: ${MAX_WIDTH};
   width: 100vw;
   height: 5.5rem;
