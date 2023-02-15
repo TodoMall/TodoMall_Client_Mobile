@@ -4,7 +4,7 @@ import { TextButton } from "../button";
 import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
 import styled from "styled-components";
 
-const CompanyInfo = () => {
+const Footer = () => {
   const navigate = useNavigate();
   const handleServicePage = () => navigate("/setting/service");
   const handlePersonalPage = () => navigate("/setting/personal");
@@ -83,7 +83,7 @@ const CompanyInfo = () => {
   );
 };
 
-export default CompanyInfo;
+export default Footer;
 
 const Container = styled.div`
   width: 100%;
