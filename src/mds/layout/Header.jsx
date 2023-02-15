@@ -1,27 +1,31 @@
 import styled from "styled-components";
-import { MAX_WIDTH } from "../constants";
-import { BrandLogo } from "./icon";
-import { CategoryTabBar } from "./category";
-import { RowBox } from "./box";
-import { TextButton } from "./button";
+import { MAX_WIDTH, PATH } from "../../constants";
+import { BrandLogo } from "../icon";
+import { CategoryTabBar } from "../category";
+import { RowBox } from "../box";
+import { TextButton } from "../button";
 import { useNavigate } from "react-router-dom";
-import Divider from "./Divider";
+import Divider from "../Divider";
 
 const Header = () => {
   const navigate = useNavigate();
-  const handleNoticePage = () => navigate("/");
-  const handleSignInPage = () => navigate("/");
-  const handleProPage = () => navigate("/");
+  const { memberId } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
+
+  const handleMainPage = () => navigate(PATH.MAIN);
+  const handleAlarmPage = () => navigate(PATH.ALARM(memberId));
+  const handleSignInPage = () => navigate(PATH.SINGIN);
+  const handleProPage = () => navigate(PATH.PRO_CENTER);
 
   return (
     <>
       <Container>
         <RowBox height={"3rem"} justifyContent={"space-between"}>
-          <BrandLogo />
+          <BrandLogo onClick={handleMainPage} />
 
           {/* TODO: To be add Seaarch Bar when fix design and interactions */}
+
           <TextButtonGroup>
-            <TextButton margin={"0 0.5rem"} onClick={handleNoticePage}>
+            <TextButton margin={"0 0.5rem"} onClick={handleAlarmPage}>
               알림
             </TextButton>
             <TextButton margin={"0 0.5rem"} onClick={handleSignInPage}>

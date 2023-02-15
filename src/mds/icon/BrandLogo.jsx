@@ -1,9 +1,9 @@
 import { COLOR } from "../../constants";
 import styled from "styled-components";
 
-const BrandLogo = () => {
+const BrandLogo = ({ onClick: handleClick = () => {} }) => {
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <svg
         width="192"
         height="32"
@@ -39,4 +39,6 @@ const BrandLogo = () => {
   );
 };
 export default BrandLogo;
-const Container = styled.div``;
+const Container = styled.div`
+  cursor: pointer;
+`;
