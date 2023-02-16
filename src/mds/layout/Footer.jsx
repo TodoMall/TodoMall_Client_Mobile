@@ -3,6 +3,8 @@ import Divider from "../Divider";
 import { TextButton } from "../button";
 import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../constants";
 import styled from "styled-components";
+import { RowBox } from "../box";
+import { BrandLogo } from "../icon";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -14,69 +16,65 @@ const Footer = () => {
 
   return (
     <Container>
-      <DemoLogoDiv>
-        <p>todo mall logo</p>
-      </DemoLogoDiv>
-      <Divider margin="0.125rem 0" color={COLOR.GRAY50} />
-      <Text>마이플랜잇</Text>
-      <Divider margin="0.75rem 0" color={COLOR.GRAY50} />
-      <TextButton
-        fontColor={COLOR.GRAY600}
-        fontWeight={FONT_WEIGTHT.PRETENDARD_REGULAR}
-        fontSize={FONT_STYLE.PRETENDARD_100.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_100.HEIGTH}
-        margin={"0 0 0.75rem"}
-        textAlign={"left"}
-        children={"이용약관"}
-        onClick={handleServicePage}
-      />
-      <TextButton
-        fontColor={COLOR.GRAY600}
-        fontWeight={FONT_WEIGTHT.PRETENDARD_REGULAR}
-        fontSize={FONT_STYLE.PRETENDARD_100.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_100.HEIGTH}
-        margin={"0 0 0.75rem"}
-        textAlign={"left"}
-        children={"개인정보처리방침"}
-        onClick={handlePersonalPage}
-      />
-      <TextButton
-        fontColor={COLOR.GRAY600}
-        fontWeight={FONT_WEIGTHT.PRETENDARD_REGULAR}
-        fontSize={FONT_STYLE.PRETENDARD_100.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_100.HEIGTH}
-        margin={"0 0 0.75rem"}
-        textAlign={"left"}
-        children={"취소/환불 정책"}
-        onClick={handleRefundPage}
-      />
-      <TextButton
-        fontColor={COLOR.GRAY600}
-        fontWeight={FONT_WEIGTHT.PRETENDARD_REGULAR}
-        fontSize={FONT_STYLE.PRETENDARD_100.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_100.HEIGTH}
-        margin={"0 0 0.75rem"}
-        textAlign={"left"}
-        children={"공지사항"}
-        onClick={handleNoticePage}
-      />
-      <TextButton
-        fontColor={COLOR.GRAY600}
-        fontWeight={FONT_WEIGTHT.PRETENDARD_REGULAR}
-        fontSize={FONT_STYLE.PRETENDARD_100.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_100.HEIGTH}
-        textAlign={"left"}
-        children={"고객센터"}
-        onClick={handleCSPage}
-      />
-      <Text margin={"0.25rem 0"}>문의전화 : 010-2154-3992</Text>
-      <Text>주중 09~18시 (점심시간 12~13시 30분 / 주말 및 공휴일 제외)</Text>
-      <Divider margin="0.75rem 0" color={COLOR.GRAY50} />
-      <Text>사업자등록번호 : 274-12-01980 | 대표 : 최현권</Text>
-      <Text margin={"0.25rem 0"}>
-        주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호
-      </Text>
-      <Text margin={"0 0 0.5rem 0"}>메일 : myplanit.unicorn@gmail.com</Text>
+      <TextButtonGroup>
+        <TextButton
+          fontColor={COLOR.GRAY600}
+          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
+          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
+          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+          margin={"0 1.563rem 0 0"}
+          children={"이용약관"}
+          onClick={handleServicePage}
+        />
+        <TextButton
+          fontColor={COLOR.GRAY600}
+          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
+          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
+          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+          margin={"0 1.563rem"}
+          children={"개인정보처리방침"}
+          onClick={handlePersonalPage}
+        />
+        <TextButton
+          fontColor={COLOR.GRAY600}
+          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
+          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
+          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+          margin={"0 1.563rem"}
+          children={"취소/환불 정책"}
+          onClick={handleRefundPage}
+        />
+        <TextButton
+          fontColor={COLOR.GRAY600}
+          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
+          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
+          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+          margin={"0 1.563rem"}
+          children={"공지사항"}
+          onClick={handleNoticePage}
+        />
+        <TextButton
+          fontColor={COLOR.GRAY600}
+          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
+          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
+          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+          margin={"0 1.563rem"}
+          children={"고객센터"}
+          onClick={handleCSPage}
+        />
+      </TextButtonGroup>
+      <Divider margin="1.25rem 0 1rem 0" color={COLOR.GRAY100} />
+      <BrandLogo />
+      <DescriptionTextGroup>
+        <Text margin={"0 0 0.25rem 0"}>
+          마이플랜잇 | 사업자등록번호 : 274-12-01980 | 대표 : 최현권 |
+          개인정보담당자 : 이명성
+        </Text>
+        <Text margin={"0.25rem 0 0 0"}>
+          주소 : 서울특별시 송파구 양재대로 1218, 107동 15층 1502호 | TEL :
+          010-2154-3992 | 메일 : myplanit.unicorn@gmail.com
+        </Text>
+      </DescriptionTextGroup>
       <BorderText>Copyright ⓒ 2022 myplanit. All rights reserved.</BorderText>
     </Container>
   );
@@ -84,6 +82,16 @@ const Footer = () => {
 
 export default Footer;
 
+const DescriptionTextGroup = styled.div`
+  margin: 1rem 0 0.75rem 0;
+`;
+
+const TextButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+`;
 const Container = styled.div`
   position: fixed;
   bottom: 0;
@@ -95,22 +103,6 @@ const Container = styled.div`
   flex-direction: column;
   background-color: ${COLOR.GRAY50};
   padding: 1.25rem 5rem 2rem 5rem;
-`;
-
-// FIXME : To be deleted  the logo is fixed
-const DemoLogoDiv = styled.div`
-  width: 120px;
-  height: 24px;
-  background-color: #8a93ab;
-  float: left;
-  padding-left: 0.25rem;
-  p {
-    font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
-    font-size: 0.75rem;
-    line-height: 1.5rem;
-    letter-spacing: -0.01em;
-    color: #ffffff;
-  }
 `;
 
 const Text = styled.p`
