@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const ArrowIcon = ({ isReverse = false }) => {
+const PreviousArrowIcon = () => {
   return (
-    <Container isReverse={isReverse}>
+    <Container>
       <svg
         width="24"
         height="24"
@@ -22,7 +22,7 @@ const ArrowIcon = ({ isReverse = false }) => {
   );
 };
 
-export default ArrowIcon;
+export default PreviousArrowIcon;
 
 const Container = styled.div`
   display: flex;
@@ -30,5 +30,5 @@ const Container = styled.div`
   align-items: center;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  transform: scaleX(${(props) => (props.isReverse ? -1 : 1)});
+  transform: scaleX(-1);
 `;

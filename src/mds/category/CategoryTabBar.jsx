@@ -15,7 +15,7 @@ const CategoryTabBar = () => {
   return (
     <Container>
       {categories.map((category) => {
-        return <CategoryItem key={category}>{category}</CategoryItem>;
+        return <CategoryItem key={category} categoryTitle={category} />;
       })}
     </Container>
   );

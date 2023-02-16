@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { COLOR, FONT_WEIGTHT } from "../../constants";
 
 const CategoryItem = ({
-  children,
+  categoryTitle,
   isCurrent = false,
   onClick: handleClick = () => {},
 }) => {
   return (
     <Container onClick={handleClick} isCurrent={isCurrent}>
-      <p>{children}</p>
+      <p>{categoryTitle}</p>
     </Container>
   );
 };

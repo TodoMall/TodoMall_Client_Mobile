@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-const RowBox = ({
-  children,
-  height = "auto",
-  justifyContent = "center",
-  padding = "none",
-}) => {
+const RowBox = ({ children, height = "auto", justifyContent = "center" }) => {
   return (
     <Container height={height} justifyContent={justifyContent}>
       {children}

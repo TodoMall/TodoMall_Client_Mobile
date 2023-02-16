@@ -1,7 +1,7 @@
 import { RowBox } from "./box";
 import { ArrowIcon } from "./icon";
 
-const CheckBoxItem = ({ children, isReverse }) => {
+const DetailBoxCoulmn = ({ children, isReverse }) => {
   return (
     <RowBox>
       <ArrowIcon isReverse={isReverse} />
@@ -10,4 +10,4 @@ const CheckBoxItem = ({ children, isReverse }) => {
   );
 };
 
-export default CheckBoxItem;
+export default DetailBoxCoulmn;

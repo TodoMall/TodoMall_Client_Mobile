@@ -23,6 +23,5 @@ const StyledDivider = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
-  border: none;
   background-color: ${(props) => props.color};
 `;
