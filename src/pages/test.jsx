@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-import { NextArrowButton, PreviousArrowButton } from "../mds/button";
+import { Footer } from "../mds/layout";
 
 const TestPage = () => {
   return (
     <Container>
-      <NextArrowButton />
-      <PreviousArrowButton />
+      <Footer />
     </Container>
   );
 };
