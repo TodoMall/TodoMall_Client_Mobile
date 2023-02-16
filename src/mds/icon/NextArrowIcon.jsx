@@ -1,34 +1,26 @@
-import styled from "styled-components";
-
-const PreviousArrowIcon = () => {
+const NextArrowIcon = () => {
   return (
-    <Container>
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M14 6L8 12L14 18"
-          stroke="#31363E"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </Container>
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="3f0482690430772804646c9c1c77aa5a">
+        <g id="91c9a92e6de1afd5d91da26cf2ed4516">
+          <path
+            id="062be0ac8a301369cf58d123850a22d2"
+            d="M10 18L16 12L10 6"
+            stroke="#31363E"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>
+        </g>
+      </g>
+    </svg>
   );
 };
 
-export default PreviousArrowIcon;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  transform: scaleX(-1);
-`;
+export default NextArrowIcon;

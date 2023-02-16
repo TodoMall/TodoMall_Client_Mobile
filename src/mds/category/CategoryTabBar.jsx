@@ -1,29 +1,20 @@
+import { CATEGORY_TAG } from "../../constants";
 import CategoryItem from "./CategoryItem";
 import styled from "styled-components";
 
 const CategoryTabBar = () => {
-  const categories = [
-    "BEST",
-    "노코드 툴",
-    "협업 툴",
-    "마케팅 툴",
-    "디자인 툴",
-    "기획 툴",
-    "부수익",
-    "일상",
-  ];
   return (
-    <Container>
-      {categories.map((category) => {
-        return <CategoryItem key={category} categoryTitle={category} />;
+    <TabBar>
+      {CATEGORY_TAG.map((tag) => {
+        return <CategoryItem key={tag} categoryTitle={tag} />;
       })}
-    </Container>
+    </TabBar>
   );
 };
 
 export default CategoryTabBar;
 
-const Container = styled.div`
+const TabBar = styled.div`
   display: flex;
   div {
     &:first-child {

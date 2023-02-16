@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { PreviousArrowIcon, NextArrowIcon } from "../mds/icon";
+
+import { NextArrowButton, PreviousArrowButton } from "../mds/button";
 
 const TestPage = () => {
   return (
     <Container>
-      <PreviousArrowIcon />
-      <NextArrowIcon />
+      <NextArrowButton />
+      <PreviousArrowButton />
     </Container>
   );
 };

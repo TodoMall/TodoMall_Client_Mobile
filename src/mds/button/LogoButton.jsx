@@ -8,7 +8,7 @@ const LogoButton = () => {
   const handleMainPage = () => navigate(PATH.MAIN);
 
   return (
-    <IconButton width={"auto"} height={"auto"} onClick={handleMainPage}>
+    <IconButton onClick={handleMainPage}>
       <BrandLogo />
     </IconButton>
   );
