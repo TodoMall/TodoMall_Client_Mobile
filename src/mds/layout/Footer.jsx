@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import Divider from "../Divider";
+import { BrandLogo } from "../icon";
 import { TextButton } from "../button";
 import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../constants";
+import Divider from "../Divider";
 import styled from "styled-components";
-import { RowBox } from "../box";
-import { BrandLogo } from "../icon";
 
 const Footer = () => {
   const navigate = useNavigate();
+
   const handleServicePage = () => navigate(PATH.SERVICE);
   const handlePersonalPage = () => navigate(PATH.PERSONAL);
   const handleRefundPage = () => navigate(PATH.REFUND);
