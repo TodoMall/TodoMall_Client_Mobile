@@ -1,11 +1,11 @@
 import { RowBox } from "./box";
-import { ArrowIcon } from "./icon";
+import { NextArrowIcon } from "./icon";
 
-const DetailBoxCoulmn = ({ children, isReverse }) => {
+const DetailBoxCoulmn = ({ children }) => {
   return (
     <RowBox>
-      <ArrowIcon isReverse={isReverse} />
       {children}
+      <NextArrowIcon />
     </RowBox>
   );
 };
