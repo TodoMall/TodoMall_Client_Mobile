@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import Divider from "../Divider";
 import { TextButton } from "../button";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
+import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../constants";
 import styled from "styled-components";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const handleServicePage = () => navigate("/setting/service");
-  const handlePersonalPage = () => navigate("/setting/personal");
-  const handleRefundPage = () => navigate("/setting/refund");
-  const handleNoticePage = () => navigate("/setting/notice");
-  const handleCSPage = () =>
-    (window.location.href = "https://pf.kakao.com/_xhSxjExj/chat");
+  const handleServicePage = () => navigate(PATH.SERVICE);
+  const handlePersonalPage = () => navigate(PATH.PERSONAL);
+  const handleRefundPage = () => navigate(PATH.REFUND);
+  const handleNoticePage = () => navigate(PATH.NOTICE);
+  const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
 
   return (
     <Container>
