@@ -1,11 +1,11 @@
 import styled from "styled-components";
-
-import { Footer } from "../mds/layout";
+import { SearchBar } from "../domain/store";
+import Header from "../mds/layout/Header";
 
 const TestPage = () => {
   return (
     <Container>
-      <Footer />
+      <SearchBar />
     </Container>
   );
 };
@@ -18,5 +18,5 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 500px;
+  margin-top: 50px;
 `;

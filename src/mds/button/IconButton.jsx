@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const IconButton = ({
   children = null,
-  width = "auto",
-  height = "auto",
+  width = "2.5rem",
+  height = "2.5rem",
   onClick: handleClick = () => {},
 }) => {
   return (
