@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { COLOR } from "../../constants/color";
+import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
 
 const BasicChip = ({
-  children = null,
+  title = null,
   width = "auto",
   height = "2rem",
   margin = "0.25rem 0.125rem",
@@ -23,7 +23,7 @@ const BasicChip = ({
       margin={margin}
       onClick={handleClick}
     >
-      <p>{children}</p>
+      <p>{title}</p>
     </Container>
   );
 };
@@ -41,6 +41,12 @@ const Container = styled.div`
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
   p {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
+    font-size: ${FONT_STYLE.PRETENDARD_200.SIZE};
+    line-height: ${FONT_STYLE.PRETENDARD_200.HEIGTH};
+    letter-spacing: -0.01em;
     color: ${(props) => (props.isDisabled ? COLOR.GRAY300 : props.fontColor)};
     text-align: center;
   }
