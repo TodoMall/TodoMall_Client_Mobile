@@ -1,13 +1,10 @@
 import styled from "styled-components";
-import { SearchBar } from "../domain/store";
-import Header from "../mds/layout/desktop/Header";
-import BasicHeader from "../mds/layout/mobile/headers/BasicHeader";
+import { SearchTab } from "../mds/layout/mobile/headers";
 
 const TestPage = () => {
   return (
     <Container>
-      {/* <SearchBar /> */}
-      <BasicHeader />
+      <SearchTab />
     </Container>
   );
 };
@@ -16,6 +13,7 @@ export default TestPage;
 
 const Container = styled.div`
   width: 390px;
+  height: 90vh;
   margin-top: 50px;
-  border: 1px solid;
+  border: 1px solid red;
 `;

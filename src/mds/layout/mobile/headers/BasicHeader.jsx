@@ -6,7 +6,7 @@ import styled from "styled-components";
 const BasicHeader = ({
   pageDescription = null,
   hasPrevButton = true,
-  hasListButtin = false,
+  hasListButton = false,
 }) => {
   const navigate = useNavigate();
   const handlePreviousPage = () => navigate(-1);
@@ -19,7 +19,7 @@ const BasicHeader = ({
         <EmptyBox />
       )}
       <PageDescription>{pageDescription}</PageDescription>
-      {hasListButtin ? <ListButton /> : <EmptyBox />}
+      {hasListButton ? <ListButton /> : <EmptyBox />}
     </Container>
   );
 };
