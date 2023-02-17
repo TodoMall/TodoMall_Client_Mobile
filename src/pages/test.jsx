@@ -1,10 +1,15 @@
 import styled from "styled-components";
-import { SearchTab, MyCourseHeader } from "../mds/layout/mobile/headers";
+import { CategoryTabBar } from "../mds/category";
+import {
+  SearchTab,
+  MyCourseHeader,
+  StoreHeader,
+} from "../mds/layout/mobile/headers";
 
 const TestPage = () => {
   return (
     <Container>
-      <MyCourseHeader />
+      <StoreHeader />
     </Container>
   );
 };
@@ -14,6 +19,4 @@ export default TestPage;
 const Container = styled.div`
   width: 390px;
   height: 90vh;
-  margin-top: 50px;
-  border: 1px solid red;
 `;

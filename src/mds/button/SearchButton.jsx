@@ -1,11 +1,9 @@
 import IconButton from "./IconButton";
 import { SearchIcon } from "../icon";
-import { useToggle } from "../../hooks";
 
-const SearchButton = () => {
-  const [state, setState, handleState] = useToggle();
+const SearchButton = ({ onClick: handleClick = () => {} }) => {
   return (
-    <IconButton onClick={() => {}}>
+    <IconButton onClick={handleClick}>
       <SearchIcon />
     </IconButton>
   );

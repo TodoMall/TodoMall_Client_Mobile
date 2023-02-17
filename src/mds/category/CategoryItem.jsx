@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, FONT_WEIGTHT } from "../../constants";
+import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
 
 const CategoryItem = ({
   title,
@@ -16,19 +16,19 @@ const CategoryItem = ({
 export default CategoryItem;
 
 const Container = styled.div`
-  width: 4rem;
-  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0.5rem 0.75rem 0 0.5rem;
   cursor: pointer;
   p {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    text-align: center;
+    white-space: nowrap;
+    font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
+    font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
+    line-height: ${FONT_STYLE.PRETENDARD_300.HEIGTH};
     letter-spacing: -0.01em;
-    font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
-    color: ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY700)};
+    color: ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY500)};
+    border-bottom: 1px solid
+      ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : "none")};
   }
 `;

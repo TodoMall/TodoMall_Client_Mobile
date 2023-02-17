@@ -17,11 +17,11 @@ const recommendKeyword = [
   { id: 11, title: "스타트업" },
 ];
 
-const SearchTab = () => {
+const SearchTab = ({ onClose: handleClose = () => {} }) => {
   return (
     <Container>
       <SearchInputContainer>
-        <PreviousArrowButton />
+        <PreviousArrowButton onClick={handleClose} />
         <Input placeholder="관심있는 싶은 툴을 검색해보세요." />
         <EmptyBox />
       </SearchInputContainer>
@@ -51,12 +51,12 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  padding: 0 0.5rem;
 `;
 const SearchInputContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  padding: 0 0.5rem;
 `;
 
 const Input = styled.input`
@@ -67,6 +67,7 @@ const Input = styled.input`
   font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
   font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
   line-height: ${FONT_STYLE.PRETENDARD_300.HEIGTH};
+  margin-top: 2px;
   ::placeholder {
     text-align: left;
     letter-spacing: -0.01em;
