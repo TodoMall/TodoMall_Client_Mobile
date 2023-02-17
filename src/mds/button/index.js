@@ -8,3 +8,4 @@ export { default as NextArrowButton } from "./NextArrowButton";
 export { default as PreviousArrowButton } from "./PreviousArrowButton";
 export { default as SearchButton } from "./SearchButton";
 export { default as ListButton } from "./ListButton";
+export { default as NotificationButton } from "./NotificationButton";

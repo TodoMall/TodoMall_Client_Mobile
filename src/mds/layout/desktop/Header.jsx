@@ -12,7 +12,7 @@ const Header = () => {
   const { memberId } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
 
   const handleMainPage = () => navigate(PATH.MAIN);
-  const handleAlarmPage = () => navigate(PATH.ALARM(memberId));
+  const handleAlarmPage = () => navigate(PATH.NOTIFICATION(memberId));
   const handleSignInPage = () => navigate(PATH.SINGIN);
   const handleProPage = () => navigate(PATH.PRO_CENTER);
 

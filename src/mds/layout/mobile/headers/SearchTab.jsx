@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PreviousArrowButton } from "../../../button";
 import { COLOR, FONT_STYLE, FONT_WEIGTHT } from "../../../../constants";
 import styled from "styled-components";

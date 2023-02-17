@@ -1,3 +1,5 @@
+import { COLOR } from "../../constants";
+
 const ListIcon = () => {
   return (
     <svg
@@ -12,7 +14,7 @@ const ListIcon = () => {
           <path
             id="e713097abd7896081c274b108fc77740"
             d="M8.25977 7H19.2598"
-            stroke="#31363E"
+            stroke={COLOR.GRAY800}
             strokeWidth="2"
             strokeMiterlimit="10"
             strokeLinecap="round"
@@ -20,7 +22,7 @@ const ListIcon = () => {
           <path
             id="6fb5239a1687aa0e7e0fb0701f3c4009"
             d="M5.24023 7H4.74023"
-            stroke="#31363E"
+            stroke={COLOR.GRAY800}
             strokeWidth="2"
             strokeMiterlimit="10"
             strokeLinecap="round"
@@ -28,7 +30,7 @@ const ListIcon = () => {
           <path
             id="991d615613c2c7d784e78ce58e4843fa"
             d="M8.25977 12H19.2598"
-            stroke="#31363E"
+            stroke={COLOR.GRAY800}
             strokeWidth="2"
             strokeMiterlimit="10"
             strokeLinecap="round"
@@ -36,7 +38,7 @@ const ListIcon = () => {
           <path
             id="bdd07796f48ca6747fc1642bcb1e2cc1"
             d="M5.24023 12H4.74023"
-            stroke="#31363E"
+            stroke={COLOR.GRAY800}
             strokeWidth="2"
             strokeMiterlimit="10"
             strokeLinecap="round"
@@ -44,7 +46,7 @@ const ListIcon = () => {
           <path
             id="410b118ad5998f6d7f875a7e79af1cc4"
             d="M8.25977 17H19.2598"
-            stroke="#31363E"
+            stroke={COLOR.GRAY800}
             strokeWidth="2"
             strokeMiterlimit="10"
             strokeLinecap="round"
@@ -52,7 +54,7 @@ const ListIcon = () => {
           <path
             id="18af8fbfffef0e007314458ea3cc7860"
             d="M5.24023 17H4.74023"
-            stroke="#31363E"
+            stroke={COLOR.GRAY800}
             strokeWidth="2"
             strokeMiterlimit="10"
             strokeLinecap="round"

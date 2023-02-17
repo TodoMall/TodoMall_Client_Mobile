@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { SearchTab } from "../mds/layout/mobile/headers";
+import { SearchTab, MyCourseHeader } from "../mds/layout/mobile/headers";
 
 const TestPage = () => {
   return (
     <Container>
-      <SearchTab />
+      <MyCourseHeader />
     </Container>
   );
 };
