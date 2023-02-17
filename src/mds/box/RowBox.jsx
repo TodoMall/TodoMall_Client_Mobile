@@ -12,8 +12,10 @@ export default RowBox;
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
+  height: ${(props) => props.height};
   align-items: center;
   justify-content: ${(props) => props.justifyContent};
   flex-direction: row;
-  height: ${(props) => props.height};
+  border: 1px solid red;
 `;
