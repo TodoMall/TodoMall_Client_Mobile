@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SearchBar } from "../domain/store";
-import Header from "../mds/layout/Header";
+import Header from "../mds/layout/desktop/Header";
 
 const TestPage = () => {
   return (
