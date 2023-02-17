@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { BrandLogo } from "../icon";
-import { TextButton } from "../button";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../constants";
-import Divider from "../Divider";
+import { BrandLogo } from "../../icon";
+import { TextButton } from "../../button";
+import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../../constants";
+import Divider from "../../Divider";
 import styled from "styled-components";
 
 const Footer = () => {

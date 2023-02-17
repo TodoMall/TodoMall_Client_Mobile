@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { MAX_WIDTH, PATH } from "../../constants";
-import { BrandLogo } from "../icon";
-import { CategoryTabBar } from "../category";
-import { RowBox } from "../box";
-import { TextButton } from "../button";
+import { MAX_WIDTH, PATH } from "../../../constants";
+import { BrandLogo } from "../../icon";
+import { CategoryTabBar } from "../../category";
+import { RowBox } from "../../box";
+import { TextButton } from "../../button";
+import Divider from "../../Divider";
 import { useNavigate } from "react-router-dom";
-import Divider from "../Divider";
 
 const Header = () => {
   const navigate = useNavigate();
