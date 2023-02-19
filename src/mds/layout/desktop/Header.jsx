@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 import { COLOR, FONT_STYLE, PATH } from "../../../constants";
-import { BrandLogo } from "../../icon";
 import { CategoryTabBar } from "../../category";
 import { RowBox } from "../../box";
-import { TextButton } from "../../button";
+import { LogoButton, TextButton } from "../../button";
 import Divider from "../../Divider";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../../domain/store/components/SearchBar";
@@ -37,7 +36,7 @@ const Header = () => {
       <Container>
         <RowBox height={"3rem"} justifyContent={"space-between"}>
           <SearchContainer>
-            <BrandLogo onClick={handleMainPage} />
+            <LogoButton onClick={handleMainPage} />
             <SearchBar />
           </SearchContainer>
           <TextButtonGroup>

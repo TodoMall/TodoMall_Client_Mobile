@@ -45,5 +45,4 @@ const PageDescription = styled.p`
 
 const EmptyBox = styled.div`
   width: 2.5rem;
-  height: 2.5rem;
 `;

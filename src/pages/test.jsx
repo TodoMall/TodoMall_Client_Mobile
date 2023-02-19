@@ -8,6 +8,7 @@ import {
 import { Header } from "../mds/layout/desktop";
 import SearchBar from "../domain/store/components/SearchBar";
 import { isMobile, isDesktop, isTablet } from "react-device-detect";
+import { BasicHeader } from "../mds/layout/mobile/headers";
 const TestPage = () => {
   return (
     <Container>

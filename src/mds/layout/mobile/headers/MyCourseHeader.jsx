@@ -11,7 +11,7 @@ const MyCourseHeader = () => {
 
   return (
     <Container>
-      <TitleText>학습</TitleText>
+      <Theme>학습</Theme>
       <NotificationButton onClick={handleNotificationPage} />
     </Container>
   );
@@ -27,7 +27,7 @@ const Container = styled.div`
   padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 `;
 
-const TitleText = styled.p`
+const Theme = styled.p`
   font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
   font-size: ${FONT_STYLE.PRETENDARD_500.SIZE};
   line-height: ${FONT_STYLE.PRETENDARD_600.HEIGTH};

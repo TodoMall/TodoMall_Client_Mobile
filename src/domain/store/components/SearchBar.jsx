@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useEffect, useState } from "react";
 import {
   COLOR,
@@ -7,16 +6,17 @@ import {
   recommendTag,
 } from "../../../constants";
 import { SearchIcon } from "../../../mds/icon";
-import { useToggle, useInput } from "../../../hooks";
+import { useInput, useDebounce } from "../../../hooks";
 import { useQuery } from "@apollo/client";
 import { getProductListByQuery } from "../../../apollo/domain/store";
 import { BasicChip } from "../../../mds/chip";
 import { isNull } from "../../../utils";
+import styled from "styled-components";
 
 const SearchBar = () => {
   const [keyword, handleKeywordChange] = useInput(null);
-  const [isOpen, setIsOpen] = useToggle(keyword?.length > 0);
   const [isFocused, setIsFocused] = useState(false);
+  const debouncedValue = useDebounce(keyword);
 
   const onFocus = () => setIsFocused(true);
   const onBlur = () => setIsFocused(false);
@@ -27,16 +27,12 @@ const SearchBar = () => {
   });
 
   useEffect(() => {
-    const debounce = setTimeout(() => {
-      refetch();
-      setIsOpen(keyword);
-    }, 300);
-    return () => clearTimeout(debounce);
-  }, [keyword]);
+    refetch();
+  }, [debouncedValue]);
 
   return (
     <Container>
-      <Bar>
+      <InputContainer>
         <SearchIcon />
         <Input
           onFocus={onFocus}
@@ -44,11 +40,11 @@ const SearchBar = () => {
           placeholder="찾고 싶은 투두 클래스를 입력해주세요."
           onChange={handleKeywordChange}
         />
-      </Bar>
-      {(isOpen || isFocused) && (
+      </InputContainer>
+      {isFocused && (
         <SearchResultContainer>
           <Text>추천 검색 키워드</Text>
-          <ChipContainer>
+          <SuggestedSearch>
             {recommendTag.map((el) => {
               return (
                 <BasicChip
@@ -59,15 +55,14 @@ const SearchBar = () => {
                 />
               );
             })}
-          </ChipContainer>
-          {keyword?.length > 0 &&
-            searchResult?.filteredProductList?.length > 0 && (
-              <List>
+            {keyword && searchResult?.filteredProductList?.length > 0 && (
+              <SearchList>
                 {searchResult?.filteredProductList?.map((el) => {
-                  return <Item>{el.title}</Item>;
+                  return <SearchItem>{el.title}</SearchItem>;
                 })}
-              </List>
+              </SearchList>
             )}
+          </SuggestedSearch>
         </SearchResultContainer>
       )}
     </Container>
@@ -76,14 +71,14 @@ const SearchBar = () => {
 
 export default SearchBar;
 
-const Item = styled.div`
+const SearchItem = styled.div`
   width: 100%;
   height: 1rem;
   text-align: center;
   margin: 0.75rem 0;
   cursor: pointer;
 `;
-const List = styled.div`
+const SearchList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +89,7 @@ const Container = styled.div`
   margin-left: 1.25rem;
 `;
 
-const Bar = styled.div`
+const InputContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -142,7 +137,7 @@ const Text = styled.p`
   letter-spacing: -0.01em;
 `;
 
-const ChipContainer = styled.div`
+const SuggestedSearch = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
