@@ -5,11 +5,14 @@ import {
   MyCourseHeader,
   StoreHeader,
 } from "../mds/layout/mobile/headers";
-
+import { Header } from "../mds/layout/desktop";
+import SearchBar from "../domain/store/components/SearchBar";
+import { isMobile, isDesktop, isTablet } from "react-device-detect";
 const TestPage = () => {
   return (
     <Container>
-      <StoreHeader />
+      {isMobile && <StoreHeader />}
+      {isDesktop && <Header />}
     </Container>
   );
 };
@@ -17,6 +20,6 @@ const TestPage = () => {
 export default TestPage;
 
 const Container = styled.div`
-  width: 390px;
+  width: 100vw;
   height: 90vh;
 `;

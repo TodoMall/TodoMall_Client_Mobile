@@ -4,10 +4,15 @@ import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
 const CategoryItem = ({
   title,
   isCurrent = false,
+  fontColor = COLOR.GRAY500,
   onClick: handleClick = () => {},
 }) => {
   return (
-    <Container onClick={handleClick} isCurrent={isCurrent}>
+    <Container
+      onClick={handleClick}
+      isCurrent={isCurrent}
+      fontColor={fontColor}
+    >
       <p>{title}</p>
     </Container>
   );
@@ -27,7 +32,8 @@ const Container = styled.div`
     font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
     line-height: ${FONT_STYLE.PRETENDARD_300.HEIGTH};
     letter-spacing: -0.01em;
-    color: ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY500)};
+    color: ${(props) =>
+      props.isCurrent ? COLOR.BRAND_COLOR : props.fontColor};
     border-bottom: 1px solid
       ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : "none")};
   }

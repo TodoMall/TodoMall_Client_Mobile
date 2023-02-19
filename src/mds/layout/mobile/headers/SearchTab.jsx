@@ -1,34 +1,45 @@
-import { PreviousArrowButton } from "../../../button";
-import { COLOR, FONT_STYLE, FONT_WEIGTHT } from "../../../../constants";
+import { useEffect } from "react";
+import {
+  COLOR,
+  FONT_STYLE,
+  FONT_WEIGTHT,
+  recommendTag,
+} from "../../../../constants";
 import styled from "styled-components";
+import { useQuery } from "@apollo/client";
+import { useInput } from "../../../../hooks";
+import { isNull } from "../../../../utils";
+import { PreviousArrowButton } from "../../../button";
 import { BasicChip } from "../../../chip";
-
-const recommendKeyword = [
-  { id: 1, title: "오피스 툴" },
-  { id: 2, title: "노션" },
-  { id: 3, title: "피그마" },
-  { id: 4, title: "데이터" },
-  { id: 5, title: "엑셀" },
-  { id: 6, title: "피피티" },
-  { id: 7, title: "노코드" },
-  { id: 8, title: "첫 출근" },
-  { id: 9, title: "첫 출근" },
-  { id: 10, title: "서비스 기획" },
-  { id: 11, title: "스타트업" },
-];
+import { getProductListByQuery } from "../../../../apollo/domain/store";
 
 const SearchTab = ({ onClose: handleClose = () => {} }) => {
+  const [keyword, handleKeywordChange] = useInput(null);
+  const { data: searchResult, refetch } = useQuery(getProductListByQuery, {
+    variables: { query: keyword },
+    skip: isNull(keyword),
+  });
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      refetch();
+    }, 300);
+    return () => clearTimeout(debounce);
+  }, [keyword]);
+
   return (
     <Container>
       <SearchInputContainer>
         <PreviousArrowButton onClick={handleClose} />
-        <Input placeholder="관심있는 싶은 툴을 검색해보세요." />
+        <Input
+          placeholder="관심있는 싶은 툴을 검색해보세요."
+          onChange={handleKeywordChange}
+        />
         <EmptyBox />
       </SearchInputContainer>
       <SearchResultContainer>
         <Text>추천 검색 키워드</Text>
         <ChipContainer>
-          {recommendKeyword.map((el) => {
+          {recommendTag.map((el) => {
             return (
               <BasicChip
                 key={el.id}
@@ -38,6 +49,14 @@ const SearchTab = ({ onClose: handleClose = () => {} }) => {
               />
             );
           })}
+          {keyword?.length > 0 &&
+            searchResult?.filteredProductList?.length > 0 && (
+              <List>
+                {searchResult?.filteredProductList?.map((el) => {
+                  return <Item>{el.title}</Item>;
+                })}
+              </List>
+            )}
         </ChipContainer>
       </SearchResultContainer>
     </Container>
@@ -45,6 +64,20 @@ const SearchTab = ({ onClose: handleClose = () => {} }) => {
 };
 
 export default SearchTab;
+
+const Item = styled.div`
+  width: 100%;
+  height: 1rem;
+  text-align: center;
+  margin: 0.75rem 0;
+  cursor: pointer;
+`;
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -62,7 +95,6 @@ const SearchInputContainer = styled.div`
 const Input = styled.input`
   all: unset;
   width: 100%;
-  color: ${COLOR.BLACK};
   letter-spacing: -0.01em;
   font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
   font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};

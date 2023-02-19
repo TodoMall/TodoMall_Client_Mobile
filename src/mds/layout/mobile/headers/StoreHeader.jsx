@@ -6,12 +6,12 @@ import { useState } from "react";
 import SearchTab from "./SearchTab";
 
 const StoreHeader = () => {
-  const [isStartSearch, setIsStartSearch] = useState(false);
-  const handleOpenSearchArea = () => setIsStartSearch(true);
-  const handleCLoseSearchArea = () => setIsStartSearch(false);
+  const [isShowSearchArea, setIsShowSearchArea] = useState(false);
+  const handleOpenSearchArea = () => setIsShowSearchArea(true);
+  const handleCLoseSearchArea = () => setIsShowSearchArea(false);
   return (
     <>
-      {!isStartSearch && (
+      {!isShowSearchArea && (
         <Container>
           <RowBox padding={"0.625rem 1rem"} justifyContent={"space-between"}>
             <LogoButton />
@@ -20,7 +20,7 @@ const StoreHeader = () => {
           <CategoryTabBar />
         </Container>
       )}
-      {isStartSearch && <SearchTab onClose={handleCLoseSearchArea} />}
+      {isShowSearchArea && <SearchTab onClose={handleCLoseSearchArea} />}
     </>
   );
 };

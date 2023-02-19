@@ -8,10 +8,16 @@ const BasicChip = ({
   fontColor = COLOR.GRAY800,
   borderRadius = "1.25rem",
   isDisabled = false,
+  fontWeight = FONT_WEIGTHT.PRETENDARD_MEDIUM,
+  fontSize = FONT_STYLE.PRETENDARD_200.SIZE,
+  lineHeight = FONT_STYLE.PRETENDARD_200.HEIGTH,
   onClick: handleClick = () => {},
 }) => {
   return (
     <Container
+      fontWeight={fontWeight}
+      fontSize={fontSize}
+      lineHeight={lineHeight}
       backgroundColor={backgroundColor}
       fontColor={fontColor}
       borderRadius={borderRadius}
@@ -35,9 +41,9 @@ const Container = styled.div`
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
   p {
-    font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
-    font-size: ${FONT_STYLE.PRETENDARD_200.SIZE};
-    line-height: ${FONT_STYLE.PRETENDARD_200.HEIGTH};
+    font-weight: ${(props) => props.fontWeight};
+    font-size: ${(props) => props.fontSize};
+    line-height: ${(props) => props.borderRadius};
     letter-spacing: -0.01em;
     color: ${(props) => (props.isDisabled ? COLOR.GRAY300 : props.fontColor)};
     text-align: center;
