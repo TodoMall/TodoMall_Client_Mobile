@@ -8,7 +8,7 @@ import SearchTab from "./SearchTab";
 const StoreHeader = () => {
   const [isShowSearchArea, setIsShowSearchArea] = useState(false);
   const handleOpenSearchArea = () => setIsShowSearchArea(true);
-  const handleCLoseSearchArea = () => setIsShowSearchArea(false);
+  const handleCloseSearchArea = () => setIsShowSearchArea(false);
   return (
     <>
       {!isShowSearchArea && (
@@ -20,7 +20,7 @@ const StoreHeader = () => {
           <CategoryTabBar />
         </Container>
       )}
-      {isShowSearchArea && <SearchTab onClose={handleCLoseSearchArea} />}
+      {isShowSearchArea && <SearchTab onClose={handleCloseSearchArea} />}
     </>
   );
 };
