@@ -3,12 +3,12 @@ import { BrandLogo } from "../icon";
 import { PATH } from "../../constants";
 import IconButton from "./IconButton";
 
-const LogoButton = ({ width = "auto", height = "auto" }) => {
+const LogoButton = () => {
   const navigate = useNavigate();
   const handleMainPage = () => navigate(PATH.MAIN);
 
   return (
-    <IconButton width={width} height={height} onClick={handleMainPage}>
+    <IconButton width={"auto"} height={"auto"} onClick={handleMainPage}>
       <BrandLogo />
     </IconButton>
   );

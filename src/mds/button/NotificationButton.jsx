@@ -1,13 +1,9 @@
 import { NotificationIcon } from "../icon";
 import IconButton from "./IconButton";
 
-const NotificationButton = ({
-  width = "2.5rem",
-  height = "2.5rem",
-  onClick: handleClick = () => {},
-}) => {
+const NotificationButton = ({ onClick: handleClick = () => {} }) => {
   return (
-    <IconButton width={width} height={height} onClick={handleClick}>
+    <IconButton onClick={handleClick}>
       <NotificationIcon />
     </IconButton>
   );
