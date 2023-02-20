@@ -5,17 +5,11 @@ import {
   MyCourseHeader,
   StoreHeader,
 } from "../mds/layout/mobile/headers";
-import { Header } from "../mds/layout/desktop";
+import { Header, Layout } from "../mds/layout/desktop";
 import SearchBar from "../domain/store/components/SearchBar";
-import { isMobile, isDesktop, isTablet } from "react-device-detect";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 const TestPage = () => {
-  return (
-    <Container>
-      {isMobile && <StoreHeader />}
-      {isDesktop && <Header />}
-    </Container>
-  );
+  return <Container>{<Header />}</Container>;
 };
 
 export default TestPage;

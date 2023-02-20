@@ -12,55 +12,43 @@ const Footer = () => {
   const handlePersonalPage = () => navigate(PATH.PERSONAL);
   const handleRefundPage = () => navigate(PATH.REFUND);
   const handleNoticePage = () => navigate(PATH.NOTICE);
+  // TODO : 자세한 기획 픽스나면 uri 설정
+  const handleAboutUsPage = () => navigate();
+  const handlPartnershipPage = () => navigate();
   const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
+
+  const CustomTextButton = ({ children, onClick: handleClick }) => {
+    return (
+      <TextButton
+        fontColor={COLOR.GRAY600}
+        fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
+        fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
+        lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+        margin={"0 1.563rem 0 0"}
+        children={children}
+        onClick={handleClick}
+      />
+    );
+  };
 
   return (
     <Container>
       <TextButtonGroup>
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem 0 0"}
-          children={"이용약관"}
-          onClick={handleServicePage}
-        />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
+        <CustomTextButton children={"이용약관"} onClick={handleServicePage} />
+        <CustomTextButton
           children={"개인정보처리방침"}
           onClick={handlePersonalPage}
         />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
+        <CustomTextButton
           children={"취소/환불 정책"}
           onClick={handleRefundPage}
         />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
-          children={"공지사항"}
-          onClick={handleNoticePage}
-        />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
-          children={"고객센터"}
-          onClick={handleCSPage}
+        <CustomTextButton children={"공지사항"} onClick={handleNoticePage} />
+        <CustomTextButton children={"고객센터"} onClick={handleCSPage} />
+        <CustomTextButton children={"회사소개"} onClick={handleAboutUsPage} />
+        <CustomTextButton
+          children={"기업제휴"}
+          onClick={handlPartnershipPage}
         />
       </TextButtonGroup>
       <Divider margin="1.25rem 0 1rem 0" color={COLOR.GRAY100} />

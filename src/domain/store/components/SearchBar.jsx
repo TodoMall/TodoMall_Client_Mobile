@@ -1,45 +1,49 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   COLOR,
   FONT_WEIGTHT,
   FONT_STYLE,
   recommendTag,
 } from "../../../constants";
-import { SearchIcon } from "../../../mds/icon";
-import { useInput, useDebounce } from "../../../hooks";
-import { useQuery } from "@apollo/client";
-import { getProductListByQuery } from "../../../apollo/domain/store";
+import { useInput } from "../../../hooks";
 import { BasicChip } from "../../../mds/chip";
-import { isNull } from "../../../utils";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { SearchButton } from "../../../mds/button";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
   const [keyword, handleKeywordChange] = useInput(null);
   const [isFocused, setIsFocused] = useState(false);
-  const debouncedValue = useDebounce(keyword);
 
   const onFocus = () => setIsFocused(true);
   const onBlur = () => setIsFocused(false);
 
-  const { data: searchResult, refetch } = useQuery(getProductListByQuery, {
-    variables: { query: keyword },
-    skip: isNull(keyword),
-  });
+  const handleSearchPage = () => {
+    navigate({
+      pathname: "/search",
+      search: `?keyword=${keyword}`,
+    });
+  };
 
-  useEffect(() => {
-    refetch();
-  }, [debouncedValue]);
+  const handleEnterKeyPress = ({ key }) => {
+    if (key === "Enter") {
+      handleSearchPage();
+    }
+  };
 
   return (
     <Container>
       <InputContainer>
-        <SearchIcon />
         <Input
           onFocus={onFocus}
           onBlur={onBlur}
           placeholder="찾고 싶은 투두 클래스를 입력해주세요."
+          value={keyword}
           onChange={handleKeywordChange}
+          onKeyUp={handleEnterKeyPress}
         />
+        <SearchButton onClick={handleSearchPage} />
       </InputContainer>
       {isFocused && (
         <SearchResultContainer>
@@ -55,13 +59,6 @@ const SearchBar = () => {
                 />
               );
             })}
-            {keyword && searchResult?.filteredProductList?.length > 0 && (
-              <SearchList>
-                {searchResult?.filteredProductList?.map((el) => {
-                  return <SearchItem>{el.title}</SearchItem>;
-                })}
-              </SearchList>
-            )}
           </SuggestedSearch>
         </SearchResultContainer>
       )}

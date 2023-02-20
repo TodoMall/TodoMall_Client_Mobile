@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   COLOR,
   FONT_STYLE,
@@ -6,25 +5,27 @@ import {
   recommendTag,
 } from "../../../../constants";
 import styled from "styled-components";
-import { useQuery } from "@apollo/client";
-import { useInput, useDebounce } from "../../../../hooks";
-import { isNull } from "../../../../utils";
+import { useInput } from "../../../../hooks";
 import { PreviousArrowButton } from "../../../button";
 import { BasicChip } from "../../../chip";
-import { getProductListByQuery } from "../../../../apollo/domain/store";
+import { useNavigate } from "react-router-dom";
 
 const SearchTab = ({ onClose: handleClose = () => {} }) => {
+  const navigate = useNavigate();
   const [keyword, handleKeywordChange] = useInput(null);
-  const debouncedValue = useDebounce(keyword);
 
-  const { data: productList, refetch } = useQuery(getProductListByQuery, {
-    variables: { query: keyword },
-    skip: isNull(keyword),
-  });
+  const handleSearchPage = () => {
+    navigate({
+      pathname: "/search",
+      search: `?keyword=${keyword}`,
+    });
+  };
 
-  useEffect(() => {
-    refetch();
-  }, [debouncedValue]);
+  const handleEnterKeyPress = ({ key }) => {
+    if (key === "Enter") {
+      handleSearchPage();
+    }
+  };
 
   return (
     <Container>
@@ -32,7 +33,9 @@ const SearchTab = ({ onClose: handleClose = () => {} }) => {
         <PreviousArrowButton onClick={handleClose} />
         <Input
           placeholder="관심있는 싶은 툴을 검색해보세요."
+          value={keyword}
           onChange={handleKeywordChange}
+          onKeyUp={handleEnterKeyPress}
         />
       </InputContainer>
       <SearchResultContainer>
@@ -48,13 +51,6 @@ const SearchTab = ({ onClose: handleClose = () => {} }) => {
               />
             );
           })}
-          {keyword && productList?.filteredProductList?.length > 0 && (
-            <SearchList>
-              {productList?.filteredProductList?.map((el) => {
-                return <SearchItem>{el.title}</SearchItem>;
-              })}
-            </SearchList>
-          )}
         </SuggestedSearch>
       </SearchResultContainer>
     </Container>

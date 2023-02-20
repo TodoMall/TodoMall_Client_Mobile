@@ -2,25 +2,25 @@ import styled from "styled-components";
 import { RowBox } from "../../../box";
 import { SearchButton, LogoButton } from "../../../button";
 import { CategoryTabBar } from "../../../category";
-import { useState } from "react";
 import SearchTab from "./SearchTab";
+import useToggle from "../../../../hooks/useToggle";
 
 const StoreHeader = () => {
-  const [isShowSearchArea, setIsShowSearchArea] = useState(false);
-  const handleOpenSearchArea = () => setIsShowSearchArea(true);
-  const handleCloseSearchArea = () => setIsShowSearchArea(false);
+  const [isShowSearchArea, _, handleToggleSearchArea] = useToggle();
+
   return (
     <>
-      {!isShowSearchArea && (
+      {isShowSearchArea ? (
+        <SearchTab onClose={handleToggleSearchArea} />
+      ) : (
         <Container>
           <RowBox padding={"0.625rem 1rem"} justifyContent={"space-between"}>
             <LogoButton />
-            <SearchButton onClick={handleOpenSearchArea} />
+            <SearchButton onClick={handleToggleSearchArea} />
           </RowBox>
           <CategoryTabBar />
         </Container>
       )}
-      {isShowSearchArea && <SearchTab onClose={handleCloseSearchArea} />}
     </>
   );
 };
