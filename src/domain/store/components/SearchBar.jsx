@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  COLOR,
-  FONT_WEIGTHT,
-  FONT_STYLE,
-  recommendTag,
-} from "../../../constants";
+import { COLOR, FONT_STYLE, recommendTag } from "../../../constants";
 import { useInput } from "../../../hooks";
 import { BasicChip } from "../../../mds/chip";
 import styled from "styled-components";
@@ -68,20 +63,6 @@ const SearchBar = () => {
 
 export default SearchBar;
 
-const SearchItem = styled.div`
-  width: 100%;
-  height: 1rem;
-  text-align: center;
-  margin: 0.75rem 0;
-  cursor: pointer;
-`;
-const SearchList = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Container = styled.div`
   margin-left: 1.25rem;
 `;
@@ -104,9 +85,9 @@ const Input = styled.input`
   width: 100%;
   letter-spacing: -0.01em;
   margin-left: 0.5rem;
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_REGULAR};
-  font-size: ${FONT_STYLE.PRETENDARD_200.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_200.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_100.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_100.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_100.HEIGHT};
   ::placeholder {
     color: ${COLOR.GRAY400};
   }
@@ -127,9 +108,9 @@ const SearchResultContainer = styled.div`
 `;
 
 const Text = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
-  font-size: ${FONT_STYLE.PRETENDARD_100.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_100.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_75.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_75.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_75.HEIGHT};
   color: ${COLOR.GRAY800};
   letter-spacing: -0.01em;
 `;

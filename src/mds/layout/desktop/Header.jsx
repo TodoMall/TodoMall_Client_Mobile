@@ -21,8 +21,8 @@ const Header = () => {
     return (
       <TextButton
         fontColor={COLOR.GRAY800}
-        fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+        fontSize={FONT_STYLE.PRETENDARD_100.SIZE}
+        lineHeight={FONT_STYLE.PRETENDARD_100.HEIGHT}
         margin={"0 0.5rem"}
         onClick={handleClick}
       >

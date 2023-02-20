@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
+import { COLOR, FONT_STYLE } from "../../constants";
 
 const CategoryItem = ({
   title,
@@ -28,9 +28,9 @@ const Container = styled.div`
   cursor: pointer;
   p {
     white-space: nowrap;
-    font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
-    font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
-    line-height: ${FONT_STYLE.PRETENDARD_300.HEIGTH};
+    font-weight: ${FONT_STYLE.PRETENDARD_400.WEIGTHT};
+    font-size: ${FONT_STYLE.PRETENDARD_400.SIZE};
+    line-height: ${FONT_STYLE.PRETENDARD_400.HEIGHT};
     letter-spacing: -0.01em;
     color: ${(props) =>
       props.isSelected ? COLOR.BRAND_COLOR : props.fontColor};

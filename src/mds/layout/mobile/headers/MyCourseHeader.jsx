@@ -1,4 +1,4 @@
-import { COLOR, FONT_STYLE, FONT_WEIGTHT, PATH } from "../../../../constants";
+import { COLOR, FONT_STYLE, PATH } from "../../../../constants";
 import { NotificationButton } from "../../../button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -28,9 +28,9 @@ const Container = styled.div`
 `;
 
 const Theme = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
-  font-size: ${FONT_STYLE.PRETENDARD_500.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_600.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_450.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_450.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_450.HEIGHT};
   text-align: center;
   letter-spacing: 0.02em;
   color: ${COLOR.GRAY900};

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { BrandLogo } from "../../icon";
 import { TextButton } from "../../button";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../../constants";
+import { COLOR, FONT_STYLE, PATH } from "../../../constants";
 import Divider from "../../Divider";
 import styled from "styled-components";
 
@@ -19,11 +19,14 @@ const Footer = () => {
 
   const CustomTextButton = ({ children, onClick: handleClick }) => {
     return (
+      //       font-weight: 500;
+      // font-size: 14px;
+      // line-height: 22px;
       <TextButton
         fontColor={COLOR.GRAY600}
-        fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-        fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-        lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
+        fontWeight={FONT_STYLE.PRETENDARD_125.WEIGTHT}
+        fontSize={FONT_STYLE.PRETENDARD_125.SIZE}
+        lineHeight={FONT_STYLE.PRETENDARD_125.HEIGHT}
         margin={"0 1.563rem 0 0"}
         children={children}
         onClick={handleClick}
@@ -94,17 +97,20 @@ const Container = styled.div`
 `;
 
 const Text = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_REGULAR};
-  font-size: ${FONT_STYLE.PRETENDARD_100.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_100.HEIGTH};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: ${FONT_STYLE.PRETENDARD_50.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_50.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_50.HEIGHT};
   color: ${COLOR.GRAY500};
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   margin: ${(props) => props.margin};
 `;
 const BorderText = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
-  font-size: ${FONT_STYLE.PRETENDARD_200.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_200.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_150.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_150.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_150.HEIGHT};
   letter-spacing: -0.01em;
   color: ${COLOR.GRAY600};
 `;

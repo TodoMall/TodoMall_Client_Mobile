@@ -1,9 +1,4 @@
-import {
-  COLOR,
-  FONT_STYLE,
-  FONT_WEIGTHT,
-  recommendTag,
-} from "../../../../constants";
+import { COLOR, FONT_STYLE, recommendTag } from "../../../../constants";
 import styled from "styled-components";
 import { useInput } from "../../../../hooks";
 import { PreviousArrowButton } from "../../../button";
@@ -33,7 +28,6 @@ const SearchTab = ({ onClose: handleClose = () => {} }) => {
         <PreviousArrowButton onClick={handleClose} />
         <Input
           placeholder="관심있는 싶은 툴을 검색해보세요."
-          value={keyword}
           onChange={handleKeywordChange}
           onKeyUp={handleEnterKeyPress}
         />
@@ -89,20 +83,14 @@ const SuggestedSearch = styled.div`
   flex-wrap: wrap;
 `;
 
-const SearchList = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Input = styled.input`
   all: unset;
   width: 100%;
   letter-spacing: -0.01em;
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
-  font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_300.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_225.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_225.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_225.HEIGHT};
+
   margin-top: 2px;
   ::placeholder {
     text-align: left;
@@ -112,17 +100,9 @@ const Input = styled.input`
 `;
 
 const Text = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
-  font-size: ${FONT_STYLE.PRETENDARD_100.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_100.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_225.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_225.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_225.HEIGHT};
   color: ${COLOR.GRAY800};
   letter-spacing: -0.01em;
-`;
-
-const SearchItem = styled.div`
-  width: 100%;
-  height: 1rem;
-  text-align: center;
-  margin: 0.75rem 0;
-  cursor: pointer;
 `;

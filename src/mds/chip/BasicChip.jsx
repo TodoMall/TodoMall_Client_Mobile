@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
+import { COLOR, FONT_STYLE } from "../../constants";
 
 const BasicChip = ({
   title = null,
@@ -8,9 +8,9 @@ const BasicChip = ({
   fontColor = COLOR.GRAY800,
   borderRadius = "1.25rem",
   isDisabled = false,
-  fontWeight = FONT_WEIGTHT.PRETENDARD_MEDIUM,
+  fontWeight = FONT_STYLE.PRETENDARD_200.WEIGTHT,
   fontSize = FONT_STYLE.PRETENDARD_200.SIZE,
-  lineHeight = FONT_STYLE.PRETENDARD_200.HEIGTH,
+  lineHeight = FONT_STYLE.PRETENDARD_200.HEIGHT,
   onClick: handleClick = () => {},
 }) => {
   return (

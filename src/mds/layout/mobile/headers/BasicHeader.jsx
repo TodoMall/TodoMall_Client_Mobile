@@ -1,6 +1,6 @@
 import { PreviousArrowButton, ListButton } from "../../../button";
 import { useNavigate } from "react-router-dom";
-import { COLOR, FONT_STYLE, FONT_WEIGTHT } from "../../../../constants";
+import { COLOR, FONT_STYLE } from "../../../../constants";
 import styled from "styled-components";
 
 const BasicHeader = ({
@@ -35,9 +35,9 @@ const Container = styled.div`
 `;
 
 const PageDescription = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_MEDIUM};
-  font-size: ${FONT_STYLE.PRETENDARD_400.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_400.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_300.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_300.HEIGHT};
   color: ${COLOR.GRAY900};
   text-align: center;
   letter-spacing: -0.01em;

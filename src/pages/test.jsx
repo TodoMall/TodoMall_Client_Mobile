@@ -9,7 +9,11 @@ import { Header, Layout } from "../mds/layout/desktop";
 import SearchBar from "../domain/store/components/SearchBar";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 const TestPage = () => {
-  return <Container>{<Header />}</Container>;
+  return (
+    <Container>
+      <SearchTab />
+    </Container>
+  );
 };
 
 export default TestPage;
