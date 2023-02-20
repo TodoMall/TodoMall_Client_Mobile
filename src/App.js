@@ -4,13 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 
 // FIXME : should be deleted
-import TestPage from "./pages/test";
+import OnboardingPage from "./pages/OnboardingPage";
 
 function App() {
   return (
     <Container>
       <Routes>
-        <Route path="/" element={<TestPage />} />
+        <Route path="/" element={<OnboardingPage />} />
       </Routes>
     </Container>
   );
