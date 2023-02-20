@@ -1,8 +1,18 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import BrandLogo from "../mds/icon/BrandLogo";
 
-const OnboardingPage = () => {
+const LandingPage = () => {
+  const navigator = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigator("/onboarding/1")
+    }, 4000)
+  }, [])
+
   return (
       <Body>
         <Container>
@@ -12,7 +22,7 @@ const OnboardingPage = () => {
   )
 }
 
-export default OnboardingPage;
+export default LandingPage;
 
 const Body = styled.div`
   height: 100vh;
