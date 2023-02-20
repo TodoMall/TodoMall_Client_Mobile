@@ -2,6 +2,7 @@ import { COLOR, FONT_STYLE, PATH } from "../../../../constants";
 import { NotificationButton } from "../../../button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Divider from "../../../Divider";
 
 const MyCourseHeader = () => {
   const navigate = useNavigate();
@@ -10,10 +11,13 @@ const MyCourseHeader = () => {
   const handleNotificationPage = () => navigate(PATH.NOTIFICATION(memberId));
 
   return (
-    <Container>
-      <Theme>학습</Theme>
-      <NotificationButton onClick={handleNotificationPage} />
-    </Container>
+    <>
+      <Container>
+        <Theme>학습</Theme>
+        <NotificationButton onClick={handleNotificationPage} />
+      </Container>
+      <Divider />
+    </>
   );
 };
 

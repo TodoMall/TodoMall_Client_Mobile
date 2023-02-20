@@ -4,6 +4,7 @@ import { SearchButton, LogoButton } from "../../../button";
 import { CategoryTabBar } from "../../../category";
 import SearchTab from "./SearchTab";
 import useToggle from "../../../../hooks/useToggle";
+import Divider from "../../../Divider";
 
 const StoreHeader = () => {
   const [isShowSearchArea, _, handleToggleSearchArea] = useToggle();
@@ -21,6 +22,7 @@ const StoreHeader = () => {
           <CategoryTabBar />
         </Container>
       )}
+      <Divider />
     </>
   );
 };
