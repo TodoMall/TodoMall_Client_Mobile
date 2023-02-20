@@ -27,6 +27,7 @@
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "react": "^18.2.0",
+    "react-apple-login": "^1.1.6",
     "react-dom": "^18.2.0",
     "react-progressbar-on-scroll": "^2.0.0",
     "react-remove-scroll-bar": "^2.3.3",

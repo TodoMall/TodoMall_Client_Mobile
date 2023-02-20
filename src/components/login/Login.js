@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { USER_TYPE } from "../../constants/common";
+import { USER_TYPE } from "../../constants";
+import AppleLogin from "react-apple-login";
 
 const Login = () => {
   const handleStorage = () => {
@@ -68,6 +69,13 @@ const Login = () => {
       <Logo src="/images/logo_text.png" />
       <Footer>
         <LoginButton onClick={kakaoLogin} src="/images/kakao_login.png" />
+        <AppleLogin
+            clientId={"store.todomall.com"}
+            redirectURI={"https://todomall-app.kr/agreement"}
+            responseType={"code"}
+            responseMode={"query"}
+            usePopup={false}
+        />
         <GuestAnchor onClick={handleGuest}>게스트 둘러보기</GuestAnchor>
       </Footer>
       <CompanyText>c. myplanit</CompanyText>
@@ -123,9 +131,9 @@ const Footer = styled.div`
 
 const LoginButton = styled.img`
   width: 340px;
-  margin-bottom: 24px;
   cursor: pointer;
   position: relative;
+  margin: 0.25rem 0 0.25rem 0;
 `;
 
 const CompanyText = styled.p`

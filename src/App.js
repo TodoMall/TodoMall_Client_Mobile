@@ -33,7 +33,7 @@ function App() {
     <Container>
       <Routes>
         {/* Login, Terms of Service Routes */}
-        <Route path="/" element={<Login />} />
+        <Route index path="/" element={<Login />} />
         <Route path="/social" element={<Social />} />
         <Route path="/agreement" element={<Agreement />} />
         <Route path="/service" element={<Service />} />
