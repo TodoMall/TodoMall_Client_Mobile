@@ -23,7 +23,7 @@ const SearchButton = ({ keyword }) => {
   };
 
   return {
-    SearchButton: (
+    SearchButtonComponent: (
       <IconButton
         onClick={isLaptop ? handleSearchPage : handleToggleSearchArea}
       >
