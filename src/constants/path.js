@@ -11,6 +11,8 @@ export const PATH = {
   AGREEMENT: "/agreement",
   MYCOURSE: "/mycourse",
   MYPAGE: "/mypage",
+  LOGIN: "/login",
+  STORE: "/store",
   ALARM: (memberId) => `/alarm?memberId=${memberId}`,
   PRO_CENTER: "/pro", // FIXME : should be change
   CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
