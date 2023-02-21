@@ -1,13 +1,18 @@
 import styled from "styled-components";
-import { COLOR, FONT_WEIGTHT } from "../../constants";
+import { COLOR, FONT_STYLE } from "../../constants";
 
 const CategoryItem = ({
   title,
-  isCurrent = false,
+  isSelected = false,
+  fontColor = COLOR.GRAY500,
   onClick: handleClick = () => {},
 }) => {
   return (
-    <Container onClick={handleClick} isCurrent={isCurrent}>
+    <Container
+      onClick={handleClick}
+      isSelected={isSelected}
+      fontColor={fontColor}
+    >
       <p>{title}</p>
     </Container>
   );
@@ -16,19 +21,20 @@ const CategoryItem = ({
 export default CategoryItem;
 
 const Container = styled.div`
-  width: 4rem;
-  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0.5rem 0.75rem 0 0.5rem;
   cursor: pointer;
   p {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    text-align: center;
+    white-space: nowrap;
+    font-weight: ${FONT_STYLE.PRETENDARD_400.WEIGTHT};
+    font-size: ${FONT_STYLE.PRETENDARD_400.SIZE};
+    line-height: ${FONT_STYLE.PRETENDARD_400.HEIGHT};
     letter-spacing: -0.01em;
-    font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
-    color: ${(props) => (props.isCurrent ? COLOR.BRAND_COLOR : COLOR.GRAY700)};
+    color: ${(props) =>
+      props.isSelected ? COLOR.BRAND_COLOR : props.fontColor};
+    border-bottom: 0.063rem solid
+      ${(props) => (props.isSelected ? COLOR.BRAND_COLOR : "none")};
   }
 `;

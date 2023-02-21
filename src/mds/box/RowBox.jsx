@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
-const RowBox = ({ children, height = "auto", justifyContent = "center" }) => {
+const RowBox = ({
+  children,
+  height = "auto",
+  padding = "0",
+  justifyContent = "center",
+}) => {
   return (
-    <Container height={height} justifyContent={justifyContent}>
+    <Container
+      height={height}
+      padding={padding}
+      justifyContent={justifyContent}
+    >
       {children}
     </Container>
   );
@@ -11,11 +20,11 @@ const RowBox = ({ children, height = "auto", justifyContent = "center" }) => {
 export default RowBox;
 
 const Container = styled.div`
-  display: flex;
   width: 100%;
   height: ${(props) => props.height};
-  align-items: center;
+  display: flex;
   justify-content: ${(props) => props.justifyContent};
+  align-items: center;
   flex-direction: row;
-  border: 1px solid red;
+  padding: ${(props) => props.padding};
 `;

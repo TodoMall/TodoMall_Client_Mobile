@@ -1,4 +1,4 @@
-import { CATEGORY_TAG } from "../../constants";
+import { CATEGORY_TAG, COLOR } from "../../constants";
 import CategoryItem from "./CategoryItem";
 import styled from "styled-components";
 
@@ -6,7 +6,7 @@ const CategoryTabBar = () => {
   return (
     <TabBar>
       {CATEGORY_TAG.map((tag) => {
-        return <CategoryItem key={tag} categoryTitle={tag} />;
+        return <CategoryItem key={tag} title={tag} />;
       })}
     </TabBar>
   );
@@ -16,10 +16,5 @@ export default CategoryTabBar;
 
 const TabBar = styled.div`
   display: flex;
-  div {
-    &:first-child {
-      margin: 0 1.25rem 0 0;
-    }
-    margin: 0 1.25rem;
-  }
+  border-bottom: 1px solid ${COLOR.GRAY100};
 `;

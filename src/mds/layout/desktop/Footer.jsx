@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { BrandLogo } from "../icon";
-import { TextButton } from "../button";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE, PATH } from "../../constants";
-import Divider from "../Divider";
+import { BrandLogo } from "../../icon";
+import { TextButton } from "../../button";
+import { COLOR, FONT_STYLE, PATH } from "../../../constants";
+import Divider from "../../Divider";
 import styled from "styled-components";
 
 const Footer = () => {
@@ -12,55 +12,44 @@ const Footer = () => {
   const handlePersonalPage = () => navigate(PATH.PERSONAL);
   const handleRefundPage = () => navigate(PATH.REFUND);
   const handleNoticePage = () => navigate(PATH.NOTICE);
+  // TODO : 자세한 기획 픽스나면 uri 설정
+  const handleAboutUsPage = () => navigate();
+  const handlPartnershipPage = () => navigate();
   const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
+
+  const CustomTextButton = ({ children, onClick: handleClick }) => {
+    return (
+      <TextButton
+        fontColor={COLOR.GRAY600}
+        fontWeight={FONT_STYLE.PRETENDARD_125.WEIGTHT}
+        fontSize={FONT_STYLE.PRETENDARD_125.SIZE}
+        lineHeight={FONT_STYLE.PRETENDARD_125.HEIGHT}
+        margin={"0 1.563rem 0 0"}
+        onClick={handleClick}
+      >
+        {children}
+      </TextButton>
+    );
+  };
 
   return (
     <Container>
       <TextButtonGroup>
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem 0 0"}
-          children={"이용약관"}
-          onClick={handleServicePage}
-        />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
+        <CustomTextButton children={"이용약관"} onClick={handleServicePage} />
+        <CustomTextButton
           children={"개인정보처리방침"}
           onClick={handlePersonalPage}
         />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
+        <CustomTextButton
           children={"취소/환불 정책"}
           onClick={handleRefundPage}
         />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
-          children={"공지사항"}
-          onClick={handleNoticePage}
-        />
-        <TextButton
-          fontColor={COLOR.GRAY600}
-          fontWeight={FONT_WEIGTHT.PRETENDARD_MEDIUM}
-          fontSize={FONT_STYLE.PRETENDARD_200.SIZE}
-          lineHeight={FONT_STYLE.PRETENDARD_200.HEIGTH}
-          margin={"0 1.563rem"}
-          children={"고객센터"}
-          onClick={handleCSPage}
+        <CustomTextButton children={"공지사항"} onClick={handleNoticePage} />
+        <CustomTextButton children={"고객센터"} onClick={handleCSPage} />
+        <CustomTextButton children={"회사소개"} onClick={handleAboutUsPage} />
+        <CustomTextButton
+          children={"기업제휴"}
+          onClick={handlPartnershipPage}
         />
       </TextButtonGroup>
       <Divider margin="1.25rem 0 1rem 0" color={COLOR.GRAY100} />
@@ -106,17 +95,20 @@ const Container = styled.div`
 `;
 
 const Text = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_REGULAR};
-  font-size: ${FONT_STYLE.PRETENDARD_100.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_100.HEIGTH};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: ${FONT_STYLE.PRETENDARD_50.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_50.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_50.HEIGHT};
   color: ${COLOR.GRAY500};
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   margin: ${(props) => props.margin};
 `;
 const BorderText = styled.p`
-  font-weight: ${FONT_WEIGTHT.PRETENDARD_BOLD};
-  font-size: ${FONT_STYLE.PRETENDARD_200.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_200.HEIGTH};
+  font-weight: ${FONT_STYLE.PRETENDARD_150.WEIGTHT};
+  font-size: ${FONT_STYLE.PRETENDARD_150.SIZE};
+  line-height: ${FONT_STYLE.PRETENDARD_150.HEIGHT};
   letter-spacing: -0.01em;
   color: ${COLOR.GRAY600};
 `;
