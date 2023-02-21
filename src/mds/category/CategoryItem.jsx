@@ -34,7 +34,7 @@ const Container = styled.div`
     letter-spacing: -0.01em;
     color: ${(props) =>
       props.isSelected ? COLOR.BRAND_COLOR : props.fontColor};
-    border-bottom: 1px solid
+    border-bottom: 0.063rem solid
       ${(props) => (props.isSelected ? COLOR.BRAND_COLOR : "none")};
   }
 `;

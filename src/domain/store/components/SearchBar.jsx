@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { COLOR, FONT_STYLE, recommendTag } from "../../../constants";
+import { COLOR, FONT_STYLE, PATH, recommendTag } from "../../../constants";
 import { useInput } from "../../../hooks";
 import { BasicChip } from "../../../mds/chip";
 import styled from "styled-components";
@@ -15,10 +15,7 @@ const SearchBar = () => {
   const onBlur = () => setIsFocused(false);
 
   const handleSearchPage = () => {
-    navigate({
-      pathname: "/search",
-      search: `?keyword=${keyword}`,
-    });
+    navigate(PATH.SEARCH(keyword));
   };
 
   const handleEnterKeyPress = ({ key }) => {
@@ -44,11 +41,11 @@ const SearchBar = () => {
         <SearchResultContainer>
           <Text>추천 검색 키워드</Text>
           <SuggestedSearch>
-            {recommendTag.map((el) => {
+            {recommendTag.map((tag) => {
               return (
                 <BasicChip
-                  key={el.id}
-                  title={el.title}
+                  key={tag.id}
+                  title={tag.title}
                   fontColor={COLOR.GRAY800}
                   width={"4rem"}
                 />

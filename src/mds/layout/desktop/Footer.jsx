@@ -19,18 +19,16 @@ const Footer = () => {
 
   const CustomTextButton = ({ children, onClick: handleClick }) => {
     return (
-      //       font-weight: 500;
-      // font-size: 14px;
-      // line-height: 22px;
       <TextButton
         fontColor={COLOR.GRAY600}
         fontWeight={FONT_STYLE.PRETENDARD_125.WEIGTHT}
         fontSize={FONT_STYLE.PRETENDARD_125.SIZE}
         lineHeight={FONT_STYLE.PRETENDARD_125.HEIGHT}
         margin={"0 1.563rem 0 0"}
-        children={children}
         onClick={handleClick}
-      />
+      >
+        {children}
+      </TextButton>
     );
   };
 

@@ -15,4 +15,5 @@ export const PATH = {
   NOTIFICATION: (memberId) => `/alarm?memberId=${memberId}`,
   PRO_CENTER: "/pro", // FIXME : should be change
   CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
+  SEARCH: (search) => `store?search=${search}`,
 };
