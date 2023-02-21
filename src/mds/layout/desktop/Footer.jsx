@@ -3,8 +3,8 @@ import { BrandLogo } from "../../icon";
 import { TextButton } from "../../button";
 import { COLOR, FONT_STYLE, PATH } from "../../../constants";
 import Divider from "../../Divider";
+import { DetailXS, BodyS } from "../../text";
 import styled from "styled-components";
-import { DetailXS, BODYS } from "../../text";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -65,9 +65,9 @@ const Footer = () => {
           010-2154-3992 | 메일 : myplanit.unicorn@gmail.com
         </DetailXS>
       </DescriptionTextGroup>
-      <BODYS fontColor={COLOR.GRAY600}>
+      <BodyS fontColor={COLOR.GRAY600}>
         Copyright ⓒ 2022 myplanit. All rights reserved.
-      </BODYS>
+      </BodyS>
     </Container>
   );
 };
