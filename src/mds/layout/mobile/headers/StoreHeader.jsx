@@ -1,14 +1,17 @@
-import styled from "styled-components";
+import { useToggle } from "../../../../hooks";
 import { RowBox } from "../../../box";
-import { SearchButton, LogoButton } from "../../../button";
+import { LogoButton } from "../../../button";
 import { CategoryTabBar } from "../../../category";
 import SearchTab from "./SearchTab";
-import useToggle from "../../../../hooks/useToggle";
 import Divider from "../../../Divider";
+import styled from "styled-components";
+import {
+  SearchButton,
+  isShowSearchArea,
+  handleToggleSearchArea,
+} from "../../../button/SearchButton";
 
 const StoreHeader = () => {
-  const [isShowSearchArea, _, handleToggleSearchArea] = useToggle();
-
   return (
     <>
       {isShowSearchArea ? (
@@ -17,7 +20,7 @@ const StoreHeader = () => {
         <Container>
           <RowBox padding={"0.625rem 1rem"} justifyContent={"space-between"}>
             <LogoButton />
-            <SearchButton onClick={handleToggleSearchArea} />
+            <SearchButton />
           </RowBox>
           <CategoryTabBar />
         </Container>

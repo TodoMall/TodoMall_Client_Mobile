@@ -4,7 +4,7 @@ import { useInput } from "../../../hooks";
 import { BasicChip } from "../../../mds/chip";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { SearchButton } from "../../../mds/button";
+import { SearchButton } from "../../../mds/button/SearchButton";
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const SearchBar = () => {
           onChange={handleKeywordChange}
           onKeyUp={handleEnterKeyPress}
         />
-        <SearchButton onClick={handleSearchPage} />
+        <SearchButton keyword={keyword} />
       </InputContainer>
       {isFocused && (
         <SearchResultContainer>
