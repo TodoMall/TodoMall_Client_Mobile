@@ -4,9 +4,9 @@ import { isNull } from "../../../utils";
 
 export const searchHandlers = [
   graphql.query(`getOrderByOrderNumber`, (req, res, ctx) => {
-    const { query } = req.variables || null;
+    const { orderNumber } = req.variables || null;
     const filteredProductList = ProductTitleList.filter((element) =>
-      element.title.includes(query)
+      element.title.includes(orderNumber)
     );
     if (isNull(filteredProductList)) {
       return res(
