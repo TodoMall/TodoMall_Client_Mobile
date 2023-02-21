@@ -1,12 +1,11 @@
 import "./App.css";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {Route, Routes, useLocation} from "react-router-dom";
 import styled from "styled-components";
 
-import {LandingPage} from "./pages";
-import OnBoardingPage from "./pages/onboarding/Onboarding";
+import { LandingPage, OnboardingPage } from "./pages";
 import { isLaptop, isTablet } from "./utils/width";
-import {COLOR} from "./constants";
+import { COLOR } from "./constants";
 
 function App() {
   const location = useLocation();
@@ -28,7 +27,7 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/onboarding/1" element={<Onboarding1 />} />
+        <Route path="/onboarding" element={<OnboardingPage />} />
       </Routes>
     </Container>
   );
