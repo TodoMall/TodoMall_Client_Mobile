@@ -4,7 +4,7 @@ import {Route, Routes, useLocation} from "react-router-dom";
 import styled from "styled-components";
 
 import { LandingPage, OnboardingPage } from "./pages";
-import { isLaptop, isTablet } from "./utils/width";
+import { getMaxWidth } from "./utils/width";
 import { COLOR, PATH } from "./constants";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Container
-        maxWidth={isLaptop() ? "1024px" : isTablet() ? "768px" : "100%"}
+        maxWidth={getMaxWidth()}
     >
       <Routes>
         <Route path={PATH.MAIN} element={<LandingPage />} />

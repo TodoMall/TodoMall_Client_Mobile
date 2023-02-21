@@ -1,11 +1,17 @@
-export const isLaptop = () => {
-  return window.innerWidth > 1024;
-}
+export const isLaptop = window.innerWidth > 1024;
 
-export const isTablet = () => {
-  return window.innerWidth > 768 && window.innerWidth < 1024;
-}
+export const isTablet = window.innerWidth > 768 && window.innerWidth < 1024;
 
-export const isMobile = () => {
-  return window.innerWidth < 768;
+export const isMobile = window.innerWidth < 768;
+
+export const getMaxWidth = () => {
+  if (isLaptop) {
+    return "1024px";
+  }
+
+  if (isTablet) {
+    return "768px";
+  }
+
+  return "100%";
 }
