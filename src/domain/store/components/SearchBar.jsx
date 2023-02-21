@@ -4,13 +4,14 @@ import { useInput } from "../../../hooks";
 import { BasicChip } from "../../../mds/chip";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { SearchButton } from "../../../mds/button/SearchButton";
+import { SearchButton } from "../../../mds/button";
 import { DetailS } from "../../../mds/text";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const [keyword, handleKeywordChange] = useInput(null);
   const [isFocused, setIsFocused] = useState(false);
+  const { SearchButtonComponent } = SearchButton;
 
   const onFocus = () => setIsFocused(true);
   const onBlur = () => setIsFocused(false);
@@ -36,7 +37,7 @@ const SearchBar = () => {
           onChange={handleKeywordChange}
           onKeyUp={handleEnterKeyPress}
         />
-        <SearchButton keyword={keyword} />
+        <SearchButtonComponent keyword={keyword} />
       </InputContainer>
       {isFocused && (
         <SearchResultContainer>

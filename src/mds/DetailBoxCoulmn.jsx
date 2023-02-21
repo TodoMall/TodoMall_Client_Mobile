@@ -1,11 +1,15 @@
 import { RowBox } from "./box";
-import { NextArrowIcon } from "./icon";
+import { NextArrowButton } from "./button";
 
-const DetailBoxCoulmn = ({ children }) => {
+const DetailBoxCoulmn = ({
+  children,
+  justifyContent,
+  onClick: handleClick = () => {},
+}) => {
   return (
-    <RowBox>
+    <RowBox justifyContent={justifyContent}>
       {children}
-      <NextArrowIcon />
+      <NextArrowButton onClick={handleClick} />
     </RowBox>
   );
 };

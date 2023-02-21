@@ -36,22 +36,23 @@ const Footer = () => {
   return (
     <Container>
       <TextButtonGroup>
-        <CustomTextButton children={"이용약관"} onClick={handleServicePage} />
-        <CustomTextButton
-          children={"개인정보처리방침"}
-          onClick={handlePersonalPage}
-        />
-        <CustomTextButton
-          children={"취소/환불 정책"}
-          onClick={handleRefundPage}
-        />
-        <CustomTextButton children={"공지사항"} onClick={handleNoticePage} />
-        <CustomTextButton children={"고객센터"} onClick={handleCSPage} />
-        <CustomTextButton children={"회사소개"} onClick={handleAboutUsPage} />
-        <CustomTextButton
-          children={"기업제휴"}
-          onClick={handlPartnershipPage}
-        />
+        <CustomTextButton onClick={handleServicePage}>
+          이용약관
+        </CustomTextButton>
+        <CustomTextButton onClick={handlePersonalPage}>
+          개인정보처리방침
+        </CustomTextButton>
+        <CustomTextButton onClick={handleRefundPage}>
+          취소/환불 정책
+        </CustomTextButton>
+        <CustomTextButton onClick={handleNoticePage}>공지사항</CustomTextButton>
+        <CustomTextButton onClick={handleCSPage}>고객센터</CustomTextButton>
+        <CustomTextButton onClick={handleAboutUsPage}>
+          회사소개
+        </CustomTextButton>
+        <CustomTextButton onClick={handlPartnershipPage}>
+          기업제휴
+        </CustomTextButton>
       </TextButtonGroup>
       <Divider margin="1.25rem 0 1rem 0" color={COLOR.GRAY100} />
       <BrandLogo />
