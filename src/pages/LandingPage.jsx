@@ -9,7 +9,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigator("/onboarding/1")
+      navigator("/onboarding")
     }, 4000)
   }, [])
 
