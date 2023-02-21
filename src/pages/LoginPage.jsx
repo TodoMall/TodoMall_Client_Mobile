@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import KakaoLoginButton from "../domain/member/components/KakaoLoginButton";
-import AppleLoginButton from "../domain/member/components/AppleLoginButton";
-import GuestLoginButton from "../domain/member/components/GuestLoginButton";
+import { BookClipImage } from "../mds/image";
+import {
+  AppleLoginButton,
+  GuestLoginButton,
+  KakaoLoginButton
+} from "../domain/member/components";
 
 const LoginPage = () => {
   return (
       <Container>
+        <BookClipImage />
         <KakaoLoginButton />
         <AppleLoginButton />
         <GuestLoginButton />

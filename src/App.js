@@ -5,9 +5,7 @@ import styled from "styled-components";
 
 // FIXME : should be deleted
 import { CustomApolloProvider } from "./apollo/link";
-import LoginPage from "./pages/LoginPage";
-import { PATH } from "./constants";
-import { LandingPage, OnboardingPage } from "./pages";
+import { LandingPage, OnboardingPage, LoginPage } from "./pages";
 import { getMaxWidth } from "./utils/width";
 import { COLOR, PATH } from "./constants";
 
@@ -15,7 +13,7 @@ function App() {
   const location = useLocation();
 
   const getBackgroundColor = () => {
-    if (location.pathname.includes("onboarding")) {
+    if (location.pathname.includes("onboarding") || location.pathname.includes("login")) {
       return COLOR.BRAND_COLOR;
     }
     return COLOR.WHITE;
