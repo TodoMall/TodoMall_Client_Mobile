@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { COLOR, FONT_WEIGTHT, FONT_STYLE } from "../../constants";
+import { COLOR, FONT_STYLE } from "../../constants";
 
 const TextButton = ({
   children = null,
   height = "auto",
   margin = "none",
   fontColor = COLOR.BLACK,
-  fontWeight = FONT_WEIGTHT.PRETENDARD_MEDIUM,
-  fontSize = FONT_STYLE.PRETENDARD_300.SIZE,
-  lineHeight = FONT_STYLE.PRETENDARD_300.HEIGHT,
+  fontWeight = FONT_STYLE.PRETENDARD_225.WEIGTHT,
+  fontSize = FONT_STYLE.PRETENDARD_225.SIZE,
+  lineHeight = FONT_STYLE.PRETENDARD_225.HEIGHT,
   textAlign = "center",
   hasUnderline = false,
   onClick: handleClick = () => {},

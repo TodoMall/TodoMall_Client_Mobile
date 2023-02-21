@@ -1,11 +1,17 @@
 import styled from "styled-components";
-import { SearchBar } from "../domain/store";
-import Header from "../mds/layout/Header";
-
+import { CategoryTabBar } from "../mds/category";
+import {
+  SearchTab,
+  MyCourseHeader,
+  StoreHeader,
+} from "../mds/layout/mobile/headers";
+import { Header, Layout } from "../mds/layout/desktop";
+import SearchBar from "../domain/store/components/SearchBar";
+import { BasicHeader } from "../mds/layout/mobile/headers";
 const TestPage = () => {
   return (
     <Container>
-      <SearchBar />
+      <SearchTab />
     </Container>
   );
 };
@@ -13,10 +19,6 @@ const TestPage = () => {
 export default TestPage;
 
 const Container = styled.div`
-  width: 499px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
+  width: 100vw;
+  height: 90vh;
 `;
