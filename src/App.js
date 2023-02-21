@@ -1,27 +1,43 @@
 import "./App.css";
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import {Route, Routes, useLocation} from "react-router-dom";
 import styled from "styled-components";
 
-// FIXME : should be deleted
-import TestPage from "./pages/test";
+import { LandingPage, OnboardingPage } from "./pages";
+import { getMaxWidth } from "./utils/width";
+import { COLOR, PATH } from "./constants";
 
 function App() {
+  const location = useLocation();
+
+  const getBackgroundColor = () => {
+    if (location.pathname.includes("onboarding")) {
+      return COLOR.BRAND_COLOR;
+    }
+    return COLOR.WHITE;
+  }
+
+  useEffect(() => {
+    document.body.style.backgroundColor = getBackgroundColor();
+  },[location.pathname])
+
   return (
-    <Container>
+    <Container
+        maxWidth={getMaxWidth()}
+    >
       <Routes>
-        <Route path="/" element={<TestPage />} />
+        <Route path={PATH.MAIN} element={<LandingPage />} />
+        <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
       </Routes>
     </Container>
   );
 }
 
 const Container = styled.div`
-  width: 100%;
+  max-width: ${props => props.maxWidth};
   height: 100%;
-  /* FIXME : should be delete */
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 export default App;

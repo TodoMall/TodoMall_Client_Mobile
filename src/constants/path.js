@@ -1,5 +1,6 @@
 export const PATH = {
   MAIN: "/",
+  ONBOARDING: "/onboarding",
   SETTING: "/setting",
   SERVICE: "/setting/service",
   PERSONAL: "/setting/personal",

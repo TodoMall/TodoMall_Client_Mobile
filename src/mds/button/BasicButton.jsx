@@ -6,6 +6,7 @@ const BasicButton = ({
   backgroundColor = COLOR.BRAND_COLOR,
   fontColor = COLOR.WHITE,
   borderRadius = "1.25rem",
+  width = "100%",
   height = "3.25rem",
   margin = "1rem 0 0.5rem 0",
   isDisabled = false,
@@ -16,6 +17,7 @@ const BasicButton = ({
       backgroundColor={isDisabled ? COLOR.DISABLED : backgroundColor}
       borderRadius={borderRadius}
       height={height}
+      width={width}
       fontColor={fontColor}
       margin={margin}
       isDisabled={isDisabled}
@@ -32,9 +34,10 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  padding: 0 1.5rem 0 1.5rem;
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.borderRadius};
   cursor: ${(props) => (props.isDisabled ? "not-allowed" : "pointer")};
