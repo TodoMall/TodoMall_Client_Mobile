@@ -8,7 +8,7 @@ const TextButton = ({
   fontColor = COLOR.BLACK,
   fontWeight = FONT_WEIGTHT.PRETENDARD_MEDIUM,
   fontSize = FONT_STYLE.PRETENDARD_300.SIZE,
-  lineHeight = FONT_STYLE.PRETENDARD_300.HEIGTH,
+  lineHeight = FONT_STYLE.PRETENDARD_300.HEIGHT,
   textAlign = "center",
   hasUnderline = false,
   onClick: handleClick = () => {},
