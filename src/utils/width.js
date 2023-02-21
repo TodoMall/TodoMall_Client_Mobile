@@ -6,11 +6,11 @@ export const isMobile = window.innerWidth < 768;
 
 export const getMaxWidth = () => {
   if (isLaptop) {
-    return "1024px";
+    return "64rem";
   }
 
   if (isTablet) {
-    return "768px";
+    return "48rem";
   }
 
   return "100%";
