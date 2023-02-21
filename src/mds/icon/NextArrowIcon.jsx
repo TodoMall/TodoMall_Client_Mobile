@@ -1,4 +1,6 @@
-const NextArrowIcon = () => {
+import { COLOR } from "../../constants";
+
+const NextArrowIcon = ({color = COLOR.WHITE}) => {
   return (
     <svg
       width="24"
@@ -12,7 +14,7 @@ const NextArrowIcon = () => {
           <path
             id="062be0ac8a301369cf58d123850a22d2"
             d="M10 18L16 12L10 6"
-            stroke="#31363E"
+            stroke={color}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
