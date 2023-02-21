@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { LandingPage, OnboardingPage } from "./pages";
 import { isLaptop, isTablet } from "./utils/width";
-import { COLOR } from "./constants";
+import { COLOR, PATH } from "./constants";
 
 function App() {
   const location = useLocation();
@@ -26,8 +26,8 @@ function App() {
         maxWidth={isLaptop() ? "1024px" : isTablet() ? "768px" : "100%"}
     >
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path={PATH.MAIN} element={<LandingPage />} />
+        <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
       </Routes>
     </Container>
   );

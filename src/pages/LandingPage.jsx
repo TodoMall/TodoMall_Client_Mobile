@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import BrandLogo from "../mds/icon/BrandLogo";
+import { PATH } from "../constants";
 
 const LandingPage = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
-      navigator("/onboarding")
+      navigator(PATH.ONBOARDING)
     }, 4000)
   }, [])
 
