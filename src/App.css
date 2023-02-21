@@ -80,3 +80,6 @@ html {
 .nextui-c-eUuHzx-hMPNGY-size-xs {
   height: 2px !important;
 }
+::-webkit-scrollbar {
+  display: none;
+}

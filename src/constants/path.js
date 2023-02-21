@@ -1,5 +1,6 @@
 export const PATH = {
   MAIN: "/",
+  ONBOARDING: "/onboarding",
   SETTING: "/setting",
   SERVICE: "/setting/service",
   PERSONAL: "/setting/personal",
@@ -11,7 +12,8 @@ export const PATH = {
   AGREEMENT: "/agreement",
   MYCOURSE: "/mycourse",
   MYPAGE: "/mypage",
-  ALARM: (memberId) => `/alarm?memberId=${memberId}`,
+  NOTIFICATION: (memberId) => `/alarm?memberId=${memberId}`,
   PRO_CENTER: "/pro", // FIXME : should be change
   CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
+  SEARCH: (search) => `store?search=${search}`,
 };

@@ -1,9 +1,3 @@
-export const FONT_WEIGTHT = {
-  PRETENDARD_REGULAR: 400,
-  PRETENDARD_MEDIUM: 500,
-  PRETENDARD_BOLD: 700,
-};
-
 export const FONT_STYLE = {
   PRETENDARD_50: {
     SIZE: "0.75rem",
