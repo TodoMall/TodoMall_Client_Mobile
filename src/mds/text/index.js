@@ -1,0 +1,13 @@
+export { default as HeadingXXL } from "./HeadingXXL";
+export { default as HeadingXL } from "./HeadingXL";
+export { default as HeadingL } from "./HeadingL";
+export { default as BodyXXXL } from "./BodyXXXL";
+export { default as BodyXXL } from "./BodyXXL";
+export { default as BodyXL } from "./BodyXL";
+export { default as BodyL } from "./BodyL";
+export { default as BodyM } from "./BodyM";
+export { default as BodyS } from "./BodyS";
+export { default as BodyXS } from "./BodyXS";
+export { default as BodyXXS } from "./BodyXXS";
+export { default as DetailS } from "./DetailS";
+export { default as DetailXS } from "./DetailXS";

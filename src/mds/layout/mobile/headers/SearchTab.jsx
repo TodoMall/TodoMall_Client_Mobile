@@ -1,9 +1,10 @@
-import { COLOR, FONT_STYLE, recommendTag } from "../../../../constants";
-import styled from "styled-components";
-import { useInput } from "../../../../hooks";
-import { PreviousArrowButton } from "../../../button";
-import { BasicChip } from "../../../chip";
 import { useNavigate } from "react-router-dom";
+import { useInput } from "../../../../hooks";
+import { COLOR, FONT_STYLE, recommendTag } from "../../../../constants";
+import { BodyL } from "../../../text";
+import { BasicChip } from "../../../chip";
+import { PreviousArrowButton } from "../../../button";
+import styled from "styled-components";
 
 const SearchTab = ({ onClose: handleClose = () => {} }) => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const SearchTab = ({ onClose: handleClose = () => {} }) => {
         />
       </InputContainer>
       <SearchResultContainer>
-        <Text>추천 검색 키워드</Text>
+        <BodyL fontColor={COLOR.GRAY800}>추천 검색 키워드</BodyL>
         <SuggestedSearch>
           {recommendTag.map((el) => {
             return (
@@ -97,12 +98,4 @@ const Input = styled.input`
     letter-spacing: -0.01em;
     color: ${COLOR.GRAY300};
   }
-`;
-
-const Text = styled.p`
-  font-weight: ${FONT_STYLE.PRETENDARD_225.WEIGTHT};
-  font-size: ${FONT_STYLE.PRETENDARD_225.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_225.HEIGHT};
-  color: ${COLOR.GRAY800};
-  letter-spacing: -0.01em;
 `;

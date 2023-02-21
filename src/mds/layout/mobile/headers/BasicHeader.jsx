@@ -1,8 +1,9 @@
-import { PreviousArrowButton, ListButton } from "../../../button";
 import { useNavigate } from "react-router-dom";
-import { COLOR, FONT_STYLE } from "../../../../constants";
-import styled from "styled-components";
+import { COLOR } from "../../../../constants";
 import Divider from "../../../Divider";
+import { BodyXXL } from "../../../text";
+import { PreviousArrowButton, ListButton } from "../../../button";
+import styled from "styled-components";
 
 const BasicHeader = ({
   pageDescription = null,
@@ -20,7 +21,9 @@ const BasicHeader = ({
         ) : (
           <EmptyBox />
         )}
-        <PageDescription>{pageDescription}</PageDescription>
+        <BodyXXL fontColor={COLOR.GRAY900} textAlign={"center"}>
+          {pageDescription}
+        </BodyXXL>
         {hasListButton ? <ListButton /> : <EmptyBox />}
       </Container>
       <Divider />
@@ -36,15 +39,6 @@ const Container = styled.div`
   align-items: center;
   flex-direction: row;
   padding: 0 0.5rem;
-`;
-
-const PageDescription = styled.p`
-  font-weight: ${FONT_STYLE.PRETENDARD_300.WEIGTHT};
-  font-size: ${FONT_STYLE.PRETENDARD_300.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_300.HEIGHT};
-  color: ${COLOR.GRAY900};
-  text-align: center;
-  letter-spacing: -0.01em;
 `;
 
 const EmptyBox = styled.div`
