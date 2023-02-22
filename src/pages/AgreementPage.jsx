@@ -1,8 +1,8 @@
-import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import { useLogin } from "../domain/member/hooks";
 import { PROVIDERS } from "../constants/providers";
+import { useLogin } from "../domain/member/hooks";
 
 const AgreementPage = () => {
     const [searchParams] = useSearchParams();

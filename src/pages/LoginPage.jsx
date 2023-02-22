@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import { BookClipImage, BrandLogoIWithTextImage } from "../mds/image";
 import {
     AppleLoginButton,
     GuestLoginButton,
     KakaoLoginButton,
 } from "../domain/member/components";
+import { BookClipImage, BrandLogoIWithTextImage } from "../mds/image";
 
 const LoginPage = () => {
     return (

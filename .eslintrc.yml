@@ -19,6 +19,8 @@ rules:
   semi:
     - error
     - always
+  no-unused-vars:
+    - warn
   no-undef:
     - off
   no-undefined:

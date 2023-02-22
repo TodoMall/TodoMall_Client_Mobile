@@ -1,8 +1,9 @@
-import IconButton from "./IconButton";
-import { SearchIcon } from "../icon";
-import { useToggle } from "../../hooks";
 import { useNavigate } from "react-router-dom";
+
+import { useToggle } from "../../hooks";
 import { isLaptop } from "../../utils/width";
+import { SearchIcon } from "../icon";
+import IconButton from "./IconButton";
 
 /**
  * @description 해당 파일은 SearchButton , isShowSearchArea , handleToggleSearchArea 를 return합니다
@@ -11,28 +12,28 @@ import { isLaptop } from "../../utils/width";
  * @description Current Width 가 isLaptop 이 아닌 경우 SearchTab 을 보여주는 이벤트가 실행됩니다
  */
 const SearchButtonResource = ({ keyword }) => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [isShowSearchArea, _, handleToggleSearchArea] = useToggle(false);
+    const [isShowSearchArea, _, handleToggleSearchArea] = useToggle(false);
 
-  const handleSearchPage = () => {
-    navigate({
-      pathname: "/search",
-      search: `?keyword=${keyword}`,
-    });
-  };
+    const handleSearchPage = () => {
+        navigate({
+            pathname: "/search",
+            search: `?keyword=${keyword}`,
+        });
+    };
 
-  return {
-    SearchButton: (
-      <IconButton
-        onClick={isLaptop ? handleSearchPage : handleToggleSearchArea}
-      >
-        <SearchIcon />
-      </IconButton>
-    ),
-    isShowSearchArea: isShowSearchArea,
-    handleToggleSearchArea: handleToggleSearchArea,
-  };
+    return {
+        SearchButton: (
+            <IconButton
+                onClick={isLaptop ? handleSearchPage : handleToggleSearchArea}
+            >
+                <SearchIcon />
+            </IconButton>
+        ),
+        isShowSearchArea: isShowSearchArea,
+        handleToggleSearchArea: handleToggleSearchArea,
+    };
 };
 
 export default SearchButtonResource;

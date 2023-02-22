@@ -1,12 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { COLOR, FONT_STYLE, PATH } from "../../../constants";
-import { CategoryTabBar } from "../../category";
+import SearchBar from "../../../domain/store/components/SearchBar";
+import Divider from "../../Divider";
 import { RowBox } from "../../box";
 import { LogoButton, TextButton } from "../../button";
-import Divider from "../../Divider";
-import { useNavigate } from "react-router-dom";
-import SearchBar from "../../../domain/store/components/SearchBar";
+import { CategoryTabBar } from "../../category";
 
 const Header = () => {
     const navigate = useNavigate();

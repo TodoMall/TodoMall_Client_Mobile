@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-import BrandLogo from "../mds/icon/BrandLogo";
 import { PATH } from "../constants";
+import BrandLogo from "../mds/icon/BrandLogo";
 
 const LandingPage = () => {
     const navigator = useNavigate();
