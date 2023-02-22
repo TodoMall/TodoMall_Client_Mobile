@@ -15,7 +15,7 @@ const AccountPage = () => {
   const handleLogout = () => {
     // TODO : logout logic
   };
-  const handleUnSignUp = () => {
+  const handleDeleteAccount = () => {
     // TODO : unSignUp logic
   };
 
@@ -61,7 +61,10 @@ const AccountPage = () => {
                 </BodyS>
                 <BodyS fontColor={COLOR.ERROR500}>복구하실 수 없습니다.</BodyS>
                 <RowBox margin={"2rem 0 0 0"}>
-                  <Button onClick={handleUnSignUp} fontColor={COLOR.ERROR500}>
+                  <Button
+                    onClick={handleDeleteAccount}
+                    fontColor={COLOR.ERROR500}
+                  >
                     로그아웃
                   </Button>
                   <Button>취소</Button>

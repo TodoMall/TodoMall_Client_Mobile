@@ -9,13 +9,14 @@ const BasicHeader = ({
   pageDescription = null,
   hasPrevButton = true,
   hasListButton = false,
+  height = "3.25rem",
 }) => {
   const navigate = useNavigate();
   const handlePreviousPage = () => navigate(-1);
 
   return (
     <>
-      <Container>
+      <Container height={height}>
         {hasPrevButton ? (
           <PreviousArrowButton onClick={handlePreviousPage} />
         ) : (
@@ -38,6 +39,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  height: ${(props) => props.height};
   padding: 0 0.5rem;
 `;
 

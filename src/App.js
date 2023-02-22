@@ -14,9 +14,6 @@ import {
 import styled from "styled-components";
 
 function App() {
-  // TODO : delete demo var
-  const memberId = "";
-
   const location = useLocation();
 
   const getBackgroundColor = () => {
@@ -36,15 +33,13 @@ function App() {
         <Route path={PATH.MAIN} element={<LandingPage />} />
         <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
         {/* TODO : 모바일과 웹의 setting 페이지가 달라야한다 */}
+        {/* 아래 페이지들은 mobile 을 기준으로 작업하였습니다. */}
         <Route path={PATH.SETTING} element={<SettingPage />} />
         <Route path={PATH.TERMS} element={<TermsPage />} />
         <Route path={PATH.ACCOUNT} element={<AccountPage />} />
-        <Route path={PATH.NOTIFICATION(memberId)} element={<AccountPage />} />
+        <Route path={PATH.NOTIFICATION()} element={<AccountPage />} />
         <Route path={PATH.NOTICE} element={<NoticePage />} />
-        <Route
-          path="/setting/notice/detail/noticeId=:noticeId"
-          element={<NoticeDetailPage />}
-        />
+        <Route path={PATH.NOTICE_DETAIL()} element={<NoticeDetailPage />} />
       </Routes>
     </Container>
   );

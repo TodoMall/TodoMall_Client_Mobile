@@ -4,11 +4,11 @@ import { CategoryTabBar } from "../../../category";
 import SearchTab from "./SearchTab";
 import Divider from "../../../Divider";
 import styled from "styled-components";
-import { SearchButton } from "../../../button";
+import { SearchButtonResource } from "../../../button";
 
 const StoreHeader = () => {
-  const { SearchButtonComponent, isShowSearchArea, handleToggleSearchArea } =
-    SearchButton;
+  const { SearchButton, isShowSearchArea, handleToggleSearchArea } =
+    SearchButtonResource;
   return (
     <>
       {isShowSearchArea ? (
@@ -17,7 +17,7 @@ const StoreHeader = () => {
         <Container>
           <RowBox padding={"0.625rem 1rem"} justifyContent={"space-between"}>
             <LogoButton />
-            <SearchButtonComponent />
+            <SearchButton />
           </RowBox>
           <CategoryTabBar />
         </Container>
