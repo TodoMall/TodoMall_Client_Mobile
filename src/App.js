@@ -1,13 +1,13 @@
-import "./App.css";
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import "./App.css";
 // FIXME : should be deleted
 import { CustomApolloProvider } from "./apollo/link";
-import { LandingPage, OnboardingPage, LoginPage, AgreementPage } from "./pages";
-import { getMaxWidth } from "./utils/width";
 import { COLOR, PATH } from "./constants";
+import { AgreementPage, LandingPage, LoginPage, OnboardingPage } from "./pages";
+import { getMaxWidth } from "./utils/width";
 
 function App() {
     const location = useLocation();
