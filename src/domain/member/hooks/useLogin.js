@@ -4,14 +4,7 @@ import { signInWithKakao, signInWithApple } from "../../../apollo/domain/member"
 import { PROVIDERS } from "../../../constants/providers";
 
 export default function useLogin(provider = PROVIDERS.KAKAO) {
-  const [signIn, { data, loading, error }] = useMutation(
-      getSignInMutation(provider),
-    {
-      variables: {
-        data: "sign in data",
-      },
-    }
-  );
+  const [signIn, { data, loading, error }] = useMutation(getSignInMutation(provider));
 
   return { signIn, data, loading, error };
 }
