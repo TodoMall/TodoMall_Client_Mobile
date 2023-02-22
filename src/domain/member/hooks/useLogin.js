@@ -6,13 +6,15 @@ import {
 } from "../../../apollo/domain/member";
 import { PROVIDERS } from "../../../constants/providers";
 
-export default function useLogin(provider = PROVIDERS.KAKAO) {
+const useLogin = (provider = PROVIDERS.KAKAO) => {
     const [signIn, { data, loading, error }] = useMutation(
         getSignInMutation(provider)
     );
 
     return { signIn, data, loading, error };
-}
+};
+
+export default useLogin;
 
 const getSignInMutation = provider => {
     switch (provider) {
@@ -21,6 +23,6 @@ const getSignInMutation = provider => {
         case PROVIDERS.APPLE:
             return signInWithApple;
         default:
-            return signInWithKakao;
+            throw new Error("Invalid provider");
     }
 };

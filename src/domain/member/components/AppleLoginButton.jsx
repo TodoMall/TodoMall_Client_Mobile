@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { BasicButton } from "../../../mds/button";
 import {
     APPLE_CLIENT_ID,
     APPLE_SCOPE,
@@ -8,6 +7,7 @@ import {
     FONT_STYLE,
     REDIRECT_URI,
 } from "../../../constants";
+import { BasicButton } from "../../../mds/button";
 
 const AppleLoginButton = () => {
     const initApple = () => {
@@ -30,17 +30,14 @@ const AppleLoginButton = () => {
     };
 
     return (
-        <>
-            <BasicButton
-                margin="0"
-                width="22.375rem"
-                backgroundColor={COLOR.WHITE}
-                fontColor="#222222"
-                onClick={onClickLoginButton}
-            >
-                <ButtonText>Apple로 계속하기</ButtonText>
-            </BasicButton>
-        </>
+        <BasicButton
+            margin="0"
+            backgroundColor={COLOR.WHITE}
+            fontColor={COLOR.GRAY900}
+            onClick={onClickLoginButton}
+        >
+            <ButtonText>Apple로 계속하기</ButtonText>
+        </BasicButton>
     );
 };
 
