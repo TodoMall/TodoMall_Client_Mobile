@@ -1,8 +1,10 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
+import { API_ENDPOINT } from "../../constants";
+
 const CustomApolloProvider = ({ children = null }) => {
     const client = new ApolloClient({
-        uri: process.env.REACT_APP_TODO_MALL_API_ENDPOINT,
+        uri: API_ENDPOINT,
         cache: new InMemoryCache(),
     });
 
