@@ -23,7 +23,7 @@ const BasicButton = ({
       isDisabled={isDisabled}
       onClick={handleClick}
     >
-      <p>{children}</p>
+      {children}
     </Container>
   );
 };

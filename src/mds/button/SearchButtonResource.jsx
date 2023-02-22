@@ -10,7 +10,7 @@ import { isLaptop } from "../../utils/width";
  * @description Current Width 가 isLaptop 일 경우 Page 이동 이벤트가 실행됩니다
  * @description Current Width 가 isLaptop 이 아닌 경우 SearchTab 을 보여주는 이벤트가 실행됩니다
  */
-const SearchButton = ({ keyword }) => {
+const SearchButtonResource = ({ keyword }) => {
   const navigate = useNavigate();
 
   const [isShowSearchArea, _, handleToggleSearchArea] = useToggle(false);
@@ -35,4 +35,4 @@ const SearchButton = ({ keyword }) => {
   };
 };
 
-export default SearchButton;
+export default SearchButtonResource;

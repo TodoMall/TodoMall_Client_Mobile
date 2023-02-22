@@ -3,76 +3,51 @@ import styled from "styled-components";
 import {
   BrandLogoLikeBubbleImage,
   BrandLogoList,
-  RocketImage
+  RocketImage,
 } from "../../../mds/image";
-import {COLOR, FONT_STYLE} from "../../../constants";
+import { COLOR } from "../../../constants";
+import { HeadingXXL } from "../../../mds/text";
 
 const OnboardingItem = ({ itemNumber = 0 }) => {
-
   const getItem = () => {
-    // item 2
     if (itemNumber === 1) {
       return (
-          <>
-            <TitleTextContainer>
-              <TitleText>
-                지금 바로
-              </TitleText>
-              <TitleText>
-                23개의 클래스를
-              </TitleText>
-              <TitleText>
-                찾아볼 수 있어요.
-              </TitleText>
-            </TitleTextContainer>
-            <BrandLogoList />
-          </>
-      )
+        <>
+          <TitleTextContainer>
+            <HeadingXXL fontColor={COLOR.WHITE}>지금 바로</HeadingXXL>
+            <HeadingXXL fontColor={COLOR.WHITE}>23개의 클래스를</HeadingXXL>
+            <HeadingXXL fontColor={COLOR.WHITE}>찾아볼 수 있어요.</HeadingXXL>
+          </TitleTextContainer>
+          <BrandLogoList />
+        </>
+      );
     }
 
     if (itemNumber === 2) {
       return (
-          <>
-            <RocketImage />
-              <TitleText>
-                투두몰에서
-              </TitleText>
-              <TitleText>
-                새로운 도전을
-              </TitleText>
-              <TitleText>
-                지금 시작해볼까요?
-              </TitleText>
-          </>
-      )
+        <>
+          <RocketImage />
+          <HeadingXXL fontColor={COLOR.WHITE}>투두몰에서</HeadingXXL>
+          <HeadingXXL fontColor={COLOR.WHITE}>새로운 도전을</HeadingXXL>
+          <HeadingXXL fontColor={COLOR.WHITE}>지금 시작해볼까요?</HeadingXXL>
+        </>
+      );
     }
 
-    // item 1
     return (
-        <>
-          <ImageContainer>
-            <BrandLogoLikeBubbleImage />
-          </ImageContainer>
-          <TitleText>
-            빠르게 변화하는 세상
-          </TitleText>
-          <TitleText>
-            믿은직한 전문가와
-          </TitleText>
-          <TitleText>
-            학습하세요.
-          </TitleText>
-        </>
-    )
-  }
+      <>
+        <ImageContainer>
+          <BrandLogoLikeBubbleImage />
+        </ImageContainer>
+        <HeadingXXL fontColor={COLOR.WHITE}>빠르게 변화하는 세상</HeadingXXL>
+        <HeadingXXL fontColor={COLOR.WHITE}>믿은직한 전문가와</HeadingXXL>
+        <HeadingXXL fontColor={COLOR.WHITE}>학습하세요.</HeadingXXL>
+      </>
+    );
+  };
 
-  // item 1
-  return (
-      <Container>
-        {getItem()}
-      </Container>
-  )
-}
+  return <Container>{getItem()}</Container>;
+};
 
 export default OnboardingItem;
 
@@ -81,19 +56,12 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-`
+`;
 
 const TitleTextContainer = styled.div`
   margin-bottom: 4rem;
-`
-
-const TitleText = styled.p`
-  font-size: ${FONT_STYLE.PRETENDARD_500.SIZE};
-  font-weight: ${FONT_STYLE.PRETENDARD_500.WEIGTHT};
-  line-height: ${FONT_STYLE.PRETENDARD_500.HEIGHT};
-  color: ${COLOR.WHITE};
-`
+`;
 
 const ImageContainer = styled.div`
   margin-bottom: 4.5rem;
-`
+`;

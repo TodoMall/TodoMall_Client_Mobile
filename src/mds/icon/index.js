@@ -6,3 +6,8 @@ export { default as BrandLogo } from "./BrandLogo";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as ListIcon } from "./ListIcon";
 export { default as NotificationIcon } from "./NotificationIcon";
+export { default as NewAlarmIcon } from "./NewAlarmIcon";
+export { default as PromotionIcon } from "./PromotionIcon";
+export { default as RecommendIcon } from "./RecommendIcon";
+export { default as RemindIcon } from "./RemindIcon";
+export { default as NoticeIcon } from "./NoticeIcon";

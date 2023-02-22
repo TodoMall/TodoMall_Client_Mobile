@@ -1,17 +1,14 @@
-import { useToggle } from "../../../../hooks";
 import { RowBox } from "../../../box";
 import { LogoButton } from "../../../button";
 import { CategoryTabBar } from "../../../category";
 import SearchTab from "./SearchTab";
 import Divider from "../../../Divider";
 import styled from "styled-components";
-import {
-  SearchButton,
-  isShowSearchArea,
-  handleToggleSearchArea,
-} from "../../../button/SearchButton";
+import { SearchButtonResource } from "../../../button";
 
 const StoreHeader = () => {
+  const { SearchButton, isShowSearchArea, handleToggleSearchArea } =
+    SearchButtonResource;
   return (
     <>
       {isShowSearchArea ? (

@@ -1,8 +1,9 @@
-import { COLOR, FONT_STYLE, PATH } from "../../../../constants";
-import { NotificationButton } from "../../../button";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { COLOR, PATH } from "../../../../constants";
 import Divider from "../../../Divider";
+import { HeadingXL } from "../../../text";
+import { NotificationButton } from "../../../button";
+import styled from "styled-components";
 
 const MyCourseHeader = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const MyCourseHeader = () => {
   return (
     <>
       <Container>
-        <Theme>학습</Theme>
+        <HeadingXL fontColor={COLOR.GRAY900}>학습</HeadingXL>
         <NotificationButton onClick={handleNotificationPage} />
       </Container>
       <Divider />
@@ -29,13 +30,4 @@ const Container = styled.div`
   align-items: center;
   flex-direction: row;
   padding: 0.5rem 0.5rem 0.5rem 1.5rem;
-`;
-
-const Theme = styled.p`
-  font-weight: ${FONT_STYLE.PRETENDARD_450.WEIGTHT};
-  font-size: ${FONT_STYLE.PRETENDARD_450.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_450.HEIGHT};
-  text-align: center;
-  letter-spacing: 0.02em;
-  color: ${COLOR.GRAY900};
 `;
