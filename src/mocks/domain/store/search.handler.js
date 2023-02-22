@@ -1,6 +1,7 @@
 import { graphql } from "msw";
-import { ProductTitleList } from "./search.data";
+
 import { isNull } from "../../../utils";
+import { ProductTitleList } from "./search.data";
 
 export const searchHandlers = [
     graphql.query("getOrderByOrderNumber", (req, res, ctx) => {

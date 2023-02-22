@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client";
 
 import {
-    signInWithKakao,
     signInWithApple,
+    signInWithKakao,
 } from "../../../apollo/domain/member";
 import { PROVIDERS } from "../../../constants/providers";
 
@@ -16,11 +16,11 @@ export default function useLogin(provider = PROVIDERS.KAKAO) {
 
 const getSignInMutation = provider => {
     switch (provider) {
-    case PROVIDERS.KAKAO:
-        return signInWithKakao;
-    case PROVIDERS.APPLE:
-        return signInWithApple;
-    default:
-        return signInWithKakao;
+        case PROVIDERS.KAKAO:
+            return signInWithKakao;
+        case PROVIDERS.APPLE:
+            return signInWithApple;
+        default:
+            return signInWithKakao;
     }
 };

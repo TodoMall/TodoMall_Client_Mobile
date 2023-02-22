@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import reportWebVitals from "./reportWebVitals";
-import { worker } from "./mocks/browser";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+import App from "./App";
 import { API_ENDPOINT, isProd } from "./constants";
+import { worker } from "./mocks/browser";
+import reportWebVitals from "./reportWebVitals";
 
 if (!isProd) {
     console.warn("Mock Service Worker is Running 🏄🏄🏄");

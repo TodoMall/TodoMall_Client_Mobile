@@ -13,14 +13,16 @@ plugins:
   - react
   - prettier
 rules:
-  indent:
-    - error
   quotes:
     - error
     - double
   semi:
     - error
     - always
+  no-undef:
+    - off
+  no-undefined:
+    - off
   prettier/prettier:
     - error
   react/prop-types:
