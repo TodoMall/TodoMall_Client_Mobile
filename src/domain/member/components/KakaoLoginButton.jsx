@@ -3,13 +3,17 @@ import styled from "styled-components";
 import { BasicButton } from "../../../mds/button";
 import { useLogin } from "../hooks";
 import { PROVIDERS } from "../../../constants/providers";
-import {FONT_STYLE} from "../../../constants";
+import {
+  FONT_STYLE,
+  KAKAO_CLIENT_ID, KAKAO_ENDPOINT,
+  REDIRECT_URI
+} from "../../../constants";
 
 const KakaoLoginButton = () => {
   const { signIn, data, loading, error } = useLogin(PROVIDERS.KAKAO);
 
-  const onClickLoginButton = () => {
-    signIn();
+  const onClickLoginButton = async () => {
+    window.location.href = `${KAKAO_ENDPOINT}?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   }
 
   return (
