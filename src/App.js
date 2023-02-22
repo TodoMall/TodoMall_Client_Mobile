@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 // FIXME : should be deleted
 import { CustomApolloProvider } from "./apollo/link";
-import { LandingPage, OnboardingPage, LoginPage } from "./pages";
+import { LandingPage, OnboardingPage, LoginPage, AgreementPage } from "./pages";
 import { getMaxWidth } from "./utils/width";
 import { COLOR, PATH } from "./constants";
 
@@ -32,6 +32,7 @@ function App() {
             <Route path={PATH.MAIN} element={<LandingPage />} />
             <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
             <Route path={PATH.LOGIN} element={<LoginPage />} />
+            <Route path={PATH.AGREEMENT} element={<AgreementPage />} />
           </Routes>
         </Container>
       </CustomApolloProvider>
