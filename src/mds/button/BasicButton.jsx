@@ -12,20 +12,20 @@ const BasicButton = ({
     isDisabled = false,
     onClick: handleClick = () => {},
 }) => {
-    return (
-        <Container
-            backgroundColor={isDisabled ? COLOR.DISABLED : backgroundColor}
-            borderRadius={borderRadius}
-            height={height}
-            width={width}
-            fontColor={fontColor}
-            margin={margin}
-            isDisabled={isDisabled}
-            onClick={handleClick}
-        >
-            <p>{children}</p>
-        </Container>
-    );
+  return (
+    <Container
+      backgroundColor={isDisabled ? COLOR.DISABLED : backgroundColor}
+      borderRadius={borderRadius}
+      height={height}
+      width={width}
+      fontColor={fontColor}
+      margin={margin}
+      isDisabled={isDisabled}
+      onClick={handleClick}
+    >
+      {children}
+    </Container>
+  );
 };
 
 export default BasicButton;

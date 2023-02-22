@@ -6,6 +6,6 @@ export { default as CheckButton } from "./CheckButton";
 export { default as RadioButton } from "./RadioButton";
 export { default as NextArrowButton } from "./NextArrowButton";
 export { default as PreviousArrowButton } from "./PreviousArrowButton";
-export { default as SearchButton } from "./SearchButton";
+export { default as SearchButtonResource } from "./SearchButtonResource";
 export { default as ListButton } from "./ListButton";
 export { default as NotificationButton } from "./NotificationButton";
