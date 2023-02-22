@@ -11,28 +11,28 @@ import { isLaptop } from "../../utils/width";
  * @description Current Width 가 isLaptop 이 아닌 경우 SearchTab 을 보여주는 이벤트가 실행됩니다
  */
 const SearchButton = ({ keyword }) => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [isShowSearchArea, _, handleToggleSearchArea] = useToggle(false);
+    const [isShowSearchArea, _, handleToggleSearchArea] = useToggle(false);
 
-  const handleSearchPage = () => {
-    navigate({
-      pathname: "/search",
-      search: `?keyword=${keyword}`,
-    });
-  };
+    const handleSearchPage = () => {
+        navigate({
+            pathname: "/search",
+            search: `?keyword=${keyword}`,
+        });
+    };
 
-  return {
-    SearchButton: (
-      <IconButton
-        onClick={isLaptop ? handleSearchPage : handleToggleSearchArea}
-      >
-        <SearchIcon />
-      </IconButton>
-    ),
-    isShowSearchArea: isShowSearchArea,
-    handleToggleSearchArea: handleToggleSearchArea,
-  };
+    return {
+        SearchButton: (
+            <IconButton
+                onClick={isLaptop ? handleSearchPage : handleToggleSearchArea}
+            >
+                <SearchIcon />
+            </IconButton>
+        ),
+        isShowSearchArea: isShowSearchArea,
+        handleToggleSearchArea: handleToggleSearchArea,
+    };
 };
 
 export default SearchButton;

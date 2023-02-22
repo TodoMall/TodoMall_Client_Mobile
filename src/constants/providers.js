@@ -1,4 +1,4 @@
 export const PROVIDERS = {
-  KAKAO: "KAKAO",
-  APPLE: "APPLE",
-}
+    KAKAO: "KAKAO",
+    APPLE: "APPLE",
+};

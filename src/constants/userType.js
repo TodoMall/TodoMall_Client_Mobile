@@ -1,5 +1,5 @@
 export const USER_TYPE = {
-  MEMBER: "member",
-  ADMIN: "admin",
-  GUEST: "guest",
+    MEMBER: "member",
+    ADMIN: "admin",
+    GUEST: "guest",
 };

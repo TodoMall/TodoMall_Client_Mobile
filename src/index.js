@@ -8,24 +8,24 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { API_ENDPOINT, isProd } from "./constants";
 
 if (!isProd) {
-  console.warn("Mock Service Worker is Running 🏄🏄🏄");
-  worker.start({
-    onUnhandledRequest: "bypass",
-  });
+    console.warn("Mock Service Worker is Running 🏄🏄🏄");
+    worker.start({
+        onUnhandledRequest: "bypass",
+    });
 }
 
 const client = new ApolloClient({
-  uri: API_ENDPOINT,
-  cache: new InMemoryCache(),
+    uri: API_ENDPOINT,
+    cache: new InMemoryCache(),
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </BrowserRouter>
+    <BrowserRouter>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

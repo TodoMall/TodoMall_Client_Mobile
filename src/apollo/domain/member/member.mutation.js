@@ -10,4 +10,4 @@ export const signInWithApple = gql`
     mutation signInWithApple($data: String!) {
         signInWithApple(data: $data)
     }
-`
+`;
