@@ -40,6 +40,8 @@ function App() {
         <Route path={PATH.NOTIFICATION()} element={<AccountPage />} />
         <Route path={PATH.NOTICE} element={<NoticePage />} />
         <Route path={PATH.NOTICE_DETAIL()} element={<NoticeDetailPage />} />
+        <Route path={PATH.AGREEMENT_PERSONAL} element={<div />} />
+        <Route path={PATH.SETTING_PERSONAL} element={<div />} />
       </Routes>
     </Container>
   );

@@ -9,7 +9,7 @@ const TermsPage = () => {
   const navigate = useNavigate();
 
   const handleServiceTermsPage = () => navigate(PATH.SERVICE);
-  const handlePersonalTermsPage = () => navigate(PATH.PERSONAL);
+  const handlePersonalTermsPage = () => navigate(PATH.SETTING_PERSONAL);
 
   return (
     <Container>

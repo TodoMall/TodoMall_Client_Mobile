@@ -10,7 +10,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const handleServicePage = () => navigate(PATH.SERVICE);
-  const handlePersonalPage = () => navigate(PATH.PERSONAL);
+  const handlePersonalPage = () => navigate(PATH.SETTING_PERSONAL);
   const handleRefundPage = () => navigate(PATH.REFUND);
   const handleNoticePage = () => navigate(PATH.NOTICE);
   // TODO : 자세한 기획 픽스나면 uri 설정
