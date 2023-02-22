@@ -1,0 +1,10 @@
+node_modules
+.idea
+.vscode
+.github
+public
+package.json
+package-lock.json
+yarn.lock
+.env
+.env.sample

@@ -11,8 +11,8 @@ const BasicHeader = ({
   hasListButton = false,
   height = "3.25rem",
 }) => {
-  const navigate = useNavigate();
-  const handlePreviousPage = () => navigate(-1);
+    const navigate = useNavigate();
+    const handlePreviousPage = () => navigate(-1);
 
   return (
     <>
@@ -44,5 +44,5 @@ const Container = styled.div`
 `;
 
 const EmptyBox = styled.div`
-  width: 2.5rem;
+    width: 2.5rem;
 `;

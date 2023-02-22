@@ -4,14 +4,14 @@ import { PATH } from "../../constants";
 import IconButton from "./IconButton";
 
 const LogoButton = () => {
-  const navigate = useNavigate();
-  const handleMainPage = () => navigate(PATH.MAIN);
+    const navigate = useNavigate();
+    const handleMainPage = () => navigate(PATH.MAIN);
 
-  return (
-    <IconButton width={"auto"} height={"auto"} onClick={handleMainPage}>
-      <BrandLogo />
-    </IconButton>
-  );
+    return (
+        <IconButton width={"auto"} height={"auto"} onClick={handleMainPage}>
+            <BrandLogo />
+        </IconButton>
+    );
 };
 
 export default LogoButton;
