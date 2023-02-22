@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { USER_TYPE } from "../constants/userType";
 
 const RedirectByAuthStatus = () => {

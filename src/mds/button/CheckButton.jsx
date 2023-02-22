@@ -1,6 +1,6 @@
+import { useToggle } from "../../hooks";
 import { CheckIcon } from "../icon";
 import IconButton from "./IconButton";
-import { useToggle } from "../../hooks";
 
 const CheckButton = ({
     width = "2.5rem",

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { BrandLogo } from "../icon";
+
 import { PATH } from "../../constants";
+import { BrandLogo } from "../icon";
 import IconButton from "./IconButton";
 
 const LogoButton = () => {

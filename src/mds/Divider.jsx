@@ -1,5 +1,6 @@
-import { COLOR } from "../constants";
 import styled from "styled-components";
+
+import { COLOR } from "../constants";
 
 const Divider = ({
     width = "100%",

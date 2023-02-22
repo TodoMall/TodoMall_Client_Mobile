@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { COLOR } from "../../constants";
 
 const BasicButton = ({
@@ -12,20 +13,20 @@ const BasicButton = ({
     isDisabled = false,
     onClick: handleClick = () => {},
 }) => {
-  return (
-    <Container
-      backgroundColor={isDisabled ? COLOR.DISABLED : backgroundColor}
-      borderRadius={borderRadius}
-      height={height}
-      width={width}
-      fontColor={fontColor}
-      margin={margin}
-      isDisabled={isDisabled}
-      onClick={handleClick}
-    >
-      {children}
-    </Container>
-  );
+    return (
+        <Container
+            backgroundColor={isDisabled ? COLOR.DISABLED : backgroundColor}
+            borderRadius={borderRadius}
+            height={height}
+            width={width}
+            fontColor={fontColor}
+            margin={margin}
+            isDisabled={isDisabled}
+            onClick={handleClick}
+        >
+            {children}
+        </Container>
+    );
 };
 
 export default BasicButton;

@@ -1,5 +1,5 @@
-import { RadioIcon } from "../icon";
 import { useToggle } from "../../hooks";
+import { RadioIcon } from "../icon";
 import IconButton from "./IconButton";
 
 const RadioButton = ({ isChecked = false }) => {

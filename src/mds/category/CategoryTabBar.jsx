@@ -1,6 +1,7 @@
+import styled from "styled-components";
+
 import { CATEGORY_TAG, COLOR } from "../../constants";
 import CategoryItem from "./CategoryItem";
-import styled from "styled-components";
 
 const CategoryTabBar = () => {
     return (

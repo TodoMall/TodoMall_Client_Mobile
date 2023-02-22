@@ -1,7 +1,8 @@
 import Switch from "@mui/material/Switch";
+import { styled } from "@mui/material/styles";
+
 import { COLOR } from "../constants";
 import { useToggle } from "../hooks";
-import { styled } from "@mui/material/styles";
 
 const ToggleSwitch = ({ isChecked = false }) => {
     const [toggleStatus, _, handleToggle] = useToggle(isChecked);

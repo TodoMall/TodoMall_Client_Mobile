@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { COLOR, FONT_STYLE } from "../../constants";
 
 const CategoryItem = ({
@@ -33,7 +34,7 @@ const Container = styled.div`
         line-height: ${FONT_STYLE.PRETENDARD_400.HEIGHT};
         letter-spacing: -0.01em;
         color: ${props =>
-        props.isSelected ? COLOR.BRAND_COLOR : props.fontColor};
+            props.isSelected ? COLOR.BRAND_COLOR : props.fontColor};
         border-bottom: 0.063rem solid
             ${props => (props.isSelected ? COLOR.BRAND_COLOR : "none")};
     }
