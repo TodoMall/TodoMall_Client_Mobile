@@ -1,16 +1,7 @@
-import { useToggle } from "../../hooks";
 import styled from "styled-components";
 
-const PopUpLayout = ({ children, initialStatus = true }) => {
-  const [isOpen, _, handleToggleOpen] = useToggle(initialStatus);
-
-  return (
-    <div>
-      {isOpen && (
-        <PopupContainer onClick={handleToggleOpen}>{children}</PopupContainer>
-      )}
-    </div>
-  );
+const PopUpLayout = ({ children, initialStatus = false }) => {
+  return <PopupContainer>{children}</PopupContainer>;
 };
 
 export default PopUpLayout;

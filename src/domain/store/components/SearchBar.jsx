@@ -4,12 +4,14 @@ import { useInput } from "../../../hooks";
 import { BasicChip } from "../../../mds/chip";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { SearchButton } from "../../../mds/button/SearchButton";
+import { SearchButtonResource } from "../../../mds/button";
+import { DetailS } from "../../../mds/text";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const [keyword, handleKeywordChange] = useInput(null);
   const [isFocused, setIsFocused] = useState(false);
+  const { SearchButton } = SearchButtonResource;
 
   const onFocus = () => setIsFocused(true);
   const onBlur = () => setIsFocused(false);
@@ -39,7 +41,7 @@ const SearchBar = () => {
       </InputContainer>
       {isFocused && (
         <SearchResultContainer>
-          <Text>추천 검색 키워드</Text>
+          <DetailS fontColor={COLOR.GRAY800}>추천 검색 키워드</DetailS>
           <SuggestedSearch>
             {recommendTag.map((tag) => {
               return (
@@ -102,14 +104,6 @@ const SearchResultContainer = styled.div`
   padding: 1.5rem;
   background-color: ${COLOR.GRAY50};
   z-index: 2;
-`;
-
-const Text = styled.p`
-  font-weight: ${FONT_STYLE.PRETENDARD_75.WEIGTHT};
-  font-size: ${FONT_STYLE.PRETENDARD_75.SIZE};
-  line-height: ${FONT_STYLE.PRETENDARD_75.HEIGHT};
-  color: ${COLOR.GRAY800};
-  letter-spacing: -0.01em;
 `;
 
 const SuggestedSearch = styled.div`
