@@ -4,9 +4,15 @@ import styled from "styled-components";
 
 import "./App.css";
 import { COLOR, PATH } from "./constants";
-import { LandingPage, OnboardingPage } from "./pages";
+import {
+    LandingPage,
+    OnboardingPage,
+    SettingPersonalPage,
+    TermOfServicePage,
+} from "./pages";
 import {
     AccountPage,
+    AgreementPersonalPage,
     NoticeDetailPage,
     NoticePage,
     SettingPage,
@@ -44,8 +50,15 @@ function App() {
                     path={PATH.NOTICE_DETAIL()}
                     element={<NoticeDetailPage />}
                 />
-                <Route path={PATH.AGREEMENT_PERSONAL} element={<div />} />
-                <Route path={PATH.SETTING_PERSONAL} element={<div />} />
+                <Route
+                    path={PATH.AGREEMENT_PERSONAL}
+                    element={<AgreementPersonalPage />}
+                />
+                <Route
+                    path={PATH.SETTING_PERSONAL}
+                    element={<SettingPersonalPage />}
+                />
+                <Route path={PATH.SERVICE} element={<TermOfServicePage />} />
             </Routes>
         </Container>
     );
