@@ -31,7 +31,7 @@ const NoticePage = () => {
                     <RowBox alignItems={"none"} margin={"0 0 0.25rem 0"}>
                         <IconContainer>
                             <NoticeIcon />
-                            <BodyXXS marginLeft={"0.25rem"}>공지사항</BodyXXS>
+                            <BodyXXS margin={"0 0 0 0.25rem"}>공지사항</BodyXXS>
                         </IconContainer>
                         <BodyXXS>36분 전</BodyXXS>
                     </RowBox>
@@ -48,7 +48,7 @@ const NoticePage = () => {
                     <RowBox alignItems={"none"} margin={"0 0 0.25rem 0"}>
                         <IconContainer>
                             <NoticeIcon />
-                            <BodyXXS marginLeft={"0.25rem"}>공지사항</BodyXXS>
+                            <BodyXXS margin={"0 0 0 0.25rem"}>공지사항</BodyXXS>
                         </IconContainer>
                         <BodyXXS>23시간 전</BodyXXS>
                     </RowBox>
@@ -65,7 +65,7 @@ const NoticePage = () => {
                     <RowBox alignItems={"none"} margin={"0 0 0.25rem 0"}>
                         <IconContainer>
                             <NoticeIcon />
-                            <BodyXXS marginLeft={"0.25rem"}>공지사항</BodyXXS>
+                            <BodyXXS margin={"0 0 0 0.25rem"}>공지사항</BodyXXS>
                         </IconContainer>
                         <BodyXXS>3일 전</BodyXXS>
                     </RowBox>
@@ -82,7 +82,7 @@ const NoticePage = () => {
                     <RowBox alignItems={"none"} margin={"0 0 0.25rem 0"}>
                         <IconContainer>
                             <NoticeIcon />
-                            <BodyXXS marginLeft={"0.25rem"}>공지사항</BodyXXS>
+                            <BodyXXS margin={"0 0 0 0.25rem"}>공지사항</BodyXXS>
                         </IconContainer>
                         <BodyXXS>2023.01.28</BodyXXS>
                     </RowBox>
