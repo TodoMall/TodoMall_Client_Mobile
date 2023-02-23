@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { PROVIDERS } from "../constants/providers";
+import { AgreementButtonBox } from "../domain/auth/components";
 import { useLogin } from "../domain/member/hooks";
 
 const AgreementPage = () => {
@@ -26,8 +27,7 @@ const AgreementPage = () => {
     useEffect(() => {
         signInWithKakao();
     }, []);
-
-    return <p>{loading ? "로딩중" : accessToken}</p>;
+    return <AgreementButtonBox />;
 };
 
 export default AgreementPage;
