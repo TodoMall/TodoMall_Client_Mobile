@@ -9,12 +9,12 @@ import {
     AgreementPage,
     AgreementPersonalPage,
     LandingPage,
-    LoginPage,
     NoticeDetailPage,
     NoticePage,
     OnboardingPage,
     SettingPage,
     SettingPersonalPage,
+    SignInPage,
     TermOfServicePage,
     TermsPage,
 } from "./pages";
@@ -42,7 +42,7 @@ function App() {
             <Routes>
                 <Route path={PATH.MAIN} element={<LandingPage />} />
                 <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
-                <Route path={PATH.SINGIN} element={<LoginPage />} />
+                <Route path={PATH.SINGIN} element={<SignInPage />} />
                 <Route path={PATH.AGREEMENT} element={<AgreementPage />} />
                 {/* TODO : 모바일과 웹의 setting 페이지가 달라야한다 */}
                 {/* 아래 페이지들은 mobile 을 기준으로 작업하였습니다. */}
