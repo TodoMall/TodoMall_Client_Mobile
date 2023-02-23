@@ -37,6 +37,7 @@ function App() {
     return (
         <Container maxWidth={getMaxWidth()}>
             <Routes>
+                {/* TODO : web 에서의 PATH.MAIN  */}
                 <Route path={PATH.MAIN} element={<LandingPage />} />
                 <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
                 {/* TODO : 모바일과 웹의 setting 페이지가 달라야한다 */}
