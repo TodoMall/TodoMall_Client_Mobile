@@ -5,26 +5,30 @@ import styled from "styled-components";
 import "./App.css";
 import { COLOR, PATH } from "./constants";
 import {
-    LandingPage,
-    OnboardingPage,
-    SettingPersonalPage,
-    TermOfServicePage,
-} from "./pages";
-import {
     AccountPage,
+    AgreementPage,
     AgreementPersonalPage,
+    LandingPage,
     NoticeDetailPage,
     NoticePage,
+    OnboardingPage,
     SettingPage,
+    SettingPersonalPage,
+    SignInPage,
+    TermOfServicePage,
     TermsPage,
 } from "./pages";
-import { getMaxWidth } from "./utils/width";
+import { getMaxWidth, isMobile } from "./utils/width";
 
 function App() {
     const location = useLocation();
 
     const getBackgroundColor = () => {
-        if (location.pathname.includes("onboarding")) {
+        if (
+            isMobile &&
+            (location.pathname.includes(PATH.ONBOARDING) ||
+                location.pathname.includes(PATH.SINGIN))
+        ) {
             return COLOR.BRAND_COLOR;
         }
         return COLOR.WHITE;
@@ -39,6 +43,8 @@ function App() {
             <Routes>
                 <Route path={PATH.MAIN} element={<LandingPage />} />
                 <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
+                <Route path={PATH.SINGIN} element={<SignInPage />} />
+                <Route path={PATH.AGREEMENT} element={<AgreementPage />} />
                 {/* TODO : 모바일과 웹의 setting 페이지가 달라야한다 */}
                 {/* 아래 페이지들은 mobile 을 기준으로 작업하였습니다. */}
                 <Route path={PATH.SETTING} element={<SettingPage />} />
