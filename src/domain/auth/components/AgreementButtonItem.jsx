@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { COLOR } from "../../../constants";
+import { NextArrowButton } from "../../../mds/button";
 import { CheckIcon } from "../../../mds/icon";
 
 const AgreementButtonItem = ({
@@ -8,8 +11,10 @@ const AgreementButtonItem = ({
     isAgreed = false,
     onClick = () => {},
     width = "100%",
+    detail = null,
 }) => {
     const [isChecked, setIsChecked] = useState(false);
+    const navigator = useNavigate();
 
     useEffect(() => {
         setIsChecked(isAgreed);
@@ -17,10 +22,18 @@ const AgreementButtonItem = ({
 
     return (
         <ItemContainer width={width}>
-            <ItemButton onClick={onClick}>
-                <CheckIcon isChecked={isChecked} />
-            </ItemButton>
-            {children}
+            <ItemButtonContainer>
+                <ItemButton onClick={onClick}>
+                    <CheckIcon isChecked={isChecked} />
+                </ItemButton>
+                {children}
+            </ItemButtonContainer>
+            {detail && (
+                <NextArrowButton
+                    onClick={() => navigator(detail)}
+                    color={COLOR.GRAY800}
+                />
+            )}
         </ItemContainer>
     );
 };
@@ -30,10 +43,17 @@ export default AgreementButtonItem;
 const ItemContainer = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-direction: row;
     width: ${props => props.width};
     height: 1.5rem;
     padding: 0 0.5rem 0 0.5rem;
+`;
+
+const ItemButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 `;
 
 const ItemButton = styled.button`
