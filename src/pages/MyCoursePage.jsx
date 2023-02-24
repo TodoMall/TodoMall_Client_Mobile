@@ -32,6 +32,7 @@ const MyCoursePage = () => {
     return (
         <Container>
             <MyCourseHeader />
+            {/* TODO: banner 클릭 시 페이지 이동 있어야함 */}
             <DemoLineBanner />
             {isShowPushAlarmPopup && (
                 <PushPopup onClose={handlePushAlarmPopup} />
@@ -43,26 +44,37 @@ const MyCoursePage = () => {
                 <RetryPopup onClose={handleRetrySessionPopup} />
             )}
             <PageContanier>
-                <HeadingXL margin={"1.5rem 0 0.75rem 0"}>내 클래스</HeadingXL>
+                <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
+                    내 클래스
+                </HeadingXL>
                 <TutorialCard />
+                {/* FIXME : Session 카드마다 마진이 겹쳐지는 현상 발생 */}
                 <SessionCard />
-                <HeadingXL margin={"2rem 0 0.75rem 0"}>추천 클래스</HeadingXL>
-                <Swiper slidesPerView={2.1} spaceBetween={8}>
-                    {array.map(el => {
-                        return (
-                            <SwiperSlide
-                                key={el}
-                                style={{
-                                    minWidth: "8.75rem",
-                                    maxWidth: "11.625rem",
-                                }}
-                            >
-                                <ClassBox />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
+                    추천 클래스
+                </HeadingXL>
             </PageContanier>
+            <Swiper
+                slidesPerView={2.2}
+                spaceBetween={8}
+                slidesOffsetBefore={16}
+            >
+                {array.map(el => {
+                    return (
+                        <SwiperSlide
+                            key={el}
+                            style={{
+                                width: "100%",
+                                minWidth: "8.75rem",
+                                maxWidth: "11.625rem",
+                            }}
+                        >
+                            <ClassBox />
+                        </SwiperSlide>
+                    );
+                })}
+            </Swiper>
+
             <GlobalNavBar />
         </Container>
     );
@@ -77,19 +89,6 @@ const Container = styled.div`
 
 const PageContanier = styled.div`
     padding: 0 1rem;
-`;
-
-const Button = styled.button`
-    all: unset;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 3.25rem;
-    color: ${props => props.fontColor};
-    font-weight: ${FONT_STYLE.PRETENDARD_125.WEIGTHT};
-    font-size: ${FONT_STYLE.PRETENDARD_125.SIZE};
-    line-height: ${FONT_STYLE.PRETENDARD_125.HEIGHT};
 `;
 
 const DemoLineBanner = styled.img`

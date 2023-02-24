@@ -7,7 +7,7 @@ import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const PushPopup = ({ onClose: handleClose = () => {} }) => {
     return (
-        <PopUpLayout>
+        <PopUpLayout onClick={handleClose}>
             <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
                 <BodyM margin={"0 0 0.25rem 0"}>
                     앱 내 푸시알림을 받아보실래요?

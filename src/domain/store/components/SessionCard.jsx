@@ -9,6 +9,7 @@ import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
 const SessionCard = () => {
     /* FIXME : delete demo datas */
+    /* FIXME : 가격에 comma 붙이기 */
     return (
         <>
             <Card backgroundColor={COLOR.GRAY50}>
@@ -25,7 +26,7 @@ const SessionCard = () => {
                 <RowBox>
                     <RowBox
                         margin={"0.5rem 0 0 0"}
-                        width={"50%"}
+                        width={"auto"}
                         justifyContent={"flex-start"}
                     >
                         <BodyL
@@ -37,15 +38,17 @@ const SessionCard = () => {
                         <BodyL fontColor={COLOR.ERROR500}>{"17:36:22"}</BodyL>
                     </RowBox>
                     <BasicButton
+                        width={"auto"}
                         backgroundColor={COLOR.ERROR500}
-                        width={"8.375rem"}
+                        margin={"0.5rem 0 0 0"}
                     >
-                        <BodyXL fontColor={COLOR.WHITE}>
-                            {"바로 학습하기"}
-                        </BodyXL>
+                        <BodyXL fontColor={COLOR.WHITE}>{"바로 학습"}</BodyXL>
                     </BasicButton>
                 </RowBox>
             </Card>
+
+            {/*  */}
+
             {/* FIXME : 이 주석 아래부터는 UI 작성을 위한 코드입니다. */}
             <Card backgroundColor={COLOR.GRAY50}>
                 <RowBox margin={"0 0 0.25rem 0"} justifyContent={"flex-start"}>
@@ -72,13 +75,14 @@ const SessionCard = () => {
                         </BodyL>
                         <BodyL fontColor={COLOR.MAIN500}>{"3개의 투두"}</BodyL>
                     </RowBox>
-                    <BasicButton width={"8.375rem"}>
-                        <BodyXL fontColor={COLOR.WHITE}>
-                            {"바로 학습하기"}
-                        </BodyXL>
+                    <BasicButton width={"auto"} margin={"0.5rem 0 0 0"}>
+                        <BodyXL fontColor={COLOR.WHITE}>{"지금 학습"}</BodyXL>
                     </BasicButton>
                 </RowBox>
             </Card>
+
+            {/*  */}
+
             <Card backgroundColor={COLOR.GRAY50}>
                 <RowBox margin={"0 0 0.25rem 0"} justifyContent={"flex-start"}>
                     <SessionBasicIcon />
@@ -102,12 +106,16 @@ const SessionCard = () => {
                     </RowBox>
                     <BasicButton
                         backgroundColor={COLOR.SUCCESS500}
-                        width={"8.375rem"}
+                        width={"auto"}
+                        margin={"0.5rem 0 0 0"}
                     >
                         <BodyXL fontColor={COLOR.WHITE}>{"지금 인증"}</BodyXL>
                     </BasicButton>
                 </RowBox>
             </Card>
+
+            {/*  */}
+
             <Card backgroundColor={COLOR.GRAY50}>
                 <RowBox margin={"0 0 0.25rem 0"} justifyContent={"flex-start"}>
                     <WarningIcon />
@@ -125,14 +133,14 @@ const SessionCard = () => {
                         backgroundColor={COLOR.GRAY100}
                         width={"50%"}
                     >
-                        <BodyL fontColor={COLOR.GRAY400}>
-                            {"나중에 도전하기"}
-                        </BodyL>
+                        <BodyL fontColor={COLOR.GRAY400}>{"나중에 도전"}</BodyL>
                     </BasicButton>
-                    <BasicButton backgroundColor={COLOR.ERROR500} width={"50%"}>
-                        <BodyXL fontColor={COLOR.WHITE}>
-                            {"다시 도전하기"}
-                        </BodyXL>
+                    <BasicButton
+                        margin={"0.5rem 0 0 0"}
+                        backgroundColor={COLOR.ERROR500}
+                        width={"50%"}
+                    >
+                        <BodyXL fontColor={COLOR.WHITE}>{"다시 도전"}</BodyXL>
                     </BasicButton>
                 </RowBox>
             </Card>
@@ -148,10 +156,12 @@ const SessionCard = () => {
                     <BodyM>{"투두리스트 따라하고 성장하기"}</BodyM>
                 </TextContainer>
                 <RowBox justifyContent={"flex-end"}>
-                    <BasicButton backgroundColor={COLOR.ERROR500} width={"50%"}>
-                        <BodyXL fontColor={COLOR.WHITE}>
-                            {"도전 삭제하기"}
-                        </BodyXL>
+                    <BasicButton
+                        margin={"0.5rem 0 0 0"}
+                        backgroundColor={COLOR.ERROR500}
+                        width={"auto"}
+                    >
+                        <BodyXL fontColor={COLOR.WHITE}>{"도전 삭제"}</BodyXL>
                     </BasicButton>
                 </RowBox>
             </Card>

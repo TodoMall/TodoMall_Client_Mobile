@@ -6,7 +6,7 @@ import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const RetryPopup = ({ onClose: handleClose = () => {} }) => {
     return (
-        <PopUpLayout>
+        <PopUpLayout onClick={handleClose}>
             <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
                 <BodyM margin={"0 0 0.25rem 0"}>
                     잊지말고 꼭 다시 도전하세요!

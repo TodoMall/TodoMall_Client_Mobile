@@ -5,7 +5,7 @@ import { Card } from "../../../mds";
 import { RowBox } from "../../../mds/box";
 import { BasicButton } from "../../../mds/button";
 import { ProgressIcon } from "../../../mds/icon";
-import { BodyL, BodyM, HeadingXL } from "../../../mds/text";
+import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
 const TutorialCard = () => {
     const { name } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
@@ -13,7 +13,7 @@ const TutorialCard = () => {
         // ...login
     };
     return (
-        <Card justifyContent="none" height={"25.625rem"} margin={"0"}>
+        <Card justifyContent="none" margin={"0"} padding={"1rem 1.25rem"}>
             {/* TODO : delete demo img , and get img component from @/mds/image folder */}
             <img
                 width={318}
@@ -44,7 +44,7 @@ const TutorialCard = () => {
                     margin={"0 0.25rem"}
                     padding={0}
                 >
-                    <BodyL fontColor={COLOR.WHITE}>바로 시작하기</BodyL>
+                    <BodyXL fontColor={COLOR.WHITE}>바로 시작</BodyXL>
                 </BasicButton>
             </RowBox>
         </Card>
