@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, GNB, PATH } from "../../../constants";
+import { COLOR, GNB, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
 import { LoginPopup } from "../../../domain/auth/components";
-import { useToggle } from "../../../hooks";
+import { useLocalStorage, useToggle } from "../../../hooks";
 import { RowBox } from "../../box";
 import { EducationButton, MyPageButton, StoreButton } from "../../button";
 
 const GlobalNavBar = () => {
     const navigate = useNavigate();
-    const { isGuest = true } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
+    const [isGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.isGuest, true);
     const [isCurrent, setIsCurrent] = useState(GNB.EDUCATION);
     const [isShowLoginPopup, _, handleLoginPopup] = useToggle(false);
 

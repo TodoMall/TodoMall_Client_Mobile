@@ -11,3 +11,5 @@ export const signInWithApple = gql`
         signInWithApple(data: $data)
     }
 `;
+
+export const updateMemberAgreement = gql``;

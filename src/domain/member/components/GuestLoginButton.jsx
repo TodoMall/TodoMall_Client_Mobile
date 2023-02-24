@@ -9,6 +9,7 @@ const GuestLoginButton = () => {
     const navigator = useNavigate();
 
     const onClickGuestLoginButton = () => {
+        useLocalStorage(LOCAL_STORAGE_KEYS.isGuest, true);
         navigator(PATH.STORE);
     };
 

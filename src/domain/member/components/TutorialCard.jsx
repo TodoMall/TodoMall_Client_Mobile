@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS } from "../../../constants";
+import { useLocalStorage } from "../../../hooks";
 import { Card } from "../../../mds";
 import { RowBox } from "../../../mds/box";
 import { BasicButton } from "../../../mds/button";
 import { ProgressIcon } from "../../../mds/icon";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
-const TutorialCard = () => {
-    const { name } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
-    const handleDownloadTutorial = () => {
-        // ...login
-    };
+const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
+    const [name] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME, "김상혁");
+
+    const handleDownloadTutorial = () => {};
+
     return (
         <Card justifyContent="none" margin={"0"} padding={"1rem 1.25rem"}>
             {/* TODO : delete demo img , and get img component from @/mds/image folder */}
@@ -28,11 +29,12 @@ const TutorialCard = () => {
                 </BodyL>
             </RowBox>
             <WelcomeText>
-                <HeadingXL>반가워요 {"솔빈님"}</HeadingXL>
+                <HeadingXL>반가워요 {name}님!</HeadingXL>
                 <BodyM>지금 튜토리얼 클래스를 다운 받아보세요</BodyM>
             </WelcomeText>
             <RowBox margin={"0.75rem 0 0 0"}>
                 <BasicButton
+                    onClick={handleDeleteTutorialCard}
                     backgroundColor={COLOR.GRAY100}
                     margin={"0 0.25rem"}
                     padding={0}

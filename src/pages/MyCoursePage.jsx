@@ -2,7 +2,9 @@ import styled from "styled-components";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { COLOR, FONT_STYLE } from "../constants";
+import { useQuery } from "@apollo/client";
+
+import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
 import {
     DeleteSessionPopup,
     PushPopup,
@@ -10,14 +12,24 @@ import {
 } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
 import { ClassBox, SessionCard } from "../domain/store/components";
-import { useToggle } from "../hooks";
+import { useLocalStorage, useToggle } from "../hooks";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
 /* TODO : delete repeated code and demo codes , fetching data from server */
 const MyCoursePage = () => {
-    const { isGuest } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
+    const [getMemberAgreeById] = useQuery();
+
+    const [isTuturialDone, setIsTuturialDone] = useLocalStorage(
+        LOCAL_STORAGE_KEYS.IS_TUTORIAL_DONE,
+        false
+    );
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
+
+    const handleTutorialStatus = () =>
+        setIsTuturialDone(prevStatus => !prevStatus);
+
     const [isShowPushAlarmPopup, _, handlePushAlarmPopup] = useToggle(false);
     const [isShowDeleteSessionPopup, __, handleDeleteSessionPopup] =
         useToggle(false);
@@ -47,7 +59,9 @@ const MyCoursePage = () => {
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
                     내 클래스
                 </HeadingXL>
-                <TutorialCard />
+                {isTuturialDone && (
+                    <TutorialCard onDelete={handleTutorialStatus} />
+                )}
                 {/* FIXME : Session 카드마다 마진이 겹쳐지는 현상 발생 */}
                 <SessionCard />
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
