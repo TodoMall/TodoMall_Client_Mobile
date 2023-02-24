@@ -1,4 +1,5 @@
 export { COLOR } from "./color";
+export { GNB } from "./globalNavBar";
 export { PATH } from "./path";
 export { MAX_WIDTH } from "./basement";
 export { FONT_STYLE } from "./font";
