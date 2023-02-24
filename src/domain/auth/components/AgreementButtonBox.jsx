@@ -114,7 +114,7 @@ const AgreementButtonBox = () => {
                 <AllAgreementCheckButton onClick={onClickAllAgreement}>
                     <CheckIcon isChecked={isAllSelected} />
                 </AllAgreementCheckButton>
-                <BodyXXXL>약관 전체 동의</BodyXXXL>
+                <BodyXXXL fontColor={COLOR.GRAY900}>약관 전체 동의</BodyXXXL>
             </AllAgreementContainer>
             {agreementItems}
             <BasicButton
