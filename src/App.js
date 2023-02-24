@@ -13,8 +13,10 @@ import {
 import {
     AccountPage,
     AgreementPersonalPage,
+    MyCoursePage,
     NoticeDetailPage,
     NoticePage,
+    NotificationPage,
     SettingPage,
     TermsPage,
 } from "./pages";
@@ -22,33 +24,34 @@ import { getMaxWidth } from "./utils/width";
 
 function App() {
     const location = useLocation();
-
     const getBackgroundColor = () => {
         if (location.pathname.includes("onboarding")) {
             return COLOR.BRAND_COLOR;
         }
         return COLOR.WHITE;
     };
-
     useEffect(() => {
         document.body.style.backgroundColor = getBackgroundColor();
     }, [location.pathname]);
-
     return (
         <Container maxWidth={getMaxWidth()}>
             <Routes>
                 {/* TODO : web 에서의 PATH.MAIN  */}
                 <Route path={PATH.MAIN} element={<LandingPage />} />
+                <Route path={PATH.MYCOURSE} element={<MyCoursePage />} />
                 <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
                 {/* TODO : 모바일과 웹의 setting 페이지가 달라야한다 */}
                 {/* 아래 페이지들은 mobile 을 기준으로 작업하였습니다. */}
                 <Route path={PATH.SETTING} element={<SettingPage />} />
                 <Route path={PATH.TERMS} element={<TermsPage />} />
                 <Route path={PATH.ACCOUNT} element={<AccountPage />} />
-                <Route path={PATH.NOTIFICATION()} element={<AccountPage />} />
+                <Route
+                    path={PATH.NOTIFICATION()}
+                    element={<NotificationPage />}
+                />
                 <Route path={PATH.NOTICE} element={<NoticePage />} />
                 <Route
-                    path={PATH.NOTICE_DETAIL()}
+                    path={PATH.NOTICE_DETAIL}
                     element={<NoticeDetailPage />}
                 />
                 <Route
@@ -64,12 +67,10 @@ function App() {
         </Container>
     );
 }
-
 const Container = styled.div`
     max-width: ${props => props.maxWidth};
     height: 100%;
     width: 100%;
     margin: 0 auto;
 `;
-
 export default App;

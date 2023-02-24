@@ -9,3 +9,4 @@ export { default as TermsPage } from "./TermsPage";
 export { default as AgreementPersonalPage } from "./AgreementPersonalPage";
 export { default as SettingPersonalPage } from "./SettingPersonalPage";
 export { default as TermOfServicePage } from "./TermOfServicePage";
+export { default as MyCoursePage } from "./MyCoursePage";
