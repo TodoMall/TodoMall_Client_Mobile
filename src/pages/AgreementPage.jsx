@@ -64,6 +64,5 @@ const TextContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-    margin-bottom: 1.5rem;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem auto;
 `;
