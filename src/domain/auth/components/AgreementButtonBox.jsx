@@ -101,7 +101,7 @@ const AgreementButtonBox = () => {
                 >
                     {item.required ? "(필수)" : "(선택)"}
                 </BodyL>
-                <BodyL>{item.title}</BodyL>
+                <BodyL>&nbsp; {item.title}</BodyL>
                 {item.detail !== null && (
                     <NextArrowButton
                         onClick={() => navigator(item.detail)}
