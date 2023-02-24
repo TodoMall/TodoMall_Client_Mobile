@@ -18,15 +18,16 @@ import {
     TermOfServicePage,
     TermsPage,
 } from "./pages";
-import { getMaxWidth } from "./utils/width";
+import { getMaxWidth, isMobile } from "./utils/width";
 
 function App() {
     const location = useLocation();
 
     const getBackgroundColor = () => {
         if (
-            location.pathname.includes("onboarding") ||
-            location.pathname.includes("signin")
+            isMobile &&
+            (location.pathname.includes(PATH.ONBOARDING) ||
+                location.pathname.includes(PATH.SINGIN))
         ) {
             return COLOR.BRAND_COLOR;
         }
