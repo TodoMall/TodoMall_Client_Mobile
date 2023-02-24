@@ -96,7 +96,11 @@ const AgreementButtonBox = () => {
                 isAgreed={isAgreed}
                 onClick={onClickAgreementButton}
             >
-                <BodyL>{item.required ? "(필수)" : "(선택)"}</BodyL>
+                <BodyL
+                    fontColor={item.required ? COLOR.GRAY900 : COLOR.GRAY500}
+                >
+                    {item.required ? "(필수)" : "(선택)"}
+                </BodyL>
                 <BodyL>{item.title}</BodyL>
                 {item.detail !== null && (
                     <NextArrowButton
