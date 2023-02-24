@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-import { COLOR, FONT_STYLE } from "../constants";
+import { FONT_STYLE } from "../constants";
+import { DeleteAccountPopup, LogoutPopup } from "../domain/auth/components";
 import { useToggle } from "../hooks";
 import { DetailBoxCoulmn } from "../mds";
-import { RowBox } from "../mds/box";
 import { BasicHeader } from "../mds/layout/mobile/headers";
-import { PopUpContentBox, PopUpLayout } from "../mds/popup";
-import { BodyM, BodyS } from "../mds/text";
+import { BodyM } from "../mds/text";
 
 const AccountPage = () => {
     const [isShowLogoutToggle, __, handleLogoutToggle] = useToggle();
@@ -27,56 +26,14 @@ const AccountPage = () => {
                     <DetailBoxCoulmn justifyContent={"space-between"}>
                         <BodyM>로그아웃</BodyM>
                     </DetailBoxCoulmn>
-                    {isShowLogoutToggle && (
-                        <PopUpLayout>
-                            <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
-                                <BodyM>정말 로그아웃 하시겠습니까?</BodyM>
-                                <BodyS fontColor={COLOR.BRAND_COLOR}>
-                                    로그아웃을 하시면 중요한 알림을
-                                </BodyS>
-                                <BodyS fontColor={COLOR.BRAND_COLOR}>
-                                    받아보실 수 없습니다!
-                                </BodyS>
-                                <RowBox margin={"2rem 0 0 0"}>
-                                    <Button
-                                        onClick={handleLogout}
-                                        fontColor={COLOR.BRAND_COLOR}
-                                    >
-                                        로그아웃
-                                    </Button>
-                                    <Button>취소</Button>
-                                </RowBox>
-                            </PopUpContentBox>
-                        </PopUpLayout>
-                    )}
+                    {isShowLogoutToggle && <LogoutPopup />}
                 </AccountItem>
 
                 <AccountItem onClick={handleUnSignUpToggle}>
                     <DetailBoxCoulmn justifyContent={"space-between"}>
                         <BodyM>회원탈퇴</BodyM>
                     </DetailBoxCoulmn>
-                    {isShowUnSignUpToggle && (
-                        <PopUpLayout>
-                            <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
-                                <BodyM>정말로 탈퇴하시겠습니까?</BodyM>
-                                <BodyS fontColor={COLOR.ERROR500}>
-                                    지금까지 인증한 모든 도전기록은
-                                </BodyS>
-                                <BodyS fontColor={COLOR.ERROR500}>
-                                    복구하실 수 없습니다.
-                                </BodyS>
-                                <RowBox margin={"2rem 0 0 0"}>
-                                    <Button
-                                        onClick={handleDeleteAccount}
-                                        fontColor={COLOR.ERROR500}
-                                    >
-                                        로그아웃
-                                    </Button>
-                                    <Button>취소</Button>
-                                </RowBox>
-                            </PopUpContentBox>
-                        </PopUpLayout>
-                    )}
+                    {isShowUnSignUpToggle && <DeleteAccountPopup />}
                 </AccountItem>
             </ItemContainer>
         </Container>
