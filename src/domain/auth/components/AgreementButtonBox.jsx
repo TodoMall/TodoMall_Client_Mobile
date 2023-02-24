@@ -142,7 +142,7 @@ const AllAgreementContainer = styled.div`
 const AllAgreementCheckButton = styled.button`
     background-color: transparent;
     border: none;
-    margin: 1.125rem 0.5rem 1.125rem 0.5rem;
+    margin: 1.125rem 1rem 1.125rem 1rem;
 `;
 
 const Container = styled.div`
