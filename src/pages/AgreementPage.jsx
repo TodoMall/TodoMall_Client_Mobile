@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
 
 import { PROVIDERS } from "../constants/providers";
+import { AgreementButtonBox } from "../domain/auth/components";
 import { useLogin } from "../domain/member/hooks";
+import { SnowballImage } from "../mds/image";
+import { BasicHeader } from "../mds/layout/mobile/headers";
+import { HeadingXL } from "../mds/text";
 
 const AgreementPage = () => {
     const [searchParams] = useSearchParams();
@@ -26,8 +31,39 @@ const AgreementPage = () => {
     useEffect(() => {
         signInWithKakao();
     }, []);
-
-    return <p>{loading ? "로딩중" : accessToken}</p>;
+    return (
+        <>
+            <BasicHeader pageDescription={"약관 동의"} />
+            <Container>
+                <TextContainer>
+                    <HeadingXL>더 나은 학습을 위해</HeadingXL>
+                    <HeadingXL>투두몰 약관에 동의해주세요</HeadingXL>
+                </TextContainer>
+                <ImageContainer>
+                    <SnowballImage />
+                </ImageContainer>
+                <AgreementButtonBox />
+            </Container>
+        </>
+    );
 };
 
 export default AgreementPage;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5rem 0 1.5rem;
+`;
+
+const TextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+`;
+
+const ImageContainer = styled.div`
+    margin: 0 auto 1.5rem auto;
+`;
