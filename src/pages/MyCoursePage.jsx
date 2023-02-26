@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import "swiper/css";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import { useQuery } from "@apollo/client";
 
 import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
 import {
@@ -11,35 +8,36 @@ import {
     RetryPopup,
 } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
-import { ClassBox, SessionCard } from "../domain/store/components";
+import { PromotionClassSlider } from "../domain/mycourse/components";
+import { SessionCard } from "../domain/store/components";
 import { useLocalStorage, useToggle } from "../hooks";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
-/* TODO : delete repeated code and demo codes , fetching data from server */
 const MyCoursePage = () => {
-    const [getMemberAgreeById] = useQuery();
-
     const [isTuturialDone, setIsTuturialDone] = useLocalStorage(
         LOCAL_STORAGE_KEYS.IS_TUTORIAL_DONE,
         false
     );
-    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
-
     const handleTutorialStatus = () =>
         setIsTuturialDone(prevStatus => !prevStatus);
 
-    const [isShowPushAlarmPopup, _, handlePushAlarmPopup] = useToggle(false);
-    const [isShowDeleteSessionPopup, __, handleDeleteSessionPopup] =
-        useToggle(false);
-    const [isShowRetrySessionPopup, ___, handleRetrySessionPopup] =
-        useToggle(false);
+    const [isPushAlarm] = useLocalStorage(LOCAL_STORAGE_KEYS.isPushAlarmAgree);
+    const [isShowPushAlarmPopup, setIsShowPushAlarmPopup] = useToggle(
+        !isPushAlarm
+    );
+    const handleClosePushAlarmPopup = () => setIsShowPushAlarmPopup(false);
 
-    const handlePushAlarmStatus = () => {
-        //  code ...
-    };
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const [isShowDeleteSessionPopup, setIsShowDeleteSessionPopup] =
+        useToggle(false);
+    const handleCloseDeleteSessionPopup = () =>
+        setIsShowDeleteSessionPopup(false);
+
+    const [isShowRetrySessionPopup, setIsShowRetrySessionPopup] =
+        useToggle(false);
+    const handleCloseRetrySessionPopup = () =>
+        setIsShowRetrySessionPopup(false);
 
     return (
         <Container>
@@ -47,13 +45,13 @@ const MyCoursePage = () => {
             {/* TODO: banner 클릭 시 페이지 이동 있어야함 */}
             <DemoLineBanner />
             {isShowPushAlarmPopup && (
-                <PushPopup onClose={handlePushAlarmPopup} />
+                <PushPopup onClose={handleClosePushAlarmPopup} />
             )}
             {isShowDeleteSessionPopup && (
-                <DeleteSessionPopup onClose={handleDeleteSessionPopup} />
+                <DeleteSessionPopup onClose={handleCloseDeleteSessionPopup} />
             )}
             {isShowRetrySessionPopup && (
-                <RetryPopup onClose={handleRetrySessionPopup} />
+                <RetryPopup onClose={handleCloseRetrySessionPopup} />
             )}
             <PageContanier>
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
@@ -64,30 +62,8 @@ const MyCoursePage = () => {
                 )}
                 {/* FIXME : Session 카드마다 마진이 겹쳐지는 현상 발생 */}
                 <SessionCard />
-                <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
-                    추천 클래스
-                </HeadingXL>
+                <PromotionClassSlider />
             </PageContanier>
-            <Swiper
-                slidesPerView={2.2}
-                spaceBetween={8}
-                slidesOffsetBefore={16}
-            >
-                {array.map(el => {
-                    return (
-                        <SwiperSlide
-                            key={el}
-                            style={{
-                                width: "100%",
-                                minWidth: "8.75rem",
-                                maxWidth: "11.625rem",
-                            }}
-                        >
-                            <ClassBox />
-                        </SwiperSlide>
-                    );
-                })}
-            </Swiper>
 
             <GlobalNavBar />
         </Container>
@@ -109,8 +85,5 @@ const DemoLineBanner = styled.img`
     width: 100%;
     height: 5.25rem;
     object-fit: contain;
-    /* object-fit: fill;
-    object-fit: cover;
-    object-fit: none; */
     content: url("/image/demo_line_banner.png");
 `;

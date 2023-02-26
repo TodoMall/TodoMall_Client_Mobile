@@ -1,28 +1,35 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, FONT_STYLE } from "../../../constants";
+import { COLOR, FONT_STYLE, PATH } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { BodyL, BodyXL, DetailS } from "../../../mds/text";
 
-const ClassBox = ({ classInfo }) => {
+const ClassBox = ({
+    courseId,
+    thumbnailUrl,
+    title,
+    subDescription,
+    discountPrice,
+    discountPercent,
+}) => {
+    const navigate = useNavigate();
+    const handleProductDetailPage = () => {
+        navigate(`/store/course/detail?courseId=${courseId}`);
+    };
+
     return (
-        <Container>
-            <ClassThumbnail />
-            <SubTitle fontColor={COLOR.GRAY500}>
-                {
-                    "서울사이버대학을 다니고 나의 성공시대 시작됐다 서울사이버대학을 다니고 나를 찾는 회사 많아졌다 서울사이버대학을 다니고 내 인생이 달라졌다. 새로운 시대 새로운 대학 서울사이버대학교"
-                }
-            </SubTitle>
-            <Title fontColor={COLOR.GRAY900}>
-                {"노션으로 포트폴리오 만들기"}
-            </Title>
+        <Container onClick={handleProductDetailPage}>
+            <ClassThumbnail src={thumbnailUrl} alt={"promotion thumbnail"} />
+            <SubTitle fontColor={COLOR.GRAY500}>{subDescription}</SubTitle>
+            <Title fontColor={COLOR.GRAY900}>{title}</Title>
             <RowBox justifyContent={"none"}>
-                <BodyL fontColor={COLOR.GRAY900}>{24}%</BodyL>
+                <BodyL fontColor={COLOR.GRAY900}>{discountPercent}%</BodyL>
                 <BodyXL
                     margin={"0 0.125rem 0 0.25rem"}
                     fontColor={COLOR.ERROR500}
                 >
-                    {"19,300"}
+                    {discountPrice}
                 </BodyXL>
                 <DetailS margin={"0.125rem 0 0 0"} fontColor={COLOR.ERROR500}>
                     원
@@ -40,11 +47,11 @@ const Container = styled.div`
     margin: 0 0 2rem 0;
 `;
 
-const ClassThumbnail = styled.div`
+const ClassThumbnail = styled.img`
     width: 100%;
     height: 8rem;
     object-fit: contain;
-    content: url("/image/demo_promotion_img_1.png");
+    content: url(${props => props.thumbnail});
 `;
 const Title = styled.p`
     word-break: keep-all;
