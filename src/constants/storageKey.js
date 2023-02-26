@@ -1,7 +1,9 @@
 export const LOCAL_STORAGE_KEYS = {
-    isPersonal: "isPersonal",
-    isService: "isService",
     isGuest: "isGuest",
+    isServiceAgree: "isServiceAgree",
+    isPersonalAgree: "isPersonalAgree",
+    isPushAlarmAgree: "isPushAlarmAgree",
+    isMarketingAlarmAgree: "isMarketingAlarmAgree",
     ACCESS: "access",
     REFRESH: "refresh",
     USER_EMAIL: "email",
