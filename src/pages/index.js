@@ -10,3 +10,5 @@ export { default as AgreementPersonalPage } from "./AgreementPersonalPage";
 export { default as SettingPersonalPage } from "./SettingPersonalPage";
 export { default as TermOfServicePage } from "./TermOfServicePage";
 export { default as MyCoursePage } from "./MyCoursePage";
+export { default as AgreementPage } from "./AgreementPage";
+export { default as SignInPage } from "./SignInPage";
