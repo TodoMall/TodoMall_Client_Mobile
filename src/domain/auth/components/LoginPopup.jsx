@@ -4,7 +4,8 @@ import { COLOR } from "../../../constants";
 import { BrandLogo } from "../../../mds/icon";
 import { PopUpLayout } from "../../../mds/popup";
 import { BodyM } from "../../../mds/text";
-import { AppleLoginButton, KakaoLoginButton } from "../../member/components";
+import AppleSignInButton from "./AppleSignInButton";
+import KakaoSignInButton from "./KakaoSignInButton";
 
 const LoginPopup = () => {
     return (
@@ -14,8 +15,8 @@ const LoginPopup = () => {
                 <BodyM margin={"0.75rem 0 2.438rem 0"}>
                     로그인이 필요한 서비스입니다.
                 </BodyM>
-                <KakaoLoginButton />
-                <AppleLoginButton />
+                <KakaoSignInButton />
+                <AppleSignInButton />
             </LoginPopupBox>
         </PopUpLayout>
     );
