@@ -7,6 +7,7 @@ import { RowBox } from "../../../../mds/box";
 import { BasicButton } from "../../../../mds/button";
 import { WarningIcon } from "../../../../mds/icon";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../../mds/text";
+import CountDownTimer from "../CountDownTimer";
 
 const UrgentCard = ({
     courseId,
@@ -14,6 +15,7 @@ const UrgentCard = ({
     todoId,
     title,
     missionTitle,
+    expireDate,
     fotmattedExpireDate,
 }) => {
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ const UrgentCard = ({
     const handleTodoDetail = () => {
         navigate(PATH.TODO_DETAIL(courseId, sessionId, todoId));
     };
+
     return (
         <Card backgroundColor={COLOR.GRAY50}>
             <RowBox margin={"0 0 0.25rem 0"} justifyContent={"flex-start"}>
@@ -42,9 +45,7 @@ const UrgentCard = ({
                     <BodyL fontColor={COLOR.GRAY700} margin={"0 0.25rem 0 0"}>
                         인증 마감까지
                     </BodyL>
-                    <BodyL fontColor={COLOR.ERROR500} margin={"0 0.25rem 0 0"}>
-                        {"17:36:22"}
-                    </BodyL>
+                    <CountDownTimer expireDate={expireDate} />
                 </RowBox>
                 <BasicButton
                     width={"auto"}

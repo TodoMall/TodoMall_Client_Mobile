@@ -55,6 +55,7 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
                 todoId={unfinishedTodos[0]?.id}
                 title={fotmattedSessionList.title}
                 missionTitle={fotmattedSessionList.missionTitle}
+                expireDate={fotmattedSessionList.expireDate}
                 fotmattedExpireDate={fotmattedExpireDate}
             />
         );
