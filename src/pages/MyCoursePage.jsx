@@ -1,58 +1,41 @@
 import styled from "styled-components";
 import "swiper/css";
 
+import { useQuery } from "@apollo/client";
+
+import { getSubscribeProductByMemberId } from "../apollo/domain/member";
 import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
-import {
-    DeleteSessionPopup,
-    PushPopup,
-    RetryPopup,
-} from "../domain/education/components";
+import { PushPopup } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
 import { PromotionClassSlider } from "../domain/mycourse/components";
-import { SessionCard } from "../domain/store/components";
-import { useLocalStorage, useToggle } from "../hooks";
+import { SessionCardList } from "../domain/mycourse/components";
+import { useLocalStorage, usePopup } from "../hooks";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
 const MyCoursePage = () => {
-    const [isTuturialDone, setIsTuturialDone] = useLocalStorage(
-        LOCAL_STORAGE_KEYS.IS_TUTORIAL_DONE,
-        false
-    );
-    const handleTutorialStatus = () =>
-        setIsTuturialDone(prevStatus => !prevStatus);
+    const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE } = LOCAL_STORAGE_KEYS;
 
-    const [isPushAlarm] = useLocalStorage(LOCAL_STORAGE_KEYS.isPushAlarmAgree);
-    const [isShowPushAlarmPopup, setIsShowPushAlarmPopup] = useToggle(
+    const { data: SubscribeProduct } = useQuery(getSubscribeProductByMemberId);
+
+    const [isTuturialDone, setIsTuturialDone] = useLocalStorage(
+        IS_TUTORIAL_DONE,
+        true
+    );
+
+    const handleTutorialStatus = () => setIsTuturialDone(prev => !prev);
+
+    const [isPushAlarm] = useLocalStorage(IS_PUSHALARM_AGREE);
+
+    const [isShowPushAlarmPopup, _, handleClosePushAlarmPopup] = usePopup(
         !isPushAlarm
     );
-    const handleClosePushAlarmPopup = () => setIsShowPushAlarmPopup(false);
-
-    const [isShowDeleteSessionPopup, setIsShowDeleteSessionPopup] =
-        useToggle(false);
-    const handleCloseDeleteSessionPopup = () =>
-        setIsShowDeleteSessionPopup(false);
-
-    const [isShowRetrySessionPopup, setIsShowRetrySessionPopup] =
-        useToggle(false);
-    const handleCloseRetrySessionPopup = () =>
-        setIsShowRetrySessionPopup(false);
 
     return (
         <Container>
             <MyCourseHeader />
-            {/* TODO: banner 클릭 시 페이지 이동 있어야함 */}
-            <DemoLineBanner />
-            {isShowPushAlarmPopup && (
-                <PushPopup onClose={handleClosePushAlarmPopup} />
-            )}
-            {isShowDeleteSessionPopup && (
-                <DeleteSessionPopup onClose={handleCloseDeleteSessionPopup} />
-            )}
-            {isShowRetrySessionPopup && (
-                <RetryPopup onClose={handleCloseRetrySessionPopup} />
-            )}
+            <DemoBandBanner />
             <PageContanier>
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
                     내 클래스
@@ -60,12 +43,24 @@ const MyCoursePage = () => {
                 {isTuturialDone && (
                     <TutorialCard onDelete={handleTutorialStatus} />
                 )}
-                {/* FIXME : Session 카드마다 마진이 겹쳐지는 현상 발생 */}
-                <SessionCard />
+                {SubscribeProduct?.getMemberById[0].subscribeProducts.map(
+                    subscribeProduct => {
+                        return (
+                            <SessionCardList
+                                key={subscribeProduct.id}
+                                courseId={subscribeProduct.id}
+                                retryCount={subscribeProduct.retryCount}
+                                sessions={subscribeProduct.sessions}
+                            />
+                        );
+                    }
+                )}
                 <PromotionClassSlider />
             </PageContanier>
-
             <GlobalNavBar />
+            {isShowPushAlarmPopup === "" && (
+                <PushPopup onClose={handleClosePushAlarmPopup} />
+            )}
         </Container>
     );
 };
@@ -81,7 +76,7 @@ const PageContanier = styled.div`
     padding: 0 1rem;
 `;
 
-const DemoLineBanner = styled.img`
+const DemoBandBanner = styled.img`
     width: 100%;
     height: 5.25rem;
     object-fit: contain;
