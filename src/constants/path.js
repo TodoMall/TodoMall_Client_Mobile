@@ -20,4 +20,8 @@ export const PATH = {
     STORE: "/store",
     EDUCATION: "/education",
     MYCOURSE: "/mycourse",
+    TODO_DETAIL: (courseId, sessionId, todoId) =>
+        `/mycourse/detail/todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}`,
+    MISSION_CERTIFICATION: (courseId, sessionId) =>
+        `/mycourse/session/mission?courseId=${courseId}&sessionId=${sessionId}`,
 };
