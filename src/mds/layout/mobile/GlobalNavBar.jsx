@@ -10,7 +10,7 @@ import { EducationButton, MyPageButton, StoreButton } from "../../button";
 
 const GlobalNavBar = () => {
     const navigate = useNavigate();
-    const [isGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.isGuest, true);
+    const [isGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, true);
     const [isCurrent, setIsCurrent] = useState(GNB.EDUCATION);
     const [isShowLoginPopup, _, handleLoginPopup] = useToggle(false);
 
