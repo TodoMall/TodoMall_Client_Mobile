@@ -12,3 +12,26 @@ export const getMemberAgreeById = gql`
         }
     }
 `;
+
+export const getSubscribeProductByMemberId = gql`
+    query getMemberById($id: String!) {
+        getMemberById(data: { id: $id }) {
+            subscribeProducts {
+                id
+                status
+                retryCount
+                sessions {
+                    id
+                    status
+                    title
+                    missionTitle
+                    expireDate
+                    todos {
+                        id
+                        status
+                    }
+                }
+            }
+        }
+    }
+`;

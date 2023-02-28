@@ -12,4 +12,21 @@ export const signInWithApple = gql`
     }
 `;
 
-export const updateMemberAgreement = gql``;
+export const updateMemberAgreement = gql`
+    mutation UpdateAlarmStatus(
+        $memberId: String!
+        $isMarketingAlarmAgree: Boolean!
+        $isPushAlarmAgree: Boolean!
+    ) {
+        updateAlarmStatus(
+            data: {
+                memberId: $memberId
+                isMarketingAlarmAgree: $isMarketingAlarmAgree
+                isPushAlarmAgree: $isPushAlarmAgree
+            }
+        ) {
+            isMarketingAlarmAgree
+            isPushAlarmAgree
+        }
+    }
+`;
