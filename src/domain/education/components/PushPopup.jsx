@@ -1,11 +1,32 @@
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { useMutation } from "@apollo/client";
+
+import { updateMemberAgreement } from "../../../apollo/domain/member";
+import { COLOR, LOCAL_STORAGE_KEYS } from "../../../constants";
+import { useLocalStorage } from "../../../hooks";
 import { RowBox } from "../../../mds/box";
 import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const PushPopup = ({ onClose: handleClose = () => {} }) => {
+    const { memberId, isMarketingAlarm } = { ...localStorage };
+
+    const [_, setIsPushAlarm] = useLocalStorage(
+        LOCAL_STORAGE_KEYS.IS_PERSONAL_AGREE
+    );
+
+    const [updatePushAlarmStatus] = useMutation(updateMemberAgreement);
+
+    const handleAcceptPushAlarm = () => {
+        setIsPushAlarm(true);
+        updatePushAlarmStatus({
+            memberId: memberId,
+            isMarketingAlarmAgree: isMarketingAlarm,
+            isPushAlarmAgree: false,
+        });
+    };
+
     return (
         <PopUpLayout onClick={handleClose}>
             <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
@@ -20,7 +41,7 @@ const PushPopup = ({ onClose: handleClose = () => {} }) => {
                     <Button onClick={handleClose}>
                         <BodyXS fontColor={COLOR.GRAY900}>취소</BodyXS>
                     </Button>
-                    <Button>
+                    <Button onClick={handleAcceptPushAlarm}>
                         <BodyXS fontColor={COLOR.MAIN500}>알림받기</BodyXS>
                     </Button>
                 </RowBox>
