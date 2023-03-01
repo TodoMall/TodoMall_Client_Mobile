@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, PATH } from "../../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../../constants";
+import { useLocalStorage } from "../../../../hooks";
 import Divider from "../../../Divider";
 import { NotificationButton } from "../../../button";
 import { HeadingXL } from "../../../text";
 
 const MyCourseHeader = () => {
     const navigate = useNavigate();
-    const { memberId } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
 
-    const handleNotificationPage = () => navigate(PATH.NOTIFICATION(memberId));
+    const handleNotificationPage = () => navigate(PATH.NOTIFICATION(userId));
 
     return (
         <>

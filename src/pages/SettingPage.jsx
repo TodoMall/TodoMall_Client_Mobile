@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { PATH } from "../constants";
-import { DetailBoxCoulmn } from "../mds";
-import ToggleSwitch from "../mds/ToggleSwitch";
+import { DetailBoxCoulmn, ToggleSwitch } from "../mds";
 import { RowBox } from "../mds/box";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyM, BodyS } from "../mds/text";
@@ -12,7 +11,7 @@ const SettingPage = () => {
     const navigate = useNavigate();
 
     // TODO: medo stataus , to be deleted
-    const { isAcceptAlarm = true, isAcceptMarketing } = { ...localStorage };
+    const { isAcceptAlarm = true, isAcceptMarketing } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
 
     const handleTermsPage = () => navigate(PATH.TERMS);
     const handleAccountPage = () => navigate(PATH.ACCOUNT);
@@ -64,7 +63,9 @@ const SettingPage = () => {
     );
 };
 export default SettingPage;
+
 const Container = styled.div``;
+
 const ItemContainer = styled.div`
     width: 100%;
     display: flex;

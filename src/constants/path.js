@@ -12,10 +12,15 @@ export const PATH = {
     NOTICE: "/setting/notice",
     NOTICE_DETAIL: "/setting/notice/detail/", //add : noticeId=${noticeId}
     SINGIN: "/signin",
-    MYCOURSE: "/mycourse",
     MYPAGE: "/mypage",
     NOTIFICATION: "/notification", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
     PAYMENT: "/order",
+    STORE: "/store",
+    STORE_DETAIL: "/store/course/detail", //` add : ?courseId=${courseId}`,
+    EDUCATION: "/education",
+    MYCOURSE: "/mycourse",
+    TODO_DETAIL: "/mycourse/detail/", // add :todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
 };

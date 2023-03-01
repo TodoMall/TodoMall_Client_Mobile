@@ -11,3 +11,22 @@ export const signInWithApple = gql`
         signInWithApple(data: $data)
     }
 `;
+
+export const updateMemberAlarmStatusAgreement = gql`
+    mutation UpdateAlarmStatus(
+        $memberId: String!
+        $isMarketingAlarmAgree: Boolean!
+        $isPushAlarmAgree: Boolean!
+    ) {
+        updateAlarmStatus(
+            data: {
+                memberId: $memberId
+                isMarketingAlarmAgree: $isMarketingAlarmAgree
+                isPushAlarmAgree: $isPushAlarmAgree
+            }
+        ) {
+            isMarketingAlarmAgree
+            isPushAlarmAgree
+        }
+    }
+`;

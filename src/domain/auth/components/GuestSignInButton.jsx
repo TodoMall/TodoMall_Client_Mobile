@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, FONT_STYLE, PATH } from "../../../constants";
+import { COLOR, PATH } from "../../../constants";
 import { TextButton } from "../../../mds/button";
 import NextArrowIcon from "../../../mds/icon/NextArrowIcon";
+import { BodyL } from "../../../mds/text";
 
 const GuestSignInButton = () => {
     const navigator = useNavigate();
@@ -16,14 +17,11 @@ const GuestSignInButton = () => {
         <TextButton
             height="1.5rem"
             margin="0"
-            fontSize={FONT_STYLE.PRETENDARD_225.SIZE}
-            fontWeight={FONT_STYLE.PRETENDARD_225.WEIGTHT}
-            lineHeight={FONT_STYLE.PRETENDARD_225.HEIGHT}
             fontColor={COLOR.WHITE}
             onClick={onClickGuestLoginButton}
         >
             <ItemContainer>
-                게스트로 둘러보기
+                <BodyL>게스트로 둘러보기</BodyL>
                 <NextArrowIcon />
             </ItemContainer>
         </TextButton>

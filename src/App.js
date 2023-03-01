@@ -9,8 +9,10 @@ import {
     AgreementPage,
     AgreementPersonalPage,
     LandingPage,
+    MyCoursePage,
     NoticeDetailPage,
     NoticePage,
+    NotificationPage,
     OnboardingPage,
     PaymentPage,
     SettingPage,
@@ -23,7 +25,6 @@ import { getMaxWidth, isMobile } from "./utils/width";
 
 function App() {
     const location = useLocation();
-
     const getBackgroundColor = () => {
         if (
             isMobile &&
@@ -34,15 +35,15 @@ function App() {
         }
         return COLOR.WHITE;
     };
-
     useEffect(() => {
         document.body.style.backgroundColor = getBackgroundColor();
     }, [location.pathname]);
-
     return (
         <Container maxWidth={getMaxWidth()}>
             <Routes>
+                {/* TODO : web 에서의 PATH.MAIN  */}
                 <Route path={PATH.MAIN} element={<LandingPage />} />
+                <Route path={PATH.MYCOURSE} element={<MyCoursePage />} />
                 <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
                 <Route path={PATH.SINGIN} element={<SignInPage />} />
                 <Route path={PATH.AGREEMENT} element={<AgreementPage />} />
@@ -51,7 +52,10 @@ function App() {
                 <Route path={PATH.SETTING} element={<SettingPage />} />
                 <Route path={PATH.TERMS} element={<TermsPage />} />
                 <Route path={PATH.ACCOUNT} element={<AccountPage />} />
-                <Route path={PATH.NOTIFICATION} element={<AccountPage />} />
+                <Route
+                    path={PATH.NOTIFICATION}
+                    element={<NotificationPage />}
+                />
                 <Route path={PATH.NOTICE} element={<NoticePage />} />
                 <Route
                     path={PATH.NOTICE_DETAIL}
@@ -71,12 +75,10 @@ function App() {
         </Container>
     );
 }
-
 const Container = styled.div`
     max-width: ${props => props.maxWidth};
     height: 100%;
     width: 100%;
     margin: 0 auto;
 `;
-
 export default App;
