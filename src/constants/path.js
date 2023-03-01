@@ -10,12 +10,12 @@ export const PATH = {
     REFUND: "/setting/refund",
     ACCOUNT: "/setting/account",
     NOTICE: "/setting/notice",
-    NOTICE_DETAIL: noticeId => `/setting/notice/detail/noticeId=${noticeId}`,
+    NOTICE_DETAIL: "/setting/notice/detail/", //add : noticeId=${noticeId}
     SINGIN: "/signin",
     MYCOURSE: "/mycourse",
     MYPAGE: "/mypage",
-    NOTIFICATION: memberId => `/notification?memberId=${memberId}`,
+    NOTIFICATION: "/notification", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    SEARCH: search => `store?search=${search}`,
+    PAYMENT: "/order",
 };

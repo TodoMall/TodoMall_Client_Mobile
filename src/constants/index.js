@@ -13,3 +13,5 @@ export {
     APPLE_CLIENT_ID,
     APPLE_SCOPE,
 } from "./login";
+export { IamportPaymentGateInfo } from "./iamportPgInfo";
+export { IAMPORT_MERCHANT_CODE } from "./env";

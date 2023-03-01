@@ -1,5 +1,3 @@
-// TODO : author
-
 export const ProductTitleList = [
     { title: "노션" },
     { title: "2023년, 노션박스 템플릿과 함께 시작하세요" },

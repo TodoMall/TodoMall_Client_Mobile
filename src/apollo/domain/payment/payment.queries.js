@@ -20,6 +20,8 @@ export const getProductById = gql`
         getProductById(id: $id) {
             title
             price
+            discountPrice
+            discountPercent
             sessions {
                 title
                 orderBy

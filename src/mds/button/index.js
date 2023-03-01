@@ -9,3 +9,4 @@ export { default as PreviousArrowButton } from "./PreviousArrowButton";
 export { default as SearchButtonResource } from "./SearchButtonResource";
 export { default as ListButton } from "./ListButton";
 export { default as NotificationButton } from "./NotificationButton";
+export { default as UnderArrowButton } from "./UnderArrowButton";
