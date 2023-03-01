@@ -28,6 +28,7 @@ const MyCoursePage = () => {
 
     const [isPushAlarm] = useLocalStorage(IS_PUSHALARM_AGREE);
 
+    // TODO : agreement 페이지에서 설정 필요
     const [isShowPushAlarmPopup, _, handleClosePushAlarmPopup] = usePopup(
         !isPushAlarm
     );
@@ -58,7 +59,7 @@ const MyCoursePage = () => {
                 <PromotionClassSlider />
             </PageContanier>
             <GlobalNavBar />
-            {isShowPushAlarmPopup === "" && (
+            {isShowPushAlarmPopup && (
                 <PushPopup onClose={handleClosePushAlarmPopup} />
             )}
         </Container>

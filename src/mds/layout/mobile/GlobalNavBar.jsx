@@ -38,25 +38,20 @@ const GlobalNavBar = () => {
     };
 
     return (
-        <>
-            <Container onClick={handleLoginPopup}>
-                <RowBox>
-                    <StoreButton
-                        isCurrent={isCurrent}
-                        onClick={handleStorePage}
-                    />
-                    <EducationButton
-                        isCurrent={isCurrent}
-                        onClick={handleEducationPage}
-                    />
-                    <MyPageButton
-                        isCurrent={isCurrent}
-                        onClick={handleMyPagePage}
-                    />
-                </RowBox>
-                {isShowLoginPopup && <LoginPopup />}
-            </Container>
-        </>
+        <Container onClick={handleLoginPopup}>
+            <RowBox>
+                <StoreButton isCurrent={isCurrent} onClick={handleStorePage} />
+                <EducationButton
+                    isCurrent={isCurrent}
+                    onClick={handleEducationPage}
+                />
+                <MyPageButton
+                    isCurrent={isCurrent}
+                    onClick={handleMyPagePage}
+                />
+            </RowBox>
+            {isShowLoginPopup && <LoginPopup />}
+        </Container>
     );
 };
 

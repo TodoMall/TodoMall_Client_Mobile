@@ -14,12 +14,13 @@ const ClassBox = ({
     discountPercent,
 }) => {
     const navigate = useNavigate();
-    const handleProductDetailPage = () => {
-        navigate(`/store/course/detail?courseId=${courseId}`);
+
+    const handleStoreDetailPage = () => {
+        navigate(PATH.STORE_DETAIL(courseId));
     };
 
     return (
-        <Container onClick={handleProductDetailPage}>
+        <Container onClick={handleStoreDetailPage}>
             <ClassThumbnail src={thumbnailUrl} alt={"promotion thumbnail"} />
             <SubTitle fontColor={COLOR.GRAY500}>{subDescription}</SubTitle>
             <Title fontColor={COLOR.GRAY900}>{title}</Title>

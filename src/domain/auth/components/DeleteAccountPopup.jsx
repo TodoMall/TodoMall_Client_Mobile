@@ -7,7 +7,7 @@ import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const DeleteAccountPopup = () => {
     const handleDeleteAccount = () => {
-        // delete account logic
+        // TODO : delete account logic
     };
     return (
         <PopUpLayout>
@@ -22,7 +22,7 @@ const DeleteAccountPopup = () => {
                         onClick={handleDeleteAccount}
                         fontColor={COLOR.ERROR500}
                     >
-                        <BodyXS>로그아웃</BodyXS>
+                        <BodyXS>회원탈퇴</BodyXS>
                     </Button>
                     <Button>
                         <BodyXS>취소</BodyXS>

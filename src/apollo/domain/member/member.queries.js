@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const getMemberAgreeById = gql`
+export const getMemberAgreementById = gql`
     query getMemberById($id: String!) {
         getMemberById(data: { id: $id }) {
             agreement {

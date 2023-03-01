@@ -12,7 +12,7 @@ export const signInWithApple = gql`
     }
 `;
 
-export const updateMemberAgreement = gql`
+export const updateMemberAlarmStatusAgreement = gql`
     mutation UpdateAlarmStatus(
         $memberId: String!
         $isMarketingAlarmAgree: Boolean!

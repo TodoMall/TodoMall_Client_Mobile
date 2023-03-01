@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { useMutation } from "@apollo/client";
 
-import { updateMemberAgreement } from "../../../apollo/domain/member";
+import { updateMemberAlarmStatusAgreement } from "../../../apollo/domain/member";
 import { COLOR, LOCAL_STORAGE_KEYS } from "../../../constants";
 import { useLocalStorage } from "../../../hooks";
 import { RowBox } from "../../../mds/box";
@@ -16,14 +16,16 @@ const PushPopup = ({ onClose: handleClose = () => {} }) => {
         LOCAL_STORAGE_KEYS.IS_PERSONAL_AGREE
     );
 
-    const [updatePushAlarmStatus] = useMutation(updateMemberAgreement);
+    const [updatePushAlarmStatus] = useMutation(
+        updateMemberAlarmStatusAgreement
+    );
 
     const handleAcceptPushAlarm = () => {
         setIsPushAlarm(true);
         updatePushAlarmStatus({
             memberId: memberId,
             isMarketingAlarmAgree: isMarketingAlarm,
-            isPushAlarmAgree: false,
+            isPushAlarmAgree: true,
         });
     };
 

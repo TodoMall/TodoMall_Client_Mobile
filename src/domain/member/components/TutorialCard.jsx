@@ -11,11 +11,13 @@ import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
     const [name] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME, "김상혁");
 
-    const handleDownloadTutorial = () => {};
+    const handleDownloadTutorial = () => {
+        // TODO : BE에서 클래스 다운로드 관련 처리 후 작업
+    };
 
     return (
         <Card justifyContent="none" margin={"0"} padding={"1rem 1.25rem"}>
-            {/* TODO : delete demo img , and get img component from @/mds/image folder */}
+            {/* TODO : 정식 이미지로 대체하기 */}
             <img
                 width={318}
                 height={208}

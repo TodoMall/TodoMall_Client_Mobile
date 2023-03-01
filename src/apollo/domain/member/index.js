@@ -2,11 +2,11 @@
 export {
     signInWithKakao,
     signInWithApple,
-    updateMemberAgreement,
+    updateMemberAlarmStatusAgreement,
 } from "./member.mutation";
 
 // Query
 export {
-    getMemberAgreeById,
+    getMemberAgreementById,
     getSubscribeProductByMemberId,
 } from "./member.queries";

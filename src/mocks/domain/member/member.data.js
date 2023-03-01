@@ -2,10 +2,7 @@ import dayjs from "dayjs";
 
 import { PROCESS_STATUS } from "../../../constants";
 
-const formattedDay = dayjs()
-    .add(1, "day")
-    .startOf("day")
-    .format("YYYY-MM-DD HH:mm:ss");
+const formattedDay = dayjs();
 
 //  PROCESS_STATUS Waiting , Success 언제 사용되는지 물어보기
 
@@ -23,11 +20,7 @@ export const subscribeProductList = {
                             status: PROCESS_STATUS.PROCESS,
                             title: "투두몰에서 클래스 다운받기",
                             missionTitle: "투두리스트 따라하고 성장하기",
-                            expireDate: dayjs(formattedDay)
-                                .subtract(6, "hour")
-                                .subtract(23, "minutes")
-                                .subtract(38, "seconds")
-                                .format("YYYY-MM-DD HH:mm:ss"),
+                            expireDate: "2023-03-01 17:54:44",
                             todos: [
                                 {
                                     id: 1,

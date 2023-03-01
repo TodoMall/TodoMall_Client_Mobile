@@ -5,6 +5,11 @@ import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const DeleteSessionPopup = ({ onClose: handleClose = () => {} }) => {
+    const handleDisconnectSubscribe = () => {
+        handleClose();
+        // TODO : delete session logic
+    };
+
     return (
         <PopUpLayout onClick={handleClose}>
             <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
@@ -15,7 +20,7 @@ const DeleteSessionPopup = ({ onClose: handleClose = () => {} }) => {
                 <BodyS fontColor={COLOR.MAIN500}>
                     다시 확인하실 수 있어요!
                 </BodyS>
-                <Button onClick={handleClose}>
+                <Button onClick={handleDisconnectSubscribe}>
                     <BodyXS fontColor={COLOR.GRAY900}>확인</BodyXS>
                 </Button>
             </PopUpContentBox>

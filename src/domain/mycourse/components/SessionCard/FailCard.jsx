@@ -13,7 +13,7 @@ const FailCard = ({ title, missionTitle }) => {
     const [isShowDeleteSessionPopup, handleOpenPopup, handleClosePopup] =
         usePopup(false);
 
-    const handleDeleteSubscribeSession = () => {
+    const handleDelete = () => {
         handleOpenPopup();
         // TODO : delete logic
     };
@@ -36,7 +36,7 @@ const FailCard = ({ title, missionTitle }) => {
                         width={"auto"}
                         margin={"0.5rem 0 0 0"}
                         backgroundColor={COLOR.ERROR500}
-                        onClick={handleDeleteSubscribeSession}
+                        onClick={handleDelete}
                     >
                         <BodyXL fontColor={COLOR.WHITE}>도전 삭제</BodyXL>
                     </BasicButton>
