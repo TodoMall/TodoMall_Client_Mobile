@@ -26,7 +26,7 @@ const TextButton = ({
             hasUnderline={hasUnderline}
             onClick={handleClick}
         >
-            <p>{children}</p>
+            {children}
         </Container>
     );
 };
@@ -37,18 +37,4 @@ const Container = styled.div`
     width: auto;
     height: ${props => props.height};
     margin: ${props => props.margin};
-    p {
-        color: ${props => props.fontColor};
-        text-align: ${props => props.textAlign};
-        font-weight: ${props => props.fontWeight};
-        font-size: ${props => props.fontSize};
-        line-height: ${props => props.lineHeight};
-        text-decoration: ${props => props.hasUnderline};
-        cursor: pointer;
-        letter-spacing: -0.01em;
-        &:hover,
-        &:active {
-            /* TODO : wirte something.. */
-        }
-    }
 `;
