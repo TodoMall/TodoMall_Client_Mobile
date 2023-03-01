@@ -11,9 +11,11 @@ const LoginPage = () => {
     return (
         <Container>
             <BookClipImage />
+
             <BrandLogoContainer>
                 <BrandLogoIWithTextImage />
             </BrandLogoContainer>
+
             <ButtonContainer>
                 <KakaoSignInButton />
                 <AppleSignInButton />

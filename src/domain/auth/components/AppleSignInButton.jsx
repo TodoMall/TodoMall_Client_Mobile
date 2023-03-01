@@ -1,13 +1,11 @@
-import styled from "styled-components";
-
 import {
     APPLE_CLIENT_ID,
     APPLE_SCOPE,
     COLOR,
-    FONT_STYLE,
     REDIRECT_URI,
 } from "../../../constants";
 import { BasicButton } from "../../../mds/button";
+import { BodyL } from "../../../mds/text";
 
 const AppleSignInButton = () => {
     const initApple = () => {
@@ -36,15 +34,9 @@ const AppleSignInButton = () => {
             fontColor={COLOR.GRAY900}
             onClick={onClickLoginButton}
         >
-            <ButtonText>Apple로 계속하기</ButtonText>
+            <BodyL>Apple로 계속하기</BodyL>
         </BasicButton>
     );
 };
 
 export default AppleSignInButton;
-
-const ButtonText = styled.p`
-    font-size: ${FONT_STYLE.PRETENDARD_225.SIZE};
-    font-weight: ${FONT_STYLE.PRETENDARD_225.WEIGTHT};
-    line-height: ${FONT_STYLE.PRETENDARD_225.HEIGHT};
-`;
