@@ -1,4 +1,5 @@
 export { COLOR } from "./color";
+export { GNB } from "./globalNavBar";
 export { PATH } from "./path";
 export { MAX_WIDTH } from "./basement";
 export { FONT_STYLE } from "./font";
@@ -13,3 +14,6 @@ export {
     APPLE_CLIENT_ID,
     APPLE_SCOPE,
 } from "./login";
+export { LOCAL_STORAGE_KEYS } from "./storageKey";
+export { PROCESS_STATUS } from "./processStatus";
+export { PRODUCT_TYPE } from "./productType";

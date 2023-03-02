@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const PopUpLayout = ({ children, initialStatus = false }) => {
-    return <PopupContainer>{children}</PopupContainer>;
+const PopUpLayout = ({ children, onClick: handleClick = () => {} }) => {
+    return <PopupContainer onClick={handleClick}>{children}</PopupContainer>;
 };
 
 export default PopUpLayout;
@@ -16,4 +16,5 @@ const PopupContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
+    z-index: 3;
 `;

@@ -76,7 +76,7 @@ const SearchResultContainer = styled.div`
     flex-direction: column;
     border-radius: 0.5rem;
     padding: 1.5rem;
-    z-index: 2;
+    z-index: 1;
 `;
 
 const SuggestedSearch = styled.div`

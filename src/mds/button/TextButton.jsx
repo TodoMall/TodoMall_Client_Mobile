@@ -26,7 +26,7 @@ const TextButton = ({
             hasUnderline={hasUnderline}
             onClick={handleClick}
         >
-            <p>{children}</p>
+            {children}
         </Container>
     );
 };

@@ -10,6 +10,7 @@ const BasicButton = ({
     width = "100%",
     height = "3.25rem",
     margin = "1rem 0 0.5rem 0",
+    padding = "0 1.5rem;",
     isDisabled = false,
     onClick: handleClick = () => {},
 }) => {
@@ -21,6 +22,7 @@ const BasicButton = ({
             width={width}
             fontColor={fontColor}
             margin={margin}
+            padding={padding}
             isDisabled={isDisabled}
             onClick={handleClick}
         >
@@ -38,11 +40,8 @@ const Container = styled.div`
     width: ${props => props.width};
     height: ${props => props.height};
     margin: ${props => props.margin};
-    padding: 0 1.5rem 0 1.5rem;
+    padding: ${props => props.padding};
     background-color: ${props => props.backgroundColor};
     border-radius: ${props => props.borderRadius};
     cursor: ${props => (props.isDisabled ? "not-allowed" : "pointer")};
-    p {
-        color: ${props => props.fontColor};
-    }
 `;

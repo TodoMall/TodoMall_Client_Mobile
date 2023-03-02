@@ -106,7 +106,7 @@ const SearchResultContainer = styled.div`
     border-radius: 0.5rem;
     padding: 1.5rem;
     background-color: ${COLOR.GRAY50};
-    z-index: 2;
+    z-index: 1;
 `;
 
 const SuggestedSearch = styled.div`

@@ -1,2 +1,12 @@
 // Mutation
-export { signInWithKakao, signInWithApple } from "./member.mutation";
+export {
+    signInWithKakao,
+    signInWithApple,
+    updateMemberAlarmStatusAgreement,
+} from "./member.mutation";
+
+// Query
+export {
+    getMemberAgreementById,
+    getSubscribeProductByMemberId,
+} from "./member.queries";
