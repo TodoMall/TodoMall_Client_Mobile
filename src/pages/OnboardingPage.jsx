@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR } from "../constants";
+import { COLOR, PATH } from "../constants";
 import { OnboardingItem } from "../domain/member/components";
 import { BasicButton } from "../mds/button";
 import { BodyXL } from "../mds/text";
@@ -16,7 +16,7 @@ const OnboardingPage = () => {
             setItemNumber(itemNumber + 1);
             return;
         }
-        navigate("/login");
+        navigate(PATH.SINGIN);
     };
 
     return (

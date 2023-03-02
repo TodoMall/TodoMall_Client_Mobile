@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { PATH } from "../constants";
+import { COLOR, PATH } from "../constants";
 import BrandLogo from "../mds/icon/BrandLogo";
 
 const LandingPage = () => {
@@ -16,7 +16,7 @@ const LandingPage = () => {
     return (
         <Body>
             <Container>
-                <BrandLogo />
+                <BrandLogo logoColor={COLOR.BRAND_COLOR} />
             </Container>
         </Body>
     );

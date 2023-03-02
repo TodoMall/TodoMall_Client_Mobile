@@ -31,3 +31,16 @@ export const productInfo = {
         },
     },
 };
+
+export const paymentRusultInfo = {
+    getOrderByOrderNumber: {
+        pgProvider: "카카오페이",
+        createdAt: "2022.12.02 14:30:32",
+        product: {
+            discountPrice: 19800,
+        },
+        member: {
+            name: "김상혁",
+        },
+    },
+};

@@ -14,6 +14,7 @@ import {
     NoticePage,
     NotificationPage,
     OnboardingPage,
+    PaymentCompletePage,
     PaymentPage,
     SettingPage,
     SettingPersonalPage,
@@ -71,6 +72,10 @@ function App() {
                 />
                 <Route path={PATH.SERVICE} element={<TermOfServicePage />} />
                 <Route path={PATH.PAYMENT} element={<PaymentPage />} />
+                <Route
+                    path={PATH.PAYMENT_DETAIL}
+                    element={<PaymentCompletePage />}
+                />
             </Routes>
         </Container>
     );

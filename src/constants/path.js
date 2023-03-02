@@ -10,15 +10,16 @@ export const PATH = {
     REFUND: "/setting/refund",
     ACCOUNT: "/setting/account",
     NOTICE: "/setting/notice",
-    NOTICE_DETAIL: "/setting/notice/detail/", //add : noticeId=${noticeId}
+    NOTICE_DETAIL: "/setting/notice/detail/:noticeId", //add : noticeId=${noticeId}
     SINGIN: "/signin",
     MYPAGE: "/mypage",
-    NOTIFICATION: "/notification", // add : ?memberId=${memberId}
+    NOTIFICATION: "/notification/:memberId", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    PAYMENT: "/order",
-    STORE: "/store",
-    STORE_DETAIL: "/store/course/detail", //` add : ?courseId=${courseId}`,
+    PAYMENT: "/order/:courseId",
+    PAYMENT_DETAIL: "/order/complete/:courseId",
+    STORE: "/store/:courseId",
+    STORE_DETAIL: "/store/course/detail/:courseId", //` add : ?courseId=${courseId}`,
     EDUCATION: "/education",
     MYCOURSE: "/mycourse",
     TODO_DETAIL: "/mycourse/detail/", // add :todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}

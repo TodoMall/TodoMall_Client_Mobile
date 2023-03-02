@@ -19,3 +19,4 @@ export { IAMPORT_MERCHANT_CODE } from "./env";
 export { LOCAL_STORAGE_KEYS } from "./storageKey";
 export { PROCESS_STATUS } from "./processStatus";
 export { PRODUCT_TYPE } from "./productType";
+export { ORDER_STATE } from "./orderState";

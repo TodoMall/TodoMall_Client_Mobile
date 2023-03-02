@@ -10,6 +10,7 @@ import {
     COLOR,
     IAMPORT_MERCHANT_CODE,
     IamportPaymentGateInfo,
+    PATH,
 } from "../constants";
 import { ProfileCard } from "../domain/member/components";
 import { PaymentCard, TermsOfServiceSection } from "../domain/order/components";
@@ -84,7 +85,7 @@ const PaymentPage = () => {
             amount: product?.discountPrice,
             buyer_email: email,
             buyer_name: name,
-            m_redirect_url: `${window.location.origin}/order/success/${courseId}`,
+            m_redirect_url: `${window.location.origin}${PATH.PAYMENT_DETAIL}`,
         };
         try {
             await IMP.request_pay(paymentInfo);
@@ -159,7 +160,7 @@ const PaymentPage = () => {
                     isDisabled={isNull(payMethod)}
                     onClick={handlePurchase}
                 >
-                    <BodyXL>
+                    <BodyXL fontColor={COLOR.WHITE}>
                         {fotamttedPrice(product?.discountPrice)}원 결제
                     </BodyXL>
                 </BasicButton>
