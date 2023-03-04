@@ -4,8 +4,6 @@ export { PATH } from "./path";
 export { MAX_WIDTH } from "./basement";
 export { FONT_STYLE } from "./font";
 export { isProd, API_ENDPOINT } from "./env";
-export { CATEGORY_TAG } from "./category";
-// TODO : to be rename
 export { recommendTag } from "./recommendTag";
 export {
     KAKAO_ENDPOINT,
@@ -16,4 +14,5 @@ export {
 } from "./login";
 export { LOCAL_STORAGE_KEYS } from "./storageKey";
 export { PROCESS_STATUS } from "./processStatus";
-export { PRODUCT_TYPE } from "./productType";
+export { PRODUCT_TYPE, CATEGORY_TAG } from "./productType";
+export { PROMOTION_TYPE } from "./promotionType";

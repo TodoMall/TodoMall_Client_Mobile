@@ -8,7 +8,7 @@ const EducationButton = ({
     onClick: handleClick = () => {},
 }) => {
     const SelectedItemColor =
-        isCurrent === GNB.EDUCATION ? COLOR.GRAY800 : COLOR.GRAY200;
+        isCurrent === GNB.MYCOURSE ? COLOR.GRAY800 : COLOR.GRAY200;
 
     return (
         <Container onClick={handleClick}>

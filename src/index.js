@@ -18,6 +18,10 @@ if (!isProd) {
     console.warn("🏄🏄🏄 Current Set API Endpoint 🏄🏄🏄 \n", API_ENDPOINT);
 }
 
+worker.start({
+    onUnhandledRequest: "bypass",
+});
+
 const client = new ApolloClient({
     uri: API_ENDPOINT,
     cache: new InMemoryCache(),

@@ -18,8 +18,8 @@ export const PATH = {
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
     SEARCH: search => `store?search=${search}`,
     STORE: "/store",
+    STORE_CATEGORY: "/store/category",
     STORE_DETAIL: courseId => `/store/course/detail?courseId=${courseId}`,
-    EDUCATION: "/education",
     MYCOURSE: "/mycourse",
     TODO_DETAIL: (courseId, sessionId, todoId) =>
         `/mycourse/detail/todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}`,

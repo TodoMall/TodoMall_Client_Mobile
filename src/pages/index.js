@@ -12,3 +12,5 @@ export { default as TermOfServicePage } from "./TermOfServicePage";
 export { default as MyCoursePage } from "./MyCoursePage";
 export { default as AgreementPage } from "./AgreementPage";
 export { default as SignInPage } from "./SignInPage";
+export { default as StorePage } from "./StorePage";
+export { default as StoreCategoryPage } from "./StoreCategoryPage";

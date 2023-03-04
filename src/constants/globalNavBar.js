@@ -1,5 +1,5 @@
 export const GNB = {
     STORE: "store",
-    EDUCATION: "education",
+    MYCOURSE: "mycourse",
     MYPAGE: "mypage",
 };

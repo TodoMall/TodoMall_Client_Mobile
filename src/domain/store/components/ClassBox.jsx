@@ -43,16 +43,16 @@ const ClassBox = ({
 export default ClassBox;
 
 const Container = styled.div`
-    min-width: 140px;
+    min-width: 8.75rem;
     max-width: 11.625rem;
-    margin: 0 0 2rem 0;
+    margin-bottom: 1rem;
 `;
 
 const ClassThumbnail = styled.img`
     width: 100%;
     height: 8rem;
-    object-fit: contain;
-    content: url(${props => props.thumbnail});
+    object-fit: cover;
+    border-radius: 1.25rem;
 `;
 const Title = styled.p`
     word-break: keep-all;

@@ -14,7 +14,7 @@ const PromotionClassSlider = () => {
 
     return (
         <Container>
-            <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
+            <HeadingXL margin={"1.5rem 0 0.75rem 1.5rem"}>
                 추천 클래스
             </HeadingXL>
             <Swiper
