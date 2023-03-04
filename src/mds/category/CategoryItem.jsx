@@ -27,7 +27,7 @@ const Container = styled.div`
     padding: 0.5rem 0.75rem 0 0.5rem;
     p {
         position: relative;
-        top: 1px;
+        top: 4px;
         white-space: nowrap;
         font-weight: ${FONT_STYLE.PRETENDARD_225.WEIGTHT};
         font-size: ${FONT_STYLE.PRETENDARD_225.SIZE};

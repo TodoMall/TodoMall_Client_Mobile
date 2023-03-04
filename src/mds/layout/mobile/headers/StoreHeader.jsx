@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import { COLOR } from "../../../../constants";
 import { useQueryString } from "../../../../hooks";
 import { RowBox } from "../../../box";
-import { LogoButton } from "../../../button";
 import { CategoryTabBar } from "../../../category";
+import { BrandLogo } from "../../../icon";
 
 const StoreHeader = () => {
     const currentCategory = useQueryString("tag");
@@ -23,7 +23,11 @@ const StoreHeader = () => {
                     padding={"0.625rem 1rem"}
                     justifyContent={"space-between"}
                 >
-                    <LogoButton />
+                    <BrandLogo
+                        logoColor={COLOR.GRAY800}
+                        width={105}
+                        height={20}
+                    />
                 </RowBox>
                 <CategoryTabBar onClick={handleCategorySelection} />
             </Container>
