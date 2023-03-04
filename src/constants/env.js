@@ -10,3 +10,6 @@ const API_ENDPOINT_BY_RUNNING_ENV = {
 export const API_ENDPOINT = API_ENDPOINT_BY_RUNNING_ENV[RUNNING_ENV];
 
 export const isProd = process.env.REACT_APP_NODE_ENV === "production";
+
+export const IAMPORT_MERCHANT_CODE =
+    process.env.REACT_APP_IAMPORT_MERCHANT_CODE;
