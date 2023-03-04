@@ -10,19 +10,18 @@ export const PATH = {
     REFUND: "/setting/refund",
     ACCOUNT: "/setting/account",
     NOTICE: "/setting/notice",
-    NOTICE_DETAIL: "/setting/notice/detail",
+    NOTICE_DETAIL: "/setting/notice/detail/:noticeId", //add : noticeId=${noticeId}
     SINGIN: "/signin",
     MYPAGE: "/mypage",
-    NOTIFICATION: memberId => `/notification?memberId=${memberId}`,
+    NOTIFICATION: "/notification/:memberId", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    SEARCH: search => `store?search=${search}`,
-    STORE: "/store",
-    STORE_DETAIL: courseId => `/store/course/detail?courseId=${courseId}`,
+    PAYMENT: "/order/:courseId",
+    PAYMENT_DETAIL: "/order/complete/:courseId",
+    STORE: "/store/:courseId",
+    STORE_DETAIL: "/store/course/detail/:courseId", //` add : ?courseId=${courseId}`,
     EDUCATION: "/education",
     MYCOURSE: "/mycourse",
-    TODO_DETAIL: (courseId, sessionId, todoId) =>
-        `/mycourse/detail/todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}`,
-    MISSION_CERTIFICATION: (courseId, sessionId) =>
-        `/mycourse/session/mission?courseId=${courseId}&sessionId=${sessionId}`,
+    TODO_DETAIL: "/mycourse/detail/", // add :todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
 };

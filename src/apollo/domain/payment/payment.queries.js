@@ -4,13 +4,13 @@ export const getOrderByOrderNumber = gql`
     query getOrderByOrderNumber($orderNumber: String!) {
         getOrderByOrderNumber(orderNumber: $orderNumber) {
             pgProvider
+            createdAt
             product {
-                price
+                discountPrice
             }
             member {
                 name
             }
-            createdAt
         }
     }
 `;
@@ -20,6 +20,8 @@ export const getProductById = gql`
         getProductById(id: $id) {
             title
             price
+            discountPrice
+            discountPercent
             sessions {
                 title
                 orderBy
