@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -10,17 +9,11 @@ import { HeadingXL } from "../../../mds/text";
 import RecommendCard from "./RecommendCard";
 
 const RecommendCardList = () => {
-    const [recommendClass, setRecommendClass] = useState({});
-
-    const { data } = useQuery(getPromotionByType, {
+    const { data: recommendClass } = useQuery(getPromotionByType, {
         variables: {
             type: PROMOTION_TYPE.STOREMAIN_00,
         },
-        onCompleted: data => {
-            setRecommendClass(data.getPromotionByType);
-        },
     });
-    const [test] = recommendClass.products || "Asd";
 
     return (
         <Container>
@@ -32,10 +25,11 @@ const RecommendCardList = () => {
                 spaceBetween={8}
                 slidesOffsetBefore={16}
             >
-                {recommendClass?.products?.map(product => {
+                {recommendClass?.getPromotionByType.products.map(product => {
                     return (
                         <SwiperSlide key={product?.id}>
                             <RecommendCard
+                                id={product?.id}
                                 title={product?.title}
                                 subDescription={product?.subDescription}
                                 level={product?.level}

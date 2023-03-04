@@ -1,17 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { COLOR, PATH } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { BasicChip } from "../../../mds/chip";
 import { BodyXXXL } from "../../../mds/text";
 
 const RecommendCard = ({
+    id,
     title,
     subDescription,
     level,
     thumbnailUrl,
     sessions,
 }) => {
+    const navigate = useNavigate();
+
     const [totalDuration, totalTodoLength] = sessions.reduce(
         (acc, session) => {
             return [acc[0] + session.duration, acc[1] + session.todos.length];
@@ -19,8 +23,12 @@ const RecommendCard = ({
         [0, 0]
     );
 
+    const handleDetailPage = () => {
+        navigate(PATH.STORE_DETAIL(id));
+    };
+
     return (
-        <Container>
+        <Container onClick={handleDetailPage}>
             <Thumbnail src={thumbnailUrl} />
             <ClassInfoBox>
                 <RowBox justifyContent={"flex-start"}>
@@ -43,12 +51,12 @@ const RecommendCard = ({
     );
 };
 export default RecommendCard;
-const ClassInfoBox = styled.div`
-    padding: 0 0.25rem;
-`;
 const Container = styled.div`
     width: 100%;
     min-width: 8.75rem;
+`;
+const ClassInfoBox = styled.div`
+    padding: 0 0.25rem;
 `;
 const Thumbnail = styled.img`
     width: 100%;
