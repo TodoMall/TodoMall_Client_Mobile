@@ -14,3 +14,5 @@ export { default as AgreementPage } from "./AgreementPage";
 export { default as SignInPage } from "./SignInPage";
 export { default as StorePage } from "./StorePage";
 export { default as StoreCategoryPage } from "./StoreCategoryPage";
+export { default as PaymentPage } from "./PaymentPage";
+export { default as PaymentCompletePage } from "./PaymentCompletePage";

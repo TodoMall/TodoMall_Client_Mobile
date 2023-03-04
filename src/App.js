@@ -14,6 +14,8 @@ import {
     NoticePage,
     NotificationPage,
     OnboardingPage,
+    PaymentCompletePage,
+    PaymentPage,
     SettingPage,
     SettingPersonalPage,
     SignInPage,
@@ -54,7 +56,7 @@ function App() {
                 <Route path={PATH.TERMS} element={<TermsPage />} />
                 <Route path={PATH.ACCOUNT} element={<AccountPage />} />
                 <Route
-                    path={PATH.NOTIFICATION()}
+                    path={PATH.NOTIFICATION}
                     element={<NotificationPage />}
                 />
                 <Route path={PATH.NOTICE} element={<NoticePage />} />
@@ -75,6 +77,11 @@ function App() {
                 <Route
                     path={PATH.STORE_CATEGORY}
                     element={<StoreCategoryPage />}
+                />
+                <Route path={PATH.PAYMENT} element={<PaymentPage />} />
+                <Route
+                    path={PATH.PAYMENT_DETAIL}
+                    element={<PaymentCompletePage />}
                 />
             </Routes>
         </Container>
