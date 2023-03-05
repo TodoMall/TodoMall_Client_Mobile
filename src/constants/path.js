@@ -1,5 +1,5 @@
 export const PATH = {
-    MAIN: "/",
+    MAIN: "/store",
     ONBOARDING: "/onboarding",
     AGREEMENT: "/agreement",
     AGREEMENT_PERSONAL: "/agreement/personal",
@@ -23,6 +23,7 @@ export const PATH = {
     PAYMENT: "/order/:courseId",
     PAYMENT_DETAIL: "/order/complete/:courseId",
     MYCOURSE: "/mycourse",
-    TODO_DETAIL: "/mycourse/detail/", // add :todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    PAID_PRODUCT_DETAIL: "/mycourse/detail",
+    TODO_DETAIL: "/mycourse/detail/todo", // add :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
     MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
 };

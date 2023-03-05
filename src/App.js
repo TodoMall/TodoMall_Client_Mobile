@@ -24,6 +24,7 @@ import {
     TermOfServicePage,
     TermsPage,
 } from "./pages";
+import MyPage from "./pages/MyPage";
 import { getMaxWidth, isMobile } from "./utils/width";
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
                     path={PATH.PAYMENT_DETAIL}
                     element={<PaymentCompletePage />}
                 />
+                <Route path={PATH.MYPAGE} element={<MyPage />} />
             </Routes>
         </Container>
     );
