@@ -35,3 +35,23 @@ export const getSubscribeProductByMemberId = gql`
         }
     }
 `;
+
+export const getOrderByMemberId = gql`
+    query getOrderByMemberId($memberId: String!) {
+        getOrderByMemberId(memberId: $memberId) {
+            id
+            state
+            product {
+                thumbnailUrl
+            }
+            member {
+                subscribeProducts {
+                    title
+                    status
+                    retryCount
+                    createdAt
+                }
+            }
+        }
+    }
+`;

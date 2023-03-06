@@ -23,7 +23,11 @@ import { BodyL, BodyM, BodyXL, HeadingXL, HeadingXXL } from "../mds/text";
 import { isNull } from "../utils/isNull";
 
 const PaymentPage = () => {
-    const { userId: memberId, name, email } = { ...localStorage };
+    const {
+        userId: memberId,
+        name = "김상혁",
+        email = "tkdgur234@naver.com",
+    } = { ...localStorage };
     const { courseId } = useParams();
 
     const [product, setProduct] = useState({});
@@ -99,7 +103,28 @@ const PaymentPage = () => {
             <BasicHeader pageDescription={"결제"} />
             <Container>
                 <HeadingXL margin={"0.75rem 0"}>도전자</HeadingXL>
-                <ProfileCard />
+                <ProfileCard>
+                    <UserInfo>
+                        <RowBox justifyContent={"flex-start"}>
+                            <BodyM
+                                margin={"0 1.813rem 0 0"}
+                                fontColor={COLOR.GRAY500}
+                            >
+                                이름
+                            </BodyM>
+                            <BodyL>{name}</BodyL>
+                        </RowBox>
+                        <RowBox>
+                            <BodyM
+                                margin={"0 1rem 0 0"}
+                                fontColor={COLOR.GRAY500}
+                            >
+                                이메일
+                            </BodyM>
+                            <BodyL>{email}</BodyL>
+                        </RowBox>
+                    </UserInfo>
+                </ProfileCard>
                 <HeadingXL margin={"0.75rem 0"}>도전 클래스</HeadingXL>
                 <CourseContainer>
                     <BodyM fontColor={COLOR.GRAY500}>클래스명</BodyM>
@@ -187,4 +212,7 @@ const PriceContainer = styled.div`
     border-radius: 1.25rem;
     padding: 1rem 1.25rem;
     background-color: ${COLOR.GRAY50};
+`;
+const UserInfo = styled.div`
+    margin-left: 1rem;
 `;

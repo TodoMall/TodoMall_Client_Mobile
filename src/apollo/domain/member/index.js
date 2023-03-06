@@ -9,4 +9,5 @@ export {
 export {
     getMemberAgreementById,
     getSubscribeProductByMemberId,
+    getOrderByMemberId,
 } from "./member.queries";

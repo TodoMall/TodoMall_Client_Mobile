@@ -1,10 +1,8 @@
 import dayjs from "dayjs";
 
-import { PROCESS_STATUS } from "../../../constants";
+import { ORDER_STATE, PROCESS_STATUS } from "../../../constants";
 
 const formattedDay = dayjs();
-
-//  PROCESS_STATUS Waiting , Success 언제 사용되는지 물어보기
 
 export const subscribeProductList = {
     getMemberById: [
@@ -213,6 +211,86 @@ export const subscribeProductList = {
                     ],
                 },
             ],
+        },
+    ],
+};
+
+export const paidProductList = {
+    getOrderByMemberId: [
+        {
+            id: 3,
+            state: ORDER_STATE.SUCCESS,
+            product: {
+                thumbnailUrl: "/image/demo_main_01_3.png",
+            },
+            member: {
+                subscribeProducts: {
+                    title: "스티비로 뉴스레터 발행하기",
+                    status: PROCESS_STATUS.WAITING,
+                    retryCount: 1,
+                    createdAt: "2023-03-01T07:29:10.260933",
+                },
+            },
+        },
+        {
+            id: 4,
+            state: ORDER_STATE.SUCCESS,
+            product: {
+                thumbnailUrl: "/image/demo_main_01_4.png",
+            },
+            member: {
+                subscribeProducts: {
+                    title: "단계별 보고서 작성법 습득하기",
+                    status: PROCESS_STATUS.WAITING,
+                    retryCount: 0,
+                    createdAt: "2023-02-28T07:29:10.260933",
+                },
+            },
+        },
+        {
+            id: 1,
+            state: ORDER_STATE.SUCCESS,
+            product: {
+                thumbnailUrl: "/image/demo_main_01_1.png",
+            },
+            member: {
+                subscribeProducts: {
+                    title: "노션으로 포트폴리오 만들기",
+                    status: PROCESS_STATUS.PROCESS,
+                    retryCount: 2,
+                    createdAt: "2023-03-03T07:29:10.260933",
+                },
+            },
+        },
+        {
+            id: 5,
+            state: ORDER_STATE.SUCCESS,
+            product: {
+                thumbnailUrl: "/image/demo_main_01_5.png",
+            },
+            member: {
+                subscribeProducts: {
+                    title: "튜토리얼",
+                    status: PROCESS_STATUS.SUCCESS,
+                    retryCount: 0,
+                    createdAt: "2023-02-26T07:29:10.260933",
+                },
+            },
+        },
+        {
+            id: 2,
+            state: ORDER_STATE.SUCCESS,
+            product: {
+                thumbnailUrl: "/image/demo_main_01_2.png",
+            },
+            member: {
+                subscribeProducts: {
+                    title: "깃허브로 실무 개발 능력 쌓기",
+                    status: PROCESS_STATUS.SUCCESS,
+                    retryCount: 2,
+                    createdAt: "2023-03-02T07:29:10.260933",
+                },
+            },
         },
     ],
 };
