@@ -1,1 +1,5 @@
-export { getProductListByQuery } from "./store.queries";
+export {
+    getProductListByQuery,
+    getPromotionByType,
+    getProductByType,
+} from "./store.queries";

@@ -3,3 +3,4 @@ export { default as useInput } from "./useInput";
 export { default as useDebounce } from "./useDebounce";
 export { default as useLocalStorage } from "./useLocalStorage";
 export { default as usePopup } from "./usePopup";
+export { default as useQueryString } from "./useQueryString";

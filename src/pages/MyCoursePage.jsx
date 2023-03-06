@@ -56,8 +56,8 @@ const MyCoursePage = () => {
                         );
                     }
                 )}
-                <PromotionClassSlider />
             </PageContanier>
+            <PromotionClassSlider />
             <GlobalNavBar />
             {isShowPushAlarmPopup && (
                 <PushPopup onClose={handleClosePushAlarmPopup} />

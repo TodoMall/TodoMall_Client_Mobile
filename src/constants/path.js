@@ -18,9 +18,9 @@ export const PATH = {
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
     PAYMENT: "/order/:courseId",
     PAYMENT_DETAIL: "/order/complete/:courseId",
-    STORE: "/store/:courseId",
+    STORE: "/store",
+    STORE_CATEGORY: "/store/category",
     STORE_DETAIL: "/store/course/detail/:courseId", //` add : ?courseId=${courseId}`,
-    EDUCATION: "/education",
     MYCOURSE: "/mycourse",
     TODO_DETAIL: "/mycourse/detail/", // add :todo?courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
     MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}

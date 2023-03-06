@@ -11,11 +11,10 @@ import IconButton from "./IconButton";
  * @description Current Width 가 isLaptop 일 경우 Page 이동 이벤트가 실행됩니다
  * @description Current Width 가 isLaptop 이 아닌 경우 SearchTab 을 보여주는 이벤트가 실행됩니다
  */
-const SearchButtonResource = ({ keyword }) => {
+const SearchButtonResource = ({ keyword = null }) => {
     const navigate = useNavigate();
 
     const [isShowSearchArea, _, handleToggleSearchArea] = useToggle(false);
-
     const handleSearchPage = () => {
         navigate({
             pathname: "/search",
@@ -23,17 +22,11 @@ const SearchButtonResource = ({ keyword }) => {
         });
     };
 
-    return {
-        SearchButton: (
-            <IconButton
-                onClick={isLaptop ? handleSearchPage : handleToggleSearchArea}
-            >
-                <SearchIcon />
-            </IconButton>
-        ),
-        isShowSearchArea: isShowSearchArea,
-        handleToggleSearchArea: handleToggleSearchArea,
-    };
+    return (
+        <IconButton onClick={handleToggleSearchArea}>
+            <SearchIcon />
+        </IconButton>
+    );
 };
 
 export default SearchButtonResource;

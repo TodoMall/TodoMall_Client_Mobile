@@ -19,6 +19,8 @@ import {
     SettingPage,
     SettingPersonalPage,
     SignInPage,
+    StoreCategoryPage,
+    StorePage,
     TermOfServicePage,
     TermsPage,
 } from "./pages";
@@ -71,6 +73,11 @@ function App() {
                     element={<SettingPersonalPage />}
                 />
                 <Route path={PATH.SERVICE} element={<TermOfServicePage />} />
+                <Route path={PATH.STORE} element={<StorePage />} />
+                <Route
+                    path={PATH.STORE_CATEGORY}
+                    element={<StoreCategoryPage />}
+                />
                 <Route path={PATH.PAYMENT} element={<PaymentPage />} />
                 <Route
                     path={PATH.PAYMENT_DETAIL}

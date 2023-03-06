@@ -1,32 +1,36 @@
+import { useState } from "react";
 import styled from "styled-components";
 
-import Divider from "../../../Divider";
+import { COLOR } from "../../../../constants";
+import { useQueryString } from "../../../../hooks";
 import { RowBox } from "../../../box";
-import { LogoButton } from "../../../button";
-import { SearchButtonResource } from "../../../button";
 import { CategoryTabBar } from "../../../category";
-import SearchTab from "./SearchTab";
+import { BrandLogo } from "../../../icon";
 
 const StoreHeader = () => {
-    const { SearchButton, isShowSearchArea, handleToggleSearchArea } =
-        SearchButtonResource;
+    const currentCategory = useQueryString("tag");
+
+    const [_, setSelectedCategory] = useState(currentCategory);
+
+    const handleCategorySelection = category => {
+        setSelectedCategory(category);
+    };
+
     return (
         <>
-            {isShowSearchArea ? (
-                <SearchTab onClose={handleToggleSearchArea} />
-            ) : (
-                <Container>
-                    <RowBox
-                        padding={"0.625rem 1rem"}
-                        justifyContent={"space-between"}
-                    >
-                        <LogoButton />
-                        <SearchButton />
-                    </RowBox>
-                    <CategoryTabBar />
-                </Container>
-            )}
-            <Divider />
+            <Container>
+                <RowBox
+                    padding={"0.625rem 1rem"}
+                    justifyContent={"space-between"}
+                >
+                    <BrandLogo
+                        logoColor={COLOR.GRAY800}
+                        width={105}
+                        height={20}
+                    />
+                </RowBox>
+                <CategoryTabBar onClick={handleCategorySelection} />
+            </Container>
         </>
     );
 };
