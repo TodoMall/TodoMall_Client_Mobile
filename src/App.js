@@ -20,6 +20,7 @@ import {
     SettingPersonalPage,
     SignInPage,
     StoreCategoryPage,
+    StoreDetailPage,
     StorePage,
     TermOfServicePage,
     TermsPage,
@@ -75,6 +76,10 @@ function App() {
                 />
                 <Route path={PATH.SERVICE} element={<TermOfServicePage />} />
                 <Route path={PATH.STORE} element={<StorePage />} />
+                <Route
+                    path={`${PATH.STORE_DETAIL}/:courseId`}
+                    element={<StoreDetailPage />}
+                />
                 <Route
                     path={PATH.STORE_CATEGORY}
                     element={<StoreCategoryPage />}

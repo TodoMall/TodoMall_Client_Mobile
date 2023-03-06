@@ -5,3 +5,4 @@ export { default as BookClipImage } from "./BookClipImage";
 export { default as BrandLogoIWithTextImage } from "./BrandLogoIWithTextImage";
 export { default as AgreementPersonalTableImage } from "./AgreementPersonalTableImage";
 export { default as SnowballImage } from "./SnowballImage";
+export { default as EmptySessionThumbnail } from "./EmptySessionThumbnail";

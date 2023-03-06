@@ -44,3 +44,52 @@ export const getProductByType = gql`
         }
     }
 `;
+export const getProductById = gql`
+    query getProductById($id: String!) {
+        getProductById(id: $id) {
+            title
+            subDescription
+            imageUrl
+            level
+            description
+            price
+            discountPrice
+            discountPercent
+            additionalInfoList
+            retryCount
+            creator {
+                id
+                imageUrl
+                name
+                job
+                career
+                description
+            }
+            expectIts {
+                title
+                imageUrl
+            }
+            recommends {
+                imageUrl
+                title
+                description
+            }
+            recommendUsers {
+                id
+                title
+                description
+            }
+            sessions {
+                title
+                orderBy
+                duration
+                thumbnailUrl
+                todos {
+                    id
+                    orderBy
+                    title
+                }
+            }
+        }
+    }
+`;
