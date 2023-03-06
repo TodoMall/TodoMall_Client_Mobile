@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { COLOR, GNB, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
@@ -9,9 +9,19 @@ import { RowBox } from "../../box";
 import { EducationButton, MyPageButton, StoreButton } from "../../button";
 
 const GlobalNavBar = () => {
+    const { pathname } = useLocation();
+
+    const setCurrentLocation = () => {
+        for (const key in GNB) {
+            if (pathname.includes(GNB[key])) {
+                return GNB[key];
+            }
+        }
+    };
+
     const navigate = useNavigate();
-    const [isGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, true);
-    const [isCurrent, setIsCurrent] = useState(GNB.EDUCATION);
+    const [isGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
+    const [isCurrent, setIsCurrent] = useState(setCurrentLocation());
     const [isShowLoginPopup, _, handleLoginPopup] = useToggle(false);
 
     const handleStorePage = () => {
@@ -23,8 +33,8 @@ const GlobalNavBar = () => {
         if (isGuest) {
             handleLoginPopup;
         } else {
-            setIsCurrent(GNB.EDUCATION);
-            navigate(PATH.EDUCATION);
+            setIsCurrent(GNB.MYCOURSE);
+            navigate(PATH.MYCOURSE);
         }
     };
 
