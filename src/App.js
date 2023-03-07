@@ -84,7 +84,10 @@ function App() {
                     path={PATH.STORE_CATEGORY}
                     element={<StoreCategoryPage />}
                 />
-                <Route path={PATH.PAYMENT} element={<PaymentPage />} />
+                <Route
+                    path={`${PATH.PAYMENT}/:courseId`}
+                    element={<PaymentPage />}
+                />
                 <Route
                     path={PATH.PAYMENT_DETAIL}
                     element={<PaymentCompletePage />}

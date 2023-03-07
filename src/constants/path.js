@@ -16,7 +16,7 @@ export const PATH = {
     NOTIFICATION: "/notification/:memberId", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    PAYMENT: "/order/:courseId",
+    PAYMENT: "/order",
     PAYMENT_DETAIL: "/order/complete/:courseId",
     STORE: "/store",
     STORE_DETAIL: "/store/course/detail",

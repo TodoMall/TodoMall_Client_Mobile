@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
 
 import { getProductById } from "../apollo/domain/payment/payment.queries";
-import { COLOR } from "../constants";
+import { COLOR, PATH } from "../constants";
 import { RowBox } from "../mds/box";
+import { BasicButton } from "../mds/button";
 import { CalendarIcon, FlagIcon, LevelIcon, TodoIcon } from "../mds/icon";
 import { EmptySessionThumbnail } from "../mds/image";
 import { BasicHeader } from "../mds/layout/mobile/headers";
@@ -26,6 +27,8 @@ import { isNull } from "../utils/isNull";
 const StoreDetailPage = () => {
     const { courseId } = useParams();
     const [product, setProduct] = useState();
+    const navigate = useNavigate();
+    const handlePaymentPage = () => navigate(`${PATH.PAYMENT}/${courseId}`);
     const { data } = useQuery(getProductById, {
         variables: { id: courseId },
         onCompleted: data => {
@@ -82,10 +85,44 @@ const StoreDetailPage = () => {
                     </IconBox>
                 </IconContainer>
 
-                {/* <TicketContinaer>
-                    <BodyXXXL>{product?.title}</BodyXXXL>
-                    <BodyXS>{product?.description}</BodyXS>
-                </TicketContinaer> */}
+                <TicketContainer>
+                    <TicketIntroBox>
+                        <BodyXXXL margin={"0 0 0.5rem"}>
+                            {product?.title}
+                        </BodyXXXL>
+                        <BodyXS fontColor={COLOR.GRAY700}>
+                            {product?.description}
+                        </BodyXS>
+                    </TicketIntroBox>
+                    <RowBox>
+                        <TicketCircle radius={"0 0.75rem 0.75rem 0"} />
+                        <DashedDivider />
+                        <TicketCircle radius={"0.75rem 0 0 0.75rem"} />
+                    </RowBox>
+                    <AmountInfoContainer>
+                        <RowBox>
+                            <Box>
+                                <DetailXS>이벤트</DetailXS>
+                                <BodyXXXL fontColor={COLOR.BRAND_COLOR}>
+                                    {product?.discountPercent}% 할인
+                                </BodyXXXL>
+                            </Box>
+                            <Box>
+                                <LineThroughText>
+                                    판매가 {product?.price.toLocaleString()}원
+                                </LineThroughText>
+                                <BodyXXXL fontColor={COLOR.ERROR500}>
+                                    {product?.discountPrice.toLocaleString()}원
+                                </BodyXXXL>
+                            </Box>
+                        </RowBox>
+                        <BasicButton onClick={handlePaymentPage}>
+                            <BodyS fontColor={COLOR.WHITE}>
+                                클래스 도전하기
+                            </BodyS>
+                        </BasicButton>
+                    </AmountInfoContainer>
+                </TicketContainer>
             </Container>
 
             <CreatorProfile>
@@ -301,6 +338,51 @@ const StoreDetailPage = () => {
 };
 export default StoreDetailPage;
 
+const LineThroughText = styled.p`
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    letter-spacing: -0.01rem;
+    text-decoration: line-through;
+`;
+
+const Box = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+
+const AmountInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+`;
+
+const DashedDivider = styled.div`
+    width: 100%;
+    height: 1px;
+    margin: 0.5rem 2rem;
+    border: 1px dashed ${COLOR.GRAY200};
+`;
+
+const TicketCircle = styled.div`
+    width: 0.75rem;
+    height: 1.5rem;
+    background: ${COLOR.WHITE};
+    border-radius: ${props => props.radius};
+    z-index: 1;
+`;
+const TicketIntroBox = styled.div`
+    padding: 1rem 1.25rem;
+`;
+
+const TicketContainer = styled.div`
+    background-color: ${COLOR.GRAY50};
+`;
+
 const MyPlanitEduGoalContainer = styled.div`
     margin: 2rem 0;
     padding: 1.25rem 1rem;
@@ -333,6 +415,7 @@ const AdditionalInfoContainer = styled.div`
     :not(:last-child) {
         margin-bottom: 0.25rem;
     }
+    margin-bottom: 2rem;
 `;
 
 const TodoIntroItem = styled.div`
@@ -484,8 +567,3 @@ const CreatorCareer = styled.div`
     flex-direction: row;
     gap: 7px;
 `;
-
-// const TicketContainer = styled.div`
-//     padding: 1rem 1.25rem;
-//     background-color: ${COLOR.GRAY50};
-// `;
