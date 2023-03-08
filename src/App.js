@@ -20,28 +20,32 @@ import {
     SettingPersonalPage,
     SignInPage,
     StoreCategoryPage,
+    StoreDetailPage,
     StorePage,
     TermOfServicePage,
     TermsPage,
+    TodoBestPractice,
 } from "./pages";
 import MyPage from "./pages/MyPage";
-import { getMaxWidth, isMobile } from "./utils/width";
+import TodoDetailPage from "./pages/TodoDetailPage";
+import { getMaxWidth } from "./utils/width";
 
 function App() {
     const location = useLocation();
     const getBackgroundColor = () => {
         if (
-            isMobile &&
-            (location.pathname.includes(PATH.ONBOARDING) ||
-                location.pathname.includes(PATH.SINGIN))
+            location.pathname.includes(PATH.ONBOARDING) ||
+            location.pathname.includes(PATH.SINGIN)
         ) {
             return COLOR.BRAND_COLOR;
         }
         return COLOR.WHITE;
     };
+
     useEffect(() => {
         document.body.style.backgroundColor = getBackgroundColor();
     }, [location.pathname]);
+
     return (
         <Container maxWidth={getMaxWidth()}>
             <Routes>
@@ -76,15 +80,28 @@ function App() {
                 <Route path={PATH.SERVICE} element={<TermOfServicePage />} />
                 <Route path={PATH.STORE} element={<StorePage />} />
                 <Route
+                    path={`${PATH.STORE_DETAIL}/:courseId`}
+                    element={<StoreDetailPage />}
+                />
+                <Route
                     path={PATH.STORE_CATEGORY}
                     element={<StoreCategoryPage />}
                 />
-                <Route path={PATH.PAYMENT} element={<PaymentPage />} />
+                <Route
+                    path={`${PATH.PAYMENT}/:courseId`}
+                    element={<PaymentPage />}
+                />
                 <Route
                     path={PATH.PAYMENT_DETAIL}
                     element={<PaymentCompletePage />}
                 />
                 <Route path={PATH.MYPAGE} element={<MyPage />} />
+
+                <Route path={PATH.TODO_DETAIL} element={<TodoDetailPage />} />
+                <Route
+                    path={PATH.TODO_DETAIL_BEST}
+                    element={<TodoBestPractice />}
+                />
             </Routes>
         </Container>
     );

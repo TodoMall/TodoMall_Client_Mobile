@@ -9,7 +9,7 @@ import { CheckIcon } from "../../../mds/icon";
 const AgreementButtonItem = ({
     children = null,
     isAgreed = false,
-    onClick = () => {},
+    onClick: handleClick = () => {},
     width = "100%",
     detail = null,
 }) => {
@@ -21,9 +21,9 @@ const AgreementButtonItem = ({
     }, [isAgreed]);
 
     return (
-        <ItemContainer width={width}>
+        <ItemContainer width={width} onClick={handleClick}>
             <ItemButtonContainer>
-                <ItemButton onClick={onClick}>
+                <ItemButton>
                     <CheckIcon isChecked={isChecked} />
                 </ItemButton>
                 {children}

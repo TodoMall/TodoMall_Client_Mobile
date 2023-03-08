@@ -1,8 +1,8 @@
 const BrandLogoIWithTextImage = () => {
     return (
         <img
-            width={328}
-            height={100}
+            width={238}
+            height={77}
             src="/image/brand_logo_white_with_text.png"
             alt=""
         />

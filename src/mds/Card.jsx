@@ -38,7 +38,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: ${props => props.justifyContent};
     align-items: ${props => props.alignItems};
-    height: ${props => props.width};
+    width: ${props => props.width};
     height: ${props => props.height};
     margin: ${props => props.margin};
     padding: ${props => props.padding};

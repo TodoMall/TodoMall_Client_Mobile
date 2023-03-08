@@ -4,7 +4,7 @@ import { ORDER_STATE } from "../../../constants";
 import { paymentRusultInfo, productInfo } from "./payment.data";
 
 export const paymentHandlers = [
-    graphql.query("getProductById", (req, res, ctx) => {
+    graphql.query("getOrderProductById", (req, res, ctx) => {
         return res(ctx.data(productInfo));
     }),
 

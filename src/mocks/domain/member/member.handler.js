@@ -1,6 +1,10 @@
 import { graphql } from "msw";
 
-import { paidProductList, subscribeProductList } from "./member.data";
+import {
+    getTodoDetailByMemberIdOutput,
+    paidProductList,
+    subscribeProductList,
+} from "./member.data";
 
 export const memberHandlers = [
     graphql.query("getMemberById", (req, res, ctx) => {
@@ -9,5 +13,9 @@ export const memberHandlers = [
 
     graphql.query("getOrderByMemberId", (req, res, ctx) => {
         return res(ctx.data(paidProductList));
+    }),
+
+    graphql.query("getTodoDetailByMemberId", (req, res, ctx) => {
+        return res(ctx.data(getTodoDetailByMemberIdOutput));
     }),
 ];

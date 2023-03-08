@@ -24,3 +24,8 @@ export { default as WarningIcon } from "./WarningIcon";
 export { default as MyPageIcon } from "./MyPageIcon";
 export { default as StoreIcon } from "./StoreIcon";
 export { default as EducationIcon } from "./EducationIcon";
+
+export { default as CalendarIcon } from "./CalendarIcon";
+export { default as FlagIcon } from "./FlagIcon";
+export { default as LevelIcon } from "./LevelIcon";
+export { default as TodoIcon } from "./TodoIcon";

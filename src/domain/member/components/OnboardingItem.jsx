@@ -4,7 +4,7 @@ import { COLOR } from "../../../constants";
 import {
     BrandLogoLikeBubbleImage,
     BrandLogoList,
-    RocketImage,
+    TrophysImage,
 } from "../../../mds/image";
 import { HeadingXXL } from "../../../mds/text";
 
@@ -32,7 +32,7 @@ const OnboardingItem = ({ itemNumber = 0 }) => {
         if (itemNumber === 2) {
             return (
                 <>
-                    <RocketImage />
+                    <TrophysImage />
                     <HeadingXXL fontColor={COLOR.WHITE}>투두몰에서</HeadingXXL>
                     <HeadingXXL fontColor={COLOR.WHITE}>
                         새로운 도전을
@@ -73,6 +73,7 @@ const Container = styled.div`
 `;
 
 const TitleTextContainer = styled.div`
+    text-align: center;
     margin-bottom: 4rem;
 `;
 

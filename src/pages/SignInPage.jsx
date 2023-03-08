@@ -43,6 +43,6 @@ const ButtonContainer = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     margin-top: 7.5rem;
-    gap: 0.5rem;
     align-items: center;
+    gap: 0.5rem;
 `;

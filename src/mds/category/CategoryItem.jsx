@@ -22,7 +22,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
     border-bottom: 1px solid ${COLOR.GRAY100};
     padding: 0.5rem 0.75rem 0 0.5rem;
     p {

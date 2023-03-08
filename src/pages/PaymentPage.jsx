@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useMutation, useQuery } from "@apollo/client";
 
 import { createOrder } from "../apollo/domain/payment/payment.mutations";
-import { getProductById } from "../apollo/domain/payment/payment.queries";
+import { getOrderProductById } from "../apollo/domain/payment/payment.queries";
 import {
     COLOR,
     IAMPORT_MERCHANT_CODE,
@@ -38,10 +38,14 @@ const PaymentPage = () => {
         el => el.name === payMethod
     );
 
-    const { data: getProductByIdOutput } = useQuery(getProductById, {
+    const { data: getProductByIdOutput } = useQuery(getOrderProductById, {
         variables: { id: courseId },
         onCompleted: data => {
             setProduct(data.getProductById);
+            const formattedSession = data.getProductById.sessions
+                .slice()
+                .sort((a, b) => a.orderBy - b.orderBy);
+            setSortedSessionList(formattedSession);
         },
     });
 
@@ -55,19 +59,6 @@ const PaymentPage = () => {
             setOrderNumber(createOrder.orderNumber);
         },
     });
-
-    useEffect(() => {
-        if (getProductByIdOutput) {
-            getOrderNumber();
-            let tempSessionList = [
-                ...getProductByIdOutput.getProductById.sessions,
-            ];
-            const formattedSession = tempSessionList.sort(
-                (a, b) => a.orderBy - b.orderBy
-            );
-            setSortedSessionList(formattedSession);
-        }
-    }, [getProductByIdOutput]);
 
     const fotamttedPrice = price => {
         return Number(price).toLocaleString();

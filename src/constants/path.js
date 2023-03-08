@@ -1,12 +1,12 @@
 export const PATH = {
-    MAIN: "/store",
+    MAIN: "/",
     ONBOARDING: "/onboarding",
     AGREEMENT: "/agreement",
-    AGREEMENT_PERSONAL: "/agreement/personal",
+    AGREEMENT_PERSONAL: "/collectPrivacy",
     SETTING: "/setting",
     TERMS: "/setting/terms",
-    SERVICE: "/setting/terms/service",
-    SETTING_PERSONAL: "/setting/terms/personal",
+    SERVICE: "/setting/terms/policy",
+    SETTING_PERSONAL: "/setting/terms/privacy",
     REFUND: "/setting/refund",
     ACCOUNT: "/setting/account",
     NOTICE: "/setting/notice",
@@ -19,10 +19,11 @@ export const PATH = {
     PAYMENT: "/order/:courseId",
     PAYMENT_DETAIL: "/order/complete/:courseId",
     STORE: "/store",
+    STORE_DETAIL: "/store/course/detail",
     STORE_CATEGORY: "/store/category",
-    STORE_DETAIL: "/store/course/detail/:courseId", //` add : ?courseId=${courseId}`,
     MYCOURSE: "/mycourse",
     PAID_PRODUCT_DETAIL: "/mycourse/detail",
-    TODO_DETAIL: "/mycourse/detail/todo", // add :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    TODO_DETAIL: "/mycourse/detail/todo", //  :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    TODO_DETAIL_BEST: "/mycourse/detail/todo/bestpractice",
     MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
 };
