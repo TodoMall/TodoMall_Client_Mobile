@@ -70,6 +70,7 @@ const TodoDetailPage = () => {
     return (
         <>
             {isShowCurriculum && (
+                // TODO : 만약 아래/위/왼/오 에서 스르륵 나오게 하고싶다면 https://v4.mui.com/components/drawers/ 참고
                 <CourseCurriculum
                     product={currentProduct}
                     session={currentSession}

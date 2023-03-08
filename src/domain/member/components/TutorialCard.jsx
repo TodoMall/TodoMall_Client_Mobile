@@ -17,7 +17,6 @@ const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
 
     return (
         <Card justifyContent="none" margin={"0"} padding={"1rem 1.25rem"}>
-            {/* TODO : 정식 이미지로 대체하기 */}
             <img
                 width={318}
                 height={208}

@@ -27,15 +27,14 @@ import {
 } from "./pages";
 import MyPage from "./pages/MyPage";
 import TodoDetailPage from "./pages/TodoDetailPage";
-import { getMaxWidth, isMobile } from "./utils/width";
+import { getMaxWidth } from "./utils/width";
 
 function App() {
     const location = useLocation();
     const getBackgroundColor = () => {
         if (
-            isMobile &&
-            (location.pathname.includes(PATH.ONBOARDING) ||
-                location.pathname.includes(PATH.SINGIN))
+            location.pathname.includes(PATH.ONBOARDING) ||
+            location.pathname.includes(PATH.SINGIN)
         ) {
             return COLOR.BRAND_COLOR;
         }

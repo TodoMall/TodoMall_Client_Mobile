@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "swiper/css";
 
 import { useQuery } from "@apollo/client";
 
@@ -17,21 +16,19 @@ import { HeadingXL } from "../mds/text";
 const MyCoursePage = () => {
     const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE } = LOCAL_STORAGE_KEYS;
 
-    const { data: SubscribeProduct } = useQuery(getSubscribeProductByMemberId);
-
-    const [isTuturialDone, setIsTuturialDone] = useLocalStorage(
+    const [isTutorialDone, setIsTuturialDone] = useLocalStorage(
         IS_TUTORIAL_DONE,
-        true
+        false
     );
+    const [isAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
 
-    const handleTutorialStatus = () => setIsTuturialDone(prev => !prev);
+    const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
-    const [isPushAlarm] = useLocalStorage(IS_PUSHALARM_AGREE);
+    const { data: memberProduct } = useQuery(getSubscribeProductByMemberId);
 
-    // TODO : agreement 페이지에서 설정 필요
-    const [isShowPushAlarmPopup, _, handleClosePushAlarmPopup] = usePopup(
-        !isPushAlarm
-    );
+    const handleTutorialDone = () => {
+        setIsTuturialDone(prev => !prev);
+    };
 
     return (
         <Container>
@@ -41,10 +38,10 @@ const MyCoursePage = () => {
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
                     내 클래스
                 </HeadingXL>
-                {isTuturialDone && (
-                    <TutorialCard onDelete={handleTutorialStatus} />
+                {!isTutorialDone && (
+                    <TutorialCard onDelete={handleTutorialDone} />
                 )}
-                {SubscribeProduct?.getMemberById[0].subscribeProducts.map(
+                {memberProduct?.getMemberById[0].subscribeProducts.map(
                     subscribeProduct => {
                         return (
                             <SessionCardList
@@ -59,9 +56,7 @@ const MyCoursePage = () => {
             </PageContanier>
             <PromotionClassSlider />
             <GlobalNavBar />
-            {isShowPushAlarmPopup && (
-                <PushPopup onClose={handleClosePushAlarmPopup} />
-            )}
+            {isShowPushAlarmPopup && <PushPopup onClose={handleClose} />}
         </Container>
     );
 };

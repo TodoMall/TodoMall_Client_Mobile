@@ -42,5 +42,4 @@ const Container = styled.button`
     background-color: ${props => props.backgroundColor};
     border: none;
     border-radius: ${props => props.borderRadius};
-    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
 `;
