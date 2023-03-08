@@ -24,25 +24,28 @@ import {
     StorePage,
     TermOfServicePage,
     TermsPage,
+    TodoBestPractice,
 } from "./pages";
 import MyPage from "./pages/MyPage";
-import { getMaxWidth, isMobile } from "./utils/width";
+import TodoDetailPage from "./pages/TodoDetailPage";
+import { getMaxWidth } from "./utils/width";
 
 function App() {
     const location = useLocation();
     const getBackgroundColor = () => {
         if (
-            isMobile &&
-            (location.pathname.includes(PATH.ONBOARDING) ||
-                location.pathname.includes(PATH.SINGIN))
+            location.pathname.includes(PATH.ONBOARDING) ||
+            location.pathname.includes(PATH.SINGIN)
         ) {
             return COLOR.BRAND_COLOR;
         }
         return COLOR.WHITE;
     };
+
     useEffect(() => {
         document.body.style.backgroundColor = getBackgroundColor();
     }, [location.pathname]);
+
     return (
         <Container maxWidth={getMaxWidth()}>
             <Routes>
@@ -93,6 +96,12 @@ function App() {
                     element={<PaymentCompletePage />}
                 />
                 <Route path={PATH.MYPAGE} element={<MyPage />} />
+
+                <Route path={PATH.TODO_DETAIL} element={<TodoDetailPage />} />
+                <Route
+                    path={PATH.TODO_DETAIL_BEST}
+                    element={<TodoBestPractice />}
+                />
             </Routes>
         </Container>
     );

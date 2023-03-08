@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -11,9 +12,19 @@ const BasicHeader = ({
     hasPrevButton = true,
     hasListButton = false,
     height = "3.25rem",
+    onClick: handleClick,
+    onList: handleList = () => {},
 }) => {
     const navigate = useNavigate();
-    const handlePreviousPage = () => navigate(-1);
+
+    const handlePreviousPage = () => {
+        if (typeof handleClick === "undefined") {
+            navigate(-1);
+        }
+        if (typeof handleClick !== "undefined") {
+            handleClick();
+        }
+    };
 
     return (
         <>
@@ -26,7 +37,11 @@ const BasicHeader = ({
                 <BodyXXL fontColor={COLOR.GRAY900} textAlign={"center"}>
                     {pageDescription}
                 </BodyXXL>
-                {hasListButton ? <ListButton /> : <EmptyBox />}
+                {hasListButton ? (
+                    <ListButton onClick={handleList} />
+                ) : (
+                    <EmptyBox />
+                )}
             </Container>
             <Divider />
         </>

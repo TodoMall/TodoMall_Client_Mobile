@@ -10,27 +10,32 @@ import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const PushPopup = ({ onClose: handleClose = () => {} }) => {
-    const { memberId, isMarketingAlarm } = { ...localStorage };
+    const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE } = LOCAL_STORAGE_KEYS;
 
-    const [_, setIsPushAlarm] = useLocalStorage(
-        LOCAL_STORAGE_KEYS.IS_PERSONAL_AGREE
-    );
+    const [_, setIsAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
+    const [isAgreeMarketing] = useLocalStorage(IS_MARKETINGALARM_AGREE, false);
 
     const [updatePushAlarmStatus] = useMutation(
         updateMemberAlarmStatusAgreement
     );
 
     const handleAcceptPushAlarm = () => {
-        setIsPushAlarm(true);
-        updatePushAlarmStatus({
-            memberId: memberId,
-            isMarketingAlarmAgree: isMarketingAlarm,
-            isPushAlarmAgree: true,
+        setIsAgreePush(prev => !prev);
+        return updatePushAlarmStatus({
+            variables: {
+                // TODO : fix memberId value to stored localStorage memberId
+                memberId: "e155ad7c-3547-4312-b09c-b3729c0b18c3",
+                isMarketingAlarmAgree: isAgreeMarketing,
+                isPushAlarmAgree: true,
+            },
+            onCompleted: () => {
+                handleClose();
+            },
         });
     };
 
     return (
-        <PopUpLayout onClick={handleClose}>
+        <PopUpLayout>
             <PopUpContentBox padding={"2rem 1rem 0 1rem"}>
                 <BodyM margin={"0 0 0.25rem 0"}>
                     앱 내 푸시알림을 받아보실래요?

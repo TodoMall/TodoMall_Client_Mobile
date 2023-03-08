@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { PROVIDERS } from "../constants/providers";
 import { AgreementButtonBox } from "../domain/auth/components";
 import { useLogin } from "../domain/member/hooks";
-import { SnowballImage } from "../mds/image";
+import { CheckMarkImage } from "../mds/image";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
@@ -22,26 +22,31 @@ const AgreementPage = () => {
                     data: code,
                 },
             });
+
             if (loading === false) {
                 setAccessToken(response.data.signInWithKakao);
             }
         }
     };
 
-    useEffect(() => {
-        signInWithKakao();
-    }, []);
+    // useEffect(() => {
+    //     signInWithKakao();
+    // }, []);
+
     return (
         <>
             <BasicHeader pageDescription={"약관 동의"} />
+
             <Container>
                 <TextContainer>
                     <HeadingXL>더 나은 학습을 위해</HeadingXL>
                     <HeadingXL>투두몰 약관에 동의해주세요</HeadingXL>
                 </TextContainer>
+
                 <ImageContainer>
-                    <SnowballImage />
+                    <CheckMarkImage />
                 </ImageContainer>
+
                 <AgreementButtonBox />
             </Container>
         </>

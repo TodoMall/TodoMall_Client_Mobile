@@ -16,13 +16,14 @@ export const PATH = {
     NOTIFICATION: "/notification/:memberId", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    PAYMENT: "/order",
+    PAYMENT: "/order/:courseId",
     PAYMENT_DETAIL: "/order/complete/:courseId",
     STORE: "/store",
     STORE_DETAIL: "/store/course/detail",
     STORE_CATEGORY: "/store/category",
     MYCOURSE: "/mycourse",
     PAID_PRODUCT_DETAIL: "/mycourse/detail",
-    TODO_DETAIL: "/mycourse/detail/todo", // add :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    TODO_DETAIL: "/mycourse/detail/todo", //  :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    TODO_DETAIL_BEST: "/mycourse/detail/todo/bestpractice",
     MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
 };

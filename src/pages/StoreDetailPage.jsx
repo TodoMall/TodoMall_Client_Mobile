@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
 
-import { getProductById } from "../apollo/domain/payment/payment.queries";
+import { getOrderProductById } from "../apollo/domain/payment/payment.queries";
 import { COLOR, PATH } from "../constants";
 import { RowBox } from "../mds/box";
 import { BasicButton } from "../mds/button";
@@ -29,7 +29,7 @@ const StoreDetailPage = () => {
     const [product, setProduct] = useState();
     const navigate = useNavigate();
     const handlePaymentPage = () => navigate(`${PATH.PAYMENT}/${courseId}`);
-    const { data } = useQuery(getProductById, {
+    const { data } = useQuery(getOrderProductById, {
         variables: { id: courseId },
         onCompleted: data => {
             // setProduct(data.getProductById); // TODO : this origin

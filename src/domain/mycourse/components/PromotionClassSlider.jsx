@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useQuery } from "@apollo/client";

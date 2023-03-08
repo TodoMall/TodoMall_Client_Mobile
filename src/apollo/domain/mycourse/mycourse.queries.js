@@ -15,3 +15,21 @@ export const getAllPromotion = gql`
         }
     }
 `;
+export const getTodoBestPracticeByProductId = gql`
+    query getTodoBestPracticeByProductId($id: String!) {
+        getProductById(id: $id) {
+            creator {
+                name
+                job
+            }
+            sessions {
+                id
+                todos {
+                    id
+                    title
+                    bestPracticeImageUrl
+                }
+            }
+        }
+    }
+`;

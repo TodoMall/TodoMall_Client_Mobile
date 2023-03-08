@@ -1,6 +1,6 @@
 import { COLOR } from "../../constants";
 
-const CheckIcon = ({ isChecked = false }) => {
+const CheckIcon = ({ isChecked = false, checkedColor = COLOR.MAIN500 }) => {
     return (
         <svg
             width="24"
@@ -13,7 +13,7 @@ const CheckIcon = ({ isChecked = false }) => {
                 width="24"
                 height="24"
                 rx="8"
-                fill={isChecked ? COLOR.MAIN500 : COLOR.GRAY200}
+                fill={isChecked ? checkedColor : COLOR.GRAY200}
             />
             <path
                 d="M6.52637 12.4212L9.89479 15.7896L16.6316 9.05273"

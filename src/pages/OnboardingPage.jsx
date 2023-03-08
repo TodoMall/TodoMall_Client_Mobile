@@ -34,28 +34,15 @@ const OnboardingPage = () => {
                 margin="4.875rem"
                 onClick={onClickNextButton}
             >
-                <BodyXL>{itemNumber === 2 ? "시작하기" : "다음"}</BodyXL>
+                <BodyXL fontColor={COLOR.BRAND_COLOR}>
+                    {itemNumber === 2 ? "시작하기" : "다음"}
+                </BodyXL>
             </BasicButton>
         </Body>
     );
 };
 
 export default OnboardingPage;
-
-const ProgressBarContainer = styled.div`
-    width: 100%;
-    display: flex;
-    gap: 0.25rem;
-    justify-content: center;
-`;
-
-const ProgressBar = styled.div`
-    width: calc(100% / 3.1);
-    height: 0.125rem;
-    background-color: ${COLOR.WHITE};
-    margin-top: 3.25rem;
-    opacity: ${props => (props.active ? 1 : 0.4)};
-`;
 
 const Body = styled.div`
     height: 100vh;
@@ -73,4 +60,20 @@ const Body = styled.div`
             opacity: 1;
         }
     }
+`;
+
+const ProgressBarContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0 1rem;
+`;
+
+const ProgressBar = styled.div`
+    width: calc(100% / 3.1);
+    height: 0.125rem;
+    margin-top: 3.25rem;
+    background-color: ${COLOR.WHITE};
+    opacity: ${props => (props.active ? 1 : 0.4)};
 `;

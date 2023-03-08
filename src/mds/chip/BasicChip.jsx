@@ -35,5 +35,4 @@ const Container = styled.div`
     margin: ${props => props.margin};
     background-color: ${props => props.backgroundColor};
     border-radius: ${props => props.borderRadius};
-    cursor: pointer;
 `;

@@ -55,3 +55,32 @@ export const getOrderByMemberId = gql`
         }
     }
 `;
+
+export const getTodoDetailByMemberId = gql`
+    query getTodoDetailByMemberId($id: String!) {
+        getMemberById(data: { id: $id }) {
+            subscribeProducts {
+                id
+                creator {
+                    name
+                    title
+                }
+                sessions {
+                    id
+                    title
+                    status
+                    missionTitle
+                    orderBy
+                    todos {
+                        id
+                        title
+                        orderBy
+                        taskTitle
+                        status
+                        body
+                    }
+                }
+            }
+        }
+    }
+`;
