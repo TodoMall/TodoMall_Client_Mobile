@@ -9,9 +9,9 @@ const DetailBoxCoulmn = ({
     onClick: handleClick = () => {},
 }) => {
     return (
-        <RowBox justifyContent={justifyContent}>
+        <RowBox justifyContent={justifyContent} onClick={handleClick}>
             {children}
-            <NextArrowButton color={color} onClick={handleClick} />
+            <NextArrowButton color={color} />
         </RowBox>
     );
 };

@@ -1,4 +1,7 @@
 // Mutation
 
 // Query
-export { getAllPromotion } from "./mycourse.queries";
+export {
+    getAllPromotion,
+    getTodoBestPracticeByProductId,
+} from "./mycourse.queries";

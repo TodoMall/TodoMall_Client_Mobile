@@ -17,3 +17,4 @@ export { default as StoreCategoryPage } from "./StoreCategoryPage";
 export { default as PaymentPage } from "./PaymentPage";
 export { default as PaymentCompletePage } from "./PaymentCompletePage";
 export { default as MyPage } from "./MyPage";
+export { default as TodoBestPractice } from "./TodoBestPractice";

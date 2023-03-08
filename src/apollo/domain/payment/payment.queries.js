@@ -15,8 +15,8 @@ export const getOrderByOrderNumber = gql`
     }
 `;
 
-export const getProductById = gql`
-    query getProductById($id: String!) {
+export const getOrderProductById = gql`
+    query getOrderProductById($id: String!) {
         getProductById(id: $id) {
             title
             price

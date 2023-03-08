@@ -5,7 +5,6 @@ import { COLOR } from "../../constants";
 const BasicButton = ({
     children = null,
     backgroundColor = COLOR.BRAND_COLOR,
-    fontColor = COLOR.WHITE,
     borderRadius = "1.25rem",
     width = "100%",
     height = "3.25rem",
@@ -16,14 +15,13 @@ const BasicButton = ({
 }) => {
     return (
         <Container
-            backgroundColor={isDisabled ? COLOR.DISABLED : backgroundColor}
+            backgroundColor={backgroundColor}
             borderRadius={borderRadius}
             height={height}
             width={width}
-            fontColor={fontColor}
             margin={margin}
             padding={padding}
-            isDisabled={isDisabled}
+            disabled={isDisabled}
             onClick={handleClick}
         >
             {children}
@@ -33,7 +31,7 @@ const BasicButton = ({
 
 export default BasicButton;
 
-const Container = styled.div`
+const Container = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,6 +40,7 @@ const Container = styled.div`
     margin: ${props => props.margin};
     padding: ${props => props.padding};
     background-color: ${props => props.backgroundColor};
+    border: none;
     border-radius: ${props => props.borderRadius};
-    cursor: ${props => (props.isDisabled ? "not-allowed" : "pointer")};
+    cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
 `;

@@ -34,6 +34,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.9.1",
+    "@toast-ui/react-editor": "^3.2.3",
     "aws-sdk": "^2.1225.0",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",

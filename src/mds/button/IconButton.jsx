@@ -22,5 +22,4 @@ const Button = styled.button`
     align-items: center;
     width: ${props => props.width};
     height: ${props => props.height};
-    cursor: pointer;
 `;
