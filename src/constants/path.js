@@ -1,12 +1,12 @@
 export const PATH = {
-    MAIN: "/store",
+    MAIN: "/",
     ONBOARDING: "/onboarding",
     AGREEMENT: "/agreement",
-    AGREEMENT_PERSONAL: "/agreement/personal",
+    AGREEMENT_PERSONAL: "/collectPrivacy",
     SETTING: "/setting",
     TERMS: "/setting/terms",
-    SERVICE: "/setting/terms/service",
-    SETTING_PERSONAL: "/setting/terms/personal",
+    SERVICE: "/setting/terms/policy",
+    SETTING_PERSONAL: "/setting/terms/privacy",
     REFUND: "/setting/refund",
     ACCOUNT: "/setting/account",
     NOTICE: "/setting/notice",
@@ -16,12 +16,11 @@ export const PATH = {
     NOTIFICATION: "/notification/:memberId", // add : ?memberId=${memberId}
     PRO_CENTER: "/pro", // FIXME : should be change
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    SEARCH: search => `store?search=${search}`,
-    STORE: "/store",
-    STORE_CATEGORY: "/store/category",
-    STORE_DETAIL: courseId => `/store/course/detail?courseId=${courseId}`,
-    PAYMENT: "/order/:courseId",
+    PAYMENT: "/order",
     PAYMENT_DETAIL: "/order/complete/:courseId",
+    STORE: "/store",
+    STORE_DETAIL: "/store/course/detail",
+    STORE_CATEGORY: "/store/category",
     MYCOURSE: "/mycourse",
     PAID_PRODUCT_DETAIL: "/mycourse/detail",
     TODO_DETAIL: "/mycourse/detail/todo", // add :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}

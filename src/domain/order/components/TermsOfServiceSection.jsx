@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { COLOR, PATH } from "../../../constants";
 import { useToggle } from "../../../hooks";
 import { DetailBoxCoulmn } from "../../../mds";
 import { RowBox } from "../../../mds/box";

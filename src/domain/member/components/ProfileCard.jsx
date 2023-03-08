@@ -12,7 +12,11 @@ const ProfileCard = ({
         image = "https://k.kakaocdn.net/dn/djeMjq/btrcokyYR7j/7qdcWCkb9KZdFzaoyqt091/img_640x640.jpg",
     } = { ...localStorage };
     return (
-        <Container padding={padding} backgroundColor={backgroundColor}>
+        <Container
+            padding={padding}
+            backgroundColor={backgroundColor}
+            marginBottom={marginBottom}
+        >
             <UserImage src={image} />
             {children}
         </Container>

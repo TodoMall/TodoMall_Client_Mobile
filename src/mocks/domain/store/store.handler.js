@@ -6,9 +6,19 @@ import {
     DiscountedClass,
     RecommendCategoryClass,
     RecommnedClass,
+    getProductByIdOutput,
 } from "./store.data";
 
 export const storeHandlers = [
+    graphql.query("getProductById", (req, res, ctx) => {
+        console.log(getProductByIdOutput);
+        return res(
+            ctx.data({
+                getProductByIdOutput: getProductByIdOutput.getProductById,
+            })
+        );
+    }),
+
     graphql.query("getPromotionByType", (req, res, ctx) => {
         const { type } = req.variables;
 
@@ -24,8 +34,6 @@ export const storeHandlers = [
         if (type === PROMOTION_TYPE.STOREMAIN_02) {
             return res(ctx.data(RecommendCategoryClass));
         }
-
-        return res(ctx.data(null));
     }),
 
     graphql.query("getProductByType", (req, res, ctx) => {
