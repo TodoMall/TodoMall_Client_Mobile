@@ -16,7 +16,7 @@ const ClassBox = ({
     const navigate = useNavigate();
 
     const handleStoreDetailPage = () => {
-        navigate(PATH.STORE_DETAIL(courseId));
+        navigate(`${PATH.STORE_DETAIL}/${courseId}`);
     };
 
     return (

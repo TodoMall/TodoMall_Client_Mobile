@@ -6,3 +6,4 @@ export { default as BrandLogoIWithTextImage } from "./BrandLogoIWithTextImage";
 export { default as AgreementPersonalTableImage } from "./AgreementPersonalTableImage";
 export { default as SnowballImage } from "./SnowballImage";
 export { default as CheckMarkImage } from "./CheckMarkImage";
+export { default as EmptySessionThumbnail } from "./EmptySessionThumbnail";

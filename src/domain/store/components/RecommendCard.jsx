@@ -24,7 +24,7 @@ const RecommendCard = ({
     );
 
     const handleDetailPage = () => {
-        navigate(PATH.STORE_DETAIL(id));
+        navigate(`${PATH.STORE_DETAIL}/${id}`);
     };
 
     return (
