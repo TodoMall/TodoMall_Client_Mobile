@@ -1,22 +1,33 @@
+import { useState } from "react";
 import styled from "styled-components";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { COLOR } from "../../../constants";
+import { useQuery } from "@apollo/client";
+
+import { getMobileAdvertisementByType } from "../../../apollo/domain/advertisement";
+import { ADVERTISEMENT_TYPE, COLOR } from "../../../constants";
 import { BodyXXS } from "../../../mds/text";
 
 const SlideBanner = () => {
     SwiperCore.use(Autoplay);
 
-    // TODO : 데이터 확정 시 데모 데이터 삭제
-    const slideImgList = [
-        "/image/demo_slideBanner_img.png",
-        "/image/demo_slideBanner_img.png",
-        "/image/demo_slideBanner_img.png",
-        "/image/demo_slideBanner_img.png",
-        "/image/demo_slideBanner_img.png",
-        "/image/demo_slideBanner_img.png",
-    ];
+    const handleRedirectAdPage = uri => {
+        if (uri) {
+            window.location.href = uri;
+        }
+    };
+    const [slideBanner, setSlideBanner] = useState();
+
+    const { data } = useQuery(getMobileAdvertisementByType, {
+        variables: {
+            type: ADVERTISEMENT_TYPE.SLIDE,
+        },
+        onCompleted: data => {
+            setSlideBanner(data.getAdvertisementByType);
+        },
+    });
+
     return (
         <Container>
             <Swiper
@@ -28,10 +39,19 @@ const SlideBanner = () => {
                 }}
                 speed={2000}
             >
-                {slideImgList.map((slide, idx) => {
+                {slideBanner?.map((slide, idx) => {
                     return (
-                        <SwiperSlide key={idx}>
-                            <img width={"100%"} src={slide} alt="slideImg" />
+                        <SwiperSlide
+                            key={idx}
+                            onClick={() =>
+                                handleRedirectAdPage(slide?.redirectUrl)
+                            }
+                        >
+                            <img
+                                width={"100%"}
+                                src={slide?.mobileImageUrl}
+                                alt="slideImg"
+                            />
                             <Chip>
                                 <BodyXXS fontColor={"#41A5FF"}>
                                     {idx + 1}
@@ -43,7 +63,7 @@ const SlideBanner = () => {
                                     /
                                 </BodyXXS>
                                 <BodyXXS fontColor={COLOR.WHITE}>
-                                    {slideImgList.length}
+                                    {slideBanner?.length}
                                 </BodyXXS>
                             </Chip>
                         </SwiperSlide>
