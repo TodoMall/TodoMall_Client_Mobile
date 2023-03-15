@@ -501,7 +501,9 @@ export const getProductByIdOutput = {
             이번 클래스에서는 캠퍼스픽의 클론 디자인을 해볼거에요!`,
         price: 20000,
         discountPrice: 16000,
+        // discountPercent: 100,
         discountPercent: 20,
+        // discountPercent: 0,
         retryCount: 2,
         additionalInfoList: [
             "버블 서비스를 별도 회원가입 해야 합니다.",
