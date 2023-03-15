@@ -1,13 +1,26 @@
 import styled from "styled-components";
 
+import { useMutation } from "@apollo/client";
+
+import { deleteMember } from "../../../apollo/domain/member";
 import { COLOR } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const DeleteAccountPopup = () => {
+    // TODO : delete demo data
+    const { memberId = "e155ad7c-3547-4312-b09c-b3729c0b18c3" } = {
+        ...localStorage,
+    };
+    const [deleteMemberFn] = useMutation(deleteMember);
+
     const handleDeleteAccount = () => {
-        // TODO : delete account logic
+        deleteMemberFn({
+            variables: {
+                id: memberId,
+            },
+        });
     };
     return (
         <PopUpLayout>

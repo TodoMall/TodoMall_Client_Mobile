@@ -23,9 +23,9 @@ const ClassBox = ({
         <Container onClick={handleStoreDetailPage}>
             <ClassThumbnail src={thumbnailUrl} alt={"promotion thumbnail"} />
             <SubTitle fontColor={COLOR.GRAY500}>{subDescription}</SubTitle>
-            <Title fontColor={COLOR.GRAY900}>{title}</Title>
+            <Title>{title}</Title>
             <RowBox justifyContent={"none"}>
-                <BodyL fontColor={COLOR.GRAY900}>{discountPercent}%</BodyL>
+                <BodyL>{discountPercent}%</BodyL>
                 <BodyXL
                     margin={"0 0.125rem 0 0.25rem"}
                     fontColor={COLOR.ERROR500}

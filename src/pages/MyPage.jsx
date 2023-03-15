@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
 
-import { getOrderByMemberId } from "../apollo/domain/member/member.queries";
+import { getOrderByMemberId } from "../apollo/domain/member";
 import { COLOR, PATH } from "../constants";
 import { ProfileCard } from "../domain/member/components";
 import { PaidClassBox } from "../domain/member/components";
@@ -24,7 +24,7 @@ const MyPage = () => {
 
     const [formattedPaidProduct, setFormattedPaidProduct] = useState([]);
 
-    const { data: paidProducts } = useQuery(getOrderByMemberId, {
+    const { data } = useQuery(getOrderByMemberId, {
         variables: {
             memberId: userId,
         },
@@ -66,17 +66,13 @@ const MyPage = () => {
             <NoticeItem onClick={handleNotificationPage}>
                 <RowBox justifyContent="flex-start">
                     <NoticeIcon color={COLOR.GRAY800} />
-                    <BodyL fontColor={COLOR.GRAY900} margin={"0 0 0 0.75rem"}>
-                        공지사항
-                    </BodyL>
+                    <BodyL margin={"0 0 0 0.75rem"}>공지사항</BodyL>
                 </RowBox>
             </NoticeItem>
             <CSItem onClick={handleCSPage}>
                 <RowBox justifyContent="flex-start">
                     <CSIcon color={COLOR.GRAY800} />
-                    <BodyL fontColor={COLOR.GRAY900} margin={"0 0 0 0.75rem"}>
-                        문의하기
-                    </BodyL>
+                    <BodyL margin={"0 0 0 0.75rem"}>문의하기</BodyL>
                 </RowBox>
             </CSItem>
             <HeadingXL margin={"1rem 0.5rem 0.75rem 0.5rem"}>

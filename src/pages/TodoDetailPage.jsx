@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
@@ -8,24 +8,23 @@ import { getTodoDetailByMemberId } from "../apollo/domain/member";
 import { COLOR, PATH } from "../constants";
 import { PROCESS_STATUS } from "../constants/processStatus";
 import CourseCurriculum from "../domain/mycourse/components/CourseCurriculum";
-import { usePopup, useToggle } from "../hooks";
-import { Card, CustomViewer, DetailBoxCoulmn } from "../mds";
+import { useToggle } from "../hooks";
+import { CustomViewer } from "../mds";
 import { RowBox } from "../mds/box";
 import { BasicButton, CheckButton } from "../mds/button";
 import { SessionBasicIcon } from "../mds/icon";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../mds/text";
 
-// /mycourse/detail/todo?courseId=492a2191-094a-4e04-93a5-48a8ddd18079&sessionId=65cc2e7c-d73f-48a6-9952-70d9913379bb&todoId=08c503a7-0887-4012-9481-9c891c5f3f07
+// /mycourse/detail/todo?courseId=bbad2994-71c1-4871-8ae7-aad168d8dfe5sessionId=e08166a0-df65-4b0b-b57c-35e3e47fd36etodoId=767325d3-1158-4b0f-9cf0-af3ce418bc70
+
+// /mycourse/detail/todo/bbad2994-71c1-4871-8ae7-aad168d8dfe5/e08166a0-df65-4b0b-b57c-35e3e47fd36e/767325d3-1158-4b0f-9cf0-af3ce418bc70
 
 const TodoDetailPage = () => {
     const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
 
     const navigate = useNavigate();
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const sessionId = urlParams.get("sessionId");
-    const todoId = urlParams.get("todoId");
+    const { sessionId, todoId } = useParams();
 
     const [currentProduct, setCurrentProduct] = useState();
     const [currentTodo, setCurrentTodo] = useState();
@@ -38,34 +37,39 @@ const TodoDetailPage = () => {
     const [isShowCurriculum, __, handleToggle] = useToggle();
     // const [isShowCurriculum, handleOpen, handleClose] = usePopup();
 
+    const handleBestPracticePage = () => navigate(PATH.TODO_DETAIL_BEST);
+
     const { data } = useQuery(getTodoDetailByMemberId, {
+        variables: {
+            id: "e155ad7c-3547-4312-b09c-b3729c0b18c3",
+        },
         onCompleted: data => {
             setCurrentProduct(data.getMemberById.subscribeProducts);
+
+            /*
+            FIXME : add orderBy column in subscribeSession
+            */
             const formattedSession =
-                data.getMemberById.subscribeProducts.sessions.find(
+                data.getMemberById.subscribeProducts[0].sessions.find(
                     session => session.id === sessionId
                 );
+
+            /*
+            FIXME : add orderBy column in subscribeTodo
             const [sortedLastTodo] = formattedSession.todos.sort(
                 (a, b) => b.orderBy - a.orderBy
-            );
-            setCurrentSession(formattedSession);
-            setCurrentTodo(
-                formattedSession.todos.find(todo => todo.id === todoId)
             );
             setIsLastTodo(
                 sortedLastTodo.orderBy + 1 === formattedSession.todos.length
             );
+            */
+            setCurrentSession(formattedSession);
+            setCurrentTodo(
+                formattedSession.todos.find(todo => todo.id === todoId)
+            );
         },
+        onError: error => console.error(error),
     });
-
-    useEffect(() => {
-        if (currentTodo) {
-            document.title = currentTodo.title;
-            setIsAlreadyCompleted(currentTodo.status === SUCCESS);
-        }
-    }, [currentTodo]);
-
-    const handleBestPracticePage = () => navigate(PATH.TODO_DETAIL_BEST);
 
     return (
         <>

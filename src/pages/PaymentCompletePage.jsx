@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 import { useMutation, useQuery } from "@apollo/client";
 
+import { getOrderByOrderNumber } from "../apollo/domain/payment";
 import {
     buyProduct,
     verifyOrder,
 } from "../apollo/domain/payment/payment.mutations";
-import { getOrderByOrderNumber } from "../apollo/domain/payment/payment.queries";
 import { COLOR, ORDER_STATE, PATH } from "../constants";
 import { ReceiptCard } from "../domain/order/components";
 import { BasicButton } from "../mds/button";
@@ -16,7 +16,9 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL, BodyXXL, HeadingXL } from "../mds/text";
 
 const PaymentCompletePage = () => {
-    const { userid: memberId } = { ...localStorage };
+    const { userid: memberId = "e155ad7c-3547-4312-b09c-b3729c0b18c3" } = {
+        ...localStorage,
+    };
     const { courseId } = useParams();
     const { search } = useLocation();
     const navigate = useNavigate();

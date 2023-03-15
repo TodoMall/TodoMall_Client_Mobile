@@ -9,17 +9,16 @@ import { HeadingXL } from "../../../text";
 
 const MyCourseHeader = () => {
     const navigate = useNavigate();
-    // const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID, null);
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID, "user");
 
-    // const handleNotificationPage = () => navigate(PATH.NOTIFICATION(userId));
+    const handleNotificationPage = () =>
+        navigate(`${PATH.NOTIFICATION}/${userId}`);
 
     return (
         <>
             <Container>
-                <HeadingXL fontColor={COLOR.GRAY900}>학습</HeadingXL>
-                <NotificationButton
-                // onClick={handleNotificationPage}
-                />
+                <HeadingXL>학습</HeadingXL>
+                <NotificationButton onClick={handleNotificationPage} />
             </Container>
             <Divider />
         </>

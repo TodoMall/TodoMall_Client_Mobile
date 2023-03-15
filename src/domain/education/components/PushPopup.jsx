@@ -21,7 +21,7 @@ const PushPopup = ({ onClose: handleClose = () => {} }) => {
 
     const handleAcceptPushAlarm = () => {
         setIsAgreePush(prev => !prev);
-        return updatePushAlarmStatus({
+        updatePushAlarmStatus({
             variables: {
                 // TODO : fix memberId value to stored localStorage memberId
                 memberId: "e155ad7c-3547-4312-b09c-b3729c0b18c3",
@@ -46,7 +46,7 @@ const PushPopup = ({ onClose: handleClose = () => {} }) => {
                 <BodyS fontColor={COLOR.MAIN500}>알려드려요!</BodyS>
                 <RowBox margin={"2rem 0 0 0"}>
                     <Button onClick={handleClose}>
-                        <BodyXS fontColor={COLOR.GRAY900}>취소</BodyXS>
+                        <BodyXS>취소</BodyXS>
                     </Button>
                     <Button onClick={handleAcceptPushAlarm}>
                         <BodyXS fontColor={COLOR.MAIN500}>알림받기</BodyXS>

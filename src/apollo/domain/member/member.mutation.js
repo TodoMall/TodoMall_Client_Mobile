@@ -30,3 +30,9 @@ export const updateMemberAlarmStatusAgreement = gql`
         }
     }
 `;
+
+export const deleteMember = gql`
+    mutation deleteUser($id: String!) {
+        deleteUser(data: { id: $id })
+    }
+`;

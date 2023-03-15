@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cross-env REACT_APP_NODE_ENV=production react-scripts start",
-    "dev": "cross-env REACT_APP_NODE_ENV=development react-scripts start",
-    "local": "cross-env REACT_APP_NODE_ENV=local react-scripts start",
+    "start": "cross-env REACT_APP_NODE_ENV=production GENERATE_SOURCEMAP=false react-scripts start",
+    "dev": "cross-env REACT_APP_NODE_ENV=development GENERATE_SOURCEMAP=false react-scripts start",
+    "local": "cross-env REACT_APP_NODE_ENV=local GENERATE_SOURCEMAP=false react-scripts start",
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
     "eject": "DISABLE_ESLINT_PLUGIN=true react-scripts eject",

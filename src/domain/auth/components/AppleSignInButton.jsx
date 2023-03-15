@@ -31,7 +31,6 @@ const AppleSignInButton = () => {
         <BasicButton
             margin="0"
             backgroundColor={COLOR.WHITE}
-            fontColor={COLOR.GRAY900}
             onClick={onClickLoginButton}
         >
             <BodyL>Apple로 계속하기</BodyL>

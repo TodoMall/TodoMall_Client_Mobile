@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
+import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
+import { useLocalStorage } from "../hooks";
 import { BasicButton } from "../mds/button";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL } from "../mds/text";
 
-const TermOfServicePage = ({ onClick: handleClick = () => {} }) => {
+const TermOfServicePage = () => {
+    const [isServiceAgree, setIsServiceAgree] = useLocalStorage(
+        LOCAL_STORAGE_KEYS.IS_SERVICE_AGREE,
+        false
+    );
+
+    const handleAgreeStatus = () => setIsServiceAgree(true);
+
     return (
         <Container>
             <BasicHeader pageDescription={"서비스 이용약관"} />
@@ -601,9 +610,11 @@ const TermOfServicePage = ({ onClick: handleClick = () => {} }) => {
                 </Text>
                 <Text>이 약관은 2023년 3월 1일부터 시행합니다.</Text>
                 <Text>공고일 : 2023년 3월 1일</Text>
-                <BasicButton onClick={handleClick}>
-                    <BodyXL>동의합니다</BodyXL>
-                </BasicButton>
+                {!isServiceAgree && (
+                    <BasicButton onClick={handleAgreeStatus}>
+                        <BodyXL fontColor={COLOR.WHITE}>동의합니다</BodyXL>
+                    </BasicButton>
+                )}
             </PageContainer>
         </Container>
     );

@@ -7,6 +7,7 @@ import { BodyL, HeadingXL } from "../../../mds/text";
 
 const CourseCurriculum = ({ product, session, onToggle: handleToggle }) => {
     const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
+
     return (
         <>
             <BasicHeader
@@ -14,7 +15,7 @@ const CourseCurriculum = ({ product, session, onToggle: handleToggle }) => {
                 onClick={handleToggle}
             />
             <Container>
-                {product?.sessions.map((session, idx) => {
+                {product[0]?.sessions?.map((session, idx) => {
                     return (
                         <Card key={idx}>
                             <BodyL fontColor={COLOR.GRAY700}>

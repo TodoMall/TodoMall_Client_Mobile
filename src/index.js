@@ -12,9 +12,9 @@ import { ScrollToTop } from "./utils";
 
 if (!isProd) {
     console.warn("Mock Service Worker is Running 🏄🏄🏄");
-    worker.start({
-        onUnhandledRequest: "bypass",
-    });
+    // worker.start({
+    //     onUnhandledRequest: "bypass",
+    // });
     console.warn("🏄🏄🏄 Current Set API Endpoint 🏄🏄🏄 \n", API_ENDPOINT);
 }
 

@@ -6,6 +6,7 @@ import { Card } from "../../../mds";
 import { RowBox } from "../../../mds/box";
 import { BasicButton } from "../../../mds/button";
 import { ProgressIcon } from "../../../mds/icon";
+import { LoudSpeakerImage } from "../../../mds/image";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
 const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
@@ -17,12 +18,9 @@ const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
 
     return (
         <Card justifyContent="none" margin={"0"} padding={"1rem 1.25rem"}>
-            <img
-                width={318}
-                height={208}
-                src="/image/demo_tutorial_card.png"
-                alt="Demo Tutorial Card"
-            />
+            <ImageWapper>
+                <LoudSpeakerImage />
+            </ImageWapper>
             <RowBox justifyContent={"flex-start"}>
                 <ProgressIcon />
                 <BodyL margin={"0 0 0 0.25rem"} fontColor={COLOR.BRAND_COLOR}>
@@ -58,4 +56,11 @@ export default TutorialCard;
 
 const WelcomeText = styled.div`
     width: 100%;
+`;
+const ImageWapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 1.5rem;
 `;

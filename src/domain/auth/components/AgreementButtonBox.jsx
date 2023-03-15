@@ -10,8 +10,13 @@ import { BodyL, BodyXXXL } from "../../../mds/text";
 import AgreementButtonItem from "./AgreementButtonItem";
 
 const AgreementButtonBox = () => {
-    const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE, IS_TUTORIAL_DONE } =
-        LOCAL_STORAGE_KEYS;
+    const {
+        IS_SERVICE_AGREE,
+        IS_PERSONAL_AGREE,
+        IS_PUSHALARM_AGREE,
+        IS_MARKETINGALARM_AGREE,
+        IS_TUTORIAL_DONE,
+    } = LOCAL_STORAGE_KEYS;
 
     const navigator = useNavigate();
 
@@ -20,11 +25,17 @@ const AgreementButtonBox = () => {
 
     const [isAgreePush, setIsAgreePush, handleAgreePushStatus] =
         useToggle(false);
-    const [isAgreeAd, setIsAgreeAd, handleAgreeAdStatus] = useToggle(false);
+    const [isAgreeMarketing, setIsAgreeMarketing, handleAgreeMarketingStatus] =
+        useToggle(false);
 
     const [isTutorialDone] = useLocalStorage(IS_TUTORIAL_DONE, false);
-    const [isPushAgree] = useLocalStorage(IS_PUSHALARM_AGREE, false);
-    const [isMarketingAgree] = useLocalStorage(IS_MARKETINGALARM_AGREE, false);
+    const [, setIsServiceAgree] = useLocalStorage(IS_SERVICE_AGREE, false);
+    const [, setIsPersonalAgree] = useLocalStorage(IS_PERSONAL_AGREE, false);
+    const [, setIsPushAgree] = useLocalStorage(IS_PUSHALARM_AGREE, false);
+    const [, setIsMarketingAgree] = useLocalStorage(
+        IS_MARKETINGALARM_AGREE,
+        false
+    );
 
     const requireAgreementList = [
         {
@@ -36,7 +47,7 @@ const AgreementButtonBox = () => {
             detail: PATH.AGREEMENT_PERSONAL,
         },
         {
-            title: "만14세 이상입니다",
+            title: "만 14세 이상입니다",
             detail: null,
         },
     ];
@@ -44,10 +55,18 @@ const AgreementButtonBox = () => {
     const onClickAllAgreement = () => {
         setIsAllSelected(!isAllSelected);
         setIsAgreePush(!isAllSelected);
-        setIsAgreeAd(!isAllSelected);
+        setIsAgreeMarketing(!isAllSelected);
     };
 
     const onClickNextButton = () => {
+        if (isAgreePush) {
+            setIsPushAgree(true);
+        }
+        if (isAgreeMarketing) {
+            setIsMarketingAgree(true);
+        }
+        setIsPersonalAgree(true);
+        setIsServiceAgree(true);
         navigator(PATH.MYCOURSE);
     };
 
@@ -94,7 +113,7 @@ const AgreementButtonBox = () => {
                 onClick={onClickAgreementButton}
                 detail={item.detail}
             >
-                <BodyL fontColor={COLOR.GRAY900}>(필수)</BodyL>
+                <BodyL>(필수)</BodyL>
                 <BodyL>&nbsp; {item.title}</BodyL>
             </AgreementButtonItem>
         );
@@ -106,14 +125,14 @@ const AgreementButtonBox = () => {
                 <AllAgreementCheckButton onClick={onClickAllAgreement}>
                     <CheckIcon isChecked={isAllSelected} />
                 </AllAgreementCheckButton>
-                <BodyXXXL fontColor={COLOR.GRAY900}>약관 전체 동의</BodyXXXL>
+                <BodyXXXL>약관 전체 동의</BodyXXXL>
             </AllAgreementContainer>
 
             {RequireAgreementItems}
 
             <AgreementButtonItem
-                isAgreed={isAgreeAd}
-                onClick={handleAgreeAdStatus}
+                isAgreed={isAgreeMarketing}
+                onClick={handleAgreeMarketingStatus}
             >
                 <BodyL fontColor={COLOR.GRAY500}>(선택)</BodyL>
                 <BodyL>&nbsp; 광고성 정보 수신 동의</BodyL>
@@ -142,6 +161,12 @@ const AgreementButtonBox = () => {
 
 export default AgreementButtonBox;
 
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`;
+
 const AllAgreementContainer = styled.div`
     display: flex;
     align-items: center;
@@ -155,10 +180,4 @@ const AllAgreementCheckButton = styled.button`
     background-color: transparent;
     border: none;
     margin: 1.125rem 1rem 1.125rem 1rem;
-`;
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 `;

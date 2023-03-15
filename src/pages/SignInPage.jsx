@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { COLOR } from "../constants";
 import {
     AppleSignInButton,
     GuestSignInButton,
@@ -29,6 +30,8 @@ export default LoginPage;
 
 const Container = styled.div`
     width: 100%;
+    height: 100%;
+    background-color: ${COLOR.BRAND_COLOR};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,10 +42,13 @@ const BrandLogoContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
+    width: 100%;
+    max-width: 22.375rem;
     display: inline-flex;
-    flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 7.5rem;
     align-items: center;
+    flex-direction: column;
+    padding: 0 1rem;
+    margin: 7.5rem 0 1.25rem;
     gap: 0.5rem;
 `;

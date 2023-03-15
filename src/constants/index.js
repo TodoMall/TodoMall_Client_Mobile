@@ -19,3 +19,5 @@ export { PROCESS_STATUS } from "./processStatus";
 export { PRODUCT_TYPE, CATEGORY_TAG } from "./productType";
 export { ORDER_STATE } from "./orderState";
 export { PROMOTION_TYPE } from "./promotionType";
+export { ADVERTISEMENT_TYPE } from "./advertisementType";
+export { NOTIFICATION_TYPE } from "./notificationType";

@@ -61,12 +61,12 @@ function App() {
                 <Route path={PATH.TERMS} element={<TermsPage />} />
                 <Route path={PATH.ACCOUNT} element={<AccountPage />} />
                 <Route
-                    path={PATH.NOTIFICATION}
+                    path={`${PATH.NOTIFICATION}/:userId`}
                     element={<NotificationPage />}
                 />
                 <Route path={PATH.NOTICE} element={<NoticePage />} />
                 <Route
-                    path={PATH.NOTICE_DETAIL}
+                    path={`${PATH.NOTICE_DETAIL}/:noticeId`}
                     element={<NoticeDetailPage />}
                 />
                 <Route
@@ -92,12 +92,15 @@ function App() {
                     element={<PaymentPage />}
                 />
                 <Route
-                    path={PATH.PAYMENT_DETAIL}
+                    path={`${PATH.PAYMENT_DETAIL}/:courseId`}
                     element={<PaymentCompletePage />}
                 />
                 <Route path={PATH.MYPAGE} element={<MyPage />} />
 
-                <Route path={PATH.TODO_DETAIL} element={<TodoDetailPage />} />
+                <Route
+                    path={`${PATH.TODO_DETAIL}/:courseId/:sessionId/:todoId`}
+                    element={<TodoDetailPage />}
+                />
                 <Route
                     path={PATH.TODO_DETAIL_BEST}
                     element={<TodoBestPractice />}
