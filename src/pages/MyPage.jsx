@@ -10,6 +10,7 @@ import { ProfileCard } from "../domain/member/components";
 import { PaidClassBox } from "../domain/member/components";
 import { ColBox, RowBox } from "../mds/box";
 import { CSIcon, NoticeIcon, SettingIcon } from "../mds/icon";
+import { EmptyTrophysImage } from "../mds/image";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
@@ -45,6 +46,8 @@ const MyPage = () => {
     const handleSettingPage = () => navigate(PATH.SETTING);
     const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
 
+    console.log(formattedPaidProduct?.length);
+    formattedPaidProduct?.length;
     return (
         <Container>
             <ProfileCard
@@ -63,39 +66,60 @@ const MyPage = () => {
                     </SettingItem>
                 </RowBox>
             </ProfileCard>
+
             <NoticeItem onClick={handleNotificationPage}>
                 <RowBox justifyContent="flex-start">
                     <NoticeIcon color={COLOR.GRAY800} />
                     <BodyL margin={"0 0 0 0.75rem"}>공지사항</BodyL>
                 </RowBox>
             </NoticeItem>
+
             <CSItem onClick={handleCSPage}>
                 <RowBox justifyContent="flex-start">
                     <CSIcon color={COLOR.GRAY800} />
                     <BodyL margin={"0 0 0 0.75rem"}>문의하기</BodyL>
                 </RowBox>
             </CSItem>
+
             <HeadingXL margin={"1rem 0.5rem 0.75rem 0.5rem"}>
                 내 클래스
             </HeadingXL>
+
+            <ImageWrapper>
+                {formattedPaidProduct?.length === 0 && <EmptyTrophysImage />}
+                <HeadingXL fontColor={COLOR.GRAY500}>
+                    아직 도전한 클래스가 없어요
+                </HeadingXL>
+            </ImageWrapper>
+
             <ClassContainer>
-                {formattedPaidProduct?.map((item, idx) => {
-                    return (
-                        <PaidClassBox
-                            key={item?.id}
-                            courseId={item?.id}
-                            challengeOrder={idx}
-                            thumbnailUrl={item?.product.thumbnailUrl}
-                            subscribeProducts={item?.member.subscribeProducts}
-                        />
-                    );
-                })}
+                {formattedPaidProduct?.length > 0 &&
+                    formattedPaidProduct?.map((item, idx) => {
+                        return (
+                            <PaidClassBox
+                                key={item?.id}
+                                courseId={item?.id}
+                                challengeOrder={idx}
+                                thumbnailUrl={item?.product.thumbnailUrl}
+                                subscribeProducts={
+                                    item?.member.subscribeProducts
+                                }
+                            />
+                        );
+                    })}
             </ClassContainer>
             <GlobalNavBar />
         </Container>
     );
 };
+
 export default MyPage;
+const ImageWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
 const Container = styled.div`
     padding: 0 1rem 4rem 1rem;
 `;
