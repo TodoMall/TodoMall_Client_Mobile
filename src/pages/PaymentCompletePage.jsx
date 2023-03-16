@@ -16,9 +16,7 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL, BodyXXL, HeadingXL } from "../mds/text";
 
 const PaymentCompletePage = () => {
-    const { userid: memberId = "e155ad7c-3547-4312-b09c-b3729c0b18c3" } = {
-        ...localStorage,
-    };
+    const { memberId } = { ...localStorage };
     const { courseId } = useParams();
     const { search } = useLocation();
     const navigate = useNavigate();

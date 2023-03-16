@@ -15,11 +15,7 @@ import { GlobalNavBar } from "../mds/layout/mobile";
 import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
 const MyPage = () => {
-    const {
-        userId = "e155ad7c-3547-4312-b09c-b3729c0b18c3",
-        name = "김상혁",
-        email = "tkdgur234@naver.com",
-    } = {
+    const { memberId, name, email } = {
         ...localStorage,
     };
 
@@ -27,7 +23,7 @@ const MyPage = () => {
 
     const { data } = useQuery(getOrderByMemberId, {
         variables: {
-            memberId: userId,
+            memberId: memberId,
         },
         onCompleted: data => {
             const copiedPaidProduct = [...data.getOrderByMemberId];
@@ -46,7 +42,6 @@ const MyPage = () => {
     const handleSettingPage = () => navigate(PATH.SETTING);
     const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
 
-    console.log(formattedPaidProduct?.length);
     formattedPaidProduct?.length;
     return (
         <Container>

@@ -24,11 +24,7 @@ import { BodyXL, HeadingXL } from "../mds/text";
 import { isNull } from "../utils/isNull";
 
 const PaymentPage = () => {
-    const {
-        userId: memberId = "e155ad7c-3547-4312-b09c-b3729c0b18c3",
-        name = "김상혁",
-        email = "tkdgur234@naver.com",
-    } = { ...localStorage };
+    const { memberId, name, email } = { ...localStorage };
 
     const { courseId } = useParams();
 

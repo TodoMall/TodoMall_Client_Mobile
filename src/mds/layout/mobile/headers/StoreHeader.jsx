@@ -8,7 +8,7 @@ import { CategoryTabBar } from "../../../category";
 import { BrandLogo } from "../../../icon";
 
 const StoreHeader = () => {
-    const currentCategory = useQueryString("tag");
+    const [currentCategory] = useQueryString("tag");
 
     const [_, setSelectedCategory] = useState(currentCategory);
 

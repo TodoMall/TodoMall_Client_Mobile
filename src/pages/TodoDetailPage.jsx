@@ -1,3 +1,4 @@
+import Drawer from "@mui/material/Drawer";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -8,7 +9,7 @@ import { getTodoDetailByMemberId } from "../apollo/domain/member";
 import { COLOR, PATH } from "../constants";
 import { PROCESS_STATUS } from "../constants/processStatus";
 import CourseCurriculum from "../domain/mycourse/components/CourseCurriculum";
-import { useToggle } from "../hooks";
+import { usePopup, useToggle } from "../hooks";
 import { CustomViewer } from "../mds";
 import { RowBox } from "../mds/box";
 import { BasicButton, CheckButton } from "../mds/button";
@@ -16,14 +17,13 @@ import { SessionBasicIcon } from "../mds/icon";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../mds/text";
 
-// /mycourse/detail/todo?courseId=bbad2994-71c1-4871-8ae7-aad168d8dfe5sessionId=e08166a0-df65-4b0b-b57c-35e3e47fd36etodoId=767325d3-1158-4b0f-9cf0-af3ce418bc70
-
 // /mycourse/detail/todo/bbad2994-71c1-4871-8ae7-aad168d8dfe5/e08166a0-df65-4b0b-b57c-35e3e47fd36e/767325d3-1158-4b0f-9cf0-af3ce418bc70
 
 const TodoDetailPage = () => {
     const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
 
     const navigate = useNavigate();
+    const { memberId } = { ...localStorage };
     const { sessionId, todoId } = useParams();
 
     const [currentProduct, setCurrentProduct] = useState();
@@ -34,8 +34,7 @@ const TodoDetailPage = () => {
 
     const [isTodoCompleteChecked, _, handleTodoCompleteChecked] =
         useToggle(false);
-    const [isShowCurriculum, __, handleToggle] = useToggle();
-    // const [isShowCurriculum, handleOpen, handleClose] = usePopup();
+    const [isShowCurriculum, handleOpen, handleClose] = usePopup();
 
     const handleBestPracticePage = () => navigate(PATH.TODO_DETAIL_BEST);
 
@@ -74,19 +73,24 @@ const TodoDetailPage = () => {
     return (
         <>
             {isShowCurriculum && (
-                // TODO : 만약 아래/위/왼/오 에서 스르륵 나오게 하고싶다면 https://v4.mui.com/components/drawers/ 참고
-                <CourseCurriculum
-                    product={currentProduct}
-                    session={currentSession}
-                    onToggle={handleToggle}
-                />
+                <Drawer
+                    open={isShowCurriculum}
+                    onClose={handleClose}
+                    variant="temporary"
+                    anchor={"bottom"}
+                >
+                    <CourseCurriculum
+                        product={currentProduct}
+                        session={currentSession}
+                    />
+                </Drawer>
             )}
             {!isShowCurriculum && (
                 <>
                     <BasicHeader
                         pageDescription={currentTodo?.title}
                         hasListButton={true}
-                        onList={handleToggle}
+                        onList={handleOpen}
                     />
                     <Container>
                         {currentTodo && (

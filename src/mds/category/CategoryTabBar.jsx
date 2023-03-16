@@ -8,7 +8,7 @@ import CategoryItem from "./CategoryItem";
 
 const CategoryTabBar = ({ onClick: handleClick }) => {
     const navigate = useNavigate();
-    const selectedCategory = useQueryString("tag");
+    const [selectedCategory] = useQueryString("tag");
 
     const handleCategoryPage = tag => {
         if (tag !== CATEGORY_TAG.BEST) {

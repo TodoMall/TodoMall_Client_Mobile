@@ -14,9 +14,7 @@ import { BodyM, BodyS } from "../mds/text";
 const SettingPage = () => {
     const navigate = useNavigate();
     const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE } = LOCAL_STORAGE_KEYS;
-    const { memberId = "e155ad7c-3547-4312-b09c-b3729c0b18c3" } = {
-        ...localStorage,
-    };
+    const { memberId } = { ...localStorage };
 
     const [updatePushAlarmStatus] = useMutation(
         updateMemberAlarmStatusAgreement
@@ -39,7 +37,7 @@ const SettingPage = () => {
                 isPushAlarmAgree: !isAgreePush,
             },
             onCompleted: () => {
-                setIsAgreePush(prev => !prev);
+                setIsAgreePush(!isAgreePush);
             },
         });
     };
@@ -51,7 +49,7 @@ const SettingPage = () => {
                 isPushAlarmAgree: isAgreePush,
             },
             onCompleted: () => {
-                setIsAgreeMarketing(prev => !prev);
+                setIsAgreeMarketing(!isAgreeMarketing);
             },
         });
     };

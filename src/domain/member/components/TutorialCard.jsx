@@ -10,10 +10,10 @@ import { LoudSpeakerImage } from "../../../mds/image";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
 const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
-    const [name] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME, "김상혁");
+    const [name] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME, null);
 
     const handleDownloadTutorial = () => {
-        // TODO : BE에서 클래스 다운로드 관련 처리 후 작업
+        console.log("handleDownloadTutorial");
     };
 
     return (

@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
-import { useLocalStorage } from "../../../hooks";
+import { COLOR, PATH } from "../../../constants";
 import { Card } from "../../../mds";
 import { RowBox } from "../../../mds/box";
 import { BasicButton } from "../../../mds/button";
@@ -12,7 +11,7 @@ import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
 const SearchClassCard = () => {
     const navigate = useNavigate();
-    const [name] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME, "김상혁");
+    const { name } = { ...localStorage };
 
     const handleStore = () => navigate(PATH.STORE);
 

@@ -8,7 +8,7 @@ import { ADVERTISEMENT_TYPE } from "../../../constants";
 import { useQueryString } from "../../../hooks";
 
 const ThumbnailBanner = () => {
-    const category = useQueryString("tag").toLocaleLowerCase();
+    const [category] = useQueryString("tag");
 
     const [thumbnailByTag, setThumbnailByTag] = useState();
 
@@ -20,7 +20,9 @@ const ThumbnailBanner = () => {
 
     useEffect(() => {
         setThumbnailByTag(
-            data?.getAdvertisementByType.find(el => el.name === category)
+            data?.getAdvertisementByType.find(
+                el => el.name === category.toLocaleLowerCase()
+            )
         );
     }, [category, data]);
 

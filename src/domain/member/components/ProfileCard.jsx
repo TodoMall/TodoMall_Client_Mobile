@@ -8,9 +8,7 @@ const ProfileCard = ({
     marginBottom = "1.25rem",
     backgroundColor = COLOR.GRAY50,
 }) => {
-    const {
-        image = "https://k.kakaocdn.net/dn/djeMjq/btrcokyYR7j/7qdcWCkb9KZdFzaoyqt091/img_640x640.jpg",
-    } = { ...localStorage };
+    const { image } = { ...localStorage };
     return (
         <Container
             padding={padding}

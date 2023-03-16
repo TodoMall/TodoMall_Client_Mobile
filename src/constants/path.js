@@ -13,7 +13,7 @@ export const PATH = {
     NOTICE_DETAIL: "/setting/notice/detail",
     SINGIN: "/signin",
     MYPAGE: "/mypage",
-    NOTIFICATION: "/notification", // add : ?memberId=${memberId}
+    NOTIFICATION: "/notification",
     PRO_CENTER: "/pro",
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
     PAYMENT: "/order",
@@ -25,5 +25,5 @@ export const PATH = {
     PAID_PRODUCT_DETAIL: "/mycourse/detail",
     TODO_DETAIL: "/mycourse/detail/todo",
     TODO_DETAIL_BEST: "/mycourse/detail/todo/bestpractice",
-    MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
+    MISSION_CERTIFICATION: "/mycourse/session/mission",
 };

@@ -10,7 +10,7 @@ import { CategoryTabBar } from "../../category";
 
 const Header = () => {
     const navigate = useNavigate();
-    const { memberId } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
+    const { memberId } = { ...localStorage };
 
     const handleMainPage = () => navigate(PATH.MAIN);
     const handleAlarmPage = () => navigate(PATH.NOTIFICATION(memberId));

@@ -10,7 +10,7 @@ import { HeadingXL } from "../../../mds/text";
 import ClassBox from "./ClassBox";
 
 const CategoryClassList = () => {
-    const currentCategory = useQueryString("tag");
+    const [currentCategory] = useQueryString("tag");
     const [productByCategory, setProductByCategory] = useState(null);
     const { data } = useQuery(getProductByType, {
         variables: { type: currentCategory },

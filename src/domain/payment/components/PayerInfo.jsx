@@ -6,9 +6,7 @@ import { BodyL, BodyM } from "../../../mds/text";
 import { ProfileCard } from "../../member/components";
 
 const PayerInfo = () => {
-    const { name = "김상혁", email = "tkdgur234@naver.com" } = {
-        ...localStorage,
-    };
+    const { name, email } = { ...localStorage };
 
     return (
         <ProfileCard>
