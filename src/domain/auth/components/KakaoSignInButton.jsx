@@ -1,12 +1,11 @@
 import {
-    COLOR,
     KAKAO_CLIENT_ID,
     KAKAO_ENDPOINT,
     REDIRECT_URI,
 } from "../../../constants";
 import { PROVIDERS } from "../../../constants/providers";
 import { BasicButton } from "../../../mds/button";
-import { BodyL } from "../../../mds/text";
+import { KakaoLoginImage } from "../../../mds/image";
 import { useLogin } from "../../member/hooks";
 
 const KakaoSignInButton = () => {
@@ -25,7 +24,7 @@ const KakaoSignInButton = () => {
             backgroundColor="#FEE500"
             onClick={onClickLoginButton}
         >
-            <BodyL>Kakao로 계속하기</BodyL>
+            <KakaoLoginImage />
         </BasicButton>
     );
 };

@@ -29,3 +29,5 @@ export { default as CalendarIcon } from "./CalendarIcon";
 export { default as FlagIcon } from "./FlagIcon";
 export { default as LevelIcon } from "./LevelIcon";
 export { default as TodoIcon } from "./TodoIcon";
+
+export { default as PlusIcon } from "./PlusIcon";

@@ -5,7 +5,7 @@ import {
     REDIRECT_URI,
 } from "../../../constants";
 import { BasicButton } from "../../../mds/button";
-import { BodyL } from "../../../mds/text";
+import { AppleLoginImage } from "../../../mds/image";
 
 const AppleSignInButton = () => {
     const initApple = () => {
@@ -33,7 +33,7 @@ const AppleSignInButton = () => {
             backgroundColor={COLOR.WHITE}
             onClick={onClickLoginButton}
         >
-            <BodyL>Apple로 계속하기</BodyL>
+            <AppleLoginImage />
         </BasicButton>
     );
 };
