@@ -3,7 +3,7 @@ export { GNB } from "./globalNavBar";
 export { PATH } from "./path";
 export { MAX_WIDTH } from "./basement";
 export { FONT_STYLE } from "./font";
-export { isProd, API_ENDPOINT } from "./env";
+export { isProd, API_ENDPOINT, KAKAO } from "./env";
 export { recommendTag } from "./recommendTag";
 export {
     KAKAO_ENDPOINT,
