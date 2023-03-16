@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useMutation } from "@apollo/client";
+
+import { updateAgreement } from "../../../apollo/domain/member";
 import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
 import { useLocalStorage, useToggle } from "../../../hooks";
 import { BasicButton } from "../../../mds/button";
@@ -10,6 +13,8 @@ import { BodyL, BodyXXXL } from "../../../mds/text";
 import AgreementButtonItem from "./AgreementButtonItem";
 
 const AgreementButtonBox = () => {
+    const { memberId } = { ...localStorage };
+
     const {
         IS_SERVICE_AGREE,
         IS_PERSONAL_AGREE,
@@ -22,20 +27,26 @@ const AgreementButtonBox = () => {
 
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [isRequiredSelectedCount, setIsRequiredSelectedCount] = useState(0);
-
     const [isAgreePush, setIsAgreePush, handleAgreePushStatus] =
         useToggle(false);
     const [isAgreeMarketing, setIsAgreeMarketing, handleAgreeMarketingStatus] =
         useToggle(false);
 
-    const [isTutorialDone] = useLocalStorage(IS_TUTORIAL_DONE, false);
-    const [, setIsServiceAgree] = useLocalStorage(IS_SERVICE_AGREE, false);
-    const [, setIsPersonalAgree] = useLocalStorage(IS_PERSONAL_AGREE, false);
+    const [, setTutorialDone] = useLocalStorage(IS_TUTORIAL_DONE, false);
+    const [isServiceAgree, setIsServiceAgree] = useLocalStorage(
+        IS_SERVICE_AGREE,
+        false
+    );
+    const [isPersonalAgree, setIsPersonalAgree] = useLocalStorage(
+        IS_PERSONAL_AGREE,
+        false
+    );
     const [, setIsPushAgree] = useLocalStorage(IS_PUSHALARM_AGREE, false);
     const [, setIsMarketingAgree] = useLocalStorage(
         IS_MARKETINGALARM_AGREE,
         false
     );
+    const [updateAgreementFn] = useMutation(updateAgreement);
 
     const requireAgreementList = [
         {
@@ -58,16 +69,28 @@ const AgreementButtonBox = () => {
         setIsAgreeMarketing(!isAllSelected);
     };
 
-    const onClickNextButton = () => {
+    const onClickNextButton = async () => {
         if (isAgreePush) {
             setIsPushAgree(true);
         }
         if (isAgreeMarketing) {
             setIsMarketingAgree(true);
         }
+        setTutorialDone(false);
         setIsPersonalAgree(true);
         setIsServiceAgree(true);
-        navigator(PATH.MYCOURSE);
+        await updateAgreementFn({
+            variables: {
+                memberId: memberId,
+                isServiceAgree: isServiceAgree,
+                isPersonalAgree: isPersonalAgree,
+                isMarketingAlarmAgree: isAgreeMarketing,
+                isPushAlarmAgree: isAgreePush,
+            },
+            onCompleted: () => {
+                navigator(PATH.MYCOURSE);
+            },
+        });
     };
 
     const isAllAgreed = () => {

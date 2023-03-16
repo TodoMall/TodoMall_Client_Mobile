@@ -3,6 +3,7 @@ export {
     signInWithKakao,
     signInWithApple,
     updateMemberAlarmStatusAgreement,
+    updateAgreement,
     deleteMember,
 } from "./member.mutation";
 
