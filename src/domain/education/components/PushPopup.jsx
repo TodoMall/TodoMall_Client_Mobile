@@ -11,7 +11,7 @@ import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const PushPopup = ({ onClose: handleClose = () => {} }) => {
     const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE } = LOCAL_STORAGE_KEYS;
-
+    const { memberId } = { ...localStorage };
     const [_, setIsAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
     const [isAgreeMarketing] = useLocalStorage(IS_MARKETINGALARM_AGREE, false);
 
@@ -23,8 +23,7 @@ const PushPopup = ({ onClose: handleClose = () => {} }) => {
         setIsAgreePush(prev => !prev);
         updatePushAlarmStatus({
             variables: {
-                // TODO : fix memberId value to stored localStorage memberId
-                memberId: "e155ad7c-3547-4312-b09c-b3729c0b18c3",
+                memberId: memberId,
                 isMarketingAlarmAgree: isAgreeMarketing,
                 isPushAlarmAgree: true,
             },

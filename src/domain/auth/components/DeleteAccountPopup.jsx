@@ -1,18 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { useMutation } from "@apollo/client";
 
 import { deleteMember } from "../../../apollo/domain/member";
-import { COLOR } from "../../../constants";
+import { COLOR, PATH } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const DeleteAccountPopup = () => {
-    // TODO : delete demo data
-    const { memberId = "e155ad7c-3547-4312-b09c-b3729c0b18c3" } = {
-        ...localStorage,
-    };
+    const { memberId } = { ...localStorage };
+    const navigate = useNavigate();
     const [deleteMemberFn] = useMutation(deleteMember);
 
     const handleDeleteAccount = () => {
@@ -20,6 +19,7 @@ const DeleteAccountPopup = () => {
             variables: {
                 id: memberId,
             },
+            onCompleted: navigate(PATH.SINGIN),
         });
     };
     return (
@@ -31,11 +31,8 @@ const DeleteAccountPopup = () => {
                 </BodyS>
                 <BodyS fontColor={COLOR.ERROR500}>복구하실 수 없습니다.</BodyS>
                 <RowBox margin={"2rem 0 0 0"}>
-                    <Button
-                        onClick={handleDeleteAccount}
-                        fontColor={COLOR.ERROR500}
-                    >
-                        <BodyXS>회원탈퇴</BodyXS>
+                    <Button onClick={handleDeleteAccount}>
+                        <BodyXS fontColor={COLOR.ERROR500}>회원탈퇴</BodyXS>
                     </Button>
                     <Button>
                         <BodyXS>취소</BodyXS>
