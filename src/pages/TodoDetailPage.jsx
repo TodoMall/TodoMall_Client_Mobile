@@ -40,7 +40,7 @@ const TodoDetailPage = () => {
 
     const { data } = useQuery(getTodoDetailByMemberId, {
         variables: {
-            id: "e155ad7c-3547-4312-b09c-b3729c0b18c3",
+            id: memberId,
         },
         onCompleted: data => {
             setCurrentProduct(data.getMemberById.subscribeProducts);

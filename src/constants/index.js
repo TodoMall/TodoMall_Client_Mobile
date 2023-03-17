@@ -1,10 +1,8 @@
 export { COLOR } from "./color";
 export { GNB } from "./globalNavBar";
 export { PATH } from "./path";
-export { MAX_WIDTH } from "./basement";
 export { FONT_STYLE } from "./font";
-export { isProd, API_ENDPOINT, KAKAO } from "./env";
-export { recommendTag } from "./recommendTag";
+export { isProd, API_ENDPOINT, KAKAO, AWS_KEYS } from "./env";
 export {
     KAKAO_ENDPOINT,
     KAKAO_CLIENT_ID,

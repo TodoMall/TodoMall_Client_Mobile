@@ -1,16 +1,22 @@
 import { useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR } from "../constants";
+import { COLOR, PATH } from "../constants";
+import { uploadCertificationImage } from "../domain/member/hooks";
 import { BasicButton } from "../mds/button";
 import { PlusIcon } from "../mds/icon";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, BodyXXL } from "../mds/text";
 
 const MissionCertificationPage = () => {
+    const navigate = useNavigate();
     const fileInputRef = useRef();
     const [readyToUpload, setReadyToUpload] = useState(false);
     const [selectFile, setSelectFile] = useState(null);
+    const [target, setTarget] = useState(null);
+    const { courseId, sessionId } = useParams();
+    const { memberid = "test_member_id" } = { ...localStorage };
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
@@ -18,6 +24,7 @@ const MissionCertificationPage = () => {
 
     const handleFileSelected = ({ target: { files } }) => {
         const [selectedFile] = files;
+        setTarget(selectedFile);
 
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
@@ -27,8 +34,10 @@ const MissionCertificationPage = () => {
         setReadyToUpload(true);
     };
 
-    const handleCertificationMission = () => {};
-
+    const handleCertificationMission = () => {
+        uploadCertificationImage(target, courseId, sessionId, memberid);
+        navigate(PATH.MISSION_CERTIFICATION);
+    };
     return (
         <>
             <BasicHeader pageDescription={"미션 인증"} />
@@ -39,7 +48,7 @@ const MissionCertificationPage = () => {
                         해주세요.
                     </BodyXXL>
                 </TextContainer>
-                <MissionCertificationBox>
+                <MissionCertificationBox readyToUpload={readyToUpload}>
                     {selectFile && (
                         <SelectedImageViewer
                             src={selectFile}
@@ -75,7 +84,9 @@ const MissionCertificationPage = () => {
         </>
     );
 };
+
 export default MissionCertificationPage;
+
 const Container = styled.div`
     padding: 0 1rem;
 `;
@@ -93,9 +104,11 @@ const MissionCertificationBox = styled.div`
     margin-bottom: 1.5rem;
     padding: 0.75rem;
     border-radius: 1.5rem;
-    outline: 1px dashed ${COLOR.GRAY500};
+    outline: ${props =>
+        props.readyToUpload ? "none" : `1px dashed ${COLOR.GRAY500}`};
     outline-offset: -10px;
-    background-color: ${COLOR.GRAY50};
+    background-color: ${props =>
+        props.readyToUpload ? COLOR.WHITE : COLOR.GRAY50};
 `;
 
 const UploadButtonBox = styled.button`
