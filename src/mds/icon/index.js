@@ -14,6 +14,7 @@ export { default as NoticeIcon } from "./NoticeIcon";
 export { default as UnderArrowIcon } from "./UnderArrowIcon";
 export { default as CSIcon } from "./CSIcon";
 export { default as SettingIcon } from "./SettingIcon";
+export { default as DefaultMemberProfile } from "./DefaultMemberProfile";
 
 export { default as FailIcon } from "./FailIcon";
 export { default as ProgressIcon } from "./ProgressIcon";

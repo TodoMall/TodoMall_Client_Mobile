@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { COLOR } from "../../../constants";
+import { DefaultMemberProfile } from "../../../mds/icon";
 
 const ProfileCard = ({
     children,
@@ -9,13 +10,14 @@ const ProfileCard = ({
     backgroundColor = COLOR.GRAY50,
 }) => {
     const { image } = { ...localStorage };
+
     return (
         <Container
             padding={padding}
             backgroundColor={backgroundColor}
             marginBottom={marginBottom}
         >
-            <UserImage src={image} />
+            {image ? <UserImage src={image} /> : <DefaultMemberProfile />}
             {children}
         </Container>
     );

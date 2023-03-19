@@ -72,6 +72,9 @@ const TodoDetailPage = () => {
         onError: error => console.error(error),
     });
 
+    const handleNextTodo = () => {};
+    const handleMissionCertification = () => {};
+
     return (
         <>
             {isShowCurriculum && (
@@ -147,7 +150,7 @@ const TodoDetailPage = () => {
                             <BodyL>currentTodo?.taskTitle</BodyL>
                         </RowBox>
                     </CheckBoxColumnWrapper>
-                    {!isAlreadyCompleted && (
+                    {!isAlreadyCompleted && !isLastTodo && (
                         <BasicButton
                             margin={"1rem 0"}
                             isDisabled={!isTodoCompleteChecked}
@@ -158,9 +161,22 @@ const TodoDetailPage = () => {
                             }
                         >
                             <BodyXL fontColor={COLOR.WHITE}>
-                                {isLastTodo
-                                    ? "다음 투두로 넘어가기"
-                                    : "미션 인증하기"}
+                                다음 투두로 넘어가기
+                            </BodyXL>
+                        </BasicButton>
+                    )}
+                    {!isAlreadyCompleted && isLastTodo && (
+                        <BasicButton
+                            margin={"1rem 0"}
+                            isDisabled={!isTodoCompleteChecked}
+                            backgroundColor={
+                                isTodoCompleteChecked
+                                    ? COLOR.BRAND_COLOR
+                                    : COLOR.GRAY200
+                            }
+                        >
+                            <BodyXL fontColor={COLOR.WHITE}>
+                                미션 인증하기
                             </BodyXL>
                         </BasicButton>
                     )}
