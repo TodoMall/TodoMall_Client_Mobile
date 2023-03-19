@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../../constants";
+import { LOCAL_STORAGE_KEYS, PATH } from "../../../../constants";
 import { useLocalStorage } from "../../../../hooks";
 import Divider from "../../../Divider";
 import { NotificationButton } from "../../../button";

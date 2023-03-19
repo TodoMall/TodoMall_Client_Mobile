@@ -7,7 +7,6 @@ import { useQuery } from "@apollo/client";
 
 import { getTodoDetailByMemberId } from "../apollo/domain/member";
 import { COLOR, PATH } from "../constants";
-import { PROCESS_STATUS } from "../constants/processStatus";
 import CourseCurriculum from "../domain/mycourse/components/CourseCurriculum";
 import { usePopup, useToggle } from "../hooks";
 import { CustomViewer } from "../mds";
@@ -20,8 +19,6 @@ import { BodyL, BodyM, BodyXL, HeadingXL } from "../mds/text";
 // /mycourse/detail/todo/2864962f-ac08-41f9-bae2-98cc83e7f060/e08166a0-df65-4b0b-b57c-35e3e47fd36e/767325d3-1158-4b0f-9cf0-af3ce418bc70
 
 const TodoDetailPage = () => {
-    const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
-
     const navigate = useNavigate();
     const { memberId } = { ...localStorage };
     const { courseId, sessionId, todoId } = useParams();

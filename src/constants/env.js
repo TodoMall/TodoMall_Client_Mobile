@@ -20,12 +20,6 @@ const IAMPORT_MID_PROD = {
     tossPayment: process.env.REACT_APP_IAMPORT_KAKAO_PAY_MID_PROD,
 };
 
-const IAMPORT_MID_DEV = {
-    tossPay: process.env.REACT_APP_IAMPORT_TOSS_PAYMENT_MID_DEV,
-    kakaoPay: process.env.REACT_APP_IAMPORT_TOSS_PAY_MID_DEV,
-    tossPayment: process.env.REACT_APP_IAMPORT_KAKAO_PAY_MID_DEV,
-};
-
 export const IamportMIDByRunningEnv = IAMPORT_MID_PROD;
 
 export const KAKAO = {
