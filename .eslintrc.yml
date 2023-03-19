@@ -1,0 +1,32 @@
+env:
+    browser: true
+    es2021: true
+extends:
+    - eslint:recommended
+    - plugin:react/recommended
+    - plugin:prettier/recommended
+overrides: []
+parserOptions:
+    ecmaVersion: latest
+    sourceType: module
+plugins:
+    - prettier
+rules:
+    quotes:
+        - error
+        - double
+    semi:
+        - error
+        - always
+    no-unused-vars:
+        - warn
+    no-undef:
+        - off
+    no-undefined:
+        - off
+    prettier/prettier:
+        - error
+    react/prop-types:
+        - off
+    react/react-in-jsx-scope:
+        - off

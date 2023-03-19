@@ -1,0 +1,6 @@
+export const PROCESS_STATUS = {
+    WAITING: "WAITING",
+    PROCESS: "PROCESS",
+    SUCCESS: "SUCCESS",
+    FAIL: "FAIL",
+};

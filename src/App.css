@@ -36,45 +36,50 @@
 } */
 @import url("//cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 
+/* FIXME : 스타일 수정 필요 */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font: inherit;
-  color: inherit;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
-    "Malgun Gothic", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: inherit;
+    color: inherit;
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+        Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+        "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 a {
-  color: #fff;
-  text-decoration: none;
-  outline: none;
+    color: #fff;
+    text-decoration: none;
+    outline: none;
 }
  a:hover,
 a:active {
-  text-decoration: none;
-  color: #fff;
-  /* background-color: #f59000; */
+    text-decoration: none;
+    color: #fff;
+    /* background-color: #f59000; */
 }
 html,
 body {
-  height: 100%;
-  background-color: #fbfbfb;
-  min-height: calc(100% + env(safe-area-inset-top));
+    height: 100%;
+    background-color: #ffffff;
+    min-height: calc(100% + env(safe-area-inset-top));
 }
 html {
-  overflow: -moz-scrollbars-none;
-  scrollbar-width: none;
+    overflow: -moz-scrollbars-none;
+    scrollbar-width: none;
 }
 .nextui-c-eUuHzx {
-  position: fixed !important;
-  top: 48px !important;
+    position: fixed !important;
+    top: 48px !important;
 }
 .nextui-c-eUuHzx-gZuGQh-color-primary {
-  --nextui--progressColor: #6b47fd !important;
-  --nextui--progressShadowColor: #6b47fd !important;
+    --nextui--progressColor: #6b47fd !important;
+    --nextui--progressShadowColor: #6b47fd !important;
 }
 .nextui-c-eUuHzx-hMPNGY-size-xs {
-  height: 2px !important;
+    height: 2px !important;
+}
+::-webkit-scrollbar {
+    display: none;
 }

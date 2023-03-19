@@ -1,95 +1,129 @@
-import "./App.css";
-import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import Agreement from "./components/login/Agreement";
-import Login from "./components/login/Login";
-import Service from "./components/login/Service";
-import Personal from "./components/login/Personal";
-import TodoBox from "./components/main/TodoBox/TodoBox";
-import TodoMall from "./components/main/TodoMall/TodoMall";
-import MyPage from "./components/main/MyPage/MyPage";
-// TODO : rename plan folder to product
-import PlanPurchase from "./components/plan/PlanPurchase";
-import PlanDetail from "./components/plan/PlanDetail/PlanDetail";
-import PlanRetry from "./components/plan/PlanRetry";
-import Settings from "./components/settings/Settings";
-import NoticeList from "./components/settings/NoticeList";
-import TodoDetail from "./components/todo/TodoDetail";
-import TodoSubmit from "./components/todo/TodoSubmit";
-import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
-import TodoAnswer from "./components/todo/TodoAnswer";
-import Social from "./components/login/Social";
-import { CAREER } from "./components/main/TodoMall/Constant";
 
-import PaymentPage from "./components/payment/PaymentPage";
-import PaymentResultPage from "./components/payment/PaymentResultPage";
-import MyDashboard from "./components/main/MyPage/MyDashboard";
-import MyTodoDetail from "./components/main/MyPage/MyTodoDetail";
+import "./App.css";
+import { COLOR, PATH } from "./constants";
+import {
+    AccountPage,
+    AgreementPage,
+    AgreementPersonalPage,
+    LandingPage,
+    MissionCertificationCompletePage,
+    MissionCertificationPage,
+    MyCoursePage,
+    NoticeDetailPage,
+    NoticePage,
+    NotificationPage,
+    OnboardingPage,
+    PaymentCompletePage,
+    PaymentPage,
+    SettingPage,
+    SettingPersonalPage,
+    SignInPage,
+    StoreCategoryPage,
+    StoreDetailPage,
+    StorePage,
+    TermOfServicePage,
+    TermsPage,
+    TodoBestPractice,
+} from "./pages";
+import MyPage from "./pages/MyPage";
+import TodoDetailPage from "./pages/TodoDetailPage";
+import { getMaxWidth } from "./utils/width";
 
 function App() {
-  const [current, setCurrent] = useState(CAREER);
-  return (
-    <Container>
-      <Routes>
-        {/* Login, Terms of Service Routes */}
-        <Route path="/" element={<Login />} />
-        <Route path="/social" element={<Social />} />
-        <Route path="/agreement" element={<Agreement />} />
-        <Route path="/service" element={<Service />} />
-        <Route path="/personal" element={<Personal />} />
+    // TODO : should be deleted
+    localStorage.setItem("memberId", "b141d251-a490-4d59-b53b-f2f4776aa4f3");
 
-        {/* Main pages Routes */}
-        <Route path="/todobox" element={<TodoBox />} />
-        <Route
-          path="/todomall"
-          element={<TodoMall current={current} setCurrent={setCurrent} />}
-        />
-        <Route path="/mypage" element={<MyPage />} />
+    const location = useLocation();
+    const getBackgroundColor = () => {
+        if (
+            location.pathname.includes(PATH.ONBOARDING) ||
+            location.pathname.includes(PATH.SINGIN)
+        ) {
+            return COLOR.BRAND_COLOR;
+        }
+        return COLOR.WHITE;
+    };
 
-        {/* mypage Detail, pages Routes */}
-        <Route path="/mypage/dashboard" element={<MyDashboard />} />
-        <Route path="/mypage/detail/:productId" element={<MyTodoDetail />} />
+    useEffect(() => {
+        document.body.style.backgroundColor = getBackgroundColor();
+    }, [location.pathname]);
 
-        {/* Todo Detail, Assignment Routes */}
-        <Route
-          path="/todo/:todoid/:sessionid/:productid/detail/:status"
-          element={<TodoDetail />}
-        />
-        <Route
-          path="/todo/:sessionid/:planid/:todoname/:productid/submit"
-          element={<TodoSubmit />}
-        />
-        <Route
-          path="/todo/:todoid/:sessionid/:productid/:sessionname/answer"
-          element={<TodoAnswer />}
-        />
-        <Route path="/todo/success" element={<TodoSubmitSuccess />} />
+    return (
+        <Container maxWidth={getMaxWidth()}>
+            <Routes>
+                <Route path={PATH.MAIN} element={<LandingPage />} />
+                <Route path={PATH.MYCOURSE} element={<MyCoursePage />} />
+                <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
+                <Route path={PATH.SINGIN} element={<SignInPage />} />
+                <Route path={PATH.AGREEMENT} element={<AgreementPage />} />
+                <Route path={PATH.SETTING} element={<SettingPage />} />
+                <Route path={PATH.TERMS} element={<TermsPage />} />
+                <Route path={PATH.ACCOUNT} element={<AccountPage />} />
+                <Route
+                    path={`${PATH.NOTIFICATION}/:userId`}
+                    element={<NotificationPage />}
+                />
+                <Route path={PATH.NOTICE} element={<NoticePage />} />
+                <Route
+                    path={`${PATH.NOTICE_DETAIL}/:noticeId`}
+                    element={<NoticeDetailPage />}
+                />
+                <Route
+                    path={PATH.AGREEMENT_PERSONAL}
+                    element={<AgreementPersonalPage />}
+                />
+                <Route
+                    path={PATH.SETTING_PERSONAL}
+                    element={<SettingPersonalPage />}
+                />
+                <Route path={PATH.SERVICE} element={<TermOfServicePage />} />
+                <Route path={PATH.STORE} element={<StorePage />} />
+                <Route
+                    path={`${PATH.STORE_DETAIL}/:courseId`}
+                    element={<StoreDetailPage />}
+                />
+                <Route
+                    path={PATH.STORE_CATEGORY}
+                    element={<StoreCategoryPage />}
+                />
+                <Route
+                    path={`${PATH.PAYMENT}/:courseId`}
+                    element={<PaymentPage />}
+                />
+                <Route
+                    path={`${PATH.PAYMENT_DETAIL}/:courseId`}
+                    element={<PaymentCompletePage />}
+                />
+                <Route path={PATH.MYPAGE} element={<MyPage />} />
 
-        {/* Plan Routes */}
-        <Route path="/detail/:productId" element={<PlanDetail />} />
-        <Route path="/purchase/:productId" element={<PlanPurchase />} />
-        <Route path="/retry/:productId" element={<PlanRetry />} />
+                <Route
+                    path={`${PATH.TODO_DETAIL}/:courseId/:sessionId/:todoId`}
+                    element={<TodoDetailPage />}
+                />
+                <Route
+                    path={`${PATH.TODO_DETAIL_BEST}/:courseId/:sessionId/:todoId`}
+                    element={<TodoBestPractice />}
+                />
 
-        {/* Setting Routes */}
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/notice" element={<NoticeList />} />
-
-        {/* Payment Routes */}
-        <Route path="/detail/purchase/:productId" element={<PaymentPage />} />
-        <Route
-          path="/detail/purchase/complete/:productId"
-          element={<PaymentResultPage />}
-        />
-      </Routes>
-    </Container>
-  );
+                <Route
+                    path={`${PATH.MISSION_CERTIFICATION}/:courseId/:sessionId/:todoId`}
+                    element={<MissionCertificationPage />}
+                />
+                <Route
+                    path={PATH.MISSION_CERTIFICATION_COMPLETE}
+                    element={<MissionCertificationCompletePage />}
+                />
+            </Routes>
+        </Container>
+    );
 }
-
 const Container = styled.div`
-  width: 100%;
-  padding: auto;
-  height: 90vh;
+    max-width: ${props => props.maxWidth};
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
 `;
-
 export default App;

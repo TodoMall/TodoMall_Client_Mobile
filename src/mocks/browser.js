@@ -1,11 +1,15 @@
 import { setupWorker } from "msw";
-import { paymentHandlers } from "./paymentHandlers";
-import { userTodoHandler } from "./userTodoHandler";
-import { noticeHandler } from "./noticeHandler";
+
+// This configures a Service Worker with the given request handlers.
+import { memberHandlers } from "./domain/member/member.handler";
+import { myCourseHandlers } from "./domain/mycourse/mycourse.handler";
+import { paymentHandlers } from "./domain/payment/payment.handler";
+import { storeHandlers } from "./domain/store/store.handler";
 
 // This configures a Service Worker with the given request handlers.
 export const worker = setupWorker(
-  ...paymentHandlers,
-  ...userTodoHandler,
-  ...noticeHandler
+    ...myCourseHandlers,
+    ...memberHandlers,
+    ...storeHandlers,
+    ...paymentHandlers
 );
