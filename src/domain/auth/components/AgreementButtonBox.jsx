@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useMutation } from "@apollo/client";
+
+import { updateAgreement } from "../../../apollo/domain/member";
 import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
 import { useLocalStorage, useToggle } from "../../../hooks";
 import { BasicButton } from "../../../mds/button";
@@ -10,21 +13,40 @@ import { BodyL, BodyXXXL } from "../../../mds/text";
 import AgreementButtonItem from "./AgreementButtonItem";
 
 const AgreementButtonBox = () => {
-    const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE, IS_TUTORIAL_DONE } =
-        LOCAL_STORAGE_KEYS;
+    const { memberId } = { ...localStorage };
+
+    const {
+        IS_SERVICE_AGREE,
+        IS_PERSONAL_AGREE,
+        IS_PUSHALARM_AGREE,
+        IS_MARKETINGALARM_AGREE,
+        IS_TUTORIAL_DONE,
+    } = LOCAL_STORAGE_KEYS;
 
     const navigator = useNavigate();
 
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [isRequiredSelectedCount, setIsRequiredSelectedCount] = useState(0);
-
     const [isAgreePush, setIsAgreePush, handleAgreePushStatus] =
         useToggle(false);
-    const [isAgreeAd, setIsAgreeAd, handleAgreeAdStatus] = useToggle(false);
+    const [isAgreeMarketing, setIsAgreeMarketing, handleAgreeMarketingStatus] =
+        useToggle(false);
 
-    const [isTutorialDone] = useLocalStorage(IS_TUTORIAL_DONE, false);
-    const [isPushAgree] = useLocalStorage(IS_PUSHALARM_AGREE, false);
-    const [isMarketingAgree] = useLocalStorage(IS_MARKETINGALARM_AGREE, false);
+    const [, setTutorialDone] = useLocalStorage(IS_TUTORIAL_DONE, false);
+    const [isServiceAgree, setIsServiceAgree] = useLocalStorage(
+        IS_SERVICE_AGREE,
+        false
+    );
+    const [isPersonalAgree, setIsPersonalAgree] = useLocalStorage(
+        IS_PERSONAL_AGREE,
+        false
+    );
+    const [, setIsPushAgree] = useLocalStorage(IS_PUSHALARM_AGREE, false);
+    const [, setIsMarketingAgree] = useLocalStorage(
+        IS_MARKETINGALARM_AGREE,
+        false
+    );
+    const [updateAgreementFn] = useMutation(updateAgreement);
 
     const requireAgreementList = [
         {
@@ -36,7 +58,7 @@ const AgreementButtonBox = () => {
             detail: PATH.AGREEMENT_PERSONAL,
         },
         {
-            title: "만14세 이상입니다",
+            title: "만 14세 이상입니다",
             detail: null,
         },
     ];
@@ -44,11 +66,31 @@ const AgreementButtonBox = () => {
     const onClickAllAgreement = () => {
         setIsAllSelected(!isAllSelected);
         setIsAgreePush(!isAllSelected);
-        setIsAgreeAd(!isAllSelected);
+        setIsAgreeMarketing(!isAllSelected);
     };
 
-    const onClickNextButton = () => {
-        navigator(PATH.MYCOURSE);
+    const onClickNextButton = async () => {
+        if (isAgreePush) {
+            setIsPushAgree(true);
+        }
+        if (isAgreeMarketing) {
+            setIsMarketingAgree(true);
+        }
+        setTutorialDone(false);
+        setIsPersonalAgree(true);
+        setIsServiceAgree(true);
+        await updateAgreementFn({
+            variables: {
+                memberId: memberId,
+                isServiceAgree: isServiceAgree,
+                isPersonalAgree: isPersonalAgree,
+                isMarketingAlarmAgree: isAgreeMarketing,
+                isPushAlarmAgree: isAgreePush,
+            },
+            onCompleted: () => {
+                navigator(PATH.MYCOURSE);
+            },
+        });
     };
 
     const isAllAgreed = () => {
@@ -94,7 +136,7 @@ const AgreementButtonBox = () => {
                 onClick={onClickAgreementButton}
                 detail={item.detail}
             >
-                <BodyL fontColor={COLOR.GRAY900}>(필수)</BodyL>
+                <BodyL>(필수)</BodyL>
                 <BodyL>&nbsp; {item.title}</BodyL>
             </AgreementButtonItem>
         );
@@ -106,14 +148,14 @@ const AgreementButtonBox = () => {
                 <AllAgreementCheckButton onClick={onClickAllAgreement}>
                     <CheckIcon isChecked={isAllSelected} />
                 </AllAgreementCheckButton>
-                <BodyXXXL fontColor={COLOR.GRAY900}>약관 전체 동의</BodyXXXL>
+                <BodyXXXL>약관 전체 동의</BodyXXXL>
             </AllAgreementContainer>
 
             {RequireAgreementItems}
 
             <AgreementButtonItem
-                isAgreed={isAgreeAd}
-                onClick={handleAgreeAdStatus}
+                isAgreed={isAgreeMarketing}
+                onClick={handleAgreeMarketingStatus}
             >
                 <BodyL fontColor={COLOR.GRAY500}>(선택)</BodyL>
                 <BodyL>&nbsp; 광고성 정보 수신 동의</BodyL>
@@ -142,6 +184,12 @@ const AgreementButtonBox = () => {
 
 export default AgreementButtonBox;
 
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`;
+
 const AllAgreementContainer = styled.div`
     display: flex;
     align-items: center;
@@ -155,10 +203,4 @@ const AllAgreementCheckButton = styled.button`
     background-color: transparent;
     border: none;
     margin: 1.125rem 1rem 1.125rem 1rem;
-`;
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 `;

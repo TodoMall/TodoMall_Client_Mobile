@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { COLOR, KAKAO } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const LogoutPopup = () => {
     const handleLogout = () => {
-        // logout logic
+        window.location.href = `https://kauth.kakao.com/oauth/logout?client_id=${KAKAO.CLIENT_ID}&logout_redirect_uri=${KAKAO.LOGOUT_REDIRECT_URI}`;
     };
 
     return (
@@ -21,11 +21,8 @@ const LogoutPopup = () => {
                     받아보실 수 없습니다!
                 </BodyS>
                 <RowBox margin={"2rem 0 0 0"}>
-                    <Button
-                        onClick={handleLogout}
-                        fontColor={COLOR.BRAND_COLOR}
-                    >
-                        <BodyXS>로그아웃</BodyXS>
+                    <Button onClick={handleLogout}>
+                        <BodyXS fontColor={COLOR.BRAND_COLOR}>로그아웃</BodyXS>
                     </Button>
                     <Button>
                         <BodyXS>취소</BodyXS>

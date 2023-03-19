@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { COLOR } from "../../../constants";
+import { DefaultMemberProfile } from "../../../mds/icon";
 
 const ProfileCard = ({
     children,
@@ -8,16 +9,15 @@ const ProfileCard = ({
     marginBottom = "1.25rem",
     backgroundColor = COLOR.GRAY50,
 }) => {
-    const {
-        image = "https://k.kakaocdn.net/dn/djeMjq/btrcokyYR7j/7qdcWCkb9KZdFzaoyqt091/img_640x640.jpg",
-    } = { ...localStorage };
+    const { image } = { ...localStorage };
+
     return (
         <Container
             padding={padding}
             backgroundColor={backgroundColor}
             marginBottom={marginBottom}
         >
-            <UserImage src={image} />
+            {image ? <UserImage src={image} /> : <DefaultMemberProfile />}
             {children}
         </Container>
     );

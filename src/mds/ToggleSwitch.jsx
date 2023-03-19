@@ -4,9 +4,17 @@ import { styled } from "@mui/material/styles";
 import { COLOR } from "../constants";
 import { useToggle } from "../hooks";
 
-const ToggleSwitch = ({ isChecked = false }) => {
+const ToggleSwitch = ({
+    isChecked = false,
+    onClick: handleClick = () => {},
+}) => {
     const [toggleStatus, _, handleToggle] = useToggle(isChecked);
-    return <CustomSwitch checked={toggleStatus} onClick={handleToggle} />;
+    const handleClickToggle = () => {
+        handleClick();
+        handleToggle();
+    };
+
+    return <CustomSwitch checked={toggleStatus} onClick={handleClickToggle} />;
 };
 
 export default ToggleSwitch;

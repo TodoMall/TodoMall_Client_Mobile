@@ -21,7 +21,7 @@ const DeleteSessionPopup = ({ onClose: handleClose = () => {} }) => {
                     다시 확인하실 수 있어요!
                 </BodyS>
                 <Button onClick={handleDisconnectSubscribe}>
-                    <BodyXS fontColor={COLOR.GRAY900}>확인</BodyXS>
+                    <BodyXS>확인</BodyXS>
                 </Button>
             </PopUpContentBox>
         </PopUpLayout>

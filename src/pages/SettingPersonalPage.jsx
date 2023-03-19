@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
+import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
+import { useLocalStorage } from "../hooks";
 import { BasicButton } from "../mds/button";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL } from "../mds/text";
 
-const SettingPersonalPage = ({ onClick: handleClick = () => {} }) => {
+const SettingPersonalPage = () => {
+    const [isPersonalAgree, setIsPersonalAgree] = useLocalStorage(
+        LOCAL_STORAGE_KEYS.IS_PERSONAL_AGREE,
+        false
+    );
+
+    const handleAgreeStatus = () => setIsPersonalAgree(true);
+
     return (
         <Container>
             <BasicHeader pageDescription={"개인정보 처리방침"} />
@@ -297,9 +306,11 @@ const SettingPersonalPage = ({ onClick: handleClick = () => {} }) => {
                 <Text>
                     (1) 이 개인정보처리방침은 2023년 3월 1일부터 적용됩니다.
                 </Text>
-                <BasicButton onClick={handleClick}>
-                    <BodyXL>동의합니다</BodyXL>
-                </BasicButton>
+                {!isPersonalAgree && (
+                    <BasicButton onClick={handleAgreeStatus}>
+                        <BodyXL fontColor={COLOR.WHITE}>동의합니다</BodyXL>
+                    </BasicButton>
+                )}
             </PageContainer>
         </Container>
     );

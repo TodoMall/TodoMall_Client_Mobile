@@ -11,8 +11,8 @@ export const getProductListByQuery = gql`
 export const getPromotionByType = gql`
     query getPromotionByType($type: String!) {
         getPromotionByType(type: $type) {
+            id
             title
-            promotionType
             products {
                 id
                 title
@@ -34,7 +34,7 @@ export const getPromotionByType = gql`
 
 export const getProductByType = gql`
     query getProductByType($type: PRODUCT_TYPE!) {
-        getProductByType(data: { type: $type }) {
+        getProductByType(input: { type: $type }) {
             id
             title
             thumbnailUrl

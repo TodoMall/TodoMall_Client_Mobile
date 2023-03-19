@@ -45,8 +45,9 @@ const OnboardingPage = () => {
 export default OnboardingPage;
 
 const Body = styled.div`
-    height: 100vh;
+    height: 100%;
     width: 100%;
+    background-color: ${COLOR.BRAND_COLOR};
     animation: 0.5s ease-in-out 0s normal forwards 1 fadeIn;
     display: flex;
     flex-direction: column;

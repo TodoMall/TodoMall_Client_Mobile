@@ -20,8 +20,9 @@ const BasicCard = ({
     const navigate = useNavigate();
 
     const handleTodoDetail = () => {
-        navigate(PATH.TODO_DETAIL(courseId, sessionId, todoId));
+        navigate(`${PATH.TODO_DETAIL}/${courseId}/${sessionId}/${todoId}`);
     };
+
     return (
         <Card backgroundColor={COLOR.GRAY50}>
             <RowBox margin={"0 0 0.25rem 0"} justifyContent={"flex-start"}>

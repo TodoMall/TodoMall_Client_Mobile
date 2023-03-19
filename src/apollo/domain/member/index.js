@@ -3,6 +3,8 @@ export {
     signInWithKakao,
     signInWithApple,
     updateMemberAlarmStatusAgreement,
+    updateAgreement,
+    deleteMember,
 } from "./member.mutation";
 
 // Query
@@ -11,4 +13,7 @@ export {
     getSubscribeProductByMemberId,
     getOrderByMemberId,
     getTodoDetailByMemberId,
+    getAllNotification,
+    getAllNotice,
+    getNoticeById,
 } from "./member.queries";

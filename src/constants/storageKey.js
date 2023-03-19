@@ -5,10 +5,13 @@ export const LOCAL_STORAGE_KEYS = {
     IS_PUSHALARM_AGREE: "IS_PUSHALARM_AGREE",
     IS_MARKETINGALARM_AGREE: "IS_MARKETINGALARM_AGREE",
     IS_TUTORIAL_DONE: "IS_TUTORIAL_DONE",
+
+    // TODO : change prefix USER -> MEMBER
+    USER_EMAIL: "USER_EMAIL",
+    USER_IMAGE: "USER_IMAGE",
+    USER_NAME: "USER_NAME",
+    USER_ID: "USER_ID",
+
     ACCESS: "access",
     REFRESH: "refresh",
-    USER_EMAIL: "email",
-    USER_IMAGE: "image",
-    USER_NAME: "user_name",
-    USER_ID: "user_id",
 };

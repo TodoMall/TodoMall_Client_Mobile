@@ -1,0 +1,5 @@
+export const ADVERTISEMENT_TYPE = {
+    BAND: "BAND",
+    SLIDE: "SLIDE",
+    THUMBNAIL: "THUMBNAIL",
+};

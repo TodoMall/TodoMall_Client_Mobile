@@ -1,8 +1,6 @@
-import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR } from "../../../../constants";
 import Divider from "../../../Divider";
 import { ListButton, PreviousArrowButton } from "../../../button";
 import { BodyXXL } from "../../../text";
@@ -34,9 +32,7 @@ const BasicHeader = ({
                 ) : (
                     <EmptyBox />
                 )}
-                <BodyXXL fontColor={COLOR.GRAY900} textAlign={"center"}>
-                    {pageDescription}
-                </BodyXXL>
+                <BodyXXL textAlign={"center"}>{pageDescription}</BodyXXL>
                 {hasListButton ? (
                     <ListButton onClick={handleList} />
                 ) : (

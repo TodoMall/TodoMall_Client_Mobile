@@ -15,9 +15,11 @@ export const getAllPromotion = gql`
         }
     }
 `;
+
 export const getTodoBestPracticeByProductId = gql`
     query getTodoBestPracticeByProductId($id: String!) {
         getProductById(id: $id) {
+            id
             creator {
                 name
                 job

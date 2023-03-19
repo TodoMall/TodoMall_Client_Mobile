@@ -1,20 +1,22 @@
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
 
-import { getProductByType } from "../../../apollo/domain/store/store.queries";
+import { getProductByType } from "../../../apollo/domain/store";
 import { CATEGORY_TAG } from "../../../constants";
 import { useQueryString } from "../../../hooks";
 import { HeadingXL } from "../../../mds/text";
-import { ThumbnailBanner } from "../../advertisement/components";
 import ClassBox from "./ClassBox";
 
 const CategoryClassList = () => {
-    const currentCategory = useQueryString("tag");
-
-    const { data: products } = useQuery(getProductByType, {
+    const [currentCategory] = useQueryString("tag");
+    const [productByCategory, setProductByCategory] = useState(null);
+    const { data } = useQuery(getProductByType, {
         variables: { type: currentCategory },
+        onCompleted: data => {
+            setProductByCategory(data.getProductByType);
+        },
     });
 
     const [foramttedType] = Object.entries(CATEGORY_TAG).find(
@@ -23,12 +25,11 @@ const CategoryClassList = () => {
 
     return (
         <Container>
-            <ThumbnailBanner pathTitle={currentCategory} />
             <HeadingXL margin={"2rem 0.5rem 0.75rem 0.5rem"}>
                 {foramttedType}
             </HeadingXL>
             <ClassContainer>
-                {products?.getProductByType.map(product => {
+                {productByCategory?.map(product => {
                     return (
                         <ClassBox
                             key={product?.id}

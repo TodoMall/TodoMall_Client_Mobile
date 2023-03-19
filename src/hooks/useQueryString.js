@@ -1,12 +1,19 @@
 import { useLocation } from "react-router-dom";
 
-const useQueryString = target => {
+const useQueryString = (...args) => {
+    const result = [];
     const { search } = useLocation();
-
     const queryString = new URLSearchParams(search);
-    const query = queryString.get(target);
+    if (Array.isArray(args)) {
+        args.forEach(el => {
+            result.push(queryString.get(el));
+        });
+    }
 
-    return query;
+    if (!Array.isArray(args)) {
+        result.push(queryString.get(args));
+    }
+    return result;
 };
 
 export default useQueryString;

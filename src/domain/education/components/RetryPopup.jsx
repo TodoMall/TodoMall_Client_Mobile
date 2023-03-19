@@ -18,7 +18,7 @@ const RetryPopup = ({ onClose: handleClose = () => {} }) => {
                     다시 확인 및 도전이 가능해요!
                 </BodyS>
                 <Button onClick={handleClose}>
-                    <BodyXS fontColor={COLOR.GRAY900}>확인</BodyXS>
+                    <BodyXS>확인</BodyXS>
                 </Button>
             </PopUpContentBox>
         </PopUpLayout>

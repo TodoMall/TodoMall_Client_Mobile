@@ -1,10 +1,41 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const ThumbnailBanner = ({ src, alt = "", pathTitle }) => {
-    // TODO : 기획 최종 픽스 나면 구현 예정
-    return <Thumbnail src={src} alt={alt} />;
+import { useQuery } from "@apollo/client";
+
+import { getMobileAdvertisementByType } from "../../../apollo/domain/advertisement";
+import { ADVERTISEMENT_TYPE } from "../../../constants";
+import { useQueryString } from "../../../hooks";
+
+const ThumbnailBanner = () => {
+    const [category] = useQueryString("tag");
+
+    const [thumbnailByTag, setThumbnailByTag] = useState();
+
+    const { data } = useQuery(getMobileAdvertisementByType, {
+        variables: {
+            type: ADVERTISEMENT_TYPE.THUMBNAIL,
+        },
+    });
+
+    useEffect(() => {
+        setThumbnailByTag(
+            data?.getAdvertisementByType.find(
+                el => el.name === category.toLocaleLowerCase()
+            )
+        );
+    }, [category, data]);
+
+    return (
+        <Thumbnail
+            src={thumbnailByTag?.mobileImageUrl}
+            alt={"store thumbnail"}
+        />
+    );
 };
 export default ThumbnailBanner;
+
 const Thumbnail = styled.img`
     width: 100%;
+    object-fit: contain;
 `;
