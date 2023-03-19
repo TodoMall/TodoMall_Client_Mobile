@@ -18,7 +18,7 @@ export const subscribeProductList = {
                             status: PROCESS_STATUS.PROCESS,
                             title: "투두몰에서 클래스 다운받기",
                             missionTitle: "투두리스트 따라하고 성장하기",
-                            expireDate: "2023-03-01 17:54:44",
+                            expireDate: "2023-03-09 23:00:00",
                             todos: [
                                 {
                                     id: 1,
@@ -391,7 +391,8 @@ export const getTodoDetailByMemberIdOutput = {
                             orderBy: 2,
                             taskTitle:
                                 "평소 자료를 보관하는 주된 저장 매체 적어보기",
-                            body: '<h1 id="deliver-">Deliver 단계</h1> <p> 서비스가 어떤 가치를 제공할지 정의했으니, 이제 <strong>핵심 가치를 전달할 서비스를 구체화하는 “Deliver” 단계</strong>가 시작됩니다. 이 단계에서 다양한 기획 문서를 제작해서 서비스를 구체화하고, 해당 문서는 디자인팀과 개발팀에게 전달됩니다. 대표적으로 <strong>IA, 플로우 차트, 화면 설계안</strong>이 있습니다. </p> <code>{텍스트명}</code>  <br/>  <a>{텍스트명}</a><p><img src="/image/demo_main_01_1.png" alt="https://minio.todomall.app/course/IT_서비스_전과정_기획하기/기획_문서_작성/IA_설계하기/image_0.png"></p> <h1 id="ia">IA</h1> <p> <strong>IA는 정보 아키텍처(Information Architecture)로, 서비스의 구조</strong>를 나타냅니다.  IA를 작성하면, 서비스의 전반적인 구조를 한눈에 파악할 수 있고 페이지 사이의 상하 구조를 명확히 정의할 수 있습니다. IA는 디자이너와 개발자 협업에서도 필수적입니다. 기획 과정에 참여하지 않은 디자이너와 개발자도 잘 짜여진 IA를 본다면, 서비스의 전체 구조를 빠르게 파악할 수 있습니다. </p> <p> IA는 <strong>페이지 단위로 설계해야 하며, 필요한 경우에 기능이나 컴포넌트 단위까지 설계</strong>합니다. 예를 들어 카카오톡 서비스의 구조를 말해본다면, 우선 가장 높은 차원의 페이지로 (1) 친구 (2) 채팅 (3) 뷰 (4) 쇼핑 (5) 설정 페이지가 있습니다. 해당 페이지는 하단 내비게이션에서 바로 이동할 수 있습니다.</p> <p><img src="/image/demo_main_01_2.png" alt="https://minio.todomall.app/course/IT_서비스_전과정_기획하기/기획_문서_작성/IA_설계하기/image_1.png"></p> <p> 이 중에서 채팅 페이지으로 이동하면, 개별 채팅방을 확인할 수 있습니다. 채팅방 목록 중에서 하나를 클릭하면, 채팅방 페이지로 이동됩니다. 이 채팅방 페이지는 채팅 페이지의 하위 차원에 있는 페이지입니다. </p> <p><img src="/image/demo_main_01_3.png" alt="https://minio.todomall.app/course/IT_서비스_전과정_기획하기/기획_문서_작성/IA_설계하기/image_2.png"></p>',
+                            body: "",
+                            // body: '<h1 id="deliver-">Deliver 단계</h1> <p> 서비스가 어떤 가치를 제공할지 정의했으니, 이제 <strong>핵심 가치를 전달할 서비스를 구체화하는 “Deliver” 단계</strong>가 시작됩니다. 이 단계에서 다양한 기획 문서를 제작해서 서비스를 구체화하고, 해당 문서는 디자인팀과 개발팀에게 전달됩니다. 대표적으로 <strong>IA, 플로우 차트, 화면 설계안</strong>이 있습니다. </p> <code>{텍스트명}</code>  <br/>  <a>{텍스트명}</a><p><img src="/image/demo_main_01_1.png" alt="https://minio.todomall.app/course/IT_서비스_전과정_기획하기/기획_문서_작성/IA_설계하기/image_0.png"></p> <h1 id="ia">IA</h1> <p> <strong>IA는 정보 아키텍처(Information Architecture)로, 서비스의 구조</strong>를 나타냅니다.  IA를 작성하면, 서비스의 전반적인 구조를 한눈에 파악할 수 있고 페이지 사이의 상하 구조를 명확히 정의할 수 있습니다. IA는 디자이너와 개발자 협업에서도 필수적입니다. 기획 과정에 참여하지 않은 디자이너와 개발자도 잘 짜여진 IA를 본다면, 서비스의 전체 구조를 빠르게 파악할 수 있습니다. </p> <p> IA는 <strong>페이지 단위로 설계해야 하며, 필요한 경우에 기능이나 컴포넌트 단위까지 설계</strong>합니다. 예를 들어 카카오톡 서비스의 구조를 말해본다면, 우선 가장 높은 차원의 페이지로 (1) 친구 (2) 채팅 (3) 뷰 (4) 쇼핑 (5) 설정 페이지가 있습니다. 해당 페이지는 하단 내비게이션에서 바로 이동할 수 있습니다.</p> <p><img src="/image/demo_main_01_2.png" alt="https://minio.todomall.app/course/IT_서비스_전과정_기획하기/기획_문서_작성/IA_설계하기/image_1.png"></p> <p> 이 중에서 채팅 페이지으로 이동하면, 개별 채팅방을 확인할 수 있습니다. 채팅방 목록 중에서 하나를 클릭하면, 채팅방 페이지로 이동됩니다. 이 채팅방 페이지는 채팅 페이지의 하위 차원에 있는 페이지입니다. </p> <p><img src="/image/demo_main_01_3.png" alt="https://minio.todomall.app/course/IT_서비스_전과정_기획하기/기획_문서_작성/IA_설계하기/image_2.png"></p>',
                             bestPracticeImageUrl:
                                 "https://minio.todomall.app/course/단계별_보고서_작성법_습득하기/자료_수집/데이터_창고_활용하기/image_bestPractice.png",
                         },
@@ -504,7 +505,3 @@ export const getTodoDetailByMemberIdOutput = {
         //
     },
 };
-/*
-
-
-*/

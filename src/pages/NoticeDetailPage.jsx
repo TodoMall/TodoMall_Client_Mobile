@@ -1,7 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { useQuery } from "@apollo/client";
+
+import { getNoticeById } from "../apollo/domain/member";
 import { COLOR } from "../constants";
+import { useDateFormat } from "../hooks";
 import { Card } from "../mds";
 import { RowBox } from "../mds/box";
 import { NoticeIcon } from "../mds/icon";
@@ -9,8 +13,13 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXXS } from "../mds/text";
 
 const NoticeDetailPage = () => {
-    const { search } = useLocation();
-    const searchParams = new URLSearchParams(search);
+    const { noticeId } = useParams();
+
+    const { data: notice } = useQuery(getNoticeById, {
+        variables: {
+            id: noticeId,
+        },
+    });
 
     return (
         <Container>
@@ -20,7 +29,7 @@ const NoticeDetailPage = () => {
                     height="100%"
                     justifyContent={"none"}
                     margin={"0.25rem 0"}
-                    backgroundColor={COLOR.GRAY100}
+                    backgroundColor={COLOR.GRAY50}
                 >
                     <RowBox alignItems={"none"} margin={"0 0 0.25rem 0"}>
                         <IconContainer>
@@ -32,19 +41,18 @@ const NoticeDetailPage = () => {
                                 공지사항
                             </BodyXXS>
                         </IconContainer>
-                        <BodyXXS fontColor={COLOR.GRAY500}>2023.01.28</BodyXXS>
+                        <BodyXXS fontColor={COLOR.GRAY500}>
+                            {useDateFormat(
+                                notice?.getAnnouncementById.lastPublishedAt
+                            )}
+                        </BodyXXS>
                     </RowBox>
-                    <BodyL>
-                        {"2023년 3월 2일자 개인정보처리방침이 변경됐습니다."}
-                    </BodyL>
+                    <TextContainer>
+                        <BodyL>{notice?.getAnnouncementById.title}</BodyL>
+                    </TextContainer>
                     <ContentContainer>
-                        <BodyM fontColor={COLOR.GRAY900}>변경 내용</BodyM>
-                        <BodyM fontColor={COLOR.GRAY900}>
-                            변경 내용 개인정보 위탁자 :
-                            앰플리튜드(Amplitude)가추가 개인정보 수집 항목 :
-                            (선택) 주소, (선택) 여자친구 유무? 고지 : 2023년 3월
-                            2일
-                        </BodyM>
+                        <BodyM>변경 내용</BodyM>
+                        <BodyM>{notice?.getAnnouncementById.content}</BodyM>
                     </ContentContainer>
                 </Card>
             </CardContainer>
@@ -54,9 +62,15 @@ const NoticeDetailPage = () => {
 export default NoticeDetailPage;
 
 const Container = styled.div``;
+
 const CardContainer = styled.div`
     height: 90vh;
     padding: 0.75rem 1rem;
+`;
+
+const TextContainer = styled.div`
+    width: 100%;
+    margin-top: 0.5rem;
 `;
 
 const IconContainer = styled.div`
@@ -64,5 +78,6 @@ const IconContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
+    width: 100%;
     margin-top: 1.5rem;
 `;

@@ -1,11 +1,6 @@
-import {
-    APPLE_CLIENT_ID,
-    APPLE_SCOPE,
-    COLOR,
-    REDIRECT_URI,
-} from "../../../constants";
+import { APPLE_CLIENT_ID, APPLE_SCOPE, REDIRECT_URI } from "../../../constants";
 import { BasicButton } from "../../../mds/button";
-import { BodyL } from "../../../mds/text";
+import { AppleLoginImage } from "../../../mds/image";
 
 const AppleSignInButton = () => {
     const initApple = () => {
@@ -28,13 +23,8 @@ const AppleSignInButton = () => {
     };
 
     return (
-        <BasicButton
-            margin="0"
-            backgroundColor={COLOR.WHITE}
-            fontColor={COLOR.GRAY900}
-            onClick={onClickLoginButton}
-        >
-            <BodyL>Apple로 계속하기</BodyL>
+        <BasicButton margin="0" onClick={onClickLoginButton}>
+            <AppleLoginImage />
         </BasicButton>
     );
 };

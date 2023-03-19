@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import { FONT_STYLE } from "../../constants";
+import { COLOR, FONT_STYLE } from "../../constants";
 
-const BodyXL = ({ fontColor, margin, children }) => {
+const BodyXL = ({ fontColor = COLOR.GRAY900, margin, children }) => {
     return (
         <Text margin={margin} fontColor={fontColor}>
             {children}

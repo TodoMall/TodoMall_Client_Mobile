@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { PATH } from "../constants";
+import { useMutation } from "@apollo/client";
+
+import { updateMemberAlarmStatusAgreement } from "../apollo/domain/member";
+import { LOCAL_STORAGE_KEYS, PATH } from "../constants";
+import { useLocalStorage } from "../hooks";
 import { DetailBoxCoulmn, ToggleSwitch } from "../mds";
 import { RowBox } from "../mds/box";
 import { BasicHeader } from "../mds/layout/mobile/headers";
@@ -9,9 +13,46 @@ import { BodyM, BodyS } from "../mds/text";
 
 const SettingPage = () => {
     const navigate = useNavigate();
+    const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE } = LOCAL_STORAGE_KEYS;
+    const { memberId } = { ...localStorage };
 
-    // TODO: medo stataus , to be deleted
-    const { isAcceptAlarm = true, isAcceptMarketing } = { ...localStorage }; // FIXME :  will be replaced by using hooks.
+    const [updatePushAlarmStatus] = useMutation(
+        updateMemberAlarmStatusAgreement
+    );
+
+    const [isAgreePush, setIsAgreePush] = useLocalStorage(
+        IS_PUSHALARM_AGREE,
+        false
+    );
+    const [isAgreeMarketing, setIsAgreeMarketing] = useLocalStorage(
+        IS_MARKETINGALARM_AGREE,
+        false
+    );
+
+    const handlePushStatus = () => {
+        updatePushAlarmStatus({
+            variables: {
+                memberId: memberId,
+                isMarketingAlarmAgree: isAgreeMarketing,
+                isPushAlarmAgree: !isAgreePush,
+            },
+            onCompleted: () => {
+                setIsAgreePush(!isAgreePush);
+            },
+        });
+    };
+    const handleMarketingStatus = () => {
+        updatePushAlarmStatus({
+            variables: {
+                memberId: memberId,
+                isMarketingAlarmAgree: !isAgreeMarketing,
+                isPushAlarmAgree: isAgreePush,
+            },
+            onCompleted: () => {
+                setIsAgreeMarketing(!isAgreeMarketing);
+            },
+        });
+    };
 
     const handleTermsPage = () => navigate(PATH.TERMS);
     const handleAccountPage = () => navigate(PATH.ACCOUNT);
@@ -48,14 +89,20 @@ const SettingPage = () => {
                 <SettingItem>
                     <RowBox>
                         <BodyM>앱 내 푸시 알림 수신 동의</BodyM>
-                        <ToggleSwitch isChecked={isAcceptAlarm} />
+                        <ToggleSwitch
+                            onClick={handlePushStatus}
+                            isChecked={isAgreePush}
+                        />
                     </RowBox>
                 </SettingItem>
 
                 <SettingItem>
                     <RowBox>
                         <BodyM>광고성 정보 수신 동의</BodyM>
-                        <ToggleSwitch isChecked={isAcceptMarketing} />
+                        <ToggleSwitch
+                            onClick={handleMarketingStatus}
+                            isChecked={isAgreeMarketing}
+                        />
                     </RowBox>
                 </SettingItem>
             </ItemContainer>

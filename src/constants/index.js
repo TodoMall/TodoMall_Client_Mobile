@@ -1,10 +1,8 @@
 export { COLOR } from "./color";
 export { GNB } from "./globalNavBar";
 export { PATH } from "./path";
-export { MAX_WIDTH } from "./basement";
 export { FONT_STYLE } from "./font";
-export { isProd, API_ENDPOINT } from "./env";
-export { recommendTag } from "./recommendTag";
+export { isProd, API_ENDPOINT, KAKAO, AWS_KEYS } from "./env";
 export {
     KAKAO_ENDPOINT,
     KAKAO_CLIENT_ID,
@@ -19,3 +17,5 @@ export { PROCESS_STATUS } from "./processStatus";
 export { PRODUCT_TYPE, CATEGORY_TAG } from "./productType";
 export { ORDER_STATE } from "./orderState";
 export { PROMOTION_TYPE } from "./promotionType";
+export { ADVERTISEMENT_TYPE } from "./advertisementType";
+export { NOTIFICATION_TYPE } from "./notificationType";

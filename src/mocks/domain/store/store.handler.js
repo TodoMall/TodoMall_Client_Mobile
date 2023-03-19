@@ -11,12 +11,7 @@ import {
 
 export const storeHandlers = [
     graphql.query("getProductById", (req, res, ctx) => {
-        console.log(getProductByIdOutput);
-        return res(
-            ctx.data({
-                getProductByIdOutput: getProductByIdOutput.getProductById,
-            })
-        );
+        return res(ctx.data(getProductByIdOutput));
     }),
 
     graphql.query("getPromotionByType", (req, res, ctx) => {

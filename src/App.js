@@ -9,6 +9,8 @@ import {
     AgreementPage,
     AgreementPersonalPage,
     LandingPage,
+    MissionCertificationCompletePage,
+    MissionCertificationPage,
     MyCoursePage,
     NoticeDetailPage,
     NoticePage,
@@ -31,6 +33,9 @@ import TodoDetailPage from "./pages/TodoDetailPage";
 import { getMaxWidth } from "./utils/width";
 
 function App() {
+    // TODO : should be deleted
+    localStorage.setItem("memberId", "b141d251-a490-4d59-b53b-f2f4776aa4f3");
+
     const location = useLocation();
     const getBackgroundColor = () => {
         if (
@@ -49,24 +54,21 @@ function App() {
     return (
         <Container maxWidth={getMaxWidth()}>
             <Routes>
-                {/* TODO : web 에서의 PATH.MAIN  */}
                 <Route path={PATH.MAIN} element={<LandingPage />} />
                 <Route path={PATH.MYCOURSE} element={<MyCoursePage />} />
                 <Route path={PATH.ONBOARDING} element={<OnboardingPage />} />
                 <Route path={PATH.SINGIN} element={<SignInPage />} />
                 <Route path={PATH.AGREEMENT} element={<AgreementPage />} />
-                {/* TODO : 모바일과 웹의 setting 페이지가 달라야한다 */}
-                {/* 아래 페이지들은 mobile 을 기준으로 작업하였습니다. */}
                 <Route path={PATH.SETTING} element={<SettingPage />} />
                 <Route path={PATH.TERMS} element={<TermsPage />} />
                 <Route path={PATH.ACCOUNT} element={<AccountPage />} />
                 <Route
-                    path={PATH.NOTIFICATION}
+                    path={`${PATH.NOTIFICATION}/:userId`}
                     element={<NotificationPage />}
                 />
                 <Route path={PATH.NOTICE} element={<NoticePage />} />
                 <Route
-                    path={PATH.NOTICE_DETAIL}
+                    path={`${PATH.NOTICE_DETAIL}/:noticeId`}
                     element={<NoticeDetailPage />}
                 />
                 <Route
@@ -92,15 +94,27 @@ function App() {
                     element={<PaymentPage />}
                 />
                 <Route
-                    path={PATH.PAYMENT_DETAIL}
+                    path={`${PATH.PAYMENT_DETAIL}/:courseId`}
                     element={<PaymentCompletePage />}
                 />
                 <Route path={PATH.MYPAGE} element={<MyPage />} />
 
-                <Route path={PATH.TODO_DETAIL} element={<TodoDetailPage />} />
                 <Route
-                    path={PATH.TODO_DETAIL_BEST}
+                    path={`${PATH.TODO_DETAIL}/:courseId/:sessionId/:todoId`}
+                    element={<TodoDetailPage />}
+                />
+                <Route
+                    path={`${PATH.TODO_DETAIL_BEST}/:courseId/:sessionId/:todoId`}
                     element={<TodoBestPractice />}
+                />
+
+                <Route
+                    path={`${PATH.MISSION_CERTIFICATION}/:courseId/:sessionId/:todoId`}
+                    element={<MissionCertificationPage />}
+                />
+                <Route
+                    path={PATH.MISSION_CERTIFICATION_COMPLETE}
+                    element={<MissionCertificationCompletePage />}
                 />
             </Routes>
         </Container>

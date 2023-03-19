@@ -61,26 +61,64 @@ export const getTodoDetailByMemberId = gql`
         getMemberById(data: { id: $id }) {
             subscribeProducts {
                 id
-                creator {
-                    name
-                    title
+                product {
+                    creator {
+                        name
+                        job
+                    }
                 }
                 sessions {
                     id
                     title
                     status
                     missionTitle
-                    orderBy
+                    # orderBy
                     todos {
                         id
                         title
-                        orderBy
-                        taskTitle
+                        # orderBy
+                        # taskTitle
                         status
                         body
                     }
                 }
             }
+        }
+    }
+`;
+
+export const getAllNotification = gql`
+    query getAllNotification {
+        getAllAlarms {
+            id
+            type
+            title
+            context
+            createdAt
+        }
+    }
+`;
+
+export const getAllNotice = gql`
+    query getAllNotification {
+        getAllAnnouncement {
+            id
+            title
+            content
+            published
+            lastPublishedAt
+            createdAt
+            updatedAt
+        }
+    }
+`;
+
+export const getNoticeById = gql`
+    query getNoticeById($id: String!) {
+        getAnnouncementById(id: $id) {
+            title
+            content
+            lastPublishedAt
         }
     }
 `;

@@ -29,9 +29,9 @@ const AgreementPage = () => {
         }
     };
 
-    // useEffect(() => {
-    //     signInWithKakao();
-    // }, []);
+    useEffect(() => {
+        signInWithKakao();
+    }, []);
 
     return (
         <>

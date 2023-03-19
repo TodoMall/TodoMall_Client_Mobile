@@ -10,20 +10,21 @@ export const PATH = {
     REFUND: "/setting/refund",
     ACCOUNT: "/setting/account",
     NOTICE: "/setting/notice",
-    NOTICE_DETAIL: "/setting/notice/detail/:noticeId", //add : noticeId=${noticeId}
+    NOTICE_DETAIL: "/setting/notice/detail",
     SINGIN: "/signin",
     MYPAGE: "/mypage",
-    NOTIFICATION: "/notification/:memberId", // add : ?memberId=${memberId}
-    PRO_CENTER: "/pro", // FIXME : should be change
+    NOTIFICATION: "/notification",
+    PRO_CENTER: "/pro",
     CS_CENTER: "https://pf.kakao.com/_xhSxjExj/chat",
-    PAYMENT: "/order/:courseId",
-    PAYMENT_DETAIL: "/order/complete/:courseId",
+    PAYMENT: "/order",
+    PAYMENT_DETAIL: "/order/complete",
     STORE: "/store",
     STORE_DETAIL: "/store/course/detail",
     STORE_CATEGORY: "/store/category",
     MYCOURSE: "/mycourse",
     PAID_PRODUCT_DETAIL: "/mycourse/detail",
-    TODO_DETAIL: "/mycourse/detail/todo", //  :courseId=${courseId}&sessionId=${sessionId}&todoId=${todoId}
+    TODO_DETAIL: "/mycourse/detail/todo",
     TODO_DETAIL_BEST: "/mycourse/detail/todo/bestpractice",
-    MISSION_CERTIFICATION: "/mycourse/session/", // add : mission?courseId=${courseId}&sessionId=${sessionId}
+    MISSION_CERTIFICATION: "/mycourse/session/mission",
+    MISSION_CERTIFICATION_COMPLETE: "/mycourse/session/mission/complete",
 };

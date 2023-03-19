@@ -1,18 +1,24 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useQuery } from "@apollo/client";
 
-import { getPromotionByType } from "../../../apollo/domain/store/store.queries";
+import { getPromotionByType } from "../../../apollo/domain/store";
 import { PROMOTION_TYPE } from "../../../constants";
 import { HeadingXL } from "../../../mds/text";
 import RecommendCard from "./RecommendCard";
 
 const RecommendCardList = () => {
-    const { data: recommendClass } = useQuery(getPromotionByType, {
+    const [recommendClass, setRecommendClass] = useState(null);
+    const { data } = useQuery(getPromotionByType, {
         variables: {
             type: PROMOTION_TYPE.STOREMAIN_00,
         },
+        onCompleted: data => {
+            setRecommendClass(data.getPromotionByType);
+        },
+        onError: error => console.error(error),
     });
 
     return (
@@ -25,7 +31,7 @@ const RecommendCardList = () => {
                 spaceBetween={8}
                 slidesOffsetBefore={16}
             >
-                {recommendClass?.getPromotionByType.products.map(product => {
+                {recommendClass?.products.map(product => {
                     return (
                         <SwiperSlide key={product?.id}>
                             <RecommendCard

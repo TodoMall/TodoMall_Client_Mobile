@@ -11,7 +11,11 @@ const LoginPopup = () => {
     return (
         <PopUpLayout>
             <LoginPopupBox>
-                <BrandLogo />
+                <BrandLogo
+                    logoColor={COLOR.BRAND_COLOR}
+                    width={138}
+                    height={28}
+                />
                 <BodyM margin={"0.75rem 0 2.438rem 0"}>
                     로그인이 필요한 서비스입니다.
                 </BodyM>

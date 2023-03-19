@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
 
-import { getPromotionByType } from "../../../apollo/domain/store/store.queries";
+import { getPromotionByType } from "../../../apollo/domain/store";
 import { PROMOTION_TYPE } from "../../../constants";
 import { HeadingXL } from "../../../mds/text";
 import ClassBox from "./ClassBox";
