@@ -1,9 +1,4 @@
-import {
-    APPLE_CLIENT_ID,
-    APPLE_SCOPE,
-    COLOR,
-    REDIRECT_URI,
-} from "../../../constants";
+import { APPLE_CLIENT_ID, APPLE_SCOPE, REDIRECT_URI } from "../../../constants";
 import { BasicButton } from "../../../mds/button";
 import { AppleLoginImage } from "../../../mds/image";
 
@@ -28,11 +23,7 @@ const AppleSignInButton = () => {
     };
 
     return (
-        <BasicButton
-            margin="0"
-            backgroundColor={COLOR.WHITE}
-            onClick={onClickLoginButton}
-        >
+        <BasicButton margin="0" onClick={onClickLoginButton}>
             <AppleLoginImage />
         </BasicButton>
     );

@@ -17,14 +17,14 @@ import { SessionBasicIcon } from "../mds/icon";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../mds/text";
 
-// /mycourse/detail/todo/bbad2994-71c1-4871-8ae7-aad168d8dfe5/e08166a0-df65-4b0b-b57c-35e3e47fd36e/767325d3-1158-4b0f-9cf0-af3ce418bc70
+// /mycourse/detail/todo/2864962f-ac08-41f9-bae2-98cc83e7f060/e08166a0-df65-4b0b-b57c-35e3e47fd36e/767325d3-1158-4b0f-9cf0-af3ce418bc70
 
 const TodoDetailPage = () => {
     const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
 
     const navigate = useNavigate();
     const { memberId } = { ...localStorage };
-    const { sessionId, todoId } = useParams();
+    const { courseId, sessionId, todoId } = useParams();
 
     const [currentProduct, setCurrentProduct] = useState();
     const [currentTodo, setCurrentTodo] = useState();
@@ -36,7 +36,9 @@ const TodoDetailPage = () => {
         useToggle(false);
     const [isShowCurriculum, handleOpen, handleClose] = usePopup();
 
-    const handleBestPracticePage = () => navigate(PATH.TODO_DETAIL_BEST);
+    const handleBestPracticePage = () => {
+        navigate(`${PATH.TODO_DETAIL_BEST}/${courseId}/${sessionId}/${todoId}`);
+    };
 
     const { data } = useQuery(getTodoDetailByMemberId, {
         variables: {
@@ -80,102 +82,101 @@ const TodoDetailPage = () => {
                     anchor={"bottom"}
                 >
                     <CourseCurriculum
+                        onClose={handleClose}
                         product={currentProduct}
                         session={currentSession}
                     />
                 </Drawer>
             )}
-            {!isShowCurriculum && (
-                <>
-                    <BasicHeader
-                        pageDescription={currentTodo?.title}
-                        hasListButton={true}
-                        onList={handleOpen}
-                    />
-                    <Container>
-                        {currentTodo && (
-                            <CustomViewer initialValue={currentTodo.body} />
-                        )}
-                        <BestPracticesGuideBox>
-                            <RowBox justifyContent="flex-start">
-                                <SessionBasicIcon color={COLOR.SUCCESS500} />
-                                <BodyL
-                                    margin={"0 0 0 0.25rem"}
-                                    fontColor={COLOR.SUCCESS500}
-                                >
-                                    도움말
-                                </BodyL>
-                            </RowBox>
-                            <HeadingXL>{currentTodo?.title}</HeadingXL>
-                            <BodyM>
-                                지금까지의 과정을 잘 따랐는지 알고싶다면?
-                            </BodyM>
-                            <ButtonWrapper>
-                                <BasicButton
-                                    width={"51%"}
-                                    onClick={handleBestPracticePage}
-                                    backgroundColor={COLOR.SUCCESS500}
-                                >
-                                    <BodyXL fontColor={COLOR.WHITE}>
-                                        모범예시 보러가기
-                                    </BodyXL>
-                                </BasicButton>
-                            </ButtonWrapper>
-                        </BestPracticesGuideBox>
 
-                        <HeadingXL>투두 완료하기</HeadingXL>
-                        <BodyM margin={"0.5rem 0"}>
-                            활동 완료를 체크하고, 하단 버튼을 클릭해주세요.
-                        </BodyM>
-                        <CheckBoxColumnWrapper>
-                            <RowBox>
-                                {!isAlreadyCompleted && (
-                                    <CheckButton
-                                        isChecked={isTodoCompleteChecked}
-                                        onClick={handleTodoCompleteChecked}
-                                    />
-                                )}
-                                {isAlreadyCompleted && (
-                                    <CheckButton
-                                        checkedColor={COLOR.GRAY500}
-                                        isChecked={true}
-                                        onClick={() => null}
-                                    />
-                                )}
-                                <BodyL>{currentTodo?.taskTitle}</BodyL>
-                            </RowBox>
-                        </CheckBoxColumnWrapper>
-                        {!isAlreadyCompleted && (
+            <>
+                <BasicHeader
+                    pageDescription={currentTodo?.title}
+                    hasListButton={true}
+                    onList={handleOpen}
+                />
+                <Container>
+                    {currentTodo && (
+                        <CustomViewer initialValue={currentTodo.body} />
+                    )}
+                    <BestPracticesGuideBox>
+                        <RowBox justifyContent="flex-start">
+                            <SessionBasicIcon color={COLOR.SUCCESS500} />
+                            <BodyL
+                                margin={"0 0 0 0.25rem"}
+                                fontColor={COLOR.SUCCESS500}
+                            >
+                                도움말
+                            </BodyL>
+                        </RowBox>
+                        <HeadingXL>{currentTodo?.title}</HeadingXL>
+                        <BodyM>지금까지의 과정을 잘 따랐는지 알고싶다면?</BodyM>
+                        <ButtonWrapper>
                             <BasicButton
-                                margin={"1rem 0"}
-                                isDisabled={!isTodoCompleteChecked}
-                                backgroundColor={
-                                    isTodoCompleteChecked
-                                        ? COLOR.BRAND_COLOR
-                                        : COLOR.GRAY200
-                                }
+                                width={"51%"}
+                                onClick={handleBestPracticePage}
+                                backgroundColor={COLOR.SUCCESS500}
                             >
                                 <BodyXL fontColor={COLOR.WHITE}>
-                                    {isLastTodo
-                                        ? "다음 투두로 넘어가기"
-                                        : "미션 인증하기"}
+                                    모범예시 보러가기
                                 </BodyXL>
                             </BasicButton>
-                        )}
-                        {isAlreadyCompleted && (
-                            <BasicButton
-                                margin={"1rem 0"}
-                                isDisabled={true}
-                                backgroundColor={COLOR.GRAY500}
-                            >
-                                <BodyXL fontColor={COLOR.WHITE}>
-                                    이미 완료한 투두입니다
-                                </BodyXL>
-                            </BasicButton>
-                        )}
-                    </Container>
-                </>
-            )}
+                        </ButtonWrapper>
+                    </BestPracticesGuideBox>
+
+                    <HeadingXL>투두 완료하기</HeadingXL>
+                    <BodyM margin={"0.5rem 0"}>
+                        활동 완료를 체크하고, 하단 버튼을 클릭해주세요.
+                    </BodyM>
+                    <CheckBoxColumnWrapper>
+                        <RowBox>
+                            {!isAlreadyCompleted && (
+                                <CheckButton
+                                    isChecked={isTodoCompleteChecked}
+                                    onClick={handleTodoCompleteChecked}
+                                />
+                            )}
+                            {isAlreadyCompleted && (
+                                <CheckButton
+                                    checkedColor={COLOR.GRAY500}
+                                    isChecked={true}
+                                    onClick={() => null}
+                                />
+                            )}
+                            {/* <BodyL>{currentTodo?.taskTitle}</BodyL> */}
+                            <BodyL>currentTodo?.taskTitle</BodyL>
+                        </RowBox>
+                    </CheckBoxColumnWrapper>
+                    {!isAlreadyCompleted && (
+                        <BasicButton
+                            margin={"1rem 0"}
+                            isDisabled={!isTodoCompleteChecked}
+                            backgroundColor={
+                                isTodoCompleteChecked
+                                    ? COLOR.BRAND_COLOR
+                                    : COLOR.GRAY200
+                            }
+                        >
+                            <BodyXL fontColor={COLOR.WHITE}>
+                                {isLastTodo
+                                    ? "다음 투두로 넘어가기"
+                                    : "미션 인증하기"}
+                            </BodyXL>
+                        </BasicButton>
+                    )}
+                    {isAlreadyCompleted && (
+                        <BasicButton
+                            margin={"1rem 0"}
+                            isDisabled={true}
+                            backgroundColor={COLOR.GRAY500}
+                        >
+                            <BodyXL fontColor={COLOR.WHITE}>
+                                이미 완료한 투두입니다
+                            </BodyXL>
+                        </BasicButton>
+                    )}
+                </Container>
+            </>
         </>
     );
 };

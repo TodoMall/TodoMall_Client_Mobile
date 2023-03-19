@@ -21,7 +21,7 @@ const UrgentCard = ({
     const navigate = useNavigate();
 
     const handleTodoDetail = () => {
-        navigate(PATH.TODO_DETAIL(courseId, sessionId, todoId));
+        navigate(`${PATH.TODO_DETAIL}/${courseId}/${sessionId}/${todoId}`);
     };
 
     return (

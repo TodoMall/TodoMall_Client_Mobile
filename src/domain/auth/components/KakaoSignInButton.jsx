@@ -16,14 +16,7 @@ const KakaoSignInButton = () => {
     };
 
     return (
-        <BasicButton
-            width={"100%"}
-            height={"3.5rem"}
-            padding={"0 1rem"}
-            margin="0"
-            backgroundColor="#FEE500"
-            onClick={onClickLoginButton}
-        >
+        <BasicButton onClick={onClickLoginButton}>
             <KakaoLoginImage />
         </BasicButton>
     );

@@ -18,7 +18,7 @@ import { HeadingXL } from "../mds/text";
 
 const MyCoursePage = () => {
     const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE } = LOCAL_STORAGE_KEYS;
-
+    const { memberId } = { ...localStorage };
     const [memberProduct, setMemberProduct] = useState([]);
     const [isTutorialDone, setIsTuturialDone] = useLocalStorage(
         IS_TUTORIAL_DONE,
@@ -29,9 +29,13 @@ const MyCoursePage = () => {
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
     const { data } = useQuery(getSubscribeProductByMemberId, {
-        onCompleted: data => {
-            setMemberProduct(data?.getMemberById[0].subscribeProducts);
+        variables: {
+            id: memberId,
         },
+        onCompleted: data => {
+            setMemberProduct(data.getMemberById.subscribeProducts);
+        },
+        onError: data => console.log(data),
     });
 
     const handleTutorialDone = () => {

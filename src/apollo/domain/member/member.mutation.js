@@ -14,8 +14,8 @@ export const signInWithApple = gql`
 `;
 
 export const deleteMember = gql`
-    mutation deleteUser($id: String!) {
-        deleteUser(data: { id: $id })
+    mutation deleteMember($id: String!) {
+        deleteMember(input: { id: $id })
     }
 `;
 

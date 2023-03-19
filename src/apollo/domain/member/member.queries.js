@@ -61,10 +61,12 @@ export const getTodoDetailByMemberId = gql`
         getMemberById(data: { id: $id }) {
             subscribeProducts {
                 id
-                # creator {
-                #     name
-                #     title
-                # }
+                product {
+                    creator {
+                        name
+                        job
+                    }
+                }
                 sessions {
                     id
                     title

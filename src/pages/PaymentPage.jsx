@@ -70,9 +70,6 @@ const PaymentPage = () => {
     const handlePurchase = async () => {
         const { IMP } = window;
         IMP.init(IAMPORT_MERCHANT_CODE);
-        console.log(orderNumber);
-        console.log(product?.title);
-        console.log(product?.discountPrice);
 
         const paymentInfo = {
             pg: paymentMethod.pg,

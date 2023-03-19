@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
 
-import { PATH, PROCESS_STATUS } from "../../../constants";
+import { PROCESS_STATUS } from "../../../constants";
 import {
     BasicCard,
     CertificationCard,
@@ -13,38 +12,39 @@ import {
 const SessionCardList = ({ courseId, retryCount, sessions }) => {
     const { PROCESS, WAITING } = PROCESS_STATUS;
 
-    const fotmattedSessionList = sessions.find(
+    const fotmattedSessionList = sessions?.find(
         session => session.status === PROCESS
     );
-    const unfinishedTodos = fotmattedSessionList.todos.filter(
+
+    const unfinishedTodos = fotmattedSessionList?.todos?.filter(
         todo => todo.status === PROCESS || todo.status === WAITING
     );
 
     const isToday = dayjs()
         .startOf("day")
-        .isSame(dayjs(fotmattedSessionList.expireDate).startOf("day"));
+        .isSame(dayjs(fotmattedSessionList?.expireDate).startOf("day"));
 
     const isOverDeadline = dayjs()
         .startOf("day")
-        .isAfter(dayjs(fotmattedSessionList.expireDate).startOf("day"));
+        .isAfter(dayjs(fotmattedSessionList?.expireDate).startOf("day"));
 
-    const fotmattedExpireDate = dayjs(fotmattedSessionList.expireDate).format(
+    const fotmattedExpireDate = dayjs(fotmattedSessionList?.expireDate).format(
         "M월 DD일 0시까지"
     );
 
     if (isOverDeadline && retryCount > 0) {
         return (
             <RetryCard
-                title={fotmattedSessionList.title}
-                missionTitle={fotmattedSessionList.missionTitle}
+                title={fotmattedSessionList?.title}
+                missionTitle={fotmattedSessionList?.missionTitle}
             />
         );
     }
     if (isOverDeadline && retryCount === 0) {
         return (
             <FailCard
-                title={fotmattedSessionList.title}
-                missionTitle={fotmattedSessionList.missionTitle}
+                title={fotmattedSessionList?.title}
+                missionTitle={fotmattedSessionList?.missionTitle}
             />
         );
     }
@@ -54,9 +54,9 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
                 courseId={courseId}
                 sessionId={fotmattedSessionList.id}
                 todoId={unfinishedTodos[0]?.id}
-                title={fotmattedSessionList.title}
-                missionTitle={fotmattedSessionList.missionTitle}
-                expireDate={fotmattedSessionList.expireDate}
+                title={fotmattedSessionList?.title}
+                missionTitle={fotmattedSessionList?.missionTitle}
+                expireDate={fotmattedSessionList?.expireDate}
                 fotmattedExpireDate={fotmattedExpireDate}
             />
         );
@@ -67,8 +67,8 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
                 courseId={courseId}
                 sessionId={fotmattedSessionList.id}
                 todoId={unfinishedTodos[0]?.id}
-                title={fotmattedSessionList.title}
-                missionTitle={fotmattedSessionList.missionTitle}
+                title={fotmattedSessionList?.title}
+                missionTitle={fotmattedSessionList?.missionTitle}
                 unfinishedTodos={unfinishedTodos.length}
                 fotmattedExpireDate={fotmattedExpireDate}
             />
@@ -79,8 +79,8 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
             <CertificationCard
                 courseId={courseId}
                 sessionId={fotmattedSessionList.id}
-                title={fotmattedSessionList.title}
-                missionTitle={fotmattedSessionList.missionTitle}
+                title={fotmattedSessionList?.title}
+                missionTitle={fotmattedSessionList?.missionTitle}
                 fotmattedExpireDate={fotmattedExpireDate}
             />
         );

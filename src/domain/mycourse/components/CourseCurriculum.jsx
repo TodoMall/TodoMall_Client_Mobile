@@ -5,14 +5,14 @@ import { Card, DetailBoxCoulmn } from "../../../mds";
 import { BasicHeader } from "../../../mds/layout/mobile/headers";
 import { BodyL, HeadingXL } from "../../../mds/text";
 
-const CourseCurriculum = ({ product, session, onToggle: handleToggle }) => {
+const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
     const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
 
     return (
         <>
             <BasicHeader
                 pageDescription={session?.title}
-                onClick={handleToggle}
+                onClick={handleClose}
             />
             <Container>
                 {product[0]?.sessions?.map((session, idx) => {
