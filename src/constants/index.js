@@ -2,7 +2,7 @@ export { COLOR } from "./color";
 export { GNB } from "./globalNavBar";
 export { PATH } from "./path";
 export { FONT_STYLE } from "./font";
-export { isProd, API_ENDPOINT, KAKAO, AWS_KEYS } from "./env";
+export { isProd, API_ENDPOINT, KAKAO, AWS_KEYS, S3_ENDPOINT } from "./env";
 export {
     KAKAO_ENDPOINT,
     KAKAO_CLIENT_ID,

@@ -42,7 +42,6 @@ const MyPage = () => {
     const handleSettingPage = () => navigate(PATH.SETTING);
     const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
 
-    formattedPaidProduct?.length;
     return (
         <Container>
             <ProfileCard
@@ -109,6 +108,7 @@ const MyPage = () => {
 };
 
 export default MyPage;
+
 const ImageWrapper = styled.div`
     display: flex;
     justify-content: center;
