@@ -2,7 +2,14 @@ import { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, PATH } from "../constants";
+import { useMutation, useQuery } from "@apollo/client";
+
+import { getTodoDetailByMemberId } from "../apollo/domain/member";
+import {
+    updateSubscribeSessionState,
+    updateSubscribeTodoState,
+} from "../apollo/domain/mycourse";
+import { COLOR, PATH, S3_ENDPOINT } from "../constants";
 import { uploadCertificationImage } from "../domain/member/hooks";
 import { BasicButton } from "../mds/button";
 import { PlusIcon } from "../mds/icon";
@@ -10,34 +17,81 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, BodyXXL } from "../mds/text";
 
 const MissionCertificationPage = () => {
+    const { memberId } = { ...localStorage };
     const navigate = useNavigate();
     const fileInputRef = useRef();
-    const [readyToUpload, setReadyToUpload] = useState(false);
-    const [selectFile, setSelectFile] = useState(null);
-    const [target, setTarget] = useState(null);
-    const { courseId, sessionId } = useParams();
-    const { memberid = "test_member_id" } = { ...localStorage };
 
-    const handleButtonClick = () => {
-        fileInputRef.current.click();
-    };
+    const [readyToUpload, setReadyToUpload] = useState(false);
+    const [file, setFile] = useState(null);
+    const [image, setImage] = useState(null);
+
+    const [productId, setProductId] = useState();
+    const [sessionId, setSessionId] = useState();
+
+    const {
+        courseId: subCourseId,
+        sessionId: subSessionId,
+        todoId: subTodoId,
+    } = useParams();
+
+    useQuery(getTodoDetailByMemberId, {
+        variables: {
+            id: memberId,
+        },
+        onCompleted: data => {
+            const currentProduct = data.getMemberById.subscribeProducts.find(
+                subscribeProduct => subscribeProduct.id === subCourseId
+            );
+            const currentSession = currentProduct.sessions.find(
+                session => session.id === subSessionId
+            );
+            const findInSession = currentProduct.product.sessions.find(
+                session => session.title === currentSession.title
+            );
+
+            setProductId(currentProduct.product.id);
+            setSessionId(findInSession.id);
+        },
+        onError: error => console.error(error),
+    });
+
+    const [updateTodoStatus] = useMutation(updateSubscribeTodoState, {
+        variables: {
+            memberId: memberId,
+            subscribeProductId: subCourseId,
+            subscribeSessionId: subSessionId,
+            subscribeTodoId: subTodoId,
+        },
+    });
+    const [updateSessionStatus] = useMutation(updateSubscribeSessionState, {
+        variables: {
+            memberId: memberId,
+            subscribeProductId: subCourseId,
+            subscribeSessionId: subSessionId,
+            missionImage: `${S3_ENDPOINT}/assignment/${subCourseId}/${subSessionId}/${memberId}.png`,
+        },
+    });
+
+    const handleSelectImageFile = () => fileInputRef.current.click();
 
     const handleFileSelected = ({ target: { files } }) => {
         const [selectedFile] = files;
-        setTarget(selectedFile);
+        setFile(selectedFile);
 
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
         reader.onload = () => {
-            setSelectFile(reader.result);
+            setImage(reader.result);
         };
         setReadyToUpload(true);
     };
-
-    const handleCertificationMission = () => {
-        uploadCertificationImage(target, courseId, sessionId, memberid);
-        navigate(PATH.MISSION_CERTIFICATION);
+    const handleCertificationMission = async () => {
+        uploadCertificationImage(image, productId, sessionId, memberId);
+        await updateTodoStatus();
+        await updateSessionStatus();
+        navigate(PATH.MISSION_CERTIFICATION_COMPLETE);
     };
+
     return (
         <>
             <BasicHeader pageDescription={"미션 인증"} />
@@ -49,14 +103,11 @@ const MissionCertificationPage = () => {
                     </BodyXXL>
                 </TextContainer>
                 <MissionCertificationBox readyToUpload={readyToUpload}>
-                    {selectFile && (
-                        <SelectedImageViewer
-                            src={selectFile}
-                            alt="Selected image"
-                        />
+                    {file && (
+                        <SelectedImageViewer src={image} alt="Selected image" />
                     )}
-                    {!selectFile && (
-                        <UploadButtonBox onClick={handleButtonClick}>
+                    {!file && (
+                        <UploadButtonBox onClick={handleSelectImageFile}>
                             <PlusIcon />
                             <BodyL fontColor={COLOR.GRAY500}>업로드하기</BodyL>
                         </UploadButtonBox>

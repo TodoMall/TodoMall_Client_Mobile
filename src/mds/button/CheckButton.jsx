@@ -1,5 +1,4 @@
 import { COLOR } from "../../constants";
-import { useToggle } from "../../hooks";
 import { CheckIcon } from "../icon";
 import IconButton from "./IconButton";
 
@@ -8,7 +7,7 @@ const CheckButton = ({
     height = "2.5rem",
     checkedColor = COLOR.BRAND_COLOR,
     isChecked = false,
-    onClick: handleClick,
+    onClick: handleClick = () => {},
 }) => {
     return (
         <IconButton width={width} height={height} onClick={handleClick}>

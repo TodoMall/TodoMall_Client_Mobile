@@ -15,7 +15,7 @@ import { GlobalNavBar } from "../mds/layout/mobile";
 import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
 const MyPage = () => {
-    const { memberId, name, email } = {
+    const { USER_ID, name, email } = {
         ...localStorage,
     };
 
@@ -23,9 +23,10 @@ const MyPage = () => {
 
     const { data } = useQuery(getOrderByMemberId, {
         variables: {
-            memberId: memberId,
+            memberId: USER_ID,
         },
         onCompleted: data => {
+            console.log("data", data);
             const copiedPaidProduct = [...data.getOrderByMemberId];
             const PaidProductSortedByDate = copiedPaidProduct.sort((a, b) => {
                 return (
@@ -35,6 +36,7 @@ const MyPage = () => {
             });
             setFormattedPaidProduct(PaidProductSortedByDate);
         },
+        onError: error => console.error(error),
     });
 
     const navigate = useNavigate();
@@ -115,6 +117,7 @@ const ImageWrapper = styled.div`
     align-items: center;
     flex-direction: column;
 `;
+
 const Container = styled.div`
     padding: 0 1rem 4rem 1rem;
 `;

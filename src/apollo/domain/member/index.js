@@ -4,6 +4,7 @@ export {
     signInWithApple,
     updateMemberAlarmStatusAgreement,
     updateAgreement,
+    registerMember,
     deleteMember,
 } from "./member.mutation";
 

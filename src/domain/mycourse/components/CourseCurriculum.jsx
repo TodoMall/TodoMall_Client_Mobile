@@ -6,7 +6,11 @@ import { BasicHeader } from "../../../mds/layout/mobile/headers";
 import { BodyL, HeadingXL } from "../../../mds/text";
 
 const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
-    const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
+    const { WAITING, FAIL } = PROCESS_STATUS;
+
+    const sortedSessions = product.sessions
+        .slice()
+        .sort((a, b) => a.orderBy - b.orderBy);
 
     return (
         <>
@@ -15,7 +19,10 @@ const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
                 onClick={handleClose}
             />
             <Container>
-                {product[0]?.sessions?.map((session, idx) => {
+                {sortedSessions.map((session, idx) => {
+                    const sortedTodos = session.todos
+                        .slice()
+                        .sort((a, b) => a.orderBy - b.orderBy);
                     return (
                         <Card key={idx}>
                             <BodyL fontColor={COLOR.GRAY700}>
@@ -24,7 +31,7 @@ const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
                             <HeadingXL margin={"0.25rem 0 0.5rem"}>
                                 {session?.title}
                             </HeadingXL>
-                            {session?.todos.map((todo, idx) => {
+                            {sortedTodos.map((todo, idx) => {
                                 if (
                                     session?.status === WAITING ||
                                     session?.status === FAIL

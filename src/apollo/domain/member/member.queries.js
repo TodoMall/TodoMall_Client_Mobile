@@ -62,22 +62,34 @@ export const getTodoDetailByMemberId = gql`
             subscribeProducts {
                 id
                 product {
+                    id
                     creator {
                         name
                         job
+                    }
+                    sessions {
+                        id
+                        title
+                        orderBy
+                        todos {
+                            id
+                            title
+                            orderBy
+                            taskTitle
+                            bestPracticeImageUrl
+                        }
                     }
                 }
                 sessions {
                     id
                     title
                     status
+                    orderBy
                     missionTitle
-                    # orderBy
                     todos {
                         id
                         title
-                        # orderBy
-                        # taskTitle
+                        orderBy
                         status
                         body
                     }

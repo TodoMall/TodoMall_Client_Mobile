@@ -65,3 +65,11 @@ export const updateAgreement = gql`
         }
     }
 `;
+
+export const registerMember = gql`
+    mutation registerMember($id: String!, $agreement: RegisterAgreementInput!) {
+        registerMember(input: { id: $id, agreement: $agreement }) {
+            id
+        }
+    }
+`;

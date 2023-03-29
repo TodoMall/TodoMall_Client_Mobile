@@ -34,7 +34,8 @@ import { getMaxWidth } from "./utils/width";
 
 function App() {
     // TODO : should be deleted
-    localStorage.setItem("memberId", "b141d251-a490-4d59-b53b-f2f4776aa4f3");
+    localStorage.setItem("USER_ID", "56167553-ab6f-4d8f-8c81-f402988e9be1");
+    localStorage.setItem("memberId", "56167553-ab6f-4d8f-8c81-f402988e9be1");
 
     const location = useLocation();
     const getBackgroundColor = () => {
@@ -112,6 +113,7 @@ function App() {
                     path={`${PATH.MISSION_CERTIFICATION}/:courseId/:sessionId/:todoId`}
                     element={<MissionCertificationPage />}
                 />
+
                 <Route
                     path={PATH.MISSION_CERTIFICATION_COMPLETE}
                     element={<MissionCertificationCompletePage />}

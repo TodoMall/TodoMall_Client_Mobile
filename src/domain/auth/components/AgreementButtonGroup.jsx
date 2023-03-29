@@ -19,8 +19,8 @@ import { BodyL, BodyXXXL } from "../../../mds/text";
 import AgreementColumn from "./AgreementColumn";
 
 const AgreementButtonGroup = () => {
-    // const { USER_ID } = { ...localStorage };
-    const USER_ID = "89d2007b-0d52-4489-a9dd-9fa9053e6ea2";
+    const { USER_ID } = { ...localStorage };
+
     const {
         IS_SERVICE_AGREE,
         IS_PERSONAL_AGREE,
@@ -75,7 +75,7 @@ const AgreementButtonGroup = () => {
     const [createOrderFn] = useMutation(createOrder, {
         variables: {
             productId: ONBORADING_PRODUCT.productId,
-            memberId: "89d2007b-0d52-4489-a9dd-9fa9053e6ea2",
+            memberId: USER_ID,
             creatorId: ONBORADING_PRODUCT.creatorId,
         },
     });

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 
 import { getSubscribeProductByMemberId } from "../apollo/domain/member";
-import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, PROCESS_STATUS } from "../constants";
 import { BandBanner } from "../domain/advertisement/components";
 import { PushPopup } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
@@ -33,14 +33,15 @@ const MyCoursePage = () => {
             id: memberId,
         },
         onCompleted: data => {
-            setMemberProduct(data.getMemberById.subscribeProducts);
+            const processProducts = data.getMemberById.subscribeProducts.filter(
+                product => product.status === PROCESS_STATUS.PROCESS
+            );
+            setMemberProduct(processProducts);
         },
-        onError: data => console.log(data),
     });
 
-    const handleTutorialDone = () => {
-        setIsTuturialDone(prev => !prev);
-    };
+    const handleTutorialDone = () => setIsTuturialDone(false);
+    const handleDownloadTutorial = () => setIsTuturialDone(true);
 
     return (
         <Container>
@@ -51,21 +52,26 @@ const MyCoursePage = () => {
                     내 클래스
                 </HeadingXL>
                 {!isTutorialDone && (
-                    <TutorialCard onDelete={handleTutorialDone} />
+                    <TutorialCard
+                        onDownload={handleDownloadTutorial}
+                        onDelete={handleTutorialDone}
+                    />
                 )}
                 {isTutorialDone && memberProduct?.length === 0 && (
                     <SearchClassCard />
                 )}
-                {memberProduct?.map(subscribeProduct => {
-                    return (
-                        <SessionCardList
-                            key={subscribeProduct?.id}
-                            courseId={subscribeProduct?.id}
-                            retryCount={subscribeProduct?.retryCount}
-                            sessions={subscribeProduct?.sessions}
-                        />
-                    );
-                })}
+
+                {isTutorialDone &&
+                    memberProduct?.map(subscribeProduct => {
+                        return (
+                            <SessionCardList
+                                key={subscribeProduct?.id}
+                                courseId={subscribeProduct?.id}
+                                retryCount={subscribeProduct?.retryCount}
+                                sessions={subscribeProduct?.sessions}
+                            />
+                        );
+                    })}
             </PageContanier>
             <PromotionClassSlider />
             <GlobalNavBar />

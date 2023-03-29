@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { PROVIDERS } from "../constants/providers";
-import { AgreementButtonBox } from "../domain/auth/components";
+import { AgreementButtonGroup } from "../domain/auth/components";
 import { useLogin } from "../domain/member/hooks";
 import { CheckMarkImage } from "../mds/image";
 import { BasicHeader } from "../mds/layout/mobile/headers";
@@ -22,7 +22,7 @@ const AgreementPage = () => {
                     data: code,
                 },
             });
-
+            console.log("response : ", response);
             if (loading === false) {
                 setAccessToken(response.data.signInWithKakao);
             }
@@ -47,7 +47,7 @@ const AgreementPage = () => {
                     <CheckMarkImage />
                 </ImageContainer>
 
-                <AgreementButtonBox />
+                <AgreementButtonGroup />
             </Container>
         </>
     );
