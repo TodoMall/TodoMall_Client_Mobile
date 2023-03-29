@@ -21,19 +21,20 @@ const MyPage = () => {
 
     const [formattedPaidProduct, setFormattedPaidProduct] = useState([]);
 
-    const { data } = useQuery(getOrderByMemberId, {
+    useQuery(getOrderByMemberId, {
         variables: {
             memberId: USER_ID,
         },
         onCompleted: data => {
-            console.log("data", data);
-            const copiedPaidProduct = [...data.getOrderByMemberId];
-            const PaidProductSortedByDate = copiedPaidProduct.sort((a, b) => {
-                return (
-                    new Date(b.member.subscribeProducts.createdAt) -
-                    new Date(a.member.subscribeProducts.createdAt)
-                );
-            });
+            const PaidProductSortedByDate = data.getOrderByMemberId
+                .slice()
+                .sort((a, b) => {
+                    return (
+                        new Date(b.member.subscribeProducts.createdAt) -
+                        new Date(a.member.subscribeProducts.createdAt)
+                    );
+                });
+
             setFormattedPaidProduct(PaidProductSortedByDate);
         },
         onError: error => console.error(error),
@@ -81,29 +82,34 @@ const MyPage = () => {
                 내 클래스
             </HeadingXL>
 
-            <ImageWrapper>
-                {formattedPaidProduct?.length === 0 && <EmptyTrophysImage />}
-                <HeadingXL fontColor={COLOR.GRAY500}>
-                    아직 도전한 클래스가 없어요
-                </HeadingXL>
-            </ImageWrapper>
+            {formattedPaidProduct?.length === 0 && (
+                <ImageWrapper>
+                    <EmptyTrophysImage />
+                    <HeadingXL fontColor={COLOR.GRAY500}>
+                        아직 도전한 클래스가 없어요
+                    </HeadingXL>
+                </ImageWrapper>
+            )}
 
-            <ClassContainer>
-                {formattedPaidProduct?.length > 0 &&
-                    formattedPaidProduct?.map((item, idx) => {
+            {formattedPaidProduct?.length > 0 && (
+                <ClassContainer>
+                    {formattedPaidProduct?.map((product, idx) => {
                         return (
                             <PaidClassBox
-                                key={item?.id}
-                                courseId={item?.id}
-                                challengeOrder={idx}
-                                thumbnailUrl={item?.product.thumbnailUrl}
-                                subscribeProducts={
-                                    item?.member.subscribeProducts
+                                key={product?.id}
+                                courseId={product?.id}
+                                challengeOrder={
+                                    formattedPaidProduct.length - idx
+                                }
+                                thumbnailUrl={product?.product.thumbnailUrl}
+                                subscribeProduct={
+                                    product?.member.subscribeProducts[idx]
                                 }
                             />
                         );
                     })}
-            </ClassContainer>
+                </ClassContainer>
+            )}
             <GlobalNavBar />
         </Container>
     );

@@ -3,14 +3,17 @@ import { Viewer } from "@toast-ui/react-editor";
 import styled from "styled-components";
 
 import { COLOR } from "../constants";
+import Loader from "./Loader";
 
-const CustomViewer = ({ initialValue }) => {
+const CustomViewer = ({ initialValue, isLoading }) => {
     return (
         <ViewerStyleContainer>
-            <Viewer initialValue={initialValue} />
+            {isLoading && <Loader />}
+            {!isLoading && <Viewer initialValue={initialValue} />}
         </ViewerStyleContainer>
     );
 };
+
 export default CustomViewer;
 
 const ViewerStyleContainer = styled.div`

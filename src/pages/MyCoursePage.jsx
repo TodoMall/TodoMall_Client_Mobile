@@ -12,6 +12,7 @@ import SearchClassCard from "../domain/member/components/SearchClassCard";
 import { PromotionClassSlider } from "../domain/mycourse/components";
 import { SessionCardList } from "../domain/mycourse/components";
 import { useLocalStorage, usePopup } from "../hooks";
+import { Loader } from "../mds";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
@@ -28,7 +29,7 @@ const MyCoursePage = () => {
 
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
-    const { data } = useQuery(getSubscribeProductByMemberId, {
+    const { loading: isLoading } = useQuery(getSubscribeProductByMemberId, {
         variables: {
             id: memberId,
         },
@@ -51,6 +52,7 @@ const MyCoursePage = () => {
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
                     내 클래스
                 </HeadingXL>
+                {isLoading && <Loader />}
                 {!isTutorialDone && (
                     <TutorialCard
                         onDownload={handleDownloadTutorial}

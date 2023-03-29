@@ -1,21 +1,36 @@
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, PROCESS_STATUS } from "../../../constants";
+import { COLOR, PATH, PROCESS_STATUS } from "../../../constants";
 import { Card, DetailBoxCoulmn } from "../../../mds";
 import { BasicHeader } from "../../../mds/layout/mobile/headers";
 import { BodyL, HeadingXL } from "../../../mds/text";
 
-const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
+const CourseCurriculum = ({
+    subscribeProduct,
+    subscribeSession,
+    onClose: handleClose = () => {},
+}) => {
     const { WAITING, FAIL } = PROCESS_STATUS;
 
-    const sortedSessions = product.sessions
+    const navigate = useNavigate();
+    const { courseId: subCourseId, sessionId: subSessionId } = useParams();
+
+    const sortedSessions = subscribeProduct.sessions
         .slice()
         .sort((a, b) => a.orderBy - b.orderBy);
+
+    const handleOtherTodoDetailPage = subTodoId => {
+        navigate(
+            `${PATH.TODO_DETAIL}/${subCourseId}/${subSessionId}/${subTodoId}`
+        );
+        handleClose();
+    };
 
     return (
         <>
             <BasicHeader
-                pageDescription={session?.title}
+                pageDescription={subscribeSession?.title}
                 onClick={handleClose}
             />
             <Container>
@@ -47,7 +62,14 @@ const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
                                     );
                                 } else {
                                     return (
-                                        <DetailBoxCoulmn key={idx}>
+                                        <DetailBoxCoulmn
+                                            key={idx}
+                                            onClick={() =>
+                                                handleOtherTodoDetailPage(
+                                                    todo.id
+                                                )
+                                            }
+                                        >
                                             <BodyL>{todo?.title}</BodyL>
                                         </DetailBoxCoulmn>
                                     );
