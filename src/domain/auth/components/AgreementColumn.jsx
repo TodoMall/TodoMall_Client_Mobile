@@ -5,13 +5,14 @@ import styled from "styled-components";
 import { COLOR } from "../../../constants";
 import { NextArrowButton } from "../../../mds/button";
 import { CheckIcon } from "../../../mds/icon";
+import { BodyL } from "../../../mds/text";
 
-const AgreementButtonItem = ({
+const AgreementColumn = ({
     children = null,
     isAgreed = false,
     onClick: handleClick = () => {},
-    width = "100%",
     detail = null,
+    isRequired = false,
 }) => {
     const [isChecked, setIsChecked] = useState(false);
     const navigator = useNavigate();
@@ -21,12 +22,15 @@ const AgreementButtonItem = ({
     }, [isAgreed]);
 
     return (
-        <ItemContainer width={width} onClick={handleClick}>
+        <ItemContainer onClick={handleClick}>
             <ItemButtonContainer>
                 <ItemButton>
                     <CheckIcon isChecked={isChecked} />
                 </ItemButton>
-                {children}
+                <BodyL fontColor={isRequired ? undefined : COLOR.GRAY500}>
+                    ({isRequired ? "필수" : "선택"})
+                </BodyL>
+                <BodyL>&nbsp; {children}</BodyL>
             </ItemButtonContainer>
             {detail && (
                 <NextArrowButton
@@ -38,14 +42,14 @@ const AgreementButtonItem = ({
     );
 };
 
-export default AgreementButtonItem;
+export default AgreementColumn;
 
 const ItemContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    width: ${props => props.width};
+    width: 100%;
     height: 1.5rem;
     padding: 0 0.5rem 0 0.5rem;
 `;

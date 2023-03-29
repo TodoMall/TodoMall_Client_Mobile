@@ -9,12 +9,11 @@ import { ProgressIcon } from "../../../mds/icon";
 import { LoudSpeakerImage } from "../../../mds/image";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
-const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
+const TutorialCard = ({
+    onDownload: handleDownload = () => {},
+    onDelete: handleDeleteTutorialCard = () => {},
+}) => {
     const [name] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME, null);
-
-    const handleDownloadTutorial = () => {
-        console.log("handleDownloadTutorial");
-    };
 
     return (
         <Card justifyContent="none" margin={"0"} padding={"1rem 1.25rem"}>
@@ -41,7 +40,7 @@ const TutorialCard = ({ onDelete: handleDeleteTutorialCard = () => {} }) => {
                     <BodyL fontColor={COLOR.GRAY400}>앞으로 보지 않기</BodyL>
                 </BasicButton>
                 <BasicButton
-                    onClick={handleDownloadTutorial}
+                    onClick={handleDownload}
                     margin={"0 0.25rem"}
                     padding={0}
                 >

@@ -1,8 +1,18 @@
 import gql from "graphql-tag";
 
 export const verifyOrder = gql`
-    mutation verifyOrder($impUid: String!, $merchantUid: String!) {
-        verifyOrder(input: { impUid: $impUid, merchantUid: $merchantUid }) {
+    mutation verifyOrder(
+        $orderId: String!
+        $impUid: String
+        $merchantUid: String
+    ) {
+        verifyOrder(
+            input: {
+                orderId: $orderId
+                impUid: $impUid
+                merchantUid: $merchantUid
+            }
+        ) {
             state
         }
     }
@@ -21,6 +31,7 @@ export const createOrder = gql`
                 creatorId: $creatorId
             }
         ) {
+            id
             orderNumber
         }
     }

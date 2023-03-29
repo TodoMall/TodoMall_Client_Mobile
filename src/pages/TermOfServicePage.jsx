@@ -19,7 +19,7 @@ const TermOfServicePage = () => {
             <BasicHeader pageDescription={"서비스 이용약관"} />
             <PageContainer>
                 <BoldText margin={"0 0 1.125rem 0"}>
-                    2023.02.07 이용약관
+                    2023.03.01 이용약관
                 </BoldText>
                 <BoldText margin={"1.125rem 0 0 0"}>제 1장. 총칙</BoldText>
                 <BoldText margin={"1.125rem 0 0 0"}>제 1조 (목적)</BoldText>

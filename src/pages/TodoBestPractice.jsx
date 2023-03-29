@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { useQuery } from "@apollo/client";
@@ -6,14 +7,11 @@ import { useQuery } from "@apollo/client";
 import { getTodoBestPracticeByProductId } from "../apollo/domain/mycourse";
 import { usePopup } from "../hooks";
 import { BasicHeader } from "../mds/layout/mobile/headers";
-import PopUpLayout from "../mds/popup/PopUpLayout";
+import { PopUpLayout } from "../mds/popup";
 import { BodyXXL } from "../mds/text";
 
 const TodoBestPractice = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const courseId = urlParams.get("courseId");
-    const sessionId = urlParams.get("sessionId");
-    const todoId = urlParams.get("todoId");
+    const { courseId, sessionId, todoId } = useParams();
 
     const [product, setProduct] = useState();
     const [currentTodo, setCurrentTodo] = useState();

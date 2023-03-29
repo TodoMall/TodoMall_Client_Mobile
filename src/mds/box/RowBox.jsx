@@ -8,6 +8,7 @@ const RowBox = ({
     margin = "0",
     alignItems = "center",
     justifyContent = "space-between",
+    onClick: handleClick = () => {},
 }) => {
     return (
         <Container
@@ -17,6 +18,7 @@ const RowBox = ({
             padding={padding}
             alignItems={alignItems}
             justifyContent={justifyContent}
+            onClick={handleClick}
         >
             {children}
         </Container>

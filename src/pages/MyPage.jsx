@@ -15,26 +15,29 @@ import { GlobalNavBar } from "../mds/layout/mobile";
 import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
 const MyPage = () => {
-    const { memberId, name, email } = {
+    const { USER_ID, name, email } = {
         ...localStorage,
     };
 
     const [formattedPaidProduct, setFormattedPaidProduct] = useState([]);
 
-    const { data } = useQuery(getOrderByMemberId, {
+    useQuery(getOrderByMemberId, {
         variables: {
-            memberId: memberId,
+            memberId: USER_ID,
         },
         onCompleted: data => {
-            const copiedPaidProduct = [...data.getOrderByMemberId];
-            const PaidProductSortedByDate = copiedPaidProduct.sort((a, b) => {
-                return (
-                    new Date(b.member.subscribeProducts.createdAt) -
-                    new Date(a.member.subscribeProducts.createdAt)
-                );
-            });
+            const PaidProductSortedByDate = data.getOrderByMemberId
+                .slice()
+                .sort((a, b) => {
+                    return (
+                        new Date(b.member.subscribeProducts.createdAt) -
+                        new Date(a.member.subscribeProducts.createdAt)
+                    );
+                });
+
             setFormattedPaidProduct(PaidProductSortedByDate);
         },
+        onError: error => console.error(error),
     });
 
     const navigate = useNavigate();
@@ -42,7 +45,6 @@ const MyPage = () => {
     const handleSettingPage = () => navigate(PATH.SETTING);
     const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
 
-    formattedPaidProduct?.length;
     return (
         <Container>
             <ProfileCard
@@ -80,41 +82,48 @@ const MyPage = () => {
                 내 클래스
             </HeadingXL>
 
-            <ImageWrapper>
-                {formattedPaidProduct?.length === 0 && <EmptyTrophysImage />}
-                <HeadingXL fontColor={COLOR.GRAY500}>
-                    아직 도전한 클래스가 없어요
-                </HeadingXL>
-            </ImageWrapper>
+            {formattedPaidProduct?.length === 0 && (
+                <ImageWrapper>
+                    <EmptyTrophysImage />
+                    <HeadingXL fontColor={COLOR.GRAY500}>
+                        아직 도전한 클래스가 없어요
+                    </HeadingXL>
+                </ImageWrapper>
+            )}
 
-            <ClassContainer>
-                {formattedPaidProduct?.length > 0 &&
-                    formattedPaidProduct?.map((item, idx) => {
+            {formattedPaidProduct?.length > 0 && (
+                <ClassContainer>
+                    {formattedPaidProduct?.map((product, idx) => {
                         return (
                             <PaidClassBox
-                                key={item?.id}
-                                courseId={item?.id}
-                                challengeOrder={idx}
-                                thumbnailUrl={item?.product.thumbnailUrl}
-                                subscribeProducts={
-                                    item?.member.subscribeProducts
+                                key={product?.id}
+                                courseId={product?.id}
+                                challengeOrder={
+                                    formattedPaidProduct.length - idx
+                                }
+                                thumbnailUrl={product?.product.thumbnailUrl}
+                                subscribeProduct={
+                                    product?.member.subscribeProducts[idx]
                                 }
                             />
                         );
                     })}
-            </ClassContainer>
+                </ClassContainer>
+            )}
             <GlobalNavBar />
         </Container>
     );
 };
 
 export default MyPage;
+
 const ImageWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 `;
+
 const Container = styled.div`
     padding: 0 1rem 4rem 1rem;
 `;

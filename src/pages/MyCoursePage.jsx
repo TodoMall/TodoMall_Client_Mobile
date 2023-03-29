@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 
 import { getSubscribeProductByMemberId } from "../apollo/domain/member";
-import { COLOR, LOCAL_STORAGE_KEYS } from "../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, PROCESS_STATUS } from "../constants";
 import { BandBanner } from "../domain/advertisement/components";
 import { PushPopup } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
@@ -12,6 +12,7 @@ import SearchClassCard from "../domain/member/components/SearchClassCard";
 import { PromotionClassSlider } from "../domain/mycourse/components";
 import { SessionCardList } from "../domain/mycourse/components";
 import { useLocalStorage, usePopup } from "../hooks";
+import { Loader } from "../mds";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
@@ -28,19 +29,20 @@ const MyCoursePage = () => {
 
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
-    const { data } = useQuery(getSubscribeProductByMemberId, {
+    const { loading: isLoading } = useQuery(getSubscribeProductByMemberId, {
         variables: {
             id: memberId,
         },
         onCompleted: data => {
-            setMemberProduct(data.getMemberById.subscribeProducts);
+            const processProducts = data.getMemberById.subscribeProducts.filter(
+                product => product.status === PROCESS_STATUS.PROCESS
+            );
+            setMemberProduct(processProducts);
         },
-        onError: data => console.log(data),
     });
 
-    const handleTutorialDone = () => {
-        setIsTuturialDone(prev => !prev);
-    };
+    const handleTutorialDone = () => setIsTuturialDone(false);
+    const handleDownloadTutorial = () => setIsTuturialDone(true);
 
     return (
         <Container>
@@ -50,22 +52,28 @@ const MyCoursePage = () => {
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
                     내 클래스
                 </HeadingXL>
+                {isLoading && <Loader />}
                 {!isTutorialDone && (
-                    <TutorialCard onDelete={handleTutorialDone} />
+                    <TutorialCard
+                        onDownload={handleDownloadTutorial}
+                        onDelete={handleTutorialDone}
+                    />
                 )}
                 {isTutorialDone && memberProduct?.length === 0 && (
                     <SearchClassCard />
                 )}
-                {memberProduct?.map(subscribeProduct => {
-                    return (
-                        <SessionCardList
-                            key={subscribeProduct?.id}
-                            courseId={subscribeProduct?.id}
-                            retryCount={subscribeProduct?.retryCount}
-                            sessions={subscribeProduct?.sessions}
-                        />
-                    );
-                })}
+
+                {isTutorialDone &&
+                    memberProduct?.map(subscribeProduct => {
+                        return (
+                            <SessionCardList
+                                key={subscribeProduct?.id}
+                                courseId={subscribeProduct?.id}
+                                retryCount={subscribeProduct?.retryCount}
+                                sessions={subscribeProduct?.sessions}
+                            />
+                        );
+                    })}
             </PageContanier>
             <PromotionClassSlider />
             <GlobalNavBar />

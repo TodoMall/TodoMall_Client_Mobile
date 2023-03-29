@@ -1,79 +1,157 @@
 import Drawer from "@mui/material/Drawer";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { getTodoDetailByMemberId } from "../apollo/domain/member";
-import { COLOR, PATH } from "../constants";
-import CourseCurriculum from "../domain/mycourse/components/CourseCurriculum";
+import { updateSubscribeTodoState } from "../apollo/domain/mycourse";
+import { PATH, PROCESS_STATUS } from "../constants";
+import { CourseCurriculum } from "../domain/mycourse/components";
+import {
+    BestPracticesGuideBox,
+    TodoStatusCheckCard,
+} from "../domain/mycourse/components/todoDetail";
 import { usePopup, useToggle } from "../hooks";
 import { CustomViewer } from "../mds";
-import { RowBox } from "../mds/box";
-import { BasicButton, CheckButton } from "../mds/button";
-import { SessionBasicIcon } from "../mds/icon";
 import { BasicHeader } from "../mds/layout/mobile/headers";
-import { BodyL, BodyM, BodyXL, HeadingXL } from "../mds/text";
-
-// /mycourse/detail/todo/2864962f-ac08-41f9-bae2-98cc83e7f060/e08166a0-df65-4b0b-b57c-35e3e47fd36e/767325d3-1158-4b0f-9cf0-af3ce418bc70
 
 const TodoDetailPage = () => {
+    const location = useLocation();
     const navigate = useNavigate();
-    const { memberId } = { ...localStorage };
-    const { courseId, sessionId, todoId } = useParams();
+    const { USER_ID = "56167553-ab6f-4d8f-8c81-f402988e9be1" } = {
+        ...localStorage,
+    };
+    const {
+        courseId: subCourseId,
+        sessionId: subSessionId,
+        todoId: subTodoId,
+    } = useParams();
 
-    const [currentProduct, setCurrentProduct] = useState();
-    const [currentTodo, setCurrentTodo] = useState();
-    const [currentSession, setCurrentSession] = useState();
+    const [skipQuery, setSkipQuery] = useState(true);
+
+    const [subscribeProduct, setSubscribeProduct] = useState();
+    const [subscribeSession, setSubscribeSession] = useState();
+    const [subscribeTodo, setSubscribeTodo] = useState();
+    const [product, setProduct] = useState();
+    const [session, setSession] = useState();
+    const [todo, setTodo] = useState();
     const [isLastTodo, setIsLastTodo] = useState(false);
-    const [isAlreadyCompleted, setIsAlreadyCompleted] = useState(false);
 
+    const [isAlreadyCompleted, setIsAlreadyCompleted] = useState(false);
     const [isTodoCompleteChecked, _, handleTodoCompleteChecked] =
         useToggle(false);
+
     const [isShowCurriculum, handleOpen, handleClose] = usePopup();
 
-    const handleBestPracticePage = () => {
-        navigate(`${PATH.TODO_DETAIL_BEST}/${courseId}/${sessionId}/${todoId}`);
-    };
-
-    const { data } = useQuery(getTodoDetailByMemberId, {
+    const [updateTodoStatus] = useMutation(updateSubscribeTodoState, {
         variables: {
-            id: memberId,
+            memberId: USER_ID,
+            subscribeProductId: subCourseId,
+            subscribeSessionId: subSessionId,
+            subscribeTodoId: subTodoId,
         },
-        onCompleted: data => {
-            setCurrentProduct(data.getMemberById.subscribeProducts);
-
-            /*
-            FIXME : add orderBy column in subscribeSession
-            */
-            const formattedSession =
-                data.getMemberById.subscribeProducts[0].sessions.find(
-                    session => session.id === sessionId
-                );
-
-            /*
-            FIXME : add orderBy column in subscribeTodo
-            const [sortedLastTodo] = formattedSession.todos.sort(
-                (a, b) => b.orderBy - a.orderBy
-            );
-            setIsLastTodo(
-                sortedLastTodo.orderBy + 1 === formattedSession.todos.length
-            );
-            */
-            setCurrentSession(formattedSession);
-            setCurrentTodo(
-                formattedSession.todos.find(todo => todo.id === todoId)
-            );
-        },
-        onError: error => console.error(error),
     });
 
-    const handleNextTodo = () => {};
-    const handleMissionCertification = () => {};
+    const [refetching, { loading: isLoading }] = useLazyQuery(
+        getTodoDetailByMemberId,
+        {
+            variables: {
+                id: USER_ID,
+            },
+            fetchPolicy: "network-only",
+            skip: skipQuery,
+            onCompleted: data => {
+                const subscribeProduct =
+                    data.getMemberById.subscribeProducts.find(
+                        product => product.id === subCourseId
+                    );
+                const subscribeSession = subscribeProduct.sessions.find(
+                    session => session.id === subSessionId
+                );
+                const subscribeTodo = subscribeSession.todos.find(
+                    todo => todo.id === subTodoId
+                );
+                setSubscribeProduct(subscribeProduct);
+                setSubscribeSession(subscribeSession);
+                setSubscribeTodo(subscribeTodo);
+
+                setIsAlreadyCompleted(
+                    subscribeTodo.status === PROCESS_STATUS.SUCCESS
+                );
+                setIsLastTodo(
+                    subscribeTodo.orderBy + 1 === subscribeSession.todos.length
+                );
+
+                const findInSession = subscribeProduct.product.sessions.find(
+                    session => session.orderBy === subscribeSession.orderBy
+                );
+                const findInTodo = findInSession.todos.find(
+                    todo => todo.orderBy === subscribeTodo.orderBy
+                );
+                setProduct(subscribeProduct.product);
+                setSession(findInSession);
+                setTodo(findInTodo);
+                setSkipQuery(true);
+            },
+            onError: error => console.error(error),
+        }
+    );
+
+    const handleNextTodo = async () => {
+        const { id } = subscribeSession.todos[subscribeTodo?.orderBy + 1];
+        await updateTodoStatus();
+        navigate(`${PATH.TODO_DETAIL}/${subCourseId}/${subSessionId}/${id}`);
+    };
+
+    const handleMissionCertification = () => {
+        navigate(
+            `${PATH.MISSION_CERTIFICATION}/${subCourseId}/${subSessionId}/${subTodoId}`
+        );
+    };
+
+    const handleBestPractice = () => {
+        navigate(
+            `${PATH.TODO_DETAIL_BEST}/${product?.id}/${session?.id}/${todo?.id}`
+        );
+    };
+
+    useEffect(() => {
+        refetching(subTodoId);
+    }, [subTodoId, location.pathname]);
 
     return (
         <>
+            <BasicHeader
+                pageDescription={subscribeTodo?.title}
+                hasListButton={true}
+                onList={handleOpen}
+            />
+
+            <Container>
+                <CustomViewer
+                    initialValue={subscribeTodo?.body}
+                    isLoading={isLoading}
+                />
+
+                <BestPracticesGuideBox
+                    todo={subscribeTodo}
+                    onClick={handleBestPractice}
+                />
+
+                <TodoStatusCheckCard
+                    productId={product?.id}
+                    taskTitle={todo?.taskTitle}
+                    isLastTodo={isLastTodo}
+                    isAlreadyCompleted={isAlreadyCompleted}
+                    isTodoCompleteChecked={isTodoCompleteChecked}
+                    onClick={handleTodoCompleteChecked}
+                    onNext={handleNextTodo}
+                    onMissionCertification={handleMissionCertification}
+                />
+            </Container>
+
             {isShowCurriculum && (
                 <Drawer
                     open={isShowCurriculum}
@@ -83,113 +161,11 @@ const TodoDetailPage = () => {
                 >
                     <CourseCurriculum
                         onClose={handleClose}
-                        product={currentProduct}
-                        session={currentSession}
+                        subscribeProduct={subscribeProduct}
+                        subscribeSession={subscribeSession}
                     />
                 </Drawer>
             )}
-
-            <>
-                <BasicHeader
-                    pageDescription={currentTodo?.title}
-                    hasListButton={true}
-                    onList={handleOpen}
-                />
-                <Container>
-                    {currentTodo && (
-                        <CustomViewer initialValue={currentTodo.body} />
-                    )}
-                    <BestPracticesGuideBox>
-                        <RowBox justifyContent="flex-start">
-                            <SessionBasicIcon color={COLOR.SUCCESS500} />
-                            <BodyL
-                                margin={"0 0 0 0.25rem"}
-                                fontColor={COLOR.SUCCESS500}
-                            >
-                                도움말
-                            </BodyL>
-                        </RowBox>
-                        <HeadingXL>{currentTodo?.title}</HeadingXL>
-                        <BodyM>지금까지의 과정을 잘 따랐는지 알고싶다면?</BodyM>
-                        <ButtonWrapper>
-                            <BasicButton
-                                width={"51%"}
-                                onClick={handleBestPracticePage}
-                                backgroundColor={COLOR.SUCCESS500}
-                            >
-                                <BodyXL fontColor={COLOR.WHITE}>
-                                    모범예시 보러가기
-                                </BodyXL>
-                            </BasicButton>
-                        </ButtonWrapper>
-                    </BestPracticesGuideBox>
-
-                    <HeadingXL>투두 완료하기</HeadingXL>
-                    <BodyM margin={"0.5rem 0"}>
-                        활동 완료를 체크하고, 하단 버튼을 클릭해주세요.
-                    </BodyM>
-                    <CheckBoxColumnWrapper>
-                        <RowBox>
-                            {!isAlreadyCompleted && (
-                                <CheckButton
-                                    isChecked={isTodoCompleteChecked}
-                                    onClick={handleTodoCompleteChecked}
-                                />
-                            )}
-                            {isAlreadyCompleted && (
-                                <CheckButton
-                                    checkedColor={COLOR.GRAY500}
-                                    isChecked={true}
-                                    onClick={() => null}
-                                />
-                            )}
-                            {/* <BodyL>{currentTodo?.taskTitle}</BodyL> */}
-                            <BodyL>currentTodo?.taskTitle</BodyL>
-                        </RowBox>
-                    </CheckBoxColumnWrapper>
-                    {!isAlreadyCompleted && !isLastTodo && (
-                        <BasicButton
-                            margin={"1rem 0"}
-                            isDisabled={!isTodoCompleteChecked}
-                            backgroundColor={
-                                isTodoCompleteChecked
-                                    ? COLOR.BRAND_COLOR
-                                    : COLOR.GRAY200
-                            }
-                        >
-                            <BodyXL fontColor={COLOR.WHITE}>
-                                다음 투두로 넘어가기
-                            </BodyXL>
-                        </BasicButton>
-                    )}
-                    {!isAlreadyCompleted && isLastTodo && (
-                        <BasicButton
-                            margin={"1rem 0"}
-                            isDisabled={!isTodoCompleteChecked}
-                            backgroundColor={
-                                isTodoCompleteChecked
-                                    ? COLOR.BRAND_COLOR
-                                    : COLOR.GRAY200
-                            }
-                        >
-                            <BodyXL fontColor={COLOR.WHITE}>
-                                미션 인증하기
-                            </BodyXL>
-                        </BasicButton>
-                    )}
-                    {isAlreadyCompleted && (
-                        <BasicButton
-                            margin={"1rem 0"}
-                            isDisabled={true}
-                            backgroundColor={COLOR.GRAY500}
-                        >
-                            <BodyXL fontColor={COLOR.WHITE}>
-                                이미 완료한 투두입니다
-                            </BodyXL>
-                        </BasicButton>
-                    )}
-                </Container>
-            </>
         </>
     );
 };
@@ -197,23 +173,4 @@ export default TodoDetailPage;
 
 const Container = styled.div`
     padding: 0.75rem 1rem;
-`;
-
-const CheckBoxColumnWrapper = styled.div`
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 1.25rem;
-    background-color: ${COLOR.GRAY50};
-`;
-
-const BestPracticesGuideBox = styled.div`
-    margin: 2rem 0;
-    padding: 1rem 1.25rem;
-    border-radius: 1.25rem;
-    background-color: ${COLOR.GRAY50};
-`;
-
-const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: flex-end;
 `;

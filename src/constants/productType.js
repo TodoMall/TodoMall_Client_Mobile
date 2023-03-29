@@ -8,6 +8,11 @@ export const PRODUCT_TYPE = {
     ONBOARDING: "onboarding",
 };
 
+export const ONBORADING_PRODUCT = {
+    productId: "c156eb39-0533-4d15-981b-6adb0a4af194",
+    creatorId: "41b734ca-96d4-4a98-9b4d-ab0313273a26",
+};
+
 export const CATEGORY_TAG = {
     BEST: "BEST",
     "노코드 툴": PRODUCT_TYPE.NOCODE,

@@ -34,3 +34,5 @@ export const AWS_KEYS = {
     AWS_ACCESS_KEY_ID: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
     AWS_SECRET_ACCESS_KEY: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
 };
+
+export const S3_ENDPOINT = process.env.REACT_APP_AWS_S3_ENDPOINT;

@@ -1,21 +1,43 @@
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, PROCESS_STATUS } from "../../../constants";
+import { COLOR, PATH, PROCESS_STATUS } from "../../../constants";
 import { Card, DetailBoxCoulmn } from "../../../mds";
 import { BasicHeader } from "../../../mds/layout/mobile/headers";
 import { BodyL, HeadingXL } from "../../../mds/text";
 
-const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
-    const { SUCCESS, WAITING, FAIL } = PROCESS_STATUS;
+const CourseCurriculum = ({
+    subscribeProduct,
+    subscribeSession,
+    onClose: handleClose = () => {},
+}) => {
+    const { WAITING, FAIL } = PROCESS_STATUS;
+
+    const navigate = useNavigate();
+    const { courseId: subCourseId, sessionId: subSessionId } = useParams();
+
+    const sortedSessions = subscribeProduct.sessions
+        .slice()
+        .sort((a, b) => a.orderBy - b.orderBy);
+
+    const handleOtherTodoDetailPage = subTodoId => {
+        navigate(
+            `${PATH.TODO_DETAIL}/${subCourseId}/${subSessionId}/${subTodoId}`
+        );
+        handleClose();
+    };
 
     return (
         <>
             <BasicHeader
-                pageDescription={session?.title}
+                pageDescription={subscribeSession?.title}
                 onClick={handleClose}
             />
             <Container>
-                {product[0]?.sessions?.map((session, idx) => {
+                {sortedSessions.map((session, idx) => {
+                    const sortedTodos = session.todos
+                        .slice()
+                        .sort((a, b) => a.orderBy - b.orderBy);
                     return (
                         <Card key={idx}>
                             <BodyL fontColor={COLOR.GRAY700}>
@@ -24,7 +46,7 @@ const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
                             <HeadingXL margin={"0.25rem 0 0.5rem"}>
                                 {session?.title}
                             </HeadingXL>
-                            {session?.todos.map((todo, idx) => {
+                            {sortedTodos.map((todo, idx) => {
                                 if (
                                     session?.status === WAITING ||
                                     session?.status === FAIL
@@ -40,7 +62,14 @@ const CourseCurriculum = ({ product, session, onClose: handleClose }) => {
                                     );
                                 } else {
                                     return (
-                                        <DetailBoxCoulmn key={idx}>
+                                        <DetailBoxCoulmn
+                                            key={idx}
+                                            onClick={() =>
+                                                handleOtherTodoDetailPage(
+                                                    todo.id
+                                                )
+                                            }
+                                        >
                                             <BodyL>{todo?.title}</BodyL>
                                         </DetailBoxCoulmn>
                                     );

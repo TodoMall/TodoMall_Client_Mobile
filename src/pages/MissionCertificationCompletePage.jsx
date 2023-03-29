@@ -8,7 +8,7 @@ import ExclamationMarkImage from "../mds/image/ExclamationMarkImage";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL, BodyXXL, HeadingXL } from "../mds/text";
 
-const MissionCertificationCompletePage = ({ isComplete }) => {
+const MissionCertificationCompletePage = ({ isComplete = true }) => {
     const navigate = useNavigate();
     const handleToMainPage = () => navigate(PATH.STORE);
 

@@ -8,7 +8,7 @@ import { ProductStatusIcon } from "../hooks";
 const PaidClassBox = ({
     courseId,
     thumbnailUrl,
-    subscribeProducts,
+    subscribeProduct,
     challengeOrder,
 }) => {
     const navigate = useNavigate();
@@ -24,12 +24,12 @@ const PaidClassBox = ({
             <Thumbnail src={thumbnailUrl} alt={"paid product thumbnail"} />
             <DescriptionContainer>
                 <BodyXS fontColor={COLOR.GRAY500}>
-                    {challengeOrder + 1}번째 도전
+                    {challengeOrder}번째 도전
                 </BodyXS>
-                <Title>{subscribeProducts?.title}</Title>
+                <Title>{subscribeProduct?.title}</Title>
                 <ProductStatusIcon
-                    retryCount={subscribeProducts?.retryCount}
-                    processStatus={subscribeProducts?.status}
+                    retryCount={subscribeProduct?.retryCount}
+                    processStatus={subscribeProduct?.status}
                 />
             </DescriptionContainer>
         </Container>

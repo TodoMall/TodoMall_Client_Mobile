@@ -19,6 +19,7 @@ const BasicHeader = ({
         if (typeof handleClick === "undefined") {
             navigate(-1);
         }
+
         if (typeof handleClick !== "undefined") {
             handleClick();
         }
