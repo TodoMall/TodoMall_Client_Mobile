@@ -44,6 +44,7 @@ const MyCoursePage = () => {
     const handleTutorialDone = () => setIsTuturialDone(false);
     const handleDownloadTutorial = () => setIsTuturialDone(true);
 
+    // TODO : suspense with Skeleton Component
     return (
         <Container>
             <MyCourseHeader />

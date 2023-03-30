@@ -6,6 +6,7 @@ import { BasicButton } from "../../../mds/button";
 import { BodyL, BodyS, HeadingXL } from "../../../mds/text";
 
 const StickyPayBox = ({
+    isVisible,
     price,
     discountPrice,
     discountPercent,
@@ -14,7 +15,7 @@ const StickyPayBox = ({
     onPay: handlePayment,
 }) => {
     return (
-        <Container>
+        <Container isVisible={isVisible}>
             {!isFree && (
                 <RowBox
                     justifyContent={isDiscount ? "space-between" : "flex-end"}
@@ -54,6 +55,10 @@ const StickyPayBox = ({
 export default StickyPayBox;
 
 const Container = styled.div`
+    width: 100%;
+    display: ${props => (props.isVisible ? "block" : "none")};
+    position: fixed;
+    bottom: 0;
     padding: 1.5rem 1rem 0.5rem 1rem;
     background-color: ${COLOR.GRAY50};
 `;
