@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -28,7 +28,7 @@ const StoreDetailPage = () => {
     const [isDiscount, setIsDiscount] = useState(false);
     const [isFree, setIsFree] = useState(false);
 
-    const { data } = useQuery(getProductById, {
+    useQuery(getProductById, {
         variables: { id: courseId },
         onCompleted: data => {
             setProduct(data.getProductById);
@@ -36,6 +36,23 @@ const StoreDetailPage = () => {
             setIsDiscount(data.getProductById.discountPercent !== 0);
         },
     });
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 800) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     const totalDuration = product?.sessions.reduce((acc, session) => {
         return acc + session.duration;
@@ -48,7 +65,7 @@ const StoreDetailPage = () => {
     const handlePaymentPage = () => navigate(`${PATH.PAYMENT}/${courseId}`);
 
     return (
-        <div>
+        <Container>
             <BasicHeader pageDescription={"클래스 소개"} />
 
             <ProductImage src={product?.imageUrl} />
@@ -128,7 +145,10 @@ const StoreDetailPage = () => {
                     })}
                 </AdditionalInfoContainer>
             )}
+
             <StickyPayBox
+                isVisible={isVisible}
+                handleVisible={setIsVisible}
                 price={product?.price}
                 discountPrice={product?.discountPrice}
                 discountPercent={product?.discountPercent}
@@ -136,11 +156,15 @@ const StoreDetailPage = () => {
                 isFree={isFree}
                 onPay={handlePaymentPage}
             />
-        </div>
+        </Container>
     );
 };
 
 export default StoreDetailPage;
+
+const Container = styled.div`
+    padding-bottom: 9.125rem;
+`;
 
 const AdditionalInfoText = styled.p`
     font-weight: 500;
