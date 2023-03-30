@@ -26,6 +26,7 @@ import {
     StorePage,
     TermOfServicePage,
     TermsPage,
+    Test,
     TodoBestPractice,
 } from "./pages";
 import MyPage from "./pages/MyPage";
@@ -99,7 +100,6 @@ function App() {
                     element={<PaymentCompletePage />}
                 />
                 <Route path={PATH.MYPAGE} element={<MyPage />} />
-
                 <Route
                     path={`${PATH.TODO_DETAIL}/:courseId/:sessionId/:todoId`}
                     element={<TodoDetailPage />}
@@ -108,16 +108,15 @@ function App() {
                     path={`${PATH.TODO_DETAIL_BEST}/:courseId/:sessionId/:todoId`}
                     element={<TodoBestPractice />}
                 />
-
                 <Route
                     path={`${PATH.MISSION_CERTIFICATION}/:courseId/:sessionId/:todoId`}
                     element={<MissionCertificationPage />}
                 />
-
                 <Route
                     path={PATH.MISSION_CERTIFICATION_COMPLETE}
                     element={<MissionCertificationCompletePage />}
                 />
+                <Route path={PATH.TEST} element={<Test />} />
             </Routes>
         </Container>
     );

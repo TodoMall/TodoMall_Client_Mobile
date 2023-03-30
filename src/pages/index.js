@@ -21,3 +21,4 @@ export { default as MyPage } from "./MyPage";
 export { default as TodoBestPractice } from "./TodoBestPractice";
 export { default as MissionCertificationPage } from "./MissionCertificationPage";
 export { default as MissionCertificationCompletePage } from "./MissionCertificationCompletePage";
+export { default as Test } from "./Test";

@@ -27,4 +27,5 @@ export const PATH = {
     TODO_DETAIL_BEST: "/mycourse/detail/todo/bestpractice",
     MISSION_CERTIFICATION: "/mycourse/session/mission",
     MISSION_CERTIFICATION_COMPLETE: "/mycourse/session/mission/complete",
+    TEST: "/test",
 };
