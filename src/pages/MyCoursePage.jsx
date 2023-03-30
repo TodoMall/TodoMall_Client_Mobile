@@ -12,7 +12,6 @@ import SearchClassCard from "../domain/member/components/SearchClassCard";
 import { PromotionClassSlider } from "../domain/mycourse/components";
 import { SessionCardList } from "../domain/mycourse/components";
 import { useLocalStorage, usePopup } from "../hooks";
-import { Loader } from "../mds";
 import { GlobalNavBar } from "../mds/layout/mobile";
 import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
@@ -29,15 +28,20 @@ const MyCoursePage = () => {
 
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
-    const { loading: isLoading } = useQuery(getSubscribeProductByMemberId, {
+    useQuery(getSubscribeProductByMemberId, {
         variables: {
             id: memberId,
         },
         onCompleted: data => {
-            const processProducts = data.getMemberById.subscribeProducts.filter(
-                product => product.status === PROCESS_STATUS.PROCESS
-            );
-            setMemberProduct(processProducts);
+            // TODO : 불어오는 조건 크로스 체크
+            const filteredProducts =
+                data.getMemberById.subscribeProducts.filter(
+                    ({ status }) =>
+                        status === PROCESS_STATUS.PROCESS ||
+                        status === PROCESS_STATUS.WAITING ||
+                        status === PROCESS_STATUS.FAIL
+                );
+            setMemberProduct(filteredProducts);
         },
     });
 
@@ -53,7 +57,6 @@ const MyCoursePage = () => {
                 <HeadingXL margin={"1.5rem 0 0.75rem 0.5rem"}>
                     내 클래스
                 </HeadingXL>
-                {isLoading && <Loader />}
                 {!isTutorialDone && (
                     <TutorialCard
                         onDownload={handleDownloadTutorial}
@@ -69,9 +72,7 @@ const MyCoursePage = () => {
                         return (
                             <SessionCardList
                                 key={subscribeProduct?.id}
-                                courseId={subscribeProduct?.id}
-                                retryCount={subscribeProduct?.retryCount}
-                                sessions={subscribeProduct?.sessions}
+                                subscribeProduct={subscribeProduct}
                             />
                         );
                     })}

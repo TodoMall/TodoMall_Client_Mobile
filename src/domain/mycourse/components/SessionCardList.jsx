@@ -9,15 +9,18 @@ import {
     UrgentCard,
 } from "./SessionCard";
 
-const SessionCardList = ({ courseId, retryCount, sessions }) => {
-    const { PROCESS, WAITING } = PROCESS_STATUS;
+const SessionCardList = ({ subscribeProduct }) => {
+    const { PROCESS, FAIL, WAITING } = PROCESS_STATUS;
 
-    const fotmattedSessionList = sessions?.find(
-        session => session.status === PROCESS
+    const fotmattedSessionList = subscribeProduct?.sessions.find(
+        session => session.status === PROCESS || session.status === FAIL
     );
 
+    const lastRetryCount =
+        subscribeProduct?.product.retryCount - subscribeProduct?.retryCount;
+
     const unfinishedTodos = fotmattedSessionList?.todos?.filter(
-        todo => todo.status === PROCESS || todo.status === WAITING
+        todo => todo.status === PROCESS
     );
 
     const isToday = dayjs()
@@ -32,15 +35,17 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
         "M월 DD일 0시까지"
     );
 
-    if (isOverDeadline && retryCount > 0) {
+    if (isOverDeadline && lastRetryCount > 0) {
         return (
             <RetryCard
+                subscribeProductId={subscribeProduct?.id}
                 title={fotmattedSessionList?.title}
                 missionTitle={fotmattedSessionList?.missionTitle}
             />
         );
     }
-    if (isOverDeadline && retryCount === 0) {
+
+    if (isOverDeadline && lastRetryCount === 0) {
         return (
             <FailCard
                 title={fotmattedSessionList?.title}
@@ -48,11 +53,12 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
             />
         );
     }
+
     if (isToday) {
         return (
             <UrgentCard
-                courseId={courseId}
-                sessionId={fotmattedSessionList.id}
+                courseId={subscribeProduct?.id}
+                sessionId={fotmattedSessionList?.id}
                 todoId={unfinishedTodos[0]?.id}
                 title={fotmattedSessionList?.title}
                 missionTitle={fotmattedSessionList?.missionTitle}
@@ -61,10 +67,11 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
             />
         );
     }
+
     if (!isToday && unfinishedTodos.length > 0) {
         return (
             <BasicCard
-                courseId={courseId}
+                courseId={subscribeProduct?.id}
                 sessionId={fotmattedSessionList.id}
                 todoId={unfinishedTodos[0]?.id}
                 title={fotmattedSessionList?.title}
@@ -74,10 +81,11 @@ const SessionCardList = ({ courseId, retryCount, sessions }) => {
             />
         );
     }
+
     if (unfinishedTodos.length === 0) {
         return (
             <CertificationCard
-                courseId={courseId}
+                courseId={subscribeProduct?.id}
                 sessionId={fotmattedSessionList.id}
                 title={fotmattedSessionList?.title}
                 missionTitle={fotmattedSessionList?.missionTitle}

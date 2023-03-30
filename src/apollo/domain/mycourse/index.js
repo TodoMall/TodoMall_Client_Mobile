@@ -1,5 +1,7 @@
 // Mutation
 export {
+    retryProduct,
+    deleteSubscribeProduct,
     updateSubscribeTodoState,
     updateSubscribeSessionState,
 } from "./mycourse.mutation";
