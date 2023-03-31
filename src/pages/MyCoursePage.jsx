@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 
 import { getSubscribeProductByMemberId } from "../apollo/domain/member";
 import { COLOR, LOCAL_STORAGE_KEYS, PROCESS_STATUS } from "../constants";
@@ -28,7 +28,8 @@ const MyCoursePage = () => {
 
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
-    useQuery(getSubscribeProductByMemberId, {
+    // TODO : retry 실행 후 re-rendering 잘 되는지 확인하기
+    const [refetching] = useLazyQuery(getSubscribeProductByMemberId, {
         variables: {
             id: memberId,
         },
@@ -47,6 +48,10 @@ const MyCoursePage = () => {
 
     const handleTutorialDone = () => setIsTuturialDone(false);
     const handleDownloadTutorial = () => setIsTuturialDone(true);
+
+    useEffect(() => {
+        refetching();
+    }, []);
 
     // TODO : suspense with Skeleton Component
     return (
@@ -72,6 +77,7 @@ const MyCoursePage = () => {
                         return (
                             <SessionCardList
                                 key={subscribeProduct?.id}
+                                onRefetch={refetching}
                                 subscribeProduct={subscribeProduct}
                             />
                         );

@@ -9,7 +9,7 @@ import {
     UrgentCard,
 } from "./SessionCard";
 
-const SessionCardList = ({ subscribeProduct }) => {
+const SessionCardList = ({ subscribeProduct, onRefetch }) => {
     const { PROCESS, FAIL, WAITING } = PROCESS_STATUS;
 
     const fotmattedSessionList = subscribeProduct?.sessions.find(
@@ -41,6 +41,7 @@ const SessionCardList = ({ subscribeProduct }) => {
                 subscribeProductId={subscribeProduct?.id}
                 title={fotmattedSessionList?.title}
                 missionTitle={fotmattedSessionList?.missionTitle}
+                onRefetch={onRefetch}
             />
         );
     }
@@ -48,8 +49,10 @@ const SessionCardList = ({ subscribeProduct }) => {
     if (isOverDeadline && lastRetryCount === 0) {
         return (
             <FailCard
+                subscribeProductId={subscribeProduct?.id}
                 title={fotmattedSessionList?.title}
                 missionTitle={fotmattedSessionList?.missionTitle}
+                onRefetch={onRefetch}
             />
         );
     }

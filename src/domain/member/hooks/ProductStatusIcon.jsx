@@ -8,7 +8,9 @@ import {
 } from "../../../mds/icon";
 import { BodyS } from "../../../mds/text";
 
-const ProductStatusIcon = ({ retryCount, processStatus }) => {
+const ProductStatusIcon = ({ lastRetryCount, processStatus }) => {
+    console.log("lastRetryCount : ", lastRetryCount);
+    console.log("processStatus : ", processStatus);
     if (processStatus === PROCESS_STATUS.PROCESS) {
         return (
             <RowBox justifyContent={"flex-start"}>
@@ -31,7 +33,7 @@ const ProductStatusIcon = ({ retryCount, processStatus }) => {
         );
     }
 
-    if (processStatus === PROCESS_STATUS.WAITING && retryCount > 0) {
+    if (processStatus === PROCESS_STATUS.FAIL && lastRetryCount > 0) {
         return (
             <RowBox justifyContent={"flex-start"}>
                 <WarningIcon />
@@ -42,7 +44,7 @@ const ProductStatusIcon = ({ retryCount, processStatus }) => {
         );
     }
 
-    if (processStatus === PROCESS_STATUS.WAITING && retryCount === 0) {
+    if (processStatus === PROCESS_STATUS.FAIL && lastRetryCount === 0) {
         return (
             <RowBox justifyContent={"flex-start"}>
                 <FailIcon />

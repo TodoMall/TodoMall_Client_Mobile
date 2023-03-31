@@ -45,10 +45,12 @@ export const getOrderByMemberId = gql`
             id
             state
             product {
+                retryCount
                 thumbnailUrl
             }
             member {
                 subscribeProducts {
+                    id
                     title
                     status
                     retryCount

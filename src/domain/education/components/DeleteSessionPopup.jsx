@@ -4,10 +4,13 @@ import { COLOR } from "../../../constants";
 import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
-const DeleteSessionPopup = ({ onClose: handleClose = () => {} }) => {
-    const handleDisconnectSubscribe = () => {
+const DeleteSessionPopup = ({
+    onDelete: handleDelete = () => {},
+    onClose: handleClose = () => {},
+}) => {
+    const handleDisconnectSubscribe = async () => {
+        await handleDelete();
         handleClose();
-        // TODO : delete session logic
     };
 
     return (

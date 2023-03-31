@@ -5,30 +5,30 @@ import { COLOR, FONT_STYLE, PATH } from "../../../constants";
 import { BodyXS } from "../../../mds/text";
 import { ProductStatusIcon } from "../hooks";
 
-const PaidClassBox = ({
-    courseId,
-    thumbnailUrl,
-    subscribeProduct,
-    challengeOrder,
-}) => {
+const PaidClassBox = ({ product, subscribeProduct, challengeOrder }) => {
     const navigate = useNavigate();
 
+    const lastRetryCount = subscribeProduct?.retryCount - product?.retryCount;
+    console.log("lastRetryCount 1 :", lastRetryCount);
     const handleDetail = () =>
         navigate({
             pathname: PATH.PAID_PRODUCT_DETAIL,
-            search: `?courseId=${courseId}`,
+            search: `?courseId=${subscribeProduct?.id}`,
         });
 
     return (
         <Container onClick={handleDetail}>
-            <Thumbnail src={thumbnailUrl} alt={"paid product thumbnail"} />
+            <Thumbnail
+                src={product?.thumbnailUrl}
+                alt={"paid product thumbnail"}
+            />
             <DescriptionContainer>
                 <BodyXS fontColor={COLOR.GRAY500}>
                     {challengeOrder}번째 도전
                 </BodyXS>
                 <Title>{subscribeProduct?.title}</Title>
                 <ProductStatusIcon
-                    retryCount={subscribeProduct?.retryCount}
+                    lastRetryCount={lastRetryCount}
                     processStatus={subscribeProduct?.status}
                 />
             </DescriptionContainer>

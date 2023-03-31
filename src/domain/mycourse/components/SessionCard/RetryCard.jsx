@@ -12,7 +12,12 @@ import { WarningIcon } from "../../../../mds/icon";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../../mds/text";
 import { RetryPopup } from "../../../education/components";
 
-const RetryCard = ({ subscribeProductId, title, missionTitle }) => {
+const RetryCard = ({
+    subscribeProductId,
+    title,
+    missionTitle,
+    onRefetch: handleRefetch = () => {},
+}) => {
     const { USER_ID } = { ...localStorage };
     const [isShowDeleteSessionPopup, handleOpenPopup, handleClosePopup] =
         usePopup(false);
@@ -23,11 +28,12 @@ const RetryCard = ({ subscribeProductId, title, missionTitle }) => {
             subscribeProductId: subscribeProductId,
         },
     });
-    const handleRetrySession = () => {
-        retryProductFn();
+    const handleRetrySession = async () => {
+        await retryProductFn();
+        handleRefetch();
     };
 
-    const handleDeleteSession = () => {
+    const handleHideSession = () => {
         handleOpenPopup();
         // TODO : delete logic
     };
@@ -46,11 +52,12 @@ const RetryCard = ({ subscribeProductId, title, missionTitle }) => {
                     <BodyM>{missionTitle}</BodyM>
                 </TextContainer>
                 <RowBox>
+                    {/* TODO : 나중에 도전 기능 구현  */}
                     <BasicButton
                         width={"50%"}
                         margin={"0 0.5rem 0 0"}
                         backgroundColor={COLOR.GRAY100}
-                        onClick={handleDeleteSession}
+                        onClick={handleHideSession}
                     >
                         <BodyL fontColor={COLOR.GRAY400}>나중에 도전</BodyL>
                     </BasicButton>
