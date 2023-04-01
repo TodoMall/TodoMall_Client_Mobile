@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { useMutation } from "@apollo/client";
+
+import { deleteSubscribeProduct } from "../../../../apollo/domain/mycourse/mycourse.mutation";
 import { COLOR } from "../../../../constants";
 import { usePopup } from "../../../../hooks";
 import { Card } from "../../../../mds";
@@ -9,14 +12,16 @@ import { FailIcon } from "../../../../mds/icon";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../../mds/text";
 import { DeleteSessionPopup } from "../../../education/components";
 
-const FailCard = ({ title, missionTitle }) => {
+const FailCard = ({ subscribeProductId, title, missionTitle }) => {
     const [isShowDeleteSessionPopup, handleOpenPopup, handleClosePopup] =
         usePopup(false);
 
-    const handleDelete = () => {
-        handleOpenPopup();
-        // TODO : delete logic
-    };
+    const [deleteSubscribeProductFn] = useMutation(deleteSubscribeProduct, {
+        variables: {
+            memberId: "56167553-ab6f-4d8f-8c81-f402988e9be1",
+            subscribeProductId: subscribeProductId,
+        },
+    });
 
     return (
         <>
@@ -36,7 +41,7 @@ const FailCard = ({ title, missionTitle }) => {
                         width={"auto"}
                         margin={"0.5rem 0 0 0"}
                         backgroundColor={COLOR.ERROR500}
-                        onClick={handleDelete}
+                        onClick={handleOpenPopup}
                     >
                         <BodyXL fontColor={COLOR.WHITE}>도전 삭제</BodyXL>
                     </BasicButton>
@@ -44,7 +49,10 @@ const FailCard = ({ title, missionTitle }) => {
             </Card>
 
             {isShowDeleteSessionPopup && (
-                <DeleteSessionPopup onClose={handleClosePopup} />
+                <DeleteSessionPopup
+                    onDelete={deleteSubscribeProductFn}
+                    onClose={handleClosePopup}
+                />
             )}
         </>
     );

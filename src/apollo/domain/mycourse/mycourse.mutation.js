@@ -39,3 +39,29 @@ export const updateSubscribeSessionState = gql`
         }
     }
 `;
+
+export const retryProduct = gql`
+    mutation retryProduct($subscribeProductId: String!, $memberId: String!) {
+        retryProduct(
+            input: {
+                subscribeProductId: $subscribeProductId
+                memberId: $memberId
+            }
+        ) {
+            retryCount
+        }
+    }
+`;
+export const deleteSubscribeProduct = gql`
+    mutation deleteSubscribeProduct(
+        $subscribeProductId: String!
+        $memberId: String!
+    ) {
+        deleteSubscribeProduct(
+            input: {
+                subscribeProductId: $subscribeProductId
+                memberId: $memberId
+            }
+        )
+    }
+`;

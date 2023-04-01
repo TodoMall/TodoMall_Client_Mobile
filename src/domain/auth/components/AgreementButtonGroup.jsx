@@ -87,7 +87,6 @@ const AgreementButtonGroup = () => {
 
         await registerMemberFn();
         const order = await createOrderFn();
-        console.log("order", order);
         await verifyOrderFn({
             variables: {
                 orderId: order?.data.createOrder.id,

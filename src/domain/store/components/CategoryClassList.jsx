@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 
 import { getProductByType } from "../../../apollo/domain/store";
 import { CATEGORY_TAG } from "../../../constants";
@@ -12,7 +12,8 @@ import ClassBox from "./ClassBox";
 const CategoryClassList = () => {
     const [currentCategory] = useQueryString("tag");
     const [productByCategory, setProductByCategory] = useState(null);
-    const { data } = useQuery(getProductByType, {
+
+    const [refetch] = useLazyQuery(getProductByType, {
         variables: { type: currentCategory },
         onCompleted: data => {
             setProductByCategory(data.getProductByType);
@@ -22,6 +23,9 @@ const CategoryClassList = () => {
     const [foramttedType] = Object.entries(CATEGORY_TAG).find(
         ([_, val]) => val === currentCategory
     );
+    useEffect(() => {
+        refetch();
+    }, [currentCategory]);
 
     return (
         <Container>

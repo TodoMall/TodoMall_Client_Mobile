@@ -15,6 +15,7 @@ import { GlobalNavBar } from "../mds/layout/mobile";
 import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
 const MyPage = () => {
+    const navigate = useNavigate();
     const { USER_ID, name, email } = {
         ...localStorage,
     };
@@ -40,7 +41,6 @@ const MyPage = () => {
         onError: error => console.error(error),
     });
 
-    const navigate = useNavigate();
     const handleNotificationPage = () => navigate(PATH.NOTICE);
     const handleSettingPage = () => navigate(PATH.SETTING);
     const handleCSPage = () => (window.location.href = PATH.CS_CENTER);
@@ -97,11 +97,10 @@ const MyPage = () => {
                         return (
                             <PaidClassBox
                                 key={product?.id}
-                                courseId={product?.id}
                                 challengeOrder={
                                     formattedPaidProduct.length - idx
                                 }
-                                thumbnailUrl={product?.product.thumbnailUrl}
+                                product={product?.product}
                                 subscribeProduct={
                                     product?.member.subscribeProducts[idx]
                                 }

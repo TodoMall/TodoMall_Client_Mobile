@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { useMutation } from "@apollo/client";
+
+import { retryProduct } from "../../../../apollo/domain/mycourse/mycourse.mutation";
 import { COLOR } from "../../../../constants";
 import { usePopup } from "../../../../hooks";
 import { Card } from "../../../../mds";
@@ -9,11 +12,28 @@ import { WarningIcon } from "../../../../mds/icon";
 import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../../mds/text";
 import { RetryPopup } from "../../../education/components";
 
-const RetryCard = ({ title, missionTitle }) => {
+const RetryCard = ({
+    subscribeProductId,
+    title,
+    missionTitle,
+    onRefetch: handleRefetch = () => {},
+}) => {
+    const { USER_ID } = { ...localStorage };
     const [isShowDeleteSessionPopup, handleOpenPopup, handleClosePopup] =
         usePopup(false);
 
-    const handleDeleteSubscribeSession = () => {
+    const [retryProductFn] = useMutation(retryProduct, {
+        variables: {
+            memberId: "56167553-ab6f-4d8f-8c81-f402988e9be1",
+            subscribeProductId: subscribeProductId,
+        },
+    });
+    const handleRetrySession = async () => {
+        await retryProductFn();
+        handleRefetch();
+    };
+
+    const handleHideSession = () => {
         handleOpenPopup();
         // TODO : delete logic
     };
@@ -32,11 +52,12 @@ const RetryCard = ({ title, missionTitle }) => {
                     <BodyM>{missionTitle}</BodyM>
                 </TextContainer>
                 <RowBox>
+                    {/* TODO : 나중에 도전 기능 구현  */}
                     <BasicButton
                         width={"50%"}
                         margin={"0 0.5rem 0 0"}
                         backgroundColor={COLOR.GRAY100}
-                        onClick={handleDeleteSubscribeSession}
+                        onClick={handleHideSession}
                     >
                         <BodyL fontColor={COLOR.GRAY400}>나중에 도전</BodyL>
                     </BasicButton>
@@ -44,6 +65,7 @@ const RetryCard = ({ title, missionTitle }) => {
                         width={"50%"}
                         margin={"0.5rem 0 0 0"}
                         backgroundColor={COLOR.ERROR500}
+                        onClick={handleRetrySession}
                     >
                         <BodyXL fontColor={COLOR.WHITE}>다시 도전</BodyXL>
                     </BasicButton>

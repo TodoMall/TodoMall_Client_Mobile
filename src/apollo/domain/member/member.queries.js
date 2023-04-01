@@ -20,6 +20,9 @@ export const getSubscribeProductByMemberId = gql`
                 id
                 status
                 retryCount
+                product {
+                    retryCount
+                }
                 sessions {
                     id
                     status
@@ -42,10 +45,12 @@ export const getOrderByMemberId = gql`
             id
             state
             product {
+                retryCount
                 thumbnailUrl
             }
             member {
                 subscribeProducts {
+                    id
                     title
                     status
                     retryCount
