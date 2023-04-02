@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { COLOR, GNB, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
 import { LoginPopup } from "../../../domain/auth/components";
-import { useLocalStorage, useToggle } from "../../../hooks";
+import { useLocalStorage, usePopup } from "../../../hooks";
 import { RowBox } from "../../box";
 import { EducationButton, MyPageButton, StoreButton } from "../../button";
 
@@ -22,7 +22,7 @@ const GlobalNavBar = () => {
     const navigate = useNavigate();
     const [isGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
     const [isCurrent, setIsCurrent] = useState(setCurrentLocation());
-    const [isShowLoginPopup, _, handleLoginPopup] = useToggle(false);
+    const [isLoginPopup, handleOpen, handleClose] = usePopup(false);
 
     const handleStorePage = () => {
         setIsCurrent(GNB.STORE);
@@ -31,7 +31,7 @@ const GlobalNavBar = () => {
 
     const handleEducationPage = () => {
         if (isGuest) {
-            handleLoginPopup;
+            handleOpen();
         } else {
             setIsCurrent(GNB.MYCOURSE);
             navigate(PATH.MYCOURSE);
@@ -40,7 +40,7 @@ const GlobalNavBar = () => {
 
     const handleMyPagePage = () => {
         if (isGuest) {
-            handleLoginPopup;
+            handleOpen();
         } else {
             setIsCurrent(GNB.MYPAGE);
             navigate(PATH.MYPAGE);
@@ -48,7 +48,7 @@ const GlobalNavBar = () => {
     };
 
     return (
-        <Container onClick={handleLoginPopup}>
+        <Container>
             <RowBox>
                 <StoreButton isCurrent={isCurrent} onClick={handleStorePage} />
                 <EducationButton
@@ -60,7 +60,7 @@ const GlobalNavBar = () => {
                     onClick={handleMyPagePage}
                 />
             </RowBox>
-            {isShowLoginPopup && <LoginPopup />}
+            {isLoginPopup && <LoginPopup onClose={handleClose} />}
         </Container>
     );
 };

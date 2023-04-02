@@ -54,6 +54,7 @@ const MyCoursePage = () => {
     }, []);
 
     // TODO : suspense with Skeleton Component
+
     return (
         <Container>
             <MyCourseHeader />

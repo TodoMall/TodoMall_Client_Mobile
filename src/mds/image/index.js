@@ -13,3 +13,5 @@ export { default as CrossMarkImage } from "./CrossMarkImage";
 
 export { default as KakaoLoginImage } from "./KakaoLoginImage";
 export { default as AppleLoginImage } from "./AppleLoginImage";
+export { default as KakaoLoginPopupImage } from "./KakaoLoginPopupImage";
+export { default as AppleLoginPopupImage } from "./AppleLoginPopupImage";

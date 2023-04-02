@@ -7,9 +7,9 @@ import { BodyM } from "../../../mds/text";
 import AppleSignInButton from "./AppleSignInButton";
 import KakaoSignInButton from "./KakaoSignInButton";
 
-const LoginPopup = () => {
+const LoginPopup = ({ onClose: handleClose = () => {} }) => {
     return (
-        <PopUpLayout>
+        <PopUpLayout onClick={handleClose}>
             <LoginPopupBox>
                 <BrandLogo
                     logoColor={COLOR.BRAND_COLOR}
@@ -19,8 +19,8 @@ const LoginPopup = () => {
                 <BodyM margin={"0.75rem 0 2.438rem 0"}>
                     로그인이 필요한 서비스입니다.
                 </BodyM>
-                <KakaoSignInButton />
-                <AppleSignInButton />
+                <KakaoSignInButton isPopup={true} />
+                <AppleSignInButton isPopup={true} />
             </LoginPopupBox>
         </PopUpLayout>
     );
