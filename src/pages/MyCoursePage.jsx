@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { useLazyQuery } from "@apollo/client";
 
 import { getSubscribeProductByMemberId } from "../apollo/domain/member";
-import { COLOR, LOCAL_STORAGE_KEYS, PROCESS_STATUS } from "../constants";
+import {
+    COLOR,
+    LOCAL_STORAGE_KEYS,
+    PROCESS_STATUS,
+    PRODUCT_TYPE,
+} from "../constants";
 import { BandBanner } from "../domain/advertisement/components";
 import { PushPopup } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
@@ -20,11 +25,12 @@ const MyCoursePage = () => {
     const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE } = LOCAL_STORAGE_KEYS;
     const { memberId } = { ...localStorage };
     const [memberProduct, setMemberProduct] = useState([]);
+
+    const [isAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
     const [isTutorialDone, setIsTuturialDone] = useLocalStorage(
         IS_TUTORIAL_DONE,
         false
     );
-    const [isAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
 
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
@@ -42,7 +48,16 @@ const MyCoursePage = () => {
                         status === PROCESS_STATUS.WAITING ||
                         status === PROCESS_STATUS.FAIL
                 );
-            setMemberProduct(filteredProducts);
+            const productsWithoutOnboarding = filteredProducts.filter(
+                product =>
+                    !product.productTypes.include(PRODUCT_TYPE.ONBOARDING)
+            );
+            if (isTutorialDone) {
+                setMemberProduct(productsWithoutOnboarding);
+            }
+            if (!isTutorialDone) {
+                setMemberProduct(filteredProducts);
+            }
         },
     });
 
@@ -51,7 +66,7 @@ const MyCoursePage = () => {
 
     useEffect(() => {
         refetching();
-    }, []);
+    }, [isTutorialDone]);
 
     // TODO : suspense with Skeleton Component
 
