@@ -48,9 +48,12 @@ const MyCoursePage = () => {
                         status === PROCESS_STATUS.WAITING ||
                         status === PROCESS_STATUS.FAIL
                 );
+            console.log(filteredProducts);
             const productsWithoutOnboarding = filteredProducts.filter(
                 product =>
-                    !product.productTypes.include(PRODUCT_TYPE.ONBOARDING)
+                    !product.product.productTypes.includes(
+                        PRODUCT_TYPE.ONBOARDING
+                    )
             );
             if (isTutorialDone) {
                 setMemberProduct(productsWithoutOnboarding);
@@ -61,8 +64,8 @@ const MyCoursePage = () => {
         },
     });
 
-    const handleTutorialDone = () => setIsTuturialDone(false);
-    const handleDownloadTutorial = () => setIsTuturialDone(true);
+    const handleTutorialDone = () => setIsTuturialDone(true);
+    const handleDownloadTutorial = () => setIsTuturialDone(false);
 
     useEffect(() => {
         refetching();
