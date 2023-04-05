@@ -11,7 +11,7 @@ import { BodyL, BodyM, BodyXL, HeadingXL } from "../../../mds/text";
 
 const SearchClassCard = () => {
     const navigate = useNavigate();
-    const { name } = { ...localStorage };
+    const { USER_NAME } = { ...localStorage };
 
     const handleStore = () => navigate(PATH.STORE);
 
@@ -28,7 +28,9 @@ const SearchClassCard = () => {
                     </BodyL>
                 </RowBox>
                 <WelcomeText>
-                    <HeadingXL>반가워요 {name}님!</HeadingXL>
+                    <HeadingXL>
+                        반가워요 {USER_NAME.replace(/"/g, "")}님!
+                    </HeadingXL>
                     <BodyM>지금 마이플랜잇님께 맞는 클래스를 찾아보세요!</BodyM>
                 </WelcomeText>
                 <RowBox justifyContent="flex-end" margin={"0.75rem 0 0 0"}>

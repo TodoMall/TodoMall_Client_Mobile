@@ -16,7 +16,7 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL, BodyXXL, HeadingXL } from "../mds/text";
 
 const PaymentCompletePage = () => {
-    const { memberId } = { ...localStorage };
+    const { USER_ID } = { ...localStorage };
     const { courseId } = useParams();
     const { search } = useLocation();
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ const PaymentCompletePage = () => {
     const [buyProductFunc] = useMutation(buyProduct, {
         variables: {
             productId: courseId,
-            memberId: memberId,
+            memberId: USER_ID.replace(/"/g, ""),
             orderNumber: merchantUid,
         },
     });

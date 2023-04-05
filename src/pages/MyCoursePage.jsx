@@ -23,7 +23,7 @@ import { HeadingXL } from "../mds/text";
 
 const MyCoursePage = () => {
     const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE } = LOCAL_STORAGE_KEYS;
-    const { memberId } = { ...localStorage };
+    const { USER_ID } = { ...localStorage };
     const [memberProduct, setMemberProduct] = useState([]);
 
     const [isAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
@@ -37,7 +37,7 @@ const MyCoursePage = () => {
     // TODO : retry 실행 후 re-rendering 잘 되는지 확인하기
     const [refetching] = useLazyQuery(getSubscribeProductByMemberId, {
         variables: {
-            id: memberId,
+            id: USER_ID.replace(/"/g, ""),
         },
         onCompleted: data => {
             // TODO : 불어오는 조건 크로스 체크

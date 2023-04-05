@@ -9,7 +9,7 @@ const ProfileCard = ({
     marginBottom = "1.25rem",
     backgroundColor = COLOR.GRAY50,
 }) => {
-    const { image } = { ...localStorage };
+    const { USER_IMAGE } = { ...localStorage };
 
     return (
         <Container
@@ -17,7 +17,11 @@ const ProfileCard = ({
             backgroundColor={backgroundColor}
             marginBottom={marginBottom}
         >
-            {image ? <UserImage src={image} /> : <DefaultMemberProfile />}
+            {USER_IMAGE ? (
+                <UserImage src={USER_IMAGE} />
+            ) : (
+                <DefaultMemberProfile />
+            )}
             {children}
         </Container>
     );

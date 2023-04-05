@@ -12,6 +12,6 @@ export const LOCAL_STORAGE_KEYS = {
     USER_NAME: "USER_NAME",
     USER_ID: "USER_ID",
 
-    ACCESS: "access",
-    REFRESH: "refresh",
+    ACCESS_TOKEN: "accessToken",
+    REFRESH_TOKEN: "refresh",
 };

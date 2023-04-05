@@ -6,7 +6,7 @@ import { BodyL, BodyM } from "../../../mds/text";
 import { ProfileCard } from "../../member/components";
 
 const PayerInfo = () => {
-    const { name, email } = { ...localStorage };
+    const { USER_NAME, USER_EMAIL } = { ...localStorage };
 
     return (
         <ProfileCard>
@@ -15,13 +15,13 @@ const PayerInfo = () => {
                     <BodyM margin={"0 1.813rem 0 0"} fontColor={COLOR.GRAY500}>
                         이름
                     </BodyM>
-                    <BodyL>{name}</BodyL>
+                    <BodyL>{USER_NAME.replace(/"/g, "")}</BodyL>
                 </RowBox>
                 <RowBox>
                     <BodyM margin={"0 1rem 0 0"} fontColor={COLOR.GRAY500}>
                         이메일
                     </BodyM>
-                    <BodyL>{email}</BodyL>
+                    <BodyL>{USER_EMAIL.replace(/"/g, "")}</BodyL>
                 </RowBox>
             </UserInfo>
         </ProfileCard>

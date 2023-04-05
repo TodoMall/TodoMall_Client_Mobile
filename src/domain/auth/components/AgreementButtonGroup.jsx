@@ -65,7 +65,7 @@ const AgreementButtonGroup = () => {
 
     const [registerMemberFn] = useMutation(registerMember, {
         variables: {
-            id: USER_ID,
+            id: USER_ID.replace(/"/g, ""),
             agreement: {
                 isPushAlarmAgree: isCheckPush,
                 isMarketingAlarmAgree: isCheckMarketing,
@@ -75,7 +75,7 @@ const AgreementButtonGroup = () => {
     const [createOrderFn] = useMutation(createOrder, {
         variables: {
             productId: ONBORADING_PRODUCT.productId,
-            memberId: USER_ID,
+            memberId: USER_ID.replace(/"/g, ""),
             creatorId: ONBORADING_PRODUCT.creatorId,
         },
     });

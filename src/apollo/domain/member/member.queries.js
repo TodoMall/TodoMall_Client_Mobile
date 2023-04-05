@@ -1,5 +1,13 @@
 import gql from "graphql-tag";
 
+export const getMemberByEmail = gql`
+    query getMemberByEmail($email: String!) {
+        getMemberByEmail(input: { email: $email }) {
+            id
+        }
+    }
+`;
+
 export const getMemberAgreementById = gql`
     query getMemberById($id: String!) {
         getMemberById(data: { id: $id }) {

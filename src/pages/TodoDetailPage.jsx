@@ -20,9 +20,7 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 const TodoDetailPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { USER_ID = "56167553-ab6f-4d8f-8c81-f402988e9be1" } = {
-        ...localStorage,
-    };
+    const { USER_ID } = { ...localStorage };
     const {
         courseId: subCourseId,
         sessionId: subSessionId,
@@ -47,7 +45,7 @@ const TodoDetailPage = () => {
 
     const [updateTodoStatus] = useMutation(updateSubscribeTodoState, {
         variables: {
-            memberId: USER_ID,
+            memberId: USER_ID.replace(/"/g, ""),
             subscribeProductId: subCourseId,
             subscribeSessionId: subSessionId,
             subscribeTodoId: subTodoId,
@@ -58,7 +56,7 @@ const TodoDetailPage = () => {
         getTodoDetailByMemberId,
         {
             variables: {
-                id: USER_ID,
+                id: USER_ID.replace(/"/g, ""),
             },
             fetchPolicy: "network-only",
             skip: skipQuery,

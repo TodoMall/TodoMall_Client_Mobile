@@ -16,7 +16,7 @@ import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
 const MyPage = () => {
     const navigate = useNavigate();
-    const { USER_ID, name, email } = {
+    const { USER_ID, USER_NAME, USER_EMAIl } = {
         ...localStorage,
     };
 
@@ -24,7 +24,7 @@ const MyPage = () => {
 
     useQuery(getOrderByMemberId, {
         variables: {
-            memberId: USER_ID,
+            memberId: USER_ID.replace(/"/g, ""),
         },
         onCompleted: data => {
             const PaidProductSortedByDate = data.getOrderByMemberId
@@ -54,8 +54,10 @@ const MyPage = () => {
             >
                 <RowBox>
                     <ColBox margin={"0 0 0 0.75rem"}>
-                        <BodyXXXL>{name}</BodyXXXL>
-                        <BodyXXS fontColor={COLOR.GRAY500}>{email}</BodyXXS>
+                        <BodyXXXL>{USER_NAME}</BodyXXXL>
+                        <BodyXXS fontColor={COLOR.GRAY500}>
+                            {USER_EMAIl}
+                        </BodyXXS>
                     </ColBox>
                     <SettingItem onClick={handleSettingPage}>
                         <SettingIcon />

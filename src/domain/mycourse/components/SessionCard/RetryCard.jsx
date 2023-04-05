@@ -24,7 +24,7 @@ const RetryCard = ({
 
     const [retryProductFn] = useMutation(retryProduct, {
         variables: {
-            memberId: "56167553-ab6f-4d8f-8c81-f402988e9be1",
+            memberId: USER_ID.replace(/"/g, ""),
             subscribeProductId: subscribeProductId,
         },
     });

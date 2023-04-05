@@ -17,4 +17,5 @@ export {
     getAllNotification,
     getAllNotice,
     getNoticeById,
+    getMemberByEmail,
 } from "./member.queries";

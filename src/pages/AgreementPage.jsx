@@ -1,36 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { useQuery } from "@apollo/client";
+
+import { getMemberByEmail } from "../apollo/domain/member";
+import { LOCAL_STORAGE_KEYS } from "../constants";
 import { PROVIDERS } from "../constants/providers";
 import { AgreementButtonGroup } from "../domain/auth/components";
+import { useGetUserInfo } from "../domain/auth/hooks";
 import { useLogin } from "../domain/member/hooks";
+import { useLocalStorage } from "../hooks";
 import { CheckMarkImage } from "../mds/image";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
 const AgreementPage = () => {
+    const { USER_ID, USER_EMAIL, USER_NAME, USER_IMAGE, ACCESS_TOKEN } =
+        LOCAL_STORAGE_KEYS;
+
     const [searchParams] = useSearchParams();
-    const { signIn, loading } = useLogin(PROVIDERS.KAKAO);
-    const [accessToken, setAccessToken] = useState(null);
+    const code = searchParams.get("code");
+
+    const { signIn, loading: isLoading } = useLogin(PROVIDERS.KAKAO);
+
+    const [, setAccessToken] = useLocalStorage(ACCESS_TOKEN, null);
+    const [, setUserId] = useLocalStorage(USER_ID, null);
+    const [userEmail, setUserEmail] = useLocalStorage(USER_EMAIL, null);
+    const [, setUserImage] = useLocalStorage(USER_IMAGE, null);
+    const [, setUserName] = useLocalStorage(USER_NAME, null);
+
+    useQuery(getMemberByEmail, {
+        variables: {
+            email: userEmail,
+        },
+        skip: userEmail === null,
+        onCompleted: data => {
+            setUserId(data.getMemberByEmail.id);
+        },
+    });
 
     const signInWithKakao = async () => {
-        const code = searchParams.get("code");
         if (code) {
             const response = await signIn({
                 variables: {
                     data: code,
                 },
             });
-            console.log("response : ", response);
-            if (loading === false) {
+            if (!isLoading) {
                 setAccessToken(response.data.signInWithKakao);
             }
         }
     };
 
-    useEffect(() => {
+    useEffect(async () => {
         signInWithKakao();
+        const user = await useGetUserInfo(code);
+        if (user) {
+            setUserName(user.name);
+            setUserEmail(user.email);
+            setUserImage(user.image);
+        }
     }, []);
 
     return (

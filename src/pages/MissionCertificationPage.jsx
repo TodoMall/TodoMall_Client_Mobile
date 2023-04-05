@@ -17,7 +17,7 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, BodyXXL } from "../mds/text";
 
 const MissionCertificationPage = () => {
-    const { memberId } = { ...localStorage };
+    const { USER_ID } = { ...localStorage };
     const navigate = useNavigate();
     const fileInputRef = useRef();
 
@@ -36,7 +36,7 @@ const MissionCertificationPage = () => {
 
     useQuery(getTodoDetailByMemberId, {
         variables: {
-            id: memberId,
+            id: USER_ID.replace(/"/g, ""),
         },
         onCompleted: data => {
             const currentProduct = data.getMemberById.subscribeProducts.find(
@@ -57,7 +57,7 @@ const MissionCertificationPage = () => {
 
     const [updateTodoStatus] = useMutation(updateSubscribeTodoState, {
         variables: {
-            memberId: memberId,
+            memberId: USER_ID.replace(/"/g, ""),
             subscribeProductId: subCourseId,
             subscribeSessionId: subSessionId,
             subscribeTodoId: subTodoId,
@@ -65,10 +65,10 @@ const MissionCertificationPage = () => {
     });
     const [updateSessionStatus] = useMutation(updateSubscribeSessionState, {
         variables: {
-            memberId: memberId,
+            memberId: USER_ID.replace(/"/g, ""),
             subscribeProductId: subCourseId,
             subscribeSessionId: subSessionId,
-            missionImage: `${S3_ENDPOINT}/assignment/${subCourseId}/${subSessionId}/${memberId}.png`,
+            missionImage: `${S3_ENDPOINT}/assignment/${subCourseId}/${subSessionId}/${USER_ID}.png`,
         },
     });
 
@@ -86,7 +86,7 @@ const MissionCertificationPage = () => {
         setReadyToUpload(true);
     };
     const handleCertificationMission = async () => {
-        uploadCertificationImage(image, productId, sessionId, memberId);
+        uploadCertificationImage(image, productId, sessionId, USER_ID);
         await updateTodoStatus();
         await updateSessionStatus();
         navigate(PATH.MISSION_CERTIFICATION_COMPLETE);

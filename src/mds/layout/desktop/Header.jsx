@@ -10,10 +10,11 @@ import { CategoryTabBar } from "../../category";
 
 const Header = () => {
     const navigate = useNavigate();
-    const { memberId } = { ...localStorage };
+    const { USER_ID } = { ...localStorage };
 
     const handleMainPage = () => navigate(PATH.MAIN);
-    const handleAlarmPage = () => navigate(PATH.NOTIFICATION(memberId));
+    const handleAlarmPage = () =>
+        navigate(PATH.NOTIFICATION(USER_ID.replace(/"/g, "")));
     const handleSignInPage = () => navigate(PATH.SINGIN);
     const handleProPage = () => navigate(PATH.PRO_CENTER);
 

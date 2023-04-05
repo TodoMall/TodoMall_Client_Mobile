@@ -10,14 +10,14 @@ import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const DeleteAccountPopup = () => {
-    const { memberId } = { ...localStorage };
+    const { USER_ID } = { ...localStorage };
     const navigate = useNavigate();
     const [deleteMemberFn] = useMutation(deleteMember);
 
     const handleDeleteAccount = () => {
         deleteMemberFn({
             variables: {
-                id: memberId,
+                id: USER_ID.replace(/"/g, ""),
             },
             onCompleted: navigate(PATH.SINGIN),
         });
