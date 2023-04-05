@@ -32,3 +32,6 @@ export { default as LevelIcon } from "./LevelIcon";
 export { default as TodoIcon } from "./TodoIcon";
 
 export { default as PlusIcon } from "./PlusIcon";
+
+export { default as KakaoIcon } from "./KakaoIcon";
+export { default as AppleIcon } from "./AppleIcon";

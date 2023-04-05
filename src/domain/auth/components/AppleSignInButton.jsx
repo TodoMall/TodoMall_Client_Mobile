@@ -1,6 +1,13 @@
-import { APPLE_CLIENT_ID, APPLE_SCOPE, REDIRECT_URI } from "../../../constants";
+import styled from "styled-components";
+
+import {
+    APPLE_CLIENT_ID,
+    APPLE_SCOPE,
+    COLOR,
+    REDIRECT_URI,
+} from "../../../constants";
 import { BasicButton } from "../../../mds/button";
-import { AppleLoginImage, AppleLoginPopupImage } from "../../../mds/image";
+import { AppleIcon } from "../../../mds/icon";
 
 const AppleSignInButton = ({ isPopup }) => {
     const initApple = () => {
@@ -25,13 +32,23 @@ const AppleSignInButton = ({ isPopup }) => {
 
     return (
         <BasicButton
-            width={isPopup ? "248px" : "100%"}
-            margin="0"
+            margin={0}
+            backgroundColor={"#ffffff"}
             onClick={onClickLoginButton}
         >
-            {isPopup ? <AppleLoginPopupImage /> : <AppleLoginImage />}
+            <AppleIcon />
+            <ButtonText>Apple로 계속하기</ButtonText>
         </BasicButton>
     );
 };
 
 export default AppleSignInButton;
+
+const ButtonText = styled.div`
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: -0.01rem;
+    text-align: center;
+    color: ${COLOR.GRAY900};
+`;

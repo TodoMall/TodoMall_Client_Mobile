@@ -1,30 +1,53 @@
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
 import {
+    COLOR,
     KAKAO_CLIENT_ID,
     KAKAO_ENDPOINT,
+    LOCAL_STORAGE_KEYS,
+    PATH,
     REDIRECT_URI,
 } from "../../../constants";
 import { PROVIDERS } from "../../../constants/providers";
+import { useLocalStorage } from "../../../hooks";
 import { BasicButton } from "../../../mds/button";
-import { KakaoLoginImage, KakaoLoginPopupImage } from "../../../mds/image";
+import { KakaoIcon } from "../../../mds/icon";
 import { useLogin } from "../../member/hooks";
 
-const KakaoSignInButton = ({ isPopup }) => {
+const KakaoSignInButton = () => {
+    const { ACCESS_TOKEN } = { ...localStorage };
+    const [, setIsGest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
+
+    const navigate = useNavigate();
     const { signIn, data, loading, error } = useLogin(PROVIDERS.KAKAO);
 
-    // TODO : 이미 회원일 때는 store 페이지로 redirect
-    // TODO : 카카오로 로그인 시 isGuest = false 할당
     const onClickLoginButton = async () => {
-        window.location.href = `${KAKAO_ENDPOINT}?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+        setIsGest(false);
+        if (!ACCESS_TOKEN) return navigate(PATH.MYCOURSE);
+        if (ACCESS_TOKEN)
+            window.location.href = `${KAKAO_ENDPOINT}?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     };
 
     return (
         <BasicButton
-            width={isPopup ? "248px" : "100%"}
+            margin={0}
+            backgroundColor={"#FEE500"}
             onClick={onClickLoginButton}
         >
-            {isPopup ? <KakaoLoginPopupImage /> : <KakaoLoginImage />}
+            <KakaoIcon />
+            <ButtonText>Kakao로 계속하기</ButtonText>
         </BasicButton>
     );
 };
 
 export default KakaoSignInButton;
+
+const ButtonText = styled.div`
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: -0.01rem;
+    text-align: center;
+    color: ${COLOR.GRAY900};
+`;
