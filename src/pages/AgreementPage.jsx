@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { useQuery } from "@apollo/client";
+
+import { getMemberById } from "../apollo/domain/member";
 import { LOCAL_STORAGE_KEYS } from "../constants";
 import { PROVIDERS } from "../constants/providers";
 import { AgreementButtonGroup } from "../domain/auth/components";
@@ -13,7 +16,8 @@ import { BasicHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
 const AgreementPage = () => {
-    const { USER_ID, ACCESS_TOKEN } = LOCAL_STORAGE_KEYS;
+    const { USER_ID, ACCESS_TOKEN, USER_EMAIL, USER_IMAGE, USER_NAME } =
+        LOCAL_STORAGE_KEYS;
 
     const [searchParams] = useSearchParams();
 
@@ -22,7 +26,23 @@ const AgreementPage = () => {
     const { signIn } = useLogin(PROVIDERS.KAKAO);
 
     const [, setAccessToken] = useLocalStorage(ACCESS_TOKEN, null);
-    const [, setUserId] = useLocalStorage(USER_ID, null);
+    const [userId, setUserId] = useLocalStorage(USER_ID, null);
+    const [, setUserEmail] = useLocalStorage(USER_EMAIL, null);
+    const [, setUserImage] = useLocalStorage(USER_IMAGE, null);
+    const [, setUserName] = useLocalStorage(USER_NAME, null);
+
+    const { refetch } = useQuery(getMemberById, {
+        skip: userId === null,
+        variables: {
+            id: userId,
+        },
+        onCompleted: data => {
+            console.log(data);
+            setUserName(data.getMemberById.name);
+            setUserEmail(data.getMemberById.email);
+            setUserImage(data.getMemberById.image);
+        },
+    });
 
     const signInWithKakao = async () => {
         if (code) {
@@ -34,6 +54,9 @@ const AgreementPage = () => {
                     setAccessToken(data.signInWithKakao);
                     const { user: userId } = jwt_decode(data.signInWithKakao);
                     setUserId(userId);
+                    if (userId) {
+                        await refetch();
+                    }
                 },
             });
         }

@@ -17,7 +17,10 @@ import { useLogin } from "../../member/hooks";
 
 const KakaoSignInButton = () => {
     const [, setIsGest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
-    const [accessToken] = useLocalStorage(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+    const [accessToken] = useLocalStorage(
+        LOCAL_STORAGE_KEYS.ACCESS_TOKEN,
+        null
+    );
 
     const navigate = useNavigate();
     const { signIn, data, loading, error } = useLogin(PROVIDERS.KAKAO);

@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 import { registerMember } from "../../../apollo/domain/member";
-import { getMemberById } from "../../../apollo/domain/member/member.queries";
 import { createOrder, verifyOrder } from "../../../apollo/domain/payment";
 import {
     COLOR,
@@ -20,7 +19,8 @@ import { BodyL, BodyXXXL } from "../../../mds/text";
 import AgreementColumn from "./AgreementColumn";
 
 const AgreementButtonGroup = () => {
-    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID, null);
+    console.log(userId);
 
     const {
         IS_SERVICE_AGREE,
@@ -28,9 +28,6 @@ const AgreementButtonGroup = () => {
         IS_PUSHALARM_AGREE,
         IS_MARKETINGALARM_AGREE,
         IS_TUTORIAL_DONE,
-        USER_EMAIL,
-        USER_NAME,
-        USER_IMAGE,
     } = LOCAL_STORAGE_KEYS;
 
     const navigator = useNavigate();
@@ -49,10 +46,6 @@ const AgreementButtonGroup = () => {
     const isCheckAllRequired =
         isCheckService && isCheckPersonal && isCheckAdult;
 
-    const [, setUserEmail] = useLocalStorage(USER_EMAIL, null);
-    const [, setUserImage] = useLocalStorage(USER_IMAGE, null);
-    const [, setUserName] = useLocalStorage(USER_NAME, null);
-
     useLocalStorage(IS_TUTORIAL_DONE, false);
     useLocalStorage(IS_SERVICE_AGREE, true);
     useLocalStorage(IS_PERSONAL_AGREE, true);
@@ -62,16 +55,9 @@ const AgreementButtonGroup = () => {
         false
     );
 
-    useQuery(getMemberById, {
-        variables: {
-            id: userId,
-        },
-        onCompleted: data => {
-            setUserName(data.getMemberById.email);
-            setUserEmail(data.getMemberById.image);
-            setUserImage(data.getMemberById.name);
-        },
-    });
+    const [registerMemberFn] = useMutation(registerMember);
+    const [createOrderFn] = useMutation(createOrder);
+    const [verifyOrderFn] = useMutation(verifyOrder);
 
     const onClickAllAgreement = () => {
         setIsAllSelected(!isAllSelected);
@@ -82,37 +68,34 @@ const AgreementButtonGroup = () => {
         setIsCheckMarketing(!isAllSelected);
     };
 
-    const [registerMemberFn] = useMutation(registerMember, {
-        variables: {
-            id: userId,
-            agreement: {
-                isPushAlarmAgree: isCheckPush,
-                isMarketingAlarmAgree: isCheckMarketing,
-            },
-        },
-    });
-
-    const [createOrderFn] = useMutation(createOrder, {
-        variables: {
-            productId: ONBORADING_PRODUCT.productId,
-            memberId: userId,
-            creatorId: ONBORADING_PRODUCT.creatorId,
-        },
-    });
-
-    const [verifyOrderFn] = useMutation(verifyOrder);
-
     const onClickNextButton = async () => {
         setStoredPush(isCheckPush);
         setStoredMarketing(isCheckMarketing);
 
-        await registerMemberFn();
-        const order = await createOrderFn();
+        await registerMemberFn({
+            variables: {
+                id: userId,
+                agreement: {
+                    isPushAlarmAgree: isCheckPush,
+                    isMarketingAlarmAgree: isCheckMarketing,
+                },
+            },
+        });
+        const order = await createOrderFn({
+            variables: {
+                productId: ONBORADING_PRODUCT.productId,
+                memberId: userId,
+                creatorId: ONBORADING_PRODUCT.creatorId,
+            },
+        });
         await verifyOrderFn({
             variables: {
                 orderId: order?.data.createOrder.id,
             },
-            onCompleted: navigator(PATH.MYCOURSE),
+            onCompleted: async () => {
+                await refetch();
+                navigator(PATH.MYCOURSE);
+            },
         });
     };
 

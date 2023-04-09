@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
+import { useLocalStorage } from "../../../hooks";
 import { Card } from "../../../mds";
 import { RowBox } from "../../../mds/box";
 import { BasicButton } from "../../../mds/button";
