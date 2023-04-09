@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { BodyL, BodyM } from "../../../mds/text";
 import { ProfileCard } from "../../member/components";
 
 const PayerInfo = () => {
-    const { USER_NAME, USER_EMAIL } = { ...localStorage };
+    const [userName] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_NAME);
+    const [userEmail] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_EMAIL);
 
     return (
         <ProfileCard>
@@ -15,13 +16,13 @@ const PayerInfo = () => {
                     <BodyM margin={"0 1.813rem 0 0"} fontColor={COLOR.GRAY500}>
                         이름
                     </BodyM>
-                    <BodyL>{USER_NAME.replace(/"/g, "")}</BodyL>
+                    <BodyL>{userName}</BodyL>
                 </RowBox>
                 <RowBox>
                     <BodyM margin={"0 1rem 0 0"} fontColor={COLOR.GRAY500}>
                         이메일
                     </BodyM>
-                    <BodyL>{USER_EMAIL.replace(/"/g, "")}</BodyL>
+                    <BodyL>{userEmail}</BodyL>
                 </RowBox>
             </UserInfo>
         </ProfileCard>

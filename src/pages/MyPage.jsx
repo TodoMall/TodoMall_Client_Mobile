@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 
 import { getOrderByMemberId } from "../apollo/domain/member";
-import { COLOR, PATH } from "../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, ORDER_STATE, PATH } from "../constants";
 import { ProfileCard } from "../domain/member/components";
 import { PaidClassBox } from "../domain/member/components";
+import { useLocalStorage } from "../hooks";
 import { ColBox, RowBox } from "../mds/box";
 import { CSIcon, NoticeIcon, SettingIcon } from "../mds/icon";
 import { EmptyTrophysImage } from "../mds/image";
@@ -16,19 +17,21 @@ import { BodyL, BodyXXS, BodyXXXL, HeadingXL } from "../mds/text";
 
 const MyPage = () => {
     const navigate = useNavigate();
-    const { USER_ID, USER_NAME, USER_EMAIl } = {
-        ...localStorage,
-    };
+    const { USER_ID, USER_NAME, USER_EMAIL } = { LOCAL_STORAGE_KEYS };
+    const [userId] = useLocalStorage(USER_ID);
+    const [userName] = useLocalStorage(USER_NAME);
+    const [userEmail] = useLocalStorage(USER_EMAIL);
 
     const [formattedPaidProduct, setFormattedPaidProduct] = useState([]);
 
     useQuery(getOrderByMemberId, {
         variables: {
-            memberId: USER_ID.replace(/"/g, ""),
+            memberId: userId,
         },
         onCompleted: data => {
             const PaidProductSortedByDate = data.getOrderByMemberId
                 .slice()
+                .filter(order => order.state === ORDER_STATE.SUCCESS)
                 .sort((a, b) => {
                     return (
                         new Date(b.member.subscribeProducts.createdAt) -
@@ -54,10 +57,8 @@ const MyPage = () => {
             >
                 <RowBox>
                     <ColBox margin={"0 0 0 0.75rem"}>
-                        <BodyXXXL>{USER_NAME}</BodyXXXL>
-                        <BodyXXS fontColor={COLOR.GRAY500}>
-                            {USER_EMAIl}
-                        </BodyXXS>
+                        <BodyXXXL>{userName}</BodyXXXL>
+                        <BodyXXS fontColor={COLOR.GRAY500}>{userEmail}</BodyXXS>
                     </ColBox>
                     <SettingItem onClick={handleSettingPage}>
                         <SettingIcon />
@@ -96,6 +97,7 @@ const MyPage = () => {
             {formattedPaidProduct?.length > 0 && (
                 <ClassContainer>
                     {formattedPaidProduct?.map((product, idx) => {
+                        console.log(product.member.subscribeProducts);
                         return (
                             <PaidClassBox
                                 key={product?.id}

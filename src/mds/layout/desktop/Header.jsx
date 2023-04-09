@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, FONT_STYLE, PATH } from "../../../constants";
+import {
+    COLOR,
+    FONT_STYLE,
+    LOCAL_STORAGE_KEYS,
+    PATH,
+} from "../../../constants";
 import SearchBar from "../../../domain/store/components/SearchBar";
 import Divider from "../../Divider";
 import { RowBox } from "../../box";
@@ -10,11 +15,10 @@ import { CategoryTabBar } from "../../category";
 
 const Header = () => {
     const navigate = useNavigate();
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
 
     const handleMainPage = () => navigate(PATH.MAIN);
-    const handleAlarmPage = () =>
-        navigate(PATH.NOTIFICATION(USER_ID.replace(/"/g, "")));
+    const handleAlarmPage = () => navigate(PATH.NOTIFICATION(userId));
     const handleSignInPage = () => navigate(PATH.SINGIN);
     const handleProPage = () => navigate(PATH.PRO_CENTER);
 

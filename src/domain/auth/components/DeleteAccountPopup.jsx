@@ -4,20 +4,20 @@ import styled from "styled-components";
 import { useMutation } from "@apollo/client";
 
 import { deleteMember } from "../../../apollo/domain/member";
-import { COLOR, PATH } from "../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
 import { RowBox } from "../../../mds/box";
 import { PopUpContentBox, PopUpLayout } from "../../../mds/popup";
 import { BodyM, BodyS, BodyXS } from "../../../mds/text";
 
 const DeleteAccountPopup = () => {
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
     const navigate = useNavigate();
     const [deleteMemberFn] = useMutation(deleteMember);
 
     const handleDeleteAccount = () => {
         deleteMemberFn({
             variables: {
-                id: USER_ID.replace(/"/g, ""),
+                id: userId,
             },
             onCompleted: navigate(PATH.SINGIN),
         });

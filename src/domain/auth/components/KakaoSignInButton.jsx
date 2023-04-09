@@ -24,9 +24,12 @@ const KakaoSignInButton = () => {
 
     const onClickLoginButton = async () => {
         setIsGest(false);
-        if (!ACCESS_TOKEN) return navigate(PATH.MYCOURSE);
-        if (ACCESS_TOKEN)
-            window.location.href = `${KAKAO_ENDPOINT}?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+        if (ACCESS_TOKEN) {
+            return navigate(PATH.MYCOURSE);
+        }
+        if (!ACCESS_TOKEN) {
+            return (window.location.href = `${KAKAO_ENDPOINT}?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`);
+        }
     };
 
     return (

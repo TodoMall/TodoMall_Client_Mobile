@@ -8,7 +8,7 @@ import { NextArrowIcon } from "../../../mds/icon";
 
 const GuestSignInButton = () => {
     const navigator = useNavigate();
-    const [, setIsGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST);
+    const [, setIsGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
     const onClickGuestLoginButton = () => {
         setIsGuest(true);
         navigator(PATH.STORE);

@@ -9,8 +9,6 @@ import {
 import { BodyS } from "../../../mds/text";
 
 const ProductStatusIcon = ({ lastRetryCount, processStatus }) => {
-    console.log("lastRetryCount : ", lastRetryCount);
-    console.log("processStatus : ", processStatus);
     if (processStatus === PROCESS_STATUS.PROCESS) {
         return (
             <RowBox justifyContent={"flex-start"}>

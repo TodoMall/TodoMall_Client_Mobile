@@ -14,7 +14,7 @@ import { BodyM, BodyS } from "../mds/text";
 const SettingPage = () => {
     const navigate = useNavigate();
     const { IS_PUSHALARM_AGREE, IS_MARKETINGALARM_AGREE } = LOCAL_STORAGE_KEYS;
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
 
     const [updatePushAlarmStatus] = useMutation(
         updateMemberAlarmStatusAgreement
@@ -32,7 +32,7 @@ const SettingPage = () => {
     const handlePushStatus = () => {
         updatePushAlarmStatus({
             variables: {
-                memberId: USER_ID.replace(/"/g, ""),
+                memberId: userId,
                 isMarketingAlarmAgree: isAgreeMarketing,
                 isPushAlarmAgree: !isAgreePush,
             },
@@ -44,7 +44,7 @@ const SettingPage = () => {
     const handleMarketingStatus = () => {
         updatePushAlarmStatus({
             variables: {
-                memberId: USER_ID.replace(/"/g, ""),
+                memberId: userId,
                 isMarketingAlarmAgree: !isAgreeMarketing,
                 isPushAlarmAgree: isAgreePush,
             },

@@ -9,7 +9,6 @@ const PaidClassBox = ({ product, subscribeProduct, challengeOrder }) => {
     const navigate = useNavigate();
 
     const lastRetryCount = subscribeProduct?.retryCount - product?.retryCount;
-    console.log("lastRetryCount 1 :", lastRetryCount);
     const handleDetail = () =>
         navigate({
             pathname: PATH.PAID_PRODUCT_DETAIL,

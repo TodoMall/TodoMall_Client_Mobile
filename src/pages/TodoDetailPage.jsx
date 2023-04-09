@@ -7,20 +7,20 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 
 import { getTodoDetailByMemberId } from "../apollo/domain/member";
 import { updateSubscribeTodoState } from "../apollo/domain/mycourse";
-import { PATH, PROCESS_STATUS } from "../constants";
+import { LOCAL_STORAGE_KEYS, PATH, PROCESS_STATUS } from "../constants";
 import { CourseCurriculum } from "../domain/mycourse/components";
 import {
     BestPracticesGuideBox,
     TodoStatusCheckCard,
 } from "../domain/mycourse/components/todoDetail";
-import { usePopup, useToggle } from "../hooks";
+import { useLocalStorage, usePopup, useToggle } from "../hooks";
 import { CustomViewer } from "../mds";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 
 const TodoDetailPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
     const {
         courseId: subCourseId,
         sessionId: subSessionId,
@@ -45,7 +45,7 @@ const TodoDetailPage = () => {
 
     const [updateTodoStatus] = useMutation(updateSubscribeTodoState, {
         variables: {
-            memberId: USER_ID.replace(/"/g, ""),
+            memberId: userId,
             subscribeProductId: subCourseId,
             subscribeSessionId: subSessionId,
             subscribeTodoId: subTodoId,
@@ -56,7 +56,7 @@ const TodoDetailPage = () => {
         getTodoDetailByMemberId,
         {
             variables: {
-                id: USER_ID.replace(/"/g, ""),
+                id: userId,
             },
             fetchPolicy: "network-only",
             skip: skipQuery,

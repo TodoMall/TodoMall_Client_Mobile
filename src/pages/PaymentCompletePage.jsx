@@ -9,14 +9,14 @@ import {
     buyProduct,
     verifyOrder,
 } from "../apollo/domain/payment/payment.mutations";
-import { COLOR, ORDER_STATE, PATH } from "../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, ORDER_STATE, PATH } from "../constants";
 import { ReceiptCard } from "../domain/order/components";
 import { BasicButton } from "../mds/button";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyXL, BodyXXL, HeadingXL } from "../mds/text";
 
 const PaymentCompletePage = () => {
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
     const { courseId } = useParams();
     const { search } = useLocation();
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ const PaymentCompletePage = () => {
     const [buyProductFunc] = useMutation(buyProduct, {
         variables: {
             productId: courseId,
-            memberId: USER_ID.replace(/"/g, ""),
+            memberId: userId,
             orderNumber: merchantUid,
         },
     });

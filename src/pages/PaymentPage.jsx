@@ -24,7 +24,10 @@ import { BodyXL, HeadingXL } from "../mds/text";
 import { isNull } from "../utils/isNull";
 
 const PaymentPage = () => {
-    const { USER_ID, USER_NAME, USER_EMAIL } = { ...localStorage };
+    const { USER_ID, USER_NAME, USER_EMAIL } = { LOCAL_STORAGE_KEYS };
+    const [userId] = useLocalStorage(USER_ID);
+    const [userName] = useLocalStorage(USER_NAME);
+    const [userEmail] = useLocalStorage(USER_EMAIL);
 
     const { courseId } = useParams();
 
@@ -58,7 +61,7 @@ const PaymentPage = () => {
     const [getOrderNumber] = useMutation(createOrder, {
         variables: {
             productId: courseId,
-            memberId: USER_ID.replace(/"/g, ""),
+            memberId: userId,
             creatorId: product?.creator?.id,
         },
         skip: product === undefined,
@@ -78,8 +81,8 @@ const PaymentPage = () => {
             customer_uid: paymentMethod.customer_uid,
             name: product?.title,
             amount: product?.discountPrice,
-            buyer_email: USER_EMAIL.replace(/"/g, ""),
-            buyer_name: USER_NAME.replace(/"/g, ""),
+            buyer_email: userEmail,
+            buyer_name: userName,
             m_redirect_url: `${window.location.origin}/order/complete/${courseId}`,
         };
         try {

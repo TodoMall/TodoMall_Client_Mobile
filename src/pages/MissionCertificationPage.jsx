@@ -9,15 +9,16 @@ import {
     updateSubscribeSessionState,
     updateSubscribeTodoState,
 } from "../apollo/domain/mycourse";
-import { COLOR, PATH, S3_ENDPOINT } from "../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, PATH, S3_ENDPOINT } from "../constants";
 import { uploadCertificationImage } from "../domain/member/hooks";
+import { useLocalStorage } from "../hooks";
 import { BasicButton } from "../mds/button";
 import { PlusIcon } from "../mds/icon";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { BodyL, BodyM, BodyXL, BodyXXL } from "../mds/text";
 
 const MissionCertificationPage = () => {
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
     const navigate = useNavigate();
     const fileInputRef = useRef();
 
@@ -36,7 +37,7 @@ const MissionCertificationPage = () => {
 
     useQuery(getTodoDetailByMemberId, {
         variables: {
-            id: USER_ID.replace(/"/g, ""),
+            id: userId,
         },
         onCompleted: data => {
             const currentProduct = data.getMemberById.subscribeProducts.find(
@@ -57,7 +58,7 @@ const MissionCertificationPage = () => {
 
     const [updateTodoStatus] = useMutation(updateSubscribeTodoState, {
         variables: {
-            memberId: USER_ID.replace(/"/g, ""),
+            memberId: userId,
             subscribeProductId: subCourseId,
             subscribeSessionId: subSessionId,
             subscribeTodoId: subTodoId,
@@ -65,10 +66,10 @@ const MissionCertificationPage = () => {
     });
     const [updateSessionStatus] = useMutation(updateSubscribeSessionState, {
         variables: {
-            memberId: USER_ID.replace(/"/g, ""),
+            memberId: userId,
             subscribeProductId: subCourseId,
             subscribeSessionId: subSessionId,
-            missionImage: `${S3_ENDPOINT}/assignment/${subCourseId}/${subSessionId}/${USER_ID}.png`,
+            missionImage: `${S3_ENDPOINT}/assignment/${subCourseId}/${subSessionId}/${userId}.png`,
         },
     });
 
@@ -86,7 +87,7 @@ const MissionCertificationPage = () => {
         setReadyToUpload(true);
     };
     const handleCertificationMission = async () => {
-        uploadCertificationImage(image, productId, sessionId, USER_ID);
+        uploadCertificationImage(image, productId, sessionId, userId);
         await updateTodoStatus();
         await updateSessionStatus();
         navigate(PATH.MISSION_CERTIFICATION_COMPLETE);
