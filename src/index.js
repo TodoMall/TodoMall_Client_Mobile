@@ -2,34 +2,28 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
 import App from "./App";
-import { API_ENDPOINT, isProd } from "./constants";
+import { CustomApolloProvider } from "./apollo/link";
+import { isProd } from "./constants";
 import { worker } from "./mocks/browser";
 import reportWebVitals from "./reportWebVitals";
 import { ScrollToTop } from "./utils";
 
-if (!isProd) {
-    console.warn("Mock Service Worker is Running 🏄🏄🏄");
-    // worker.start({
-    //     onUnhandledRequest: "bypass",
-    // });
-    console.warn("🏄🏄🏄 Current Set API Endpoint 🏄🏄🏄 \n", API_ENDPOINT);
-}
-
-const client = new ApolloClient({
-    uri: API_ENDPOINT,
-    cache: new InMemoryCache(),
-});
+// if (!isProd) {
+//     console.warn("Mock Service Worker is Running 🏄🏄🏄");
+//     worker.start({
+//         onUnhandledRequest: "bypass",
+//     });
+//     console.warn("🏄🏄🏄 Current Set API Endpoint 🏄🏄🏄 \n", API_ENDPOINT);
+// }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
-        <ApolloProvider client={client}>
+        <CustomApolloProvider>
             <ScrollToTop />
             <App />
-        </ApolloProvider>
+        </CustomApolloProvider>
     </BrowserRouter>
 );
 
