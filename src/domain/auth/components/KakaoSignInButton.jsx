@@ -16,18 +16,18 @@ import { KakaoIcon } from "../../../mds/icon";
 import { useLogin } from "../../member/hooks";
 
 const KakaoSignInButton = () => {
-    const { ACCESS_TOKEN } = { ...localStorage };
     const [, setIsGest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
+    const [accessToken] = useLocalStorage(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 
     const navigate = useNavigate();
     const { signIn, data, loading, error } = useLogin(PROVIDERS.KAKAO);
 
     const onClickLoginButton = async () => {
         setIsGest(false);
-        if (ACCESS_TOKEN) {
+        if (accessToken) {
             return navigate(PATH.MYCOURSE);
         }
-        if (!ACCESS_TOKEN) {
+        if (!accessToken) {
             return (window.location.href = `${KAKAO_ENDPOINT}?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`);
         }
     };

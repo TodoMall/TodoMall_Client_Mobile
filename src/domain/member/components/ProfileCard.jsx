@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-import { COLOR } from "../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS } from "../../../constants";
+import { useLocalStorage } from "../../../hooks";
 import { DefaultMemberProfile } from "../../../mds/icon";
 
 const ProfileCard = ({
@@ -9,19 +10,14 @@ const ProfileCard = ({
     marginBottom = "1.25rem",
     backgroundColor = COLOR.GRAY50,
 }) => {
-    const { USER_IMAGE } = { ...localStorage };
-
+    const [image] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_IMAGE);
     return (
         <Container
             padding={padding}
             backgroundColor={backgroundColor}
             marginBottom={marginBottom}
         >
-            {USER_IMAGE ? (
-                <UserImage src={USER_IMAGE} />
-            ) : (
-                <DefaultMemberProfile />
-            )}
+            {image ? <UserImage src={image} /> : <DefaultMemberProfile />}
             {children}
         </Container>
     );
