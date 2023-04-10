@@ -1,5 +1,15 @@
 import gql from "graphql-tag";
 
+export const getMemberById = gql`
+    query getMemberById($id: String!) {
+        getMemberById(data: { id: $id }) {
+            name
+            email
+            image
+        }
+    }
+`;
+
 export const getMemberAgreementById = gql`
     query getMemberById($id: String!) {
         getMemberById(data: { id: $id }) {
@@ -22,6 +32,7 @@ export const getSubscribeProductByMemberId = gql`
                 retryCount
                 product {
                     retryCount
+                    productTypes
                 }
                 sessions {
                     id

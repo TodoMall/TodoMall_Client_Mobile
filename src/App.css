@@ -57,7 +57,6 @@ a {
 a:active {
     text-decoration: none;
     color: #fff;
-    /* background-color: #f59000; */
 }
 html,
 body {
@@ -68,17 +67,6 @@ body {
 html {
     overflow: -moz-scrollbars-none;
     scrollbar-width: none;
-}
-.nextui-c-eUuHzx {
-    position: fixed !important;
-    top: 48px !important;
-}
-.nextui-c-eUuHzx-gZuGQh-color-primary {
-    --nextui--progressColor: #6b47fd !important;
-    --nextui--progressShadowColor: #6b47fd !important;
-}
-.nextui-c-eUuHzx-hMPNGY-size-xs {
-    height: 2px !important;
 }
 ::-webkit-scrollbar {
     display: none;

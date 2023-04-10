@@ -9,7 +9,7 @@ import { HeadingXL } from "../../../text";
 
 const MyCourseHeader = () => {
     const navigate = useNavigate();
-    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID, "user");
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
 
     const handleNotificationPage = () =>
         navigate(`${PATH.NOTIFICATION}/${userId}`);

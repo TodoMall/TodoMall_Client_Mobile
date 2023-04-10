@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { useLazyQuery } from "@apollo/client";
 
 import { getSubscribeProductByMemberId } from "../apollo/domain/member";
-import { COLOR, LOCAL_STORAGE_KEYS, PROCESS_STATUS } from "../constants";
+import {
+    COLOR,
+    LOCAL_STORAGE_KEYS,
+    PROCESS_STATUS,
+    PRODUCT_TYPE,
+} from "../constants";
 import { BandBanner } from "../domain/advertisement/components";
 import { PushPopup } from "../domain/education/components";
 import { TutorialCard } from "../domain/member/components";
@@ -17,21 +22,23 @@ import { MyCourseHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
 const MyCoursePage = () => {
-    const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE } = LOCAL_STORAGE_KEYS;
-    const { memberId } = { ...localStorage };
+    const { IS_TUTORIAL_DONE, IS_PUSHALARM_AGREE, USER_ID } =
+        LOCAL_STORAGE_KEYS;
+    const [userId] = useLocalStorage(USER_ID);
     const [memberProduct, setMemberProduct] = useState([]);
+
+    const [isAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
     const [isTutorialDone, setIsTuturialDone] = useLocalStorage(
         IS_TUTORIAL_DONE,
         false
     );
-    const [isAgreePush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
 
     const [isShowPushAlarmPopup, _, handleClose] = usePopup(!isAgreePush);
 
     // TODO : retry 실행 후 re-rendering 잘 되는지 확인하기
     const [refetching] = useLazyQuery(getSubscribeProductByMemberId, {
         variables: {
-            id: memberId,
+            id: userId,
         },
         onCompleted: data => {
             // TODO : 불어오는 조건 크로스 체크
@@ -42,18 +49,31 @@ const MyCoursePage = () => {
                         status === PROCESS_STATUS.WAITING ||
                         status === PROCESS_STATUS.FAIL
                 );
+            const productsWithoutOnboarding = filteredProducts.filter(
+                product =>
+                    !product.product.productTypes.includes(
+                        PRODUCT_TYPE.ONBOARDING
+                    )
+            );
+            // if (isTutorialDone) {
+            //     setMemberProduct(productsWithoutOnboarding);
+            // }
+            // if (!isTutorialDone) {
+            //     setMemberProduct(filteredProducts);
+            // }
             setMemberProduct(filteredProducts);
         },
     });
 
-    const handleTutorialDone = () => setIsTuturialDone(false);
-    const handleDownloadTutorial = () => setIsTuturialDone(true);
+    const handleTutorialDone = () => setIsTuturialDone(true);
+    const handleDownloadTutorial = () => setIsTuturialDone(false);
 
     useEffect(() => {
         refetching();
-    }, []);
+    }, [isTutorialDone]);
 
     // TODO : suspense with Skeleton Component
+
     return (
         <Container>
             <MyCourseHeader />

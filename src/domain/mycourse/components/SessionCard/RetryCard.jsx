@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useMutation } from "@apollo/client";
 
 import { retryProduct } from "../../../../apollo/domain/mycourse/mycourse.mutation";
-import { COLOR } from "../../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS } from "../../../../constants";
 import { usePopup } from "../../../../hooks";
 import { Card } from "../../../../mds";
 import { RowBox } from "../../../../mds/box";
@@ -18,13 +18,13 @@ const RetryCard = ({
     missionTitle,
     onRefetch: handleRefetch = () => {},
 }) => {
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID);
     const [isShowDeleteSessionPopup, handleOpenPopup, handleClosePopup] =
         usePopup(false);
 
     const [retryProductFn] = useMutation(retryProduct, {
         variables: {
-            memberId: "56167553-ab6f-4d8f-8c81-f402988e9be1",
+            memberId: userId,
             subscribeProductId: subscribeProductId,
         },
     });

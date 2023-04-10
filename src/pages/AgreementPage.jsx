@@ -1,31 +1,64 @@
-import React, { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { useQuery } from "@apollo/client";
+
+import { getMemberById } from "../apollo/domain/member";
+import { LOCAL_STORAGE_KEYS } from "../constants";
 import { PROVIDERS } from "../constants/providers";
 import { AgreementButtonGroup } from "../domain/auth/components";
 import { useLogin } from "../domain/member/hooks";
+import { useLocalStorage } from "../hooks";
 import { CheckMarkImage } from "../mds/image";
 import { BasicHeader } from "../mds/layout/mobile/headers";
 import { HeadingXL } from "../mds/text";
 
 const AgreementPage = () => {
+    const { USER_ID, ACCESS_TOKEN, USER_EMAIL, USER_IMAGE, USER_NAME } =
+        LOCAL_STORAGE_KEYS;
+
     const [searchParams] = useSearchParams();
-    const { signIn, loading } = useLogin(PROVIDERS.KAKAO);
-    const [accessToken, setAccessToken] = useState(null);
+
+    const code = searchParams.get("code");
+
+    const { signIn } = useLogin(PROVIDERS.KAKAO);
+
+    const [, setAccessToken] = useLocalStorage(ACCESS_TOKEN, null);
+    const [userId, setUserId] = useLocalStorage(USER_ID, null);
+    const [, setUserEmail] = useLocalStorage(USER_EMAIL, null);
+    const [, setUserImage] = useLocalStorage(USER_IMAGE, null);
+    const [, setUserName] = useLocalStorage(USER_NAME, null);
+
+    const { refetch } = useQuery(getMemberById, {
+        skip: userId === null,
+        variables: {
+            id: userId,
+        },
+        onCompleted: data => {
+            console.log(data);
+            setUserName(data.getMemberById.name);
+            setUserEmail(data.getMemberById.email);
+            setUserImage(data.getMemberById.image);
+        },
+    });
 
     const signInWithKakao = async () => {
-        const code = searchParams.get("code");
         if (code) {
-            const response = await signIn({
+            await signIn({
                 variables: {
                     data: code,
                 },
+                onCompleted: async data => {
+                    setAccessToken(data.signInWithKakao);
+                    const { user: userId } = jwt_decode(data.signInWithKakao);
+                    setUserId(userId);
+                    if (userId) {
+                        await refetch();
+                    }
+                },
             });
-            console.log("response : ", response);
-            if (loading === false) {
-                setAccessToken(response.data.signInWithKakao);
-            }
         }
     };
 

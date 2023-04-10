@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { COLOR, PATH } from "../../../constants";
+import { COLOR, LOCAL_STORAGE_KEYS, PATH } from "../../../constants";
+import { useLocalStorage } from "../../../hooks";
 import { TextButton } from "../../../mds/button";
-import NextArrowIcon from "../../../mds/icon/NextArrowIcon";
+import { NextArrowIcon } from "../../../mds/icon";
 
 const GuestSignInButton = () => {
     const navigator = useNavigate();
-
+    const [, setIsGuest] = useLocalStorage(LOCAL_STORAGE_KEYS.IS_GUEST, false);
     const onClickGuestLoginButton = () => {
+        setIsGuest(true);
         navigator(PATH.STORE);
     };
 

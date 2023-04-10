@@ -31,6 +31,7 @@ export default LoginPage;
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    padding: 0 1rem;
     background-color: ${COLOR.BRAND_COLOR};
     display: flex;
     flex-direction: column;
@@ -48,7 +49,6 @@ const ButtonContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
-    padding: 0 1rem;
     margin: 7.5rem 0 1.25rem;
     gap: 0.5rem;
 `;

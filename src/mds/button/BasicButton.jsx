@@ -17,8 +17,8 @@ const BasicButton = ({
         <Container
             backgroundColor={backgroundColor}
             borderRadius={borderRadius}
-            height={height}
             width={width}
+            height={height}
             margin={margin}
             padding={padding}
             disabled={isDisabled}

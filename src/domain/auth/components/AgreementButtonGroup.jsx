@@ -19,7 +19,8 @@ import { BodyL, BodyXXXL } from "../../../mds/text";
 import AgreementColumn from "./AgreementColumn";
 
 const AgreementButtonGroup = () => {
-    const { USER_ID } = { ...localStorage };
+    const [userId] = useLocalStorage(LOCAL_STORAGE_KEYS.USER_ID, null);
+    console.log(userId);
 
     const {
         IS_SERVICE_AGREE,
@@ -45,6 +46,7 @@ const AgreementButtonGroup = () => {
     const isCheckAllRequired =
         isCheckService && isCheckPersonal && isCheckAdult;
 
+    useLocalStorage(IS_TUTORIAL_DONE, false);
     useLocalStorage(IS_SERVICE_AGREE, true);
     useLocalStorage(IS_PERSONAL_AGREE, true);
     const [, setStoredPush] = useLocalStorage(IS_PUSHALARM_AGREE, false);
@@ -52,7 +54,10 @@ const AgreementButtonGroup = () => {
         IS_MARKETINGALARM_AGREE,
         false
     );
-    useLocalStorage(IS_TUTORIAL_DONE, false);
+
+    const [registerMemberFn] = useMutation(registerMember);
+    const [createOrderFn] = useMutation(createOrder);
+    const [verifyOrderFn] = useMutation(verifyOrder);
 
     const onClickAllAgreement = () => {
         setIsAllSelected(!isAllSelected);
@@ -63,35 +68,34 @@ const AgreementButtonGroup = () => {
         setIsCheckMarketing(!isAllSelected);
     };
 
-    const [registerMemberFn] = useMutation(registerMember, {
-        variables: {
-            id: USER_ID,
-            agreement: {
-                isPushAlarmAgree: isCheckPush,
-                isMarketingAlarmAgree: isCheckMarketing,
-            },
-        },
-    });
-    const [createOrderFn] = useMutation(createOrder, {
-        variables: {
-            productId: ONBORADING_PRODUCT.productId,
-            memberId: USER_ID,
-            creatorId: ONBORADING_PRODUCT.creatorId,
-        },
-    });
-    const [verifyOrderFn] = useMutation(verifyOrder);
-
     const onClickNextButton = async () => {
         setStoredPush(isCheckPush);
         setStoredMarketing(isCheckMarketing);
 
-        await registerMemberFn();
-        const order = await createOrderFn();
+        await registerMemberFn({
+            variables: {
+                id: userId,
+                agreement: {
+                    isPushAlarmAgree: isCheckPush,
+                    isMarketingAlarmAgree: isCheckMarketing,
+                },
+            },
+        });
+        const order = await createOrderFn({
+            variables: {
+                productId: ONBORADING_PRODUCT.productId,
+                memberId: userId,
+                creatorId: ONBORADING_PRODUCT.creatorId,
+            },
+        });
         await verifyOrderFn({
             variables: {
                 orderId: order?.data.createOrder.id,
             },
-            onCompleted: () => navigator(PATH.MYCOURSE),
+            onCompleted: async () => {
+                await refetch();
+                navigator(PATH.MYCOURSE);
+            },
         });
     };
 

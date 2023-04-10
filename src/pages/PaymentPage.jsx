@@ -24,7 +24,10 @@ import { BodyXL, HeadingXL } from "../mds/text";
 import { isNull } from "../utils/isNull";
 
 const PaymentPage = () => {
-    const { memberId, name, email } = { ...localStorage };
+    const { USER_ID, USER_NAME, USER_EMAIL } = { LOCAL_STORAGE_KEYS };
+    const [userId] = useLocalStorage(USER_ID);
+    const [userName] = useLocalStorage(USER_NAME);
+    const [userEmail] = useLocalStorage(USER_EMAIL);
 
     const { courseId } = useParams();
 
@@ -44,7 +47,7 @@ const PaymentPage = () => {
         setPaymentMethod(name);
     };
 
-    const { data } = useQuery(getOrderProductById, {
+    useQuery(getOrderProductById, {
         variables: { id: courseId },
         onCompleted: data => {
             setProduct(data.getProductById);
@@ -55,13 +58,13 @@ const PaymentPage = () => {
         },
     });
 
-    // FIXME : count up 안되는거같은데 살펴보가ㅣ
     const [getOrderNumber] = useMutation(createOrder, {
         variables: {
             productId: courseId,
-            memberId: memberId,
+            memberId: userId,
             creatorId: product?.creator?.id,
         },
+        skip: product === undefined,
         onCompleted: data => {
             setOrderNumber(data.createOrder.orderNumber);
         },
@@ -75,10 +78,11 @@ const PaymentPage = () => {
             pg: paymentMethod.pg,
             pay_method: paymentMethod.pay_method,
             merchant_uid: orderNumber,
+            customer_uid: paymentMethod.customer_uid,
             name: product?.title,
             amount: product?.discountPrice,
-            buyer_email: email,
-            buyer_name: name,
+            buyer_email: userEmail,
+            buyer_name: userName,
             m_redirect_url: `${window.location.origin}/order/complete/${courseId}`,
         };
         try {

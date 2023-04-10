@@ -33,10 +33,6 @@ import TodoDetailPage from "./pages/TodoDetailPage";
 import { getMaxWidth } from "./utils/width";
 
 function App() {
-    // TODO : should be deleted
-    localStorage.setItem("USER_ID", "56167553-ab6f-4d8f-8c81-f402988e9be1");
-    localStorage.setItem("memberId", "56167553-ab6f-4d8f-8c81-f402988e9be1");
-
     const location = useLocation();
     const getBackgroundColor = () => {
         if (

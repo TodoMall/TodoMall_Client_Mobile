@@ -5,7 +5,7 @@ export const PRODUCT_TYPE = {
     DESIGN: "DESIGN",
     PLAN: "PLAN",
     LIFESTYLE: "LIFESTYLE",
-    ONBOARDING: "onboarding",
+    ONBOARDING: "ONBOARDING",
 };
 
 export const ONBORADING_PRODUCT = {
