@@ -21,20 +21,23 @@ import TodoSubmitSuccess from "./components/todo/TodoSubmitSuccess";
 import TodoAnswer from "./components/todo/TodoAnswer";
 import Social from "./components/login/Social";
 import { CAREER } from "./components/main/TodoMall/Constant";
+import { Loader } from "./components/global/Loader";
 
 function App() {
-  const [current, setCurrent] = useState(CAREER);
+  // const [current, setCurrent] = useState(CAREER);
+  window.location.href = "https://edu.todomall.kr/";
   return (
     <Container>
-      <Routes>
-        {/* Login, Terms of Service Routes */}
+      <Loader />
+      {/* <Routes>
+        Login, Terms of Service Routes
         <Route path="/" element={<Login />} />
         <Route path="/social" element={<Social />} />
         <Route path="/agreement" element={<Agreement />} />
         <Route path="/service" element={<Service />} />
         <Route path="/personal" element={<Personal />} />
 
-        {/* Main pages Routes */}
+        Main pages Routes
         <Route path="/todobox" element={<TodoBox />} />
         <Route
           path="/todomall"
@@ -42,7 +45,7 @@ function App() {
         />
         <Route path="/mypage" element={<MyPage />} />
 
-        {/* Todo Detail, Assignment Routes */}
+        Todo Detail, Assignment Routes
         <Route
           path="/todo/:todoid/:sessionid/:productid/detail/:status"
           element={<TodoDetail />}
@@ -57,16 +60,16 @@ function App() {
         />
         <Route path="/todo/success" element={<TodoSubmitSuccess />} />
 
-        {/* Plan Routes */}
+        Plan Routes
         <Route path="/detail/:planid" element={<PlanDetail />} />
         <Route path="/purchase/:planid" element={<PlanPurchase />} />
         <Route path="/retry/:planid" element={<PlanRetry />} />
 
-        {/* Setting Routes */}
+        Setting Routes
         <Route path="/settings" element={<Settings />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/announcement/:id" element={<AnnouncementDetail />} />
-      </Routes>
+      </Routes> */}
     </Container>
   );
 }
